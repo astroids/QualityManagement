@@ -18,12 +18,12 @@ namespace Abc
         public p_List()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             p_grid.Visible = true;
 
 
             con.Open();
-            SqlDataAdapter adap = new SqlDataAdapter("select * from Tbl_Personel", con);
+            SqlDataAdapter adap = new SqlDataAdapter("select * from Personel", con);
             DataTable dt = new DataTable();
             adap.Fill(dt);
             p_grid.DataSource = dt;

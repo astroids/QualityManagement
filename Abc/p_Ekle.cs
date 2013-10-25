@@ -17,7 +17,7 @@ namespace Abc
         public p_Ekle()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
            // p_grid.Visible = true;
         }
 
@@ -55,12 +55,13 @@ namespace Abc
             }*/
             con.Open();
 
-            string quer = "insert into Tbl_Personel values(2,'werwerewr','sdfsdf','12345678901','12345678901','12345678901','12345678901','2','12-Jun-1999','dsfsdf','dagitim','dasda',123,'1','3');";
-            SqlDataAdapter adap = new SqlDataAdapter(quer, con);
+            SqlDataAdapter adap = new SqlDataAdapter("insert into Personel values(3232,'mali vveli','55555555555','6666666666','2222222222','fsdf@gasd.com','E','isci','dagidim',10001,0);", con);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
             con.Close();
-            p_List asd = new p_List();
-            asd.Show();
             this.Hide();
+            p_List temp = new p_List();
+            temp.Show();
         }
     }
 }
