@@ -90,7 +90,12 @@ namespace Abc
         private void button12_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Çıkmak İstediğinizden Emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                this.Close();
+                Application.Exit();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

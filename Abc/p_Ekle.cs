@@ -14,10 +14,10 @@ namespace Abc
     public partial class p_Ekle : Form
     {
         private SqlConnection con = new SqlConnection();
-        public p_Ekle()
+        public p_Ekle(int tip, int sid)
         {
             InitializeComponent();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
            // p_grid.Visible = true;
         }
 
@@ -55,13 +55,25 @@ namespace Abc
             }*/
             con.Open();
 
-            SqlDataAdapter adap = new SqlDataAdapter("insert into Personel values(3232,'mali vveli','55555555555','6666666666','2222222222','fsdf@gasd.com','E','isci','dagidim',10001,0);", con);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
+            string quer = "insert into Tbl_Personel values(@p_isim,'ulker','12345678901','09876543212','12345678909','qwertyu@gmail',0,'11-05-2004','new york','amele','ar-ge',5,1,0,0); ";
+            
+            
+            SqlCommand cmd = new SqlCommand(quer, con);
+            cmd.CommandText=quer;
+            cmd.Parameters.Add("@p_isim", SqlDbType.VarChar, 20).Value =p_isim.Text;
+
+            
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
             con.Close();
+            p_List asd = new p_List();
+            asd.Show();
             this.Hide();
-            p_List temp = new p_List();
-            temp.Show();
+        }
+
+        private void p_isim_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,93 +29,161 @@
         private void InitializeComponent()
         {
             this.p_grid = new System.Windows.Forms.DataGridView();
-            this.p_Ekle = new System.Windows.Forms.Button();
-            this.p_Duzen = new System.Windows.Forms.Button();
-            this.p_Sil = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ekleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ızinIsteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ızinOnaylaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izindeOlanlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ızinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seçToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izinGeçmişiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.arama = new System.Windows.Forms.Label();
+            this.izinOnayBekleyenlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.p_grid)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // p_grid
             // 
             this.p_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.p_grid.Location = new System.Drawing.Point(12, 63);
+            this.p_grid.Location = new System.Drawing.Point(12, 27);
+            this.p_grid.MultiSelect = false;
             this.p_grid.Name = "p_grid";
-            this.p_grid.Size = new System.Drawing.Size(723, 343);
+            this.p_grid.ReadOnly = true;
+            this.p_grid.Size = new System.Drawing.Size(723, 379);
             this.p_grid.TabIndex = 0;
             // 
-            // p_Ekle
+            // menuStrip1
             // 
-            this.p_Ekle.Location = new System.Drawing.Point(12, 12);
-            this.p_Ekle.Name = "p_Ekle";
-            this.p_Ekle.Size = new System.Drawing.Size(75, 23);
-            this.p_Ekle.TabIndex = 1;
-            this.p_Ekle.Text = "Ekle";
-            this.p_Ekle.UseVisualStyleBackColor = true;
-            this.p_Ekle.Click += new System.EventHandler(this.p_Ekle_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ekleToolStripMenuItem,
+            this.silToolStripMenuItem,
+            this.ızinToolStripMenuItem,
+            this.seçToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(747, 24);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // p_Duzen
+            // ekleToolStripMenuItem
             // 
-            this.p_Duzen.Location = new System.Drawing.Point(114, 12);
-            this.p_Duzen.Name = "p_Duzen";
-            this.p_Duzen.Size = new System.Drawing.Size(75, 23);
-            this.p_Duzen.TabIndex = 2;
-            this.p_Duzen.Text = "Düzenle";
-            this.p_Duzen.UseVisualStyleBackColor = true;
+            this.ekleToolStripMenuItem.Name = "ekleToolStripMenuItem";
+            this.ekleToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.ekleToolStripMenuItem.Text = "Ekle";
+            this.ekleToolStripMenuItem.Click += new System.EventHandler(this.ekleToolStripMenuItem_Click);
             // 
-            // p_Sil
+            // silToolStripMenuItem
             // 
-            this.p_Sil.Location = new System.Drawing.Point(225, 12);
-            this.p_Sil.Name = "p_Sil";
-            this.p_Sil.Size = new System.Drawing.Size(75, 23);
-            this.p_Sil.TabIndex = 3;
-            this.p_Sil.Text = "Sil";
-            this.p_Sil.UseVisualStyleBackColor = true;
+            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(31, 20);
+            this.silToolStripMenuItem.Text = "Sil";
             // 
-            // button4
+            // ızinIsteToolStripMenuItem
             // 
-            this.button4.Location = new System.Drawing.Point(400, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.ızinIsteToolStripMenuItem.Name = "ızinIsteToolStripMenuItem";
+            this.ızinIsteToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.ızinIsteToolStripMenuItem.Text = "Izin Iste";
+            this.ızinIsteToolStripMenuItem.Click += new System.EventHandler(this.ızinIsteToolStripMenuItem_Click);
             // 
-            // button5
+            // ızinOnaylaToolStripMenuItem
             // 
-            this.button5.Location = new System.Drawing.Point(541, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ızinOnaylaToolStripMenuItem.Name = "ızinOnaylaToolStripMenuItem";
+            this.ızinOnaylaToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.ızinOnaylaToolStripMenuItem.Text = "Izin Onayla";
+            this.ızinOnaylaToolStripMenuItem.Click += new System.EventHandler(this.ızinOnaylaToolStripMenuItem_Click);
+            // 
+            // izindeOlanlarToolStripMenuItem
+            // 
+            this.izindeOlanlarToolStripMenuItem.Name = "izindeOlanlarToolStripMenuItem";
+            this.izindeOlanlarToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.izindeOlanlarToolStripMenuItem.Text = "İzinde Olanlar";
+            // 
+            // ızinToolStripMenuItem
+            // 
+            this.ızinToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ızinIsteToolStripMenuItem,
+            this.izindeOlanlarToolStripMenuItem,
+            this.ızinOnaylaToolStripMenuItem,
+            this.izinGeçmişiToolStripMenuItem,
+            this.izinOnayBekleyenlerToolStripMenuItem});
+            this.ızinToolStripMenuItem.Name = "ızinToolStripMenuItem";
+            this.ızinToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.ızinToolStripMenuItem.Text = "Izin";
+            // 
+            // seçToolStripMenuItem
+            // 
+            this.seçToolStripMenuItem.Name = "seçToolStripMenuItem";
+            this.seçToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.seçToolStripMenuItem.Text = "Seç";
+            // 
+            // izinGeçmişiToolStripMenuItem
+            // 
+            this.izinGeçmişiToolStripMenuItem.Name = "izinGeçmişiToolStripMenuItem";
+            this.izinGeçmişiToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.izinGeçmişiToolStripMenuItem.Text = "İzin Geçmişi";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(609, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 7;
+            // 
+            // arama
+            // 
+            this.arama.AutoSize = true;
+            this.arama.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.arama.Location = new System.Drawing.Point(552, 9);
+            this.arama.Name = "arama";
+            this.arama.Size = new System.Drawing.Size(51, 16);
+            this.arama.TabIndex = 8;
+            this.arama.Text = "Arama";
+            // 
+            // izinOnayBekleyenlerToolStripMenuItem
+            // 
+            this.izinOnayBekleyenlerToolStripMenuItem.Name = "izinOnayBekleyenlerToolStripMenuItem";
+            this.izinOnayBekleyenlerToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.izinOnayBekleyenlerToolStripMenuItem.Text = "İzin Onay Bekleyenler";
             // 
             // p_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 418);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.p_Sil);
-            this.Controls.Add(this.p_Duzen);
-            this.Controls.Add(this.p_Ekle);
+            this.Controls.Add(this.arama);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.p_grid);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "p_List";
             this.Text = "p_List";
             ((System.ComponentModel.ISupportInitialize)(this.p_grid)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView p_grid;
-        private System.Windows.Forms.Button p_Ekle;
-        private System.Windows.Forms.Button p_Duzen;
-        private System.Windows.Forms.Button p_Sil;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ızinToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ızinIsteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ızinOnaylaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izindeOlanlarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seçToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izinGeçmişiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izinOnayBekleyenlerToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label arama;
     }
 }
