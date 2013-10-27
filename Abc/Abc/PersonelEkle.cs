@@ -18,6 +18,24 @@ namespace Abc
         {
             InitializeComponent();
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            if (tip == 2)
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+		       
+                cmd.Parameters.AddWithValue("@id", sid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    p_isim.Text = reader["P_Adi"].ToString();
+                }
+                
+                con.Close();
+            }
            // p_grid.Visible = true;
         }
 
@@ -86,5 +104,6 @@ namespace Abc
         {
 
         }
+
     }
 }

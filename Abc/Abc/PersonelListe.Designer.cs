@@ -47,14 +47,20 @@
             // 
             // p_grid
             // 
+            this.p_grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.p_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.p_grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.p_grid.Location = new System.Drawing.Point(12, 27);
             this.p_grid.MultiSelect = false;
             this.p_grid.Name = "p_grid";
             this.p_grid.ReadOnly = true;
+            this.p_grid.RowTemplate.ReadOnly = true;
+            this.p_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.p_grid.Size = new System.Drawing.Size(723, 379);
             this.p_grid.TabIndex = 0;
-            this.p_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.p_grid_CellContentClick);
+            this.p_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.p_grid_SelectedIndexChanged);
             // 
             // menuStrip1
             // 
@@ -82,6 +88,7 @@
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
             this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.düzenleToolStripMenuItem.Text = "Düzenle";
+            this.düzenleToolStripMenuItem.Click += new System.EventHandler(this.düzenleToolStripMenuItem_Click);
             // 
             // silToolStripMenuItem
             // 

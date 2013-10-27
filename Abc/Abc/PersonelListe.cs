@@ -14,6 +14,8 @@ namespace Abc
     public partial class PersonelListe : Form
     {
         private SqlConnection con = new SqlConnection();
+        private int selectedID = 0;
+
         public PersonelListe()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace Abc
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            if (ser == null)
+            if (ser == null||ser.Length==0)
             {
                  cmd.CommandText = "Select * From Tbl_Personel";
             }
@@ -85,10 +87,6 @@ namespace Abc
 
 
 
-        private void p_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -129,8 +127,20 @@ namespace Abc
             con.Close();
         }
 
+        private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(selectedID.ToString());
+            PersonelEkle asd = new PersonelEkle(2, selectedID);
+            asd.Show();
+            
+            
+        }
 
-
+        private void p_grid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           selectedID = Convert.ToInt32(p_grid.SelectedRows[0].Cells[0].Value.ToString());
+            //p_grid.SelectedRows[0].Cells[0].Value.ToString());
+        }
 
     }
 }
