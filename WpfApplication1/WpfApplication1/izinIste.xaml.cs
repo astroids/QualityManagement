@@ -27,6 +27,7 @@ namespace WpfApplication1
         {
 
             InitializeComponent();
+            _sicil.Content = iid;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -43,11 +44,25 @@ namespace WpfApplication1
             DataSet ds = new DataSet();
 
             adap.Fill(ds, "Tbl_Personel_Izin");
-            
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "Select * FROM Tbl_Personel where P_id = @id;";
+            cmd.Parameters.AddWithValue("@id", iid);
+            adap.Fill(dt);
+
+            adap.Fill(ds, "Tbl_Personel");
+          
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                isim.Content = reader["P_Adi"].ToString();
+                soyisim.Content = reader["P_Soyadi"].ToString();
+            }
 
             
             neden.ItemsSource = ds.Tables[0].DefaultView.ToString();
-            cmd.ExecuteNonQuery();
+            
             con.Close();
             
             //this column will display as text

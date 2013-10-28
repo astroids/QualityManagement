@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.ComponentModel;
 
 namespace WpfApplication1
 {
@@ -25,6 +26,7 @@ namespace WpfApplication1
         public WPersonel()
         {
             InitializeComponent();
+            
         }
 
 
@@ -46,5 +48,6 @@ namespace WpfApplication1
             //con.Close();
 
         }
+
     }
 }

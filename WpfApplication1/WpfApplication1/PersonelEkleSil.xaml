@@ -30,7 +30,7 @@
                         <Image Source="Images/paste.png" />
                     </MenuItem.Icon>-->
                 </MenuItem>
-                <MenuItem Header="_İzin Onay Bekleyenler">
+                <MenuItem Name="onaybekliyenler" Header="_İzin Onay Bekleyenler" Click="onaybekliyenler_Click">
                     <!--<MenuItem.Icon>
                         <Image Source="Images/paste.png" />
                     </MenuItem.Icon>-->

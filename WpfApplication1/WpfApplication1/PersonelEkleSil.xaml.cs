@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using System.ComponentModel;
 
 namespace WpfApplication1
 {
@@ -26,6 +27,7 @@ namespace WpfApplication1
         public PersonelEkleSil()
         {
             InitializeComponent();
+            this.Closing += pers_Closing;
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             listele(null);
         }
@@ -46,7 +48,7 @@ namespace WpfApplication1
             else
             {
                 cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
-                cmd.Parameters.AddWithValue("@Title", ser);
+                cmd.Parameters.AddWithValue("@Title",'%'+ser+'%');
             }
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -143,8 +145,6 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
             MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
-            
-            
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
@@ -153,6 +153,25 @@ namespace WpfApplication1
             con.Close();
         }
 
+        private void onaybekliyenler_Click(object sender, RoutedEventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select p.P_id as 'Sicil No' ,p.P_Adi as Adı ,p.P_Soyadi as 'Soyadı' , i.PI_BasTarih as 'Başlangıç Tarihi',i.PI_BitTarih as 'Bitiş Tarihi',k.P_Adi as 'Onay veren' from Tbl_Personel k,Tbl_Personel p ,Tbl_Personel_Izin i where p.P_id=i.PI_Pers_id and i.PI_Onay = NULL";
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            p_grid.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        private static void pers_Closing(object sender, CancelEventArgs e)
+        {
+            WPersonel p = new WPersonel();
+            p.Show();
+        }
 
 
     }

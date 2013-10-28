@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,10 +24,12 @@ namespace WpfApplication1
     public partial class ekleDuzenle : MetroWindow
     {
         private SqlConnection con = new SqlConnection();
+        
         public ekleDuzenle(int tur,int id)
         {
-            InitializeComponent();
             
+            InitializeComponent();
+          
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             if (tur == 2)
             {
@@ -47,5 +50,7 @@ namespace WpfApplication1
                 con.Close();
             }
         }
+
+
     }
 }
