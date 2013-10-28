@@ -1,0 +1,38 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.ekleDuzenle" ShowTitleBar="False"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KALİTE YÖNETİM SİSTEMİ" Height="525" Width="525" HorizontalAlignment="Center">
+
+    <Grid Margin="0,0,-66,-110">
+        <Label Content="İSİM" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="SOYİSİM" HorizontalAlignment="Left" Margin="24,61,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="TC KİMLİK" HorizontalAlignment="Left" Margin="24,91,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="TELEFON NO" HorizontalAlignment="Left" Margin="24,121,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="CEP TELEFON" HorizontalAlignment="Left" Margin="24,151,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="E-MAİL" HorizontalAlignment="Left" Margin="24,181,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="CİNSİYET" HorizontalAlignment="Left" Margin="24,211,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="DOĞUM TARİHİ" HorizontalAlignment="Left" Margin="24,241,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="POZİSYON" HorizontalAlignment="Left" Margin="24,271,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="DEPARTMAN" HorizontalAlignment="Left" Margin="24,301,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="MEDENİ HAL" HorizontalAlignment="Left" Margin="24,331,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="ADAY DURUMU" HorizontalAlignment="Left" Margin="24,361,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label Content="ÇALIŞMA DURUMU" HorizontalAlignment="Left" Margin="24,391,0,0" VerticalAlignment="Top" Width="135"/>
+        <TextBox Name="isim"  HorizontalAlignment="Left" Height="23" Margin="232,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <DatePicker HorizontalAlignment="Left" Margin="232,241,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="232,212,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="232,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
+        <ComboBox HorizontalAlignment="Left" Margin="232,301,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="232,361,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="232,332,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="232,391,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+
+    </Grid>
+</Controls:MetroWindow>

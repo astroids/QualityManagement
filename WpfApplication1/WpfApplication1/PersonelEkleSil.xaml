@@ -1,0 +1,44 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.PersonelEkleSil" ShowTitleBar="False"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PERSONEL LİSTERSİ" Height="600" Width="1024" HorizontalAlignment="Center">
+    <Grid>
+        <DataGrid AutoGenerateColumns="True" Name="p_grid" HorizontalAlignment="Left" Height="463" Margin="25,73,0,0" VerticalAlignment="Top" Width="948" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   /> 
+        <Menu IsMainMenu="True" Margin="25,10,741,530">
+            <MenuItem Header="EKLE" Name="ekle" Click="ekle_Click_1"/>
+            <MenuItem Name="düzenle" Header="DÜZENLE" Click="duzenle_Click_1" />
+            <MenuItem Header="SİL" />
+            <MenuItem Header="İZİN">
+                <MenuItem Name="iziniste" Header="_İzin İste" Click="iziniste_Click_1">
+                    <!--<MenuItem.Icon>
+                        <Image Source="Images/cut.png" />
+                    </MenuItem.Icon>-->
+                </MenuItem>
+                <MenuItem Header="_İzinde Olanlar" Click="ekle_Click_1">
+                    <!--<MenuItem.Icon>
+                        <Image Source="Images/copy.png" />
+                    </MenuItem.Icon>-->
+                </MenuItem>
+                <MenuItem Header="_İzin Onayla">
+                    <!--<MenuItem.Icon>
+                        <Image Source="Images/paste.png" />
+                    </MenuItem.Icon>-->
+                </MenuItem>
+                <MenuItem Header="_İzin Geçmişi">
+                    <!--<MenuItem.Icon>
+                        <Image Source="Images/paste.png" />
+                    </MenuItem.Icon>-->
+                </MenuItem>
+                <MenuItem Header="_İzin Onay Bekleyenler">
+                    <!--<MenuItem.Icon>
+                        <Image Source="Images/paste.png" />
+                    </MenuItem.Icon>-->
+                </MenuItem>
+            </MenuItem>
+            
+        </Menu>
+        <Label Content="ARAMA" HorizontalAlignment="Left" Margin="732,0,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="SEARCH" HorizontalAlignment="Left" Height="23" Margin="788,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,18 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.WPersonel" ShowTitleBar="False" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PERSONEL" Height="525" Width="525" HorizontalAlignment="Center"  >
+    <Grid>
+
+        <Button Content="PERSONEL İŞLEMLERİ" Name="PersIs" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="53,103,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="PersIs_Button_Click"/>
+        <Button Content= "PERSONEL EGİTİM PLAMLAMA" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="53,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="EĞİTİM DEĞERLENDİRME" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="53,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="PERSONEL RAPORU" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="PERSONEL RAPORU" FontFamily="Segoe UI Symbol" FontSize="14" HorizontalAlignment="Left" Margin="298,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Label Content="PERSONEL" FontFamily="Segoe UI Symbol" FontSize="16" FontStyle="Oblique" HorizontalAlignment="Left" Margin="135,37,0,0" VerticalAlignment="Top" />
+        <Image Margin="43,0,408,426" Source="personel.PNG" Stretch="None"/>
+
+    </Grid>
+</Controls:MetroWindow>
