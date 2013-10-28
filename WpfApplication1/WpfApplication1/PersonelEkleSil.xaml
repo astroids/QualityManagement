@@ -15,7 +15,7 @@
                         <Image Source="Images/cut.png" />
                     </MenuItem.Icon>-->
                 </MenuItem>
-                <MenuItem Header="_İzinde Olanlar" Click="ekle_Click_1">
+                <MenuItem Name="izindeolanlar" Header="_İzinde Olanlar" Click="izindeolanlar_Click_1">
                     <!--<MenuItem.Icon>
                         <Image Source="Images/copy.png" />
                     </MenuItem.Icon>-->
@@ -25,7 +25,7 @@
                         <Image Source="Images/paste.png" />
                     </MenuItem.Icon>-->
                 </MenuItem>
-                <MenuItem Header="_İzin Geçmişi">
+                <MenuItem Name="izingecmisi" Header="_İzin Geçmişi" Click="izingecmisi_Click">
                     <!--<MenuItem.Icon>
                         <Image Source="Images/paste.png" />
                     </MenuItem.Icon>-->

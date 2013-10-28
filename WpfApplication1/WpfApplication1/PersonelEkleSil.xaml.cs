@@ -59,26 +59,8 @@ namespace WpfApplication1
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select p.P_id as 'Sicil No' ,p.P_Adi as Adı ,p.P_Soyadi as 'Soyadı' , i.PI_BasTarih as 'Başlangıç Tarihi',i.PI_BitTarih as 'Bitiş Tarihi',k.P_Adi as 'Onay veren', p.P_Tel1 as 'Telefon No'  from Tbl_Personel k,Tbl_Personel p ,Tbl_Personel_Izin i where p.P_id=i.PI_Pers_id and k.P_id=i.PI_OnayVeren_id;";
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = null;
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
-        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -134,6 +116,41 @@ namespace WpfApplication1
             {
                 MessageBox.Show("İzin almak için için bir kişi seçinz");
             }
+        }
+
+        private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select p.P_id as 'Sicil No' ,p.P_Adi as Adı ,p.P_Soyadi as 'Soyadı' , i.PI_BasTarih as 'Başlangıç Tarihi',i.PI_BitTarih as 'Bitiş Tarihi',k.P_Adi as 'Onay veren', p.P_Tel1 as 'Telefon No'  from Tbl_Personel k,Tbl_Personel p ,Tbl_Personel_Izin i where p.P_id=i.PI_Pers_id and k.P_id=i.PI_OnayVeren_id;";
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            p_grid.ItemsSource = null;
+            p_grid.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        private void izingecmisi_Click(object sender, RoutedEventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
+            MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
+            
+            
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            p_grid.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
 
