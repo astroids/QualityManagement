@@ -122,12 +122,17 @@ namespace WpfApplication1
 
         private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
         {
-
+            string d = DateTime.Now.ToString("yyyy-MM-dd");
+            
+            
             SqlCommand cmd = new SqlCommand();
+           // MessageBox.Show(d);
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select p.P_id as 'Sicil No' ,p.P_Adi as Adı ,p.P_Soyadi as 'Soyadı' , i.PI_BasTarih as 'Başlangıç Tarihi',i.PI_BitTarih as 'Bitiş Tarihi',k.P_Adi as 'Onay veren', p.P_Tel1 as 'Telefon No'  from Tbl_Personel k,Tbl_Personel p ,Tbl_Personel_Izin i where p.P_id=i.PI_Pers_id and k.P_id=i.PI_OnayVeren_id;";
+            cmd.Parameters.AddWithValue("@CTime", d);
+            cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
+            
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
@@ -135,6 +140,7 @@ namespace WpfApplication1
             p_grid.ItemsSource = dt.DefaultView;
             cmd.ExecuteNonQuery();
             con.Close();
+           
         }
 
         private void izingecmisi_Click(object sender, RoutedEventArgs e)
@@ -159,7 +165,8 @@ namespace WpfApplication1
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select p.P_id as 'Sicil No' ,p.P_Adi as Adı ,p.P_Soyadi as 'Soyadı' , i.PI_BasTarih as 'Başlangıç Tarihi',i.PI_BitTarih as 'Bitiş Tarihi',k.P_Adi as 'Onay veren' from Tbl_Personel k,Tbl_Personel p ,Tbl_Personel_Izin i where p.P_id=i.PI_Pers_id and i.PI_Onay = NULL";
+            cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel p , Tbl_Personel_Izin i ,Tbl_Izin_Tur t where p.P_id=i.PI_id and i.PI_Izin_Tur=t.IT_id and i.PI_Onay is null";
+
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
