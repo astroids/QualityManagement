@@ -4,8 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PERSONEL LİSTERSİ" Height="600" Width="1024" HorizontalAlignment="Center">
     <Grid>
-        <DataGrid AutoGenerateColumns="True" Name="p_grid" HorizontalAlignment="Left" Height="463" Margin="25,73,10,10" VerticalAlignment="Top" Width="948" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   /> 
-        <Menu IsMainMenu="True" Margin="25,10,741,530">
+        <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="25,73,10,10"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
+        <Menu IsMainMenu="True" Margin="10,10,756,524" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <MenuItem Header="EKLE" Name="ekle" Click="ekle_Click_1"/>
             <MenuItem Name="düzenle" Header="DÜZENLE" Click="duzenle_Click_1" />
             <MenuItem Header="SİL" />
@@ -38,7 +38,7 @@
             </MenuItem>
             
         </Menu>
-        <Label Content="ARAMA" HorizontalAlignment="Left" Margin="732,0,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="SEARCH" HorizontalAlignment="Left" Height="23" Margin="788,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Label Content="ARAMA" HorizontalAlignment="Right" Margin="0,0,227,0" VerticalAlignment="Top"/>
+        <TextBox Name="SEARCH" HorizontalAlignment="Right" Height="23" Margin="0,0,102,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
     </Grid>
 </Controls:MetroWindow>
