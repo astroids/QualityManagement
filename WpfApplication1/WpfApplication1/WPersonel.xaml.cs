@@ -26,6 +26,8 @@ namespace WpfApplication1
         public WPersonel()
         {
             InitializeComponent();
+            int i = 45;
+            i++;
             
         }
 
