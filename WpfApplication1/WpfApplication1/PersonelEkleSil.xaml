@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PERSONEL LİSTERSİ" Height="600" Width="1024" HorizontalAlignment="Center">
     <Grid>
-        <DataGrid AutoGenerateColumns="True" Name="p_grid" HorizontalAlignment="Left" Height="463" Margin="25,73,0,0" VerticalAlignment="Top" Width="948" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   /> 
+        <DataGrid AutoGenerateColumns="True" Name="p_grid" HorizontalAlignment="Left" Height="463" Margin="25,73,10,10" VerticalAlignment="Top" Width="948" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   /> 
         <Menu IsMainMenu="True" Margin="25,10,741,530">
             <MenuItem Header="EKLE" Name="ekle" Click="ekle_Click_1"/>
             <MenuItem Name="düzenle" Header="DÜZENLE" Click="duzenle_Click_1" />
