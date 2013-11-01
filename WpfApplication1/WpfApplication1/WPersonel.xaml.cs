@@ -54,5 +54,12 @@ namespace WpfApplication1
 
         }
 
+        private void persegButton_Click(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil eg = new PersonelEkleSil(3);
+            eg.Show();
+
+        }
+
     }
 }

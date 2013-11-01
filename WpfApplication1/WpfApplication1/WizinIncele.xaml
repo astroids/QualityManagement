@@ -1,0 +1,23 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.WizinIncele" ShowTitleBar="False"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AAABOSKOPYALA" Height="600" Width="800">
+    <Grid>
+        <Label Content="Eğitim Adı" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,69,0,0" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Eğitim İçeriği" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,201,0,0" VerticalAlignment="Top"/>
+        <Label Content="Eğitimi Veren" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,109,0,0" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Eğitimi Alan Personel" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,460,0,0" VerticalAlignment="Top"/>
+        <Label Content="Eğitim Tarihleri" HorizontalAlignment="Left" Margin="55,154,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="eIcerik" HorizontalAlignment="Left" Height="236" Margin="215,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="543"/>
+        <TextBlock Name="eBas" HorizontalAlignment="Left" Margin="215,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <TextBlock Name="eBit" HorizontalAlignment="Left" Margin="383,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <TextBlock Name="eVerenAdi" HorizontalAlignment="Left" Margin="215,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <TextBlock Name="eVerenSoy" HorizontalAlignment="Left" Margin="383,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <TextBlock Name="eAdi" HorizontalAlignment="Left" Margin="215,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <DataGrid Name="eAlanPers" AutoGenerateColumns="True"  HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308"/>
+
+
+
+    </Grid>
+</Controls:MetroWindow>

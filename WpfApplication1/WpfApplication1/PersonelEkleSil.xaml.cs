@@ -25,7 +25,8 @@ namespace WpfApplication1
     public partial class PersonelEkleSil : MetroWindow
     {
         public int cagiranmenutipi;
-
+        private SqlConnection con = new SqlConnection();
+        private int selectedID = 0;
 
         //1 ekle sil
         public PersonelEkleSil(int vers)
@@ -50,12 +51,25 @@ namespace WpfApplication1
                 onaybekliyenler.Visibility = Visibility.Visible;
                 onayla.Visibility = Visibility.Visible;
             }
+            else if (cagiranmenutipi == 3)
+            {
+                egEkle.Visibility = Visibility.Visible;
+                egDegistir.Visibility = Visibility.Visible;
+                egCikar.Visibility = Visibility.Visible;
+                egIncele.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+
+
+            }
 
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+
+            
             listele(null);
         }
-                private SqlConnection con = new SqlConnection();
-        private int selectedID = 0;
+
+
+        
 
         private void listele(string ser)
         {
@@ -64,14 +78,33 @@ namespace WpfApplication1
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            if (ser == null || ser.Length == 0)
+            ///-------------------------------------------------------------------------arama kutusu cagirma tipi
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2)
             {
-                cmd.CommandText = "Select * From Tbl_Personel";
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
             }
-            else
+            else if (cagiranmenutipi == 3)
             {
-                cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
-                cmd.Parameters.AddWithValue("@Title",'%'+ser+'%');
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                }
+                else
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+
             }
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -87,10 +120,12 @@ namespace WpfApplication1
 
 
 
+
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+              listele(SEARCH.Text);
 
-            listele(SEARCH.Text);
         }
 
         private void ekle_Click_1(object sender, RoutedEventArgs e)
@@ -278,6 +313,50 @@ namespace WpfApplication1
                 MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
             }
         }
+
+
+        // ---------------------------------------------------------------Egitim-----------------------------------------------------------------------------------
+        private void egEkle_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void egDegistir_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void egCikar_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void egIncele_Click(object sender, RoutedEventArgs e)
+        {
+
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                WizinIncele incele = new WizinIncele(selectedID);
+                incele.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+            }
+
+           
+
+        }
+        private void egRapor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
 
 
     }

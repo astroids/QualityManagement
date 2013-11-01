@@ -6,7 +6,7 @@
     <Grid>
 
         <Button Content="PERSONEL İŞLEMLERİ" Name="PersIs" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,103,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="PersIs_Button_Click"/>
-        <Button Content= "PERSONEL EGİTİM PLAMLAMA" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content= "PERSONEL EGİTİM PLAMLAMA" Name="PersEgi" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,224,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="persegButton_Click"/>
         <Button Content="EĞİTİM DEĞERLENDİRME" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
         <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
         <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
