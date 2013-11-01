@@ -24,6 +24,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class WizinIncele : MetroWindow
     {
+
         private int secilenizin;
         private SqlConnection con = new SqlConnection();
         private int selected_personel;
@@ -51,7 +52,7 @@ namespace WpfApplication1
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
             cmd.Parameters.AddWithValue("@id", secilenizin);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
@@ -86,9 +87,20 @@ namespace WpfApplication1
 
             }
             con.Close();
-            con.Open();
+            
+            refreshTable();
 
-            cmd.CommandText = "	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+
+        }
+
+        private void refreshTable()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "	select  eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.Parameters.AddWithValue("@id", secilenizin);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             adap.Fill(dt);
@@ -106,6 +118,28 @@ namespace WpfApplication1
             eks.Show();
             
             
+        }
+
+        private void ePersCikar_Click(object sender, RoutedEventArgs e)
+        {
+            object item = eAlanPers.SelectedItem;
+            string ID = (eAlanPers.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            selected_personel = Convert.ToInt32(ID);
+
+            SqlCommand cmd = new SqlCommand();
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenizin and Tbl_Personel_Egitim.PE_id=@selected_personel;";
+            cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
+            cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+            refreshTable();
+
+
         }
     }
 }
