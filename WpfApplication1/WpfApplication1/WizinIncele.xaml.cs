@@ -49,8 +49,16 @@ namespace WpfApplication1
                 eVerenSoy.Text = reader["P_Soyadi"].ToString();
 
             }
-            //cmd.CommandText = "select * from T"
+            con.Close();
+            con.Open();
 
+            cmd.CommandText = "	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            DataTable dt = new DataTable();
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            adap.Fill(dt);
+
+            eAlanPers.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
             con.Close();
 
         }

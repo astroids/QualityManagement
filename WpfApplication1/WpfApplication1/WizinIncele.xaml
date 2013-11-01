@@ -15,7 +15,7 @@
         <TextBlock Name="eVerenAdi" HorizontalAlignment="Left" Margin="215,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
         <TextBlock Name="eVerenSoy" HorizontalAlignment="Left" Margin="383,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
         <TextBlock Name="eAdi" HorizontalAlignment="Left" Margin="215,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
-        <DataGrid Name="eAlanPers" AutoGenerateColumns="True"  HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308"/>
+        <DataGrid Name="eAlanPers" AutoGenerateColumns="True"  HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308" IsReadOnly="True" />
 
 
 
