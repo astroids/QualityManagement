@@ -24,10 +24,33 @@ namespace WpfApplication1
     /// </summary>
     public partial class PersonelEkleSil : MetroWindow
     {
-        public PersonelEkleSil()
+        public int cagiranmenutipi;
+
+
+        //1 ekle sil
+        public PersonelEkleSil(int vers)
         {
             InitializeComponent();
-            this.Closing += pers_Closing;
+           // this.Closing += pers_Closing; // pers kapama silindi ---
+
+            cagiranmenutipi = vers;
+            if (cagiranmenutipi == 1)
+            {
+                perskayit.Visibility = Visibility.Visible;
+                persedit.Visibility = Visibility.Visible;
+                pers3.Visibility = Visibility.Visible;
+
+            }
+            else if (cagiranmenutipi == 2)
+            {
+                iziniste.Visibility = Visibility.Visible;
+                izindeolanlar.Visibility = Visibility.Visible;
+                onaybekliyenler.Visibility = Visibility.Visible;
+                izingecmisi.Visibility = Visibility.Visible;
+                onaybekliyenler.Visibility = Visibility.Visible;
+                onayla.Visibility = Visibility.Visible;
+            }
+
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             listele(null);
         }
@@ -76,6 +99,8 @@ namespace WpfApplication1
             dzn.Show();
         }
 
+
+        //eski ekle
         private void duzenle_Click_1(object sender, RoutedEventArgs e)
         {
             
@@ -92,7 +117,7 @@ namespace WpfApplication1
                 MessageBox.Show("Deiştirmek için bir kişi seçinz");
             }
         }
-
+        //sil eski
         private void iziniste_Click_1(object sender, RoutedEventArgs e)
         {
             object item = p_grid.SelectedItem;
@@ -176,8 +201,82 @@ namespace WpfApplication1
         }
         private static void pers_Closing(object sender, CancelEventArgs e)
         {
+            //sil
             WPersonel p = new WPersonel();
             p.Show();
+        }
+
+        private void perskayit_Click(object sender, RoutedEventArgs e)
+        {
+            ekleDuzenle dzn = new ekleDuzenle(1, 0);
+            dzn.Show();
+        }
+
+        private void persedit_Click(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
+                dzn.Show();
+            }
+            else
+            {
+                MessageBox.Show("Deiştirmek için bir kişi seçinz");
+            }
+        }
+
+        private void iziniste_Click(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                izinIste iz = new izinIste(selectedID);
+                iz.Show();
+                //SqlCommand cmd = new SqlCommand();
+                //con.Open();
+                //cmd.Connection = con;
+                //cmd.CommandType = CommandType.Text;
+                //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
+                //cmd.Parameters.AddWithValue("@id", selectedID);
+                //SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                //DataTable dt = new DataTable();
+                //adap.Fill(dt);
+                //cmd.ExecuteNonQuery();
+                //con.Close();
+            }
+            else
+            {
+                MessageBox.Show("İzin almak için için bir kişi seçinz");
+            }
+        }
+
+        private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
+                MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
+                MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
+            }
         }
 
 

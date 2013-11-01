@@ -23,6 +23,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class WPersonel : MetroWindow
     {
+        
         public WPersonel()
         {
             InitializeComponent();
@@ -34,9 +35,11 @@ namespace WpfApplication1
 
         private void PersIs_Button_Click(object sender, RoutedEventArgs e)
         {
-            PersonelEkleSil ek = new PersonelEkleSil();
+
+            PersonelAraMenu ek = new PersonelAraMenu(this);
             ek.Show();
-            this.Close();
+            //this.Hide();
+
             //SqlCommand cmd = new SqlCommand();
             //con.Open();
             //cmd.Connection = con;
