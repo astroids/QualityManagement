@@ -31,7 +31,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             selected_personel = i;
-            secilenizin = selected_personel;
+            
             SqlCommand cmd = new SqlCommand();
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
@@ -51,11 +51,13 @@ namespace WpfApplication1
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.CommandText = "select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
             cmd.Parameters.AddWithValue("@id", secilenizin);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
             adap.Fill(dt);
+            eAlanPers.ItemsSource = dt.DefaultView;
             con.Close();
         }
 

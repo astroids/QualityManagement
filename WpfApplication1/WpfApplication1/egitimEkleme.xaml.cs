@@ -25,7 +25,7 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         private int egitimverenid;
-        private List<int> selectedpers;
+        //private List<int> selectedpers;
         private DateTime baslngic;
         private DateTime bitisTar;
         private int egitimno;
@@ -55,7 +55,7 @@ namespace WpfApplication1
             cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
             cmd.Parameters.AddWithValue("@btr",baslngic.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@sontr",bitisTar.ToString("yyyy-MM-dd"));
-            //cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             con.Close();
 
 
@@ -75,6 +75,7 @@ namespace WpfApplication1
 
             //cmd.ExecuteNonQuery();
             con.Close();
+            MessageBox.Show(egitimno.ToString());
 
             WizinIncele n = new WizinIncele(egitimno);
             n.Show();
