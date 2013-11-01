@@ -32,34 +32,39 @@ namespace WpfApplication1
         {
             InitializeComponent();
             selected_personel = i;
-            
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel);";
-            cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
-            cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel);";
+                cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
+                cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
-            cmd.ExecuteNonQuery();
-            con.Close();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+                cmd.Parameters.AddWithValue("@id", secilenizin);
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
+                adap.Fill(dt);
+                eAlanPers.ItemsSource = dt.DefaultView;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Seçtiğiniz Kişi Zaten Eğitim Listesinde");
+                this.Close();
+            }
 
-            
-            cmd = new SqlCommand();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-            cmd.Parameters.AddWithValue("@id", secilenizin);
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            eAlanPers.ItemsSource = dt.DefaultView;
-            con.Close();
         }
 
         public WizinIncele(int sid)
