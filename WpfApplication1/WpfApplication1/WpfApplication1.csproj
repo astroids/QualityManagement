@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,6 +63,9 @@
     <Compile Include="AAABOSKOPYALA.xaml.cs">
       <DependentUpon>AAABOSKOPYALA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="egitimEkleme.xaml.cs">
+      <DependentUpon>egitimEkleme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ekleDuzenle.xaml.cs">
       <DependentUpon>ekleDuzenle.xaml</DependentUpon>
     </Compile>
@@ -81,6 +85,10 @@
       <DependentUpon>WPersonel.xaml</DependentUpon>
     </Compile>
     <Page Include="AAABOSKOPYALA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="egitimEkleme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

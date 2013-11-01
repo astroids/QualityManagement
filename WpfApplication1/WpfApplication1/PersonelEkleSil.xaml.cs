@@ -27,12 +27,14 @@ namespace WpfApplication1
         public int cagiranmenutipi;
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
+        
 
-        //1 ekle sil
+        //1 ekle sil 2 izin  3 egitim görüntüle  4 id seç ve dön
         public PersonelEkleSil(int vers)
         {
             InitializeComponent();
            // this.Closing += pers_Closing; // pers kapama silindi ---
+            
 
             cagiranmenutipi = vers;
             if (cagiranmenutipi == 1)
@@ -61,6 +63,14 @@ namespace WpfApplication1
 
 
             }
+            else if (cagiranmenutipi == 4)
+            {
+                egEkle.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 5)
+            {
+                egEkle.Visibility = Visibility.Visible;
+            }
 
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
@@ -79,7 +89,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2)
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4|| cagiranmenutipi==5)
             {
 
                 if (ser == null || ser.Length == 0)
@@ -316,11 +326,7 @@ namespace WpfApplication1
 
 
         // ---------------------------------------------------------------Egitim-----------------------------------------------------------------------------------
-        private void egEkle_Click(object sender, RoutedEventArgs e)
-        {
 
-
-        }
         private void egDegistir_Click(object sender, RoutedEventArgs e)
         {
 
@@ -355,6 +361,40 @@ namespace WpfApplication1
         {
 
         }
+
+        private void egEkle_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (cagiranmenutipi == 3)
+            {
+                egitimEkleme egi = new egitimEkleme();
+                egi.Show();
+            }
+            else if (cagiranmenutipi == 4)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.setSelect(Convert.ToInt32(ID));
+                this.Close();
+
+
+            }
+            else if (cagiranmenutipi == 5)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_ekle(Convert.ToInt32(ID));
+                this.Close();
+
+            }
+        }
+
+        private void sec_Click(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil se = new PersonelEkleSil(4);
+            se.Show();
+        }
+
+
 
 
 

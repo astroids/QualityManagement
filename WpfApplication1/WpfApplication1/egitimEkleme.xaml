@@ -1,0 +1,24 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.egitimEkleme" ShowTitleBar="False"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Personel Egitim Eklem" Height="600" Width="800">
+    <Grid>
+        <Label Content="Eğitim Adı" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,69,0,0" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Eğitim İçeriği" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,201,0,0" VerticalAlignment="Top"/>
+        <Label Content="Eğitimi Veren" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="55,109,0,0" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Eğitim Tarihleri" HorizontalAlignment="Left" Margin="55,154,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="eIcerik" HorizontalAlignment="Left" Height="294" Margin="215,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="543"/>
+        <TextBox Name="eAdi" HorizontalAlignment="Left" Margin="215,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="305"/>
+        <DatePicker Name="basla" HorizontalAlignment="Left" Margin="215,154,0,0" VerticalAlignment="Top" SelectedDateChanged="basla_SelectedDateChanged"  />
+        <DatePicker Name="bitis" HorizontalAlignment="Left" Margin="418,154,0,0" VerticalAlignment="Top" SelectedDateChanged="bitis_SelectedDateChanged"  />
+        <Button Name="kaydet" Content="KAYDET" HorizontalAlignment="Left" Margin="683,520,0,0" VerticalAlignment="Top" Width="75" Click="kaydet_Click"/>
+        <Label Name="eVAdi" Content="" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="215,108,0,0" VerticalAlignment="Top" Width="125"/>
+        <Label Name="eVSoyadi" Content="" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="418,109,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button Name="eVerenSec" Content="Ekle" HorizontalAlignment="Left" Margin="574,109,0,0" VerticalAlignment="Top" Width="75" Click="eVerenSec_Click"/>
+
+
+
+
+    </Grid>
+</Controls:MetroWindow>

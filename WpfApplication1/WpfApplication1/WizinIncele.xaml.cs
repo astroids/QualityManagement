@@ -26,11 +26,45 @@ namespace WpfApplication1
     {
         private int secilenizin;
         private SqlConnection con = new SqlConnection();
+        private int selected_personel;
+        public void setSelectedPers(int i)
+        {
+            InitializeComponent();
+            selected_personel = i;
+            secilenizin = selected_personel;
+            SqlCommand cmd = new SqlCommand();
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel);";
+            cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
+            cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+            
+            cmd = new SqlCommand();
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.Parameters.AddWithValue("@id", secilenizin);
+            DataTable dt = new DataTable();
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            adap.Fill(dt);
+            con.Close();
+        }
+
         public WizinIncele(int sid)
         {
             
             InitializeComponent();
             secilenizin = sid;
+
             SqlCommand cmd = new SqlCommand();
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
@@ -61,6 +95,15 @@ namespace WpfApplication1
             cmd.ExecuteNonQuery();
             con.Close();
 
+        }
+
+        private void ePersEkle_Click(object sender, RoutedEventArgs e)
+        {
+            sel.ected.setOpenwindow2(this);
+            PersonelEkleSil eks = new PersonelEkleSil(5);
+            eks.Show();
+            
+            
         }
     }
 }

@@ -23,6 +23,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class PersonelAraMenu : MetroWindow
     {
+       
         private static WPersonel parent;
         public PersonelAraMenu(WPersonel pe)
         {
@@ -33,6 +34,7 @@ namespace WpfApplication1
 
         private void kayit_Button_Click(object sender, RoutedEventArgs e)
         {
+           
             PersonelEkleSil ek = new PersonelEkleSil(1);
             ek.Show();
 
