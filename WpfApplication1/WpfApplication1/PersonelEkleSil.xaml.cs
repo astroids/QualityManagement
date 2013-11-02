@@ -39,6 +39,7 @@ namespace WpfApplication1
             cagiranmenutipi = vers;
             if (cagiranmenutipi == 1)
             {
+                Title = "Personel Kayıt";
                 perskayit.Visibility = Visibility.Visible;
                 persedit.Visibility = Visibility.Visible;
                 pers3.Visibility = Visibility.Visible;
@@ -46,6 +47,7 @@ namespace WpfApplication1
             }
             else if (cagiranmenutipi == 2)
             {
+                Title = "Personel İzin";
                 iziniste.Visibility = Visibility.Visible;
                 izindeolanlar.Visibility = Visibility.Visible;
                 onaybekliyenler.Visibility = Visibility.Visible;
@@ -55,6 +57,9 @@ namespace WpfApplication1
             }
             else if (cagiranmenutipi == 3)
             {
+                Title = "Personel Egitim";
+                SEARCH.IsEnabled = false;// ------------------------------bu menuye ozel olmali
+
                 egEkle.Visibility = Visibility.Visible;
                 egDegistir.Visibility = Visibility.Visible;
                 egCikar.Visibility = Visibility.Visible;
@@ -212,21 +217,31 @@ namespace WpfApplication1
             con.Close();
            
         }
-
+        //burası-------------------------------------------
         private void izingecmisi_Click(object sender, RoutedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
-            MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
+                cmd.Parameters.AddWithValue("@sid", selectedID);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
+                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+            }
         }
 
         private void onaybekliyenler_Click(object sender, RoutedEventArgs e)
@@ -244,6 +259,38 @@ namespace WpfApplication1
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        private void onayla_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
+                cmd.Parameters.AddWithValue("@sid", selectedID);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
+                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+            }
+
+            */
+            MessageBox.Show("in progress");
+        }
+
+
+
         private static void pers_Closing(object sender, CancelEventArgs e)
         {
             //sil
@@ -393,6 +440,26 @@ namespace WpfApplication1
             PersonelEkleSil se = new PersonelEkleSil(4);
             se.Show();
         }
+
+        private void onaybekliyenler_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Meneger only");
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı',iz.PI_id as 'İzin No' , PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' from Tbl_Personel_Izin iz , Tbl_Personel pe,Tbl_Izin_Tur t where iz.PI_Pers_id=pe.P_id and iz.PI_Onay is NULL and iz.PI_Izin_Tur=t.IT_id;";
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            p_grid.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+        }
+
+
 
 
 
