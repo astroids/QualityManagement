@@ -459,6 +459,32 @@ namespace WpfApplication1
 
         }
 
+        private void egCikar_Click_1(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+              /*  string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'Soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Onay Veren Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
+                cmd.Parameters.AddWithValue("@sid", selectedID);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close(); */
+            }
+            else
+            {
+                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+            }
+        }
+
 
 
 
