@@ -77,7 +77,7 @@ namespace WpfApplication1
             con.Close();
             MessageBox.Show(egitimno.ToString());
 
-            WizinIncele n = new WizinIncele(egitimno);
+            Wegitimincele n = new Wegitimincele(egitimno);
             n.Show();
             this.Close();
 
@@ -135,7 +135,7 @@ namespace sel
     {
         private static int idint;
         private static WpfApplication1.egitimEkleme openwindow;
-        private static WpfApplication1.WizinIncele openwindow2;
+        private static WpfApplication1.Wegitimincele openwindow2;
         public static void setSelect(int i){
             idint=i;
             openwindow.setEgitimVeren(idint);
@@ -145,7 +145,7 @@ namespace sel
         {
             return idint;
         }
-        public static void setOpenwindow2(WpfApplication1.WizinIncele cur)
+        public static void setOpenwindow2(WpfApplication1.Wegitimincele cur)
         {
             openwindow2 = cur;
         }

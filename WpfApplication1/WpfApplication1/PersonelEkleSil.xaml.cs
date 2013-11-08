@@ -392,7 +392,7 @@ namespace WpfApplication1
             {
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
-                WizinIncele incele = new WizinIncele(selectedID);
+                Wegitimincele incele = new Wegitimincele(selectedID);
                 incele.Show();
 
             }
@@ -481,7 +481,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+                MessageBox.Show("After Edit BRB");
             }
         }
 

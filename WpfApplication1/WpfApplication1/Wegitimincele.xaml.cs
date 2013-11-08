@@ -20,9 +20,9 @@ using System.ComponentModel;
 namespace WpfApplication1
 {
     /// <summary>
-    /// Interaction logic for WizinIncele.xaml
+    /// Interaction logic for Wegitimincele.xaml
     /// </summary>
-    public partial class WizinIncele : MetroWindow
+    public partial class Wegitimincele : MetroWindow
     {
 
         private int secilenizin;
@@ -67,7 +67,7 @@ namespace WpfApplication1
 
         }
 
-        public WizinIncele(int sid)
+        public Wegitimincele(int sid)
         {
             
             InitializeComponent();

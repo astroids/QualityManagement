@@ -78,8 +78,8 @@
     <Compile Include="PersonelEkleSil.xaml.cs">
       <DependentUpon>PersonelEkleSil.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WizinIncele.xaml.cs">
-      <DependentUpon>WizinIncele.xaml</DependentUpon>
+    <Compile Include="Wegitimincele.xaml.cs">
+      <DependentUpon>Wegitimincele.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPersonel.xaml.cs">
       <DependentUpon>WPersonel.xaml</DependentUpon>
@@ -124,7 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="WizinIncele.xaml">
+    <Page Include="Wegitimincele.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
