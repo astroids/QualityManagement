@@ -24,7 +24,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class WegitimDegistir : MetroWindow
     {
-        private int secilenizin;
+        private int secilenizin;//bunuda seçilen egitimle
         private SqlConnection con = new SqlConnection();
         private int selected_personel;
         private bool tarihdegisti;
@@ -34,6 +34,7 @@ namespace WpfApplication1
         public void setEgitimVeren(int eg)
         {
             egitimveren = eg;
+            eVerenDegisti = true;
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
@@ -102,7 +103,7 @@ namespace WpfApplication1
         private void ePersEkle_Click(object sender, RoutedEventArgs e)
         {
             sel.ected.setOpenwindowED(this);
-            PersonelEkleSil eks = new PersonelEkleSil(5);
+            PersonelEkleSil eks = new PersonelEkleSil(8);
             eks.Show();
 
 
@@ -136,7 +137,7 @@ namespace WpfApplication1
 
         public void setSelectedPers(int i)
         {
-            InitializeComponent();
+            //InitializeComponent();
             selected_personel = i;
            
             tarihdegisti = false;
@@ -150,7 +151,7 @@ namespace WpfApplication1
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel,NULL);";
-                cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
+                cmd.Parameters.AddWithValue("@secilenizin", secilenizin);//izinleri egitimle değiştir
                 cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
                 cmd.ExecuteNonQuery();

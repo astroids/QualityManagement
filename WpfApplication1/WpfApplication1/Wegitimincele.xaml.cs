@@ -30,7 +30,7 @@ namespace WpfApplication1
         private int selected_personel;
         public void setSelectedPers(int i)
         {
-            InitializeComponent();
+            //InitializeComponent();
             selected_personel = i;
             try
             {

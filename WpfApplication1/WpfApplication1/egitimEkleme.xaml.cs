@@ -150,6 +150,8 @@ namespace sel
             everenDegistir = 0;
         }
 
+
+        //kullanılmıyor olabilir
         public static int getSelect()
         {
             return idint;
@@ -177,6 +179,12 @@ namespace sel
             
             
         }
+        public static void personel_degistirEkle(int i)
+        {
+            idPers = i;
+            eDegistir.setSelectedPers(idPers);                        //fonksiyon ekle
+        }
+
         public static void personel_Degistirekle(int i)
         {
             idPers = i;

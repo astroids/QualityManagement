@@ -68,16 +68,13 @@ namespace WpfApplication1
 
 
             }
-            else if (cagiranmenutipi == 4||cagiranmenutipi==7)
+            else if (cagiranmenutipi == 4|| cagiranmenutipi == 5 || cagiranmenutipi == 6||cagiranmenutipi==7 || cagiranmenutipi==8)                     
             {
                 egEkle.Content = "Seç";
                 egEkle.Visibility = Visibility.Visible;
                 
             }
-            else if (cagiranmenutipi == 5 || cagiranmenutipi == 6)
-            {
-                egEkle.Visibility = Visibility.Visible;
-            }
+
 
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
@@ -96,7 +93,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7)
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 )
             {
 
                 if (ser == null || ser.Length == 0)
@@ -109,7 +106,7 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
-            else if (cagiranmenutipi == 3)
+            else if (cagiranmenutipi == 3)                                               //3 else           ???
             {
 
                 if (ser == null || ser.Length == 0)
@@ -469,6 +466,13 @@ namespace WpfApplication1
 
 
             }
+            else if (cagiranmenutipi == 8)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
+                this.Close();
+            }
 
         }
 
@@ -501,7 +505,7 @@ namespace WpfApplication1
             object item = p_grid.SelectedItem;
             if (item != null)
             {
-              /*  string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
                 SqlCommand cmd = new SqlCommand();
                 con.Open();
@@ -514,7 +518,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close(); */
+                con.Close(); 
             }
             else
             {
