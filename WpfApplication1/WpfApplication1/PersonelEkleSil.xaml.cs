@@ -68,11 +68,13 @@ namespace WpfApplication1
 
 
             }
-            else if (cagiranmenutipi == 4)
+            else if (cagiranmenutipi == 4||cagiranmenutipi==7)
             {
+                egEkle.Content = "Seç";
                 egEkle.Visibility = Visibility.Visible;
+                
             }
-            else if (cagiranmenutipi == 5)
+            else if (cagiranmenutipi == 5 || cagiranmenutipi == 6)
             {
                 egEkle.Visibility = Visibility.Visible;
             }
@@ -94,7 +96,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4|| cagiranmenutipi==5)
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7)
             {
 
                 if (ser == null || ser.Length == 0)
@@ -376,6 +378,19 @@ namespace WpfApplication1
 
         private void egDegistir_Click(object sender, RoutedEventArgs e)
         {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                WegitimDegistir incele = new WegitimDegistir(selectedID);
+                incele.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+            }
 
 
         }
@@ -401,9 +416,14 @@ namespace WpfApplication1
                 MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
             }
 
-           
-
         }
+
+
+
+
+
+
+
         private void egRapor_Click(object sender, RoutedEventArgs e)
         {
 
@@ -433,6 +453,23 @@ namespace WpfApplication1
                 this.Close();
 
             }
+            else if (cagiranmenutipi == 6)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_Degistirekle(Convert.ToInt32(ID));
+                this.Close();
+            }
+            else if (cagiranmenutipi == 7)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.setDegistirEitim(Convert.ToInt32(ID));
+                this.Close();
+
+
+            }
+
         }
 
         private void sec_Click(object sender, RoutedEventArgs e)
