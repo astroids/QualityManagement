@@ -24,12 +24,19 @@ namespace WpfApplication1
     /// </summary>
     public partial class WegitimDegistir : MetroWindow
     {
-        private int secilenizin;//bunuda seçilen egitimle
+        private int secilenEgitim;
         private SqlConnection con = new SqlConnection();
         private int selected_personel;
         private bool tarihdegisti;
         private bool eVerenDegisti;
+        private string tarihEskibaslangic;
+        private string tarihEskibitis;
+
         private int egitimveren;
+        private string yeniDegisenIcerik;
+        
+
+
 
         public void setEgitimVeren(int eg)
         {
@@ -61,7 +68,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-            cmd.Parameters.AddWithValue("@id", secilenizin);
+            cmd.Parameters.AddWithValue("@id", secilenEgitim);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             adap.Fill(dt);
@@ -75,7 +82,7 @@ namespace WpfApplication1
         public WegitimDegistir(int sid)
         {
             InitializeComponent();
-            secilenizin = sid;
+            secilenEgitim = sid;
 
             SqlCommand cmd = new SqlCommand();
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
@@ -91,6 +98,8 @@ namespace WpfApplication1
                 eIcerik.Text = reader["E_Icerik"].ToString();
                 eBas.Text = reader["E_BasTarih"].ToString();
                 eBit.Text = reader["E_BitTarih"].ToString();
+                tarihEskibaslangic = eBas.Text;
+                tarihEskibitis = eBit.Text;
                 eVerenAdi.Text = reader["P_Adi"].ToString();
                 eVerenSoy.Text = reader["P_Soyadi"].ToString();
 
@@ -114,22 +123,29 @@ namespace WpfApplication1
         private void ePersCikar_Click(object sender, RoutedEventArgs e)
         {
             object item = eAlanPers.SelectedItem;
-            string ID = (eAlanPers.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            selected_personel = Convert.ToInt32(ID);
+            try
+            {
 
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenizin and Tbl_Personel_Egitim.PE_id=@selected_personel;";
-            cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
-            cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
+                string ID = (eAlanPers.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selected_personel = Convert.ToInt32(ID);
 
-            cmd.ExecuteNonQuery();
-            con.Close();
-            refreshTable();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenEgitim and Tbl_Personel_Egitim.PE_id=@selected_personel;";
+                cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
+                cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
+                cmd.ExecuteNonQuery();
+                con.Close();
+                refreshTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Çıkarılacak kişiyi seçiniz");
+            }
 
         }
 
@@ -150,8 +166,8 @@ namespace WpfApplication1
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel,NULL);";
-                cmd.Parameters.AddWithValue("@secilenizin", secilenizin);//izinleri egitimle değiştir
+                cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenEgitim,@selected_personel,NULL);";
+                cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
                 cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
                 cmd.ExecuteNonQuery();
@@ -162,7 +178,7 @@ namespace WpfApplication1
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-                cmd.Parameters.AddWithValue("@id", secilenizin);
+                cmd.Parameters.AddWithValue("@id", secilenEgitim);
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -194,6 +210,65 @@ namespace WpfApplication1
             sel.ected.setOpenwindowED(this);
             PersonelEkleSil per = new PersonelEkleSil(7);
             per.Show();
+
+        }
+
+        private void kaydet_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Egitim set E_Icerik=@icerik where  E_id=@id";
+                cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                if (tarihdegisti)
+                {
+                    cmd = new SqlCommand();
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Tbl_Egitim set E_BasTarih=@bas ,E_BitTarih=@bit where  E_id=@id";
+                    cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                    cmd.Parameters.AddWithValue("@bas", ((DateTime)DateS.SelectedDate).ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@bit", ((DateTime)DateE.SelectedDate).ToString("yyyy-MM-dd"));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                if (eVerenDegisti)
+                {
+                    cmd = new SqlCommand();
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Tbl_Egitim set E_Egi_Veren=@everen where  E_id=@id";
+                    cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                    cmd.Parameters.AddWithValue("@everen", egitimveren);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                con.Close();
+                
+
+
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Değiştirme sırasında bir hata oluştu");
+                this.Close();
+            }
+            MessageBox.Show("Değişiklikleriniz Başarıyla Kaydedildi");
+            this.Close();
+
+
 
         }
     }

@@ -19,7 +19,7 @@
         <DataGrid Name="eAlanPers" AutoGenerateColumns="True"   HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308" IsReadOnly="True" />
         <Button Name="ePersEkle" FontFamily="Segoe WP" FontSize="12" Content="Ekle" HorizontalAlignment="Left" Margin="59,491,0,0" VerticalAlignment="Top" Width="75" Click="ePersEkle_Click"/>
         <Button Name="ePersCikar" FontFamily="Segoe WP" FontSize="12" Content="Çıkar" HorizontalAlignment="Left" Margin="59,524,0,0" VerticalAlignment="Top" Width="75" Click="ePersCikar_Click" />
-        <Button Name="kaydet" FontFamily="Segoe WP" FontSize="12" Content="Kaydet" HorizontalAlignment="Left" Margin="683,524,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="kaydet" FontFamily="Segoe WP" FontSize="12" Content="Kaydet" HorizontalAlignment="Left" Margin="683,524,0,0" VerticalAlignment="Top" Width="75" Click="kaydet_Click"/>
         <DatePicker Name="DateE" Visibility="Hidden" HorizontalAlignment="Left" Margin="383,154,0,0" VerticalAlignment="Top"/>
         <DatePicker Name="DateS" Visibility="Hidden" HorizontalAlignment="Left" Margin="215,154,0,0" VerticalAlignment="Top"/>
         <Button Name="egitimVD" Content="Değiştir" HorizontalAlignment="Left" Margin="599,110,0,0" VerticalAlignment="Top" Width="68" Click="egitimVD_Click"/>
