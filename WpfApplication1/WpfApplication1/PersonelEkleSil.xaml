@@ -7,7 +7,7 @@
         <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="32,72,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" RenderTransformOrigin="0.25,-1.8"   />
         <Button Visibility="Hidden" Name="perskayit" Content="Yeni Kayıt" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="32,0,0,10" VerticalAlignment="Bottom" Width="208" Height="28" Click="perskayit_Click" />
         <Button Visibility="Hidden" Name="persedit" Content="Düzenleme" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="377,0,0,10" VerticalAlignment="Bottom" Width="208" Height="28" Click="persedit_Click" />
-        <Button Visibility="Hidden"  Name="pers3" Content="Button" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="749,0,0,10" VerticalAlignment="Bottom" Width="208" Height="28" />
+        <Button Visibility="Hidden"  Name="silme" Content="Silme" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="749,0,0,10" VerticalAlignment="Bottom" Width="208" Height="28" Click="silme_Click" />
         <Button Visibility="Hidden" Name="iziniste" Content="İzin iste" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="iziniste_Click" />
         <Button Visibility="Hidden" Name="izindeolanlar" Content="İzinde olanlar" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="420,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="izindeolanlar_Click_1" />
         <Button Visibility="Hidden" Name="onayla" Content="İzin Onayla" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="830,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="onayla_Click" />
@@ -24,5 +24,6 @@
 
         <Label Content="ARAMA" HorizontalAlignment="Right" Margin="0,0,135,0" VerticalAlignment="Top"/>
         <TextBox Name="SEARCH" HorizontalAlignment="Right" Height="23" Margin="0,0,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button Name="yenile" FontFamily="Segoe WP" FontSize="12" Content="Yenile" HorizontalAlignment="Left" Margin="723,1,0,544" Width="75" Click="yenile_Click"/>
     </Grid>
 </Controls:MetroWindow>

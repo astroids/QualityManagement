@@ -30,7 +30,7 @@ namespace WpfApplication1
             
             InitializeComponent();
           
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             if (tur == 2)
             {
                 con.Open();

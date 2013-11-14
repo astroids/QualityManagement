@@ -42,7 +42,7 @@ namespace WpfApplication1
                 Title = "Personel Kayıt";
                 perskayit.Visibility = Visibility.Visible;
                 persedit.Visibility = Visibility.Visible;
-                pers3.Visibility = Visibility.Visible;
+                silme.Visibility = Visibility.Visible;
 
             }
             else if (cagiranmenutipi == 2)
@@ -76,7 +76,7 @@ namespace WpfApplication1
             }
 
 
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -537,6 +537,54 @@ namespace WpfApplication1
             {
                 MessageBox.Show("After Edit BRB");
             }
+        }
+
+        private void silme_Click(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+
+
+                if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+
+
+                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+
+
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "delete from Tbl_Personel where P_id = @P_id";
+
+                    cmd.Parameters.AddWithValue("@P_id", selectedID);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Silme Yapıldı..");
+
+                    con.Close();
+
+                    //rows number of record got deleted
+
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Silmek için bir kişi seçinz");
+            }
+        }
+
+        private void yenile_Click(object sender, RoutedEventArgs e)
+        {
+            listele(null);
         }
 
 
