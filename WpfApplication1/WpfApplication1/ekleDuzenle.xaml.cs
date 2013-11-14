@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace WpfApplication1
 {
@@ -24,33 +25,73 @@ namespace WpfApplication1
     public partial class ekleDuzenle : MetroWindow
     {
         private SqlConnection con = new SqlConnection();
-        
-        public ekleDuzenle(int tur,int id)
+        public SqlCommand cmd = new SqlCommand();
+
+        int x;
+        int idd;
+        public ekleDuzenle(int tur, int id)
         {
-            
+
             InitializeComponent();
-          
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
-            if (tur == 2)
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
+            x = tur;
+            idd = id;
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
-
-                cmd.Parameters.AddWithValue("@id", id);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    isim.Text = reader["P_Adi"].ToString();
-                }
-
-                con.Close();
-            }
         }
 
+        private void isim_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            if (x == 1)
+            {
+ 
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                cmd.Connection = con;
+                cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday)";
+
+                cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
+                cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
+                cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
+                cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
+                cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
+                cmd.Parameters.AddWithValue("@P_Email", email.Text);
+                cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
+                cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
+                cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
+                cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
+                cmd.Parameters.AddWithValue("@P_Dept", departman.Text);
+                cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
+                cmd.Parameters.AddWithValue("@P_Aday", adaydurumu.Text);
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Kayıt Yapıldı..");
+                this.Hide();
+                PersonelEkleSil ek = new PersonelEkleSil(1);
+                ek.Show();
+                con.Close();
+
+
+
+            }
+
+
+        }
     }
 }

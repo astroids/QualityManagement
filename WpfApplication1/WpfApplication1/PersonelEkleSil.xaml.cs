@@ -76,7 +76,7 @@ namespace WpfApplication1
             }
 
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -301,6 +301,7 @@ namespace WpfApplication1
         {
             ekleDuzenle dzn = new ekleDuzenle(1, 0);
             dzn.Show();
+            this.Close();
         }
 
         private void persedit_Click(object sender, RoutedEventArgs e)
@@ -553,7 +554,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
