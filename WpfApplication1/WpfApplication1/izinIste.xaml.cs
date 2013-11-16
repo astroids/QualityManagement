@@ -79,18 +79,28 @@ namespace WpfApplication1
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
 
+            DateTime basl =(DateTime)baslan.SelectedDate;
+            DateTime biti =(DateTime)baslan.SelectedDate;
+            TimeSpan sure = biti-basl;
 
-            
-            try {
+            try
+            {
                 SqlCommand cmd = new SqlCommand();
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update Tbl_Egitim set E_BasTarih=@bas ,E_BitTarih=@bit where  E_id=@id";
+                cmd.CommandText = "insert into Tbl_Personel_Izin values(@id,@tur,@bas,@bit,@sure,NULL,NULL";
                 cmd.Parameters.AddWithValue("@id", persid);
-                cmd.Parameters.AddWithValue("@bas", ((DateTime)baslan.SelectedDate).ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@bit", ((DateTime)bitis.SelectedDate).ToString("yyyy-MM-dd"));
-            
+                cmd.Parameters.AddWithValue("@bas", (basl.ToString("yyyy-MM-dd")));
+                cmd.Parameters.AddWithValue("@bit", (biti.ToString("yyyy-MM-dd")));
+                cmd.Parameters.AddWithValue("@sure", sure.Days.ToString());
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("İzin istegit başarıyla tamamlandı");
+                this.Close();
+            }
+            catch {
+                MessageBox.Show("Hatlı işlem");
+
             }
         }
     }
