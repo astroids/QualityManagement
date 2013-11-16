@@ -22,12 +22,14 @@ namespace WpfApplication1
     /// </summary>
     public partial class izinIste : MetroWindow
     {
+        private int persid;
         private SqlConnection con = new SqlConnection();
         public izinIste(int iid)
         {
 
             InitializeComponent();
             _sicil.Content = iid;
+            persid = iid;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -72,6 +74,24 @@ namespace WpfApplication1
          //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
 
 
+        }
+
+        private void kaydet_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            
+            try {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Egitim set E_BasTarih=@bas ,E_BitTarih=@bit where  E_id=@id";
+                cmd.Parameters.AddWithValue("@id", persid);
+                cmd.Parameters.AddWithValue("@bas", ((DateTime)baslan.SelectedDate).ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@bit", ((DateTime)bitis.SelectedDate).ToString("yyyy-MM-dd"));
+            
+            }
         }
     }
 }
