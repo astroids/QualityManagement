@@ -22,8 +22,10 @@
         <Button Visibility="Hidden" Name="sec" Content="Ekle" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="sec_Click" />
 
 
-        <Label Content="ARAMA" HorizontalAlignment="Right" Margin="0,0,135,0" VerticalAlignment="Top"/>
-        <TextBox Name="SEARCH" HorizontalAlignment="Right" Height="23" Margin="0,0,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <Button Name="yenile" FontFamily="Segoe WP" FontSize="12" Content="Yenile" HorizontalAlignment="Left" Margin="723,1,0,544" Width="75" Click="yenile_Click"/>
+        <Label Content="ARAMA" HorizontalAlignment="Right" Margin="0,0,155,0" VerticalAlignment="Top"/>
+        <TextBox Name="SEARCH" HorizontalAlignment="Right" Height="23" Margin="0,0,30,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button Name="yenile" Height="25" Width="25"  Click="yenile_Click" Margin="991,1,0,543">
+            <Image Name="im" Visibility="Visible"   Source="/Ref.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False" ToolTip="Yenile" />
+        </Button>
     </Grid>
 </Controls:MetroWindow>
