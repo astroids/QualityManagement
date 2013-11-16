@@ -35,7 +35,7 @@ namespace WpfApplication1
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
         }
 
@@ -64,6 +64,24 @@ namespace WpfApplication1
                 cmd.Connection = con;
                 cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday) 
                                  values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday)";
+                string mf,mh,ady;
+                
+                if (cinsiyet.Text == "Bayan")
+                {
+                    mf = "0";
+                }else{
+                    mf = "1";
+                }
+                if (medenihal.Text == "Evli")
+                {
+                    mh = "1";
+                }else{
+                    mh ="0";
+                }
+                ady = (adaydurumu.Text == "Aday") ? "0" : "1";
+
+                
+
 
                 cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                 cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -71,13 +89,14 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
                 cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
                 cmd.Parameters.AddWithValue("@P_Email", email.Text);
-                cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
+                cmd.Parameters.AddWithValue("@P_Cinsiyet", mf);
                 cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
                 cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
                 cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
                 cmd.Parameters.AddWithValue("@P_Dept", departman.Text);
-                cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                cmd.Parameters.AddWithValue("@P_Aday", adaydurumu.Text);
+                cmd.Parameters.AddWithValue("@P_Med_Hal", mh);
+                cmd.Parameters.AddWithValue("@P_Aday", ady);
+                
 
                 cmd.ExecuteNonQuery();
 
