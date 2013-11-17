@@ -14,34 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 namespace WpfApplication1
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Wdokuman.xaml
     /// </summary>
-    /// 
-
-    public partial class MainWindow : MetroWindow
+    public partial class Wdokuman : MetroWindow
     {
-        public MainWindow()
+        public Wdokuman()
         {
             InitializeComponent();
-        }
-
-
-        private void Personel_Button_Click(object sender, RoutedEventArgs e)
-        {
-            WPersonel pers = new WPersonel();
-            pers.Show();
-            this.Close();
-        }
-
-        private void dokuman_Click(object sender, RoutedEventArgs e)
-        {
-            Wdokuman doc = new Wdokuman();
-            doc.Show();
-            this.Close();
         }
     }
 }

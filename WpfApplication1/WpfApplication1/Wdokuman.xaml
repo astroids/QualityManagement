@@ -1,0 +1,11 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.Wdokuman" ShowTitleBar="True"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Doküman Yönetimi" Height="428" Width="619">
+    <Grid>
+        <Button Content="Doküman İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,41,0,0" VerticalAlignment="Top"  Width="180" Height="60" />
+        <Button Content="Revizyon İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,138,0,0" VerticalAlignment="Top"  Width="180" Height="60" />
+
+    </Grid>
+</Controls:MetroWindow>
