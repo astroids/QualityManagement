@@ -74,9 +74,13 @@ namespace WpfApplication1
                 egEkle.Visibility = Visibility.Visible;
                 
             }
+            else if (cagiranmenutipi == 9)
+            {
+                yenile.Visibility = Visibility.Hidden;
+            }
 
 
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -93,16 +97,16 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 )
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
             {
 
                 if (ser == null || ser.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel";
+                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='Hayır'";
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='Hayır'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
@@ -115,10 +119,23 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='Hayır'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
 
+            }
+            else if (cagiranmenutipi == 9)
+            {
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='Evet'";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='Evet'";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
             }
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -554,7 +571,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -562,7 +579,7 @@ namespace WpfApplication1
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "delete from Tbl_Personel where P_id = @P_id";
+                    cmd.CommandText = "update Tbl_Personel set P_Silindi='Evet' where P_id = @P_id";
 
                     cmd.Parameters.AddWithValue("@P_id", selectedID);
 

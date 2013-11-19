@@ -48,5 +48,11 @@ namespace WpfApplication1
             PersonelEkleSil ek = new PersonelEkleSil(2);
             ek.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil ek = new PersonelEkleSil(9);
+            ek.Show();
+        }
     }
 }

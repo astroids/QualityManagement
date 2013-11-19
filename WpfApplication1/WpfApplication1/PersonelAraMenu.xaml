@@ -10,7 +10,7 @@
         </Grid.ColumnDefinitions>
         <Button Name="kayit" Content="Personel Kayıt işlemleri" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,50,0,0" VerticalAlignment="Top" Width="208" Height="28" Grid.ColumnSpan="2" Click="kayit_Button_Click"/>
         <Button Content="PErsonel izin işlemleri" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,101,0,0" VerticalAlignment="Top" Width="208" Height="28" Grid.ColumnSpan="2" Click="Button_Click"/>
-        <Button Content="Button" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,156,0,0" VerticalAlignment="Top" Width="208" Height="28" Grid.ColumnSpan="2" />
+        <Button Content="eski kayıtlar" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,156,0,0" VerticalAlignment="Top" Width="208" Height="28" Grid.ColumnSpan="2" Click="Button_Click_1" />
         <Button Content="Button" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,208,0,0" VerticalAlignment="Top" Width="208" Height="28" Grid.ColumnSpan="2"/>
     </Grid>
 </Controls:MetroWindow>
