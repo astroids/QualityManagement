@@ -80,7 +80,7 @@ namespace WpfApplication1
             }
 
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -102,11 +102,11 @@ namespace WpfApplication1
 
                 if (ser == null || ser.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='Hayır'";
+                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='0'";
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='Hayır'";
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='0'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
@@ -119,7 +119,7 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='Hayır'";
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='0'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
 
@@ -129,11 +129,11 @@ namespace WpfApplication1
 
                 if (ser == null || ser.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='Evet'";
+                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='Evet'";
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
@@ -571,7 +571,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -579,7 +579,7 @@ namespace WpfApplication1
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "update Tbl_Personel set P_Silindi='Evet' where P_id = @P_id";
+                    cmd.CommandText = "update Tbl_Personel set P_Silindi='1' where P_id = @P_id";
 
                     cmd.Parameters.AddWithValue("@P_id", selectedID);
 
@@ -587,7 +587,7 @@ namespace WpfApplication1
                     MessageBox.Show("Silme Yapıldı..");
 
                     con.Close();
-
+                    listele(null);
                     //rows number of record got deleted
 
                 }
@@ -605,7 +605,23 @@ namespace WpfApplication1
             listele(null);
         }
 
+        private void egRapor_Click_1(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                int selected_personel = Convert.ToInt32(ID);
+                Egitim_Rapor rap = new Egitim_Rapor(selected_personel);
+                rap.Show();
+            }
 
+            else
+            {
+                MessageBox.Show("Silmek için bir kişi seçinz");
+            }
+
+        }
 
 
 

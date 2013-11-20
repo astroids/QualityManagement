@@ -52,8 +52,8 @@ namespace WpfApplication1
         private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
+            //try
+            //{
 
                 if (x == 1)
                 {
@@ -63,8 +63,7 @@ namespace WpfApplication1
                         con.Open();
                     }
                     cmd.Connection = con;
-                    cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday)";
+                    cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi) values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Silindi)";
                     string mf, mh, ady;
 
                     if (cinsiyet.Text == "Bayan")
@@ -101,6 +100,7 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@P_Dept", departman.Text);
                     cmd.Parameters.AddWithValue("@P_Med_Hal", mh);
                     cmd.Parameters.AddWithValue("@P_Aday", ady);
+                    cmd.Parameters.AddWithValue("@P_Silindi","0" );
 
 
                     cmd.ExecuteNonQuery();
@@ -113,12 +113,12 @@ namespace WpfApplication1
 
 
 
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Lütfen tüm alanları doldurunuz");
-            }
+                  }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Lütfen tüm alanları doldurunuz");
+            //}
 
 
         }

@@ -63,6 +63,9 @@
     <Compile Include="AAABOSKOPYALA.xaml.cs">
       <DependentUpon>AAABOSKOPYALA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Egitim Rapor.xaml.cs">
+      <DependentUpon>Egitim Rapor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="egitimEkleme.xaml.cs">
       <DependentUpon>egitimEkleme.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <DependentUpon>WPersonel.xaml</DependentUpon>
     </Compile>
     <Page Include="AAABOSKOPYALA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Egitim Rapor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

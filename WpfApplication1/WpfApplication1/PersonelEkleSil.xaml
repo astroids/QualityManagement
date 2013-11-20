@@ -18,7 +18,7 @@
         <Button Visibility="Hidden" Name="egDegistir" Content="Degistir" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="420,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egDegistir_Click" />
         <Button Visibility="Hidden" Name="egCikar" Content="Çıkar" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="830,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egCikar_Click_1" />
         <Button Visibility="Hidden" Name="egIncele" Content="İncele" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egIncele_Click" />
-        <Button Visibility="Hidden" Name="egRapor" Content="Rapor????" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="623,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" />
+        <Button Visibility="Visible" Name="egRapor" Content="Rapor????" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="623,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egRapor_Click_1" />
         <Button Visibility="Hidden" Name="sec" Content="Ekle" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="sec_Click" />
 
 
