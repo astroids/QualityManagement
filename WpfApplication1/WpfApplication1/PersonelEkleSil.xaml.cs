@@ -80,7 +80,7 @@ namespace WpfApplication1
             }
 
 
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -571,7 +571,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
