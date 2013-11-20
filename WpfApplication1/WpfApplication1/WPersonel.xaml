@@ -8,8 +8,8 @@
         <Button Content="PERSONEL İŞLEMLERİ" Name="PersIs" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,103,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="PersIs_Button_Click"/>
         <Button Content= "PERSONEL EGİTİM PLAMLAMA" Name="PersEgi" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,224,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="persegButton_Click"/>
         <Button Content="EĞİTİM DEĞERLENDİRME" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
-        <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
-        <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click"/>
+        <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1"/>
         <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
         <Label Content="PERSONEL" FontFamily="Segoe WP" FontSize="16" FontStyle="Oblique" HorizontalAlignment="Left" Margin="135,37,0,0" VerticalAlignment="Top" />
         <Image Margin="43,0,408,426" Source="personel.PNG" Stretch="None"/>

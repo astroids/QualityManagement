@@ -16,6 +16,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel;
+using System.Windows.Xps.Packaging;
+using System.IO;
 
 namespace WpfApplication1
 {
@@ -65,6 +67,7 @@ namespace WpfApplication1
                 egCikar.Visibility = Visibility.Visible;
                 egIncele.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
+                
 
 
             }
@@ -79,8 +82,25 @@ namespace WpfApplication1
                 yenile.Visibility = Visibility.Hidden;
             }
 
-
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            else if (cagiranmenutipi == 10)
+            {
+                //egRapor.Visibility = Visibility.Visible;
+                kaydet.Visibility = Visibility.Visible;
+                SEARCH.Visibility = Visibility.Hidden;
+                arama.Visibility = Visibility.Hidden;
+                dc.Visibility = Visibility.Visible;
+                YAZDIR.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 11)
+            {
+               // egRapor.Visibility = Visibility.Visible;
+                kaydet.Visibility = Visibility.Visible;
+                SEARCH.Visibility = Visibility.Hidden;
+                arama.Visibility = Visibility.Hidden;
+                dc.Visibility = Visibility.Visible;
+                YAZDIR.Visibility = Visibility.Visible;
+            }
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -136,6 +156,32 @@ namespace WpfApplication1
                     cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
+            }
+            else if (cagiranmenutipi == 10)
+            {
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+            }
+            else if (cagiranmenutipi == 11)                                               //3 else           ???
+            {
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                }
+                else
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+
             }
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -491,6 +537,20 @@ namespace WpfApplication1
                 sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
                 this.Close();
             }
+            else if (cagiranmenutipi == 11)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
+                this.Close();
+            }
+            else if (cagiranmenutipi == 10)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
+                this.Close();
+            }
 
         }
 
@@ -623,8 +683,38 @@ namespace WpfApplication1
 
         }
 
+        private void kaydet_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
 
+            if (printDialog.ShowDialog() == true)
+            {
 
+                printDialog.PrintVisual(p_grid, "My First Print Job");
+
+            }
+        }
+
+        private void YAZDIR_Click(object sender, RoutedEventArgs e)
+        {
+            XpsDocument xps = new XpsDocument(@"C:\Users\Murat\ilk.xps", FileAccess.Read);
+            dc.Document = xps.GetFixedDocumentSequence();
+
+        }
+
+        private void kaydet_Click_1(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+
+            if (printDialog.ShowDialog() == true)
+            {
+
+                printDialog.PrintVisual(p_grid, "My First Print Job");
+
+            }
+        }
+
+       
 
 
 
