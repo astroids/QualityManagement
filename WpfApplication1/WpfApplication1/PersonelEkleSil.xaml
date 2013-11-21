@@ -17,8 +17,8 @@
         <Button Visibility="Hidden" Name="egEkle" Content="Ekle" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="215,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egEkle_Click_1" />
         <Button Visibility="Hidden" Name="egDegistir" Content="Degistir" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="420,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egDegistir_Click" />
         <Button Visibility="Hidden" Name="egCikar" Content="Çıkar" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="830,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egCikar_Click_1" />
-        <Button Visibility="Hidden" Name="egIncele" Content="İncele" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egIncele_Click" />
-        <Button Visibility="Hidden" Name="egRapor" Content="RAPOR" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="798,0,0,10" VerticalAlignment="Bottom" Width="146" Height="28" Click="egRapor_Click_1" />
+        <Button  Name="egIncele" Content="İncele" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="egIncele_Click" />
+        <Button Visibility="Hidden"  Name="egRapor" Content="RAPOR" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="798,0,0,10" VerticalAlignment="Bottom" Width="146" Height="28" Click="egRapor_Click_1" />
         <Button Visibility="Hidden" Name="sec" Content="Ekle" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="sec_Click" />
 
 
@@ -27,9 +27,8 @@
         <Button Name="yenile" Height="25" Width="25"  Click="yenile_Click" Margin="991,1,0,543">
             <Image Name="im" Visibility="Visible"   Source="/Ref.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False" ToolTip="Yenile" />
         </Button>
-        <Button Content="KAYDET" Visibility="Hidden" Name="kaydet" HorizontalAlignment="Left" Margin="32,516,0,0" VerticalAlignment="Top" Width="178" RenderTransformOrigin="-0.758,3.596" Height="44" Click="kaydet_Click_1"/>
-        <Button Content="yazdır" Visibility="Hidden" Name="YAZDIR" HorizontalAlignment="Left" Margin="830,516,0,0" VerticalAlignment="Top" Width="156" Click="YAZDIR_Click" Height="44"/>
-        <DocumentViewer Name="dc" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Height="510"/>
-       
+        <Button Content="rapor" Name="PerRapor" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="798,0,0,10" VerticalAlignment="Bottom" Width="146" Height="28" Click="PerRapor_Click_1"/>
+
+
     </Grid>
 </Controls:MetroWindow>

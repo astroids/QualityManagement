@@ -66,7 +66,7 @@ namespace WpfApplication1
                 egDegistir.Visibility = Visibility.Visible;
                 egCikar.Visibility = Visibility.Visible;
                 egIncele.Visibility = Visibility.Visible;
-                egRapor.Visibility = Visibility.Visible;
+               
                 
 
 
@@ -80,25 +80,18 @@ namespace WpfApplication1
             else if (cagiranmenutipi == 9)
             {
                 yenile.Visibility = Visibility.Hidden;
+                
             }
 
             else if (cagiranmenutipi == 10)
             {
-                //egRapor.Visibility = Visibility.Visible;
-                kaydet.Visibility = Visibility.Visible;
-                SEARCH.Visibility = Visibility.Hidden;
-                arama.Visibility = Visibility.Hidden;
-                dc.Visibility = Visibility.Visible;
-                YAZDIR.Visibility = Visibility.Visible;
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
             }
-            else if (cagiranmenutipi == 11)
+            else if (cagiranmenutipi == 12)
             {
-               // egRapor.Visibility = Visibility.Visible;
-                kaydet.Visibility = Visibility.Visible;
-                SEARCH.Visibility = Visibility.Hidden;
-                arama.Visibility = Visibility.Hidden;
-                dc.Visibility = Visibility.Visible;
-                YAZDIR.Visibility = Visibility.Visible;
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
             }
             con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
@@ -169,7 +162,7 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
-            else if (cagiranmenutipi == 11)                                               //3 else           ???
+            else if (cagiranmenutipi == 12)                                               //3 else           ???
             {
 
                 if (ser == null || ser.Length == 0)
@@ -674,47 +667,35 @@ namespace WpfApplication1
                 int selected_personel = Convert.ToInt32(ID);
                 Egitim_Rapor rap = new Egitim_Rapor(selected_personel);
                 rap.Show();
+                selected_personel = Convert.ToInt32(-1);
             }
 
             else
             {
-                MessageBox.Show("Silmek için bir kişi seçinz");
+                MessageBox.Show("Lütfen bir kişi seçinz");
             }
 
         }
 
-        private void kaydet_Click(object sender, RoutedEventArgs e)
+        private void PerRapor_Click_1(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDialog = new PrintDialog();
-
-            if (printDialog.ShowDialog() == true)
+            object item = p_grid.SelectedItem;
+            if (item != null)
             {
-
-                printDialog.PrintVisual(p_grid, "My First Print Job");
-
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                int selected_personel = Convert.ToInt32(ID);
+                PersonelRapor rap = new PersonelRapor(selected_personel);
+                rap.Show();
+                selected_personel = Convert.ToInt32(-1);
             }
-        }
 
-        private void YAZDIR_Click(object sender, RoutedEventArgs e)
-        {
-            XpsDocument xps = new XpsDocument(@"C:\Users\Murat\ilk.xps", FileAccess.Read);
-            dc.Document = xps.GetFixedDocumentSequence();
-
-        }
-
-        private void kaydet_Click_1(object sender, RoutedEventArgs e)
-        {
-            PrintDialog printDialog = new PrintDialog();
-
-            if (printDialog.ShowDialog() == true)
+            else
             {
-
-                printDialog.PrintVisual(p_grid, "My First Print Job");
-
+                MessageBox.Show("Lütfen bir kişi seçinz");
             }
-        }
 
-       
+
+        }
 
 
 

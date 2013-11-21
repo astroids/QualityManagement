@@ -20,36 +20,33 @@ using System.ComponentModel;
 namespace WpfApplication1
 {
     /// <summary>
-    /// Interaction logic for Egitim_Rapor.xaml
+    /// Interaction logic for PersonelRapor.xaml
     /// </summary>
-    public partial class Egitim_Rapor : MetroWindow
+    public partial class PersonelRapor : MetroWindow
     {
-
-       
         private SqlConnection con = new SqlConnection();
-        private int selected_egitim;
+        private int selected_personel;
 
-
-        public Egitim_Rapor(int sid)
+      public PersonelRapor(int sid)
         {
-            selected_egitim = sid;
+            selected_personel = sid;
             InitializeComponent();
             SqlCommand cmd = new SqlCommand();
             con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
+            cmd.CommandText = "Select * From Tbl_Personel   ";
             cmd.Parameters.AddWithValue("@id", sid);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                baslik.Text = reader["E_Adi"].ToString();
-                icerik.Text = reader["E_Icerik"].ToString();
-                baslan.Text = reader["E_BasTarih"].ToString();
-                bitis.Text = reader["E_BitTarih"].ToString();
-                eVeren.Text = reader["P_Adi"].ToString() +" "+ reader["P_Soyadi"].ToString();
-
+                PersonelAdi.Text = reader["P_Adi"].ToString();
+              PersonelSoyadi.Text = reader["P_Soyadi"].ToString();
+                Tc.Text = reader["P_TcKimlik"].ToString();
+             Tel1.Text = reader["P_Tel1"].ToString();
+             tel2.Text = reader["P_Tel2"].ToString();
+             Email.Text = reader["P_Email"].ToString();
             }
             con.Close();
 

@@ -70,8 +70,8 @@ namespace WpfApplication1
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            PersonelEkleSil eg = new PersonelEkleSil(11);
-            eg.Show();
+            PersonelEkleSil pe = new PersonelEkleSil(12);
+            pe.Show();
         }
 
     }
