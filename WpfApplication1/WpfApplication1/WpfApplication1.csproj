@@ -91,6 +91,9 @@
     <Compile Include="Toplanti.xaml.cs">
       <DependentUpon>Toplanti.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToplantiEkle.xaml.cs">
+      <DependentUpon>ToplantiEkle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wdokuman.xaml.cs">
       <DependentUpon>Wdokuman.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Toplanti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToplantiEkle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

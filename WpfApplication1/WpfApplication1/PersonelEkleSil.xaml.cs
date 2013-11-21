@@ -93,7 +93,7 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -624,7 +624,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
