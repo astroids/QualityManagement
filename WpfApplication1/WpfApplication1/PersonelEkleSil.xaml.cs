@@ -93,7 +93,7 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
             
             listele(null);

@@ -88,6 +88,9 @@
     <Compile Include="PersonelRapor.xaml.cs">
       <DependentUpon>PersonelRapor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Toplanti.xaml.cs">
+      <DependentUpon>Toplanti.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wdokuman.xaml.cs">
       <DependentUpon>Wdokuman.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Toplanti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Wdokuman.xaml">
       <SubType>Designer</SubType>

@@ -43,5 +43,12 @@ namespace WpfApplication1
             doc.Show();
             this.Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Toplanti topl = new Toplanti();
+            topl.Show();
+            this.Close();
+        }
     }
 }
