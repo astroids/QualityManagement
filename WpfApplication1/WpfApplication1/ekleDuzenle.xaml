@@ -37,7 +37,7 @@
         </ComboBox>
         <ComboBox x:Name="adaydurumu" HorizontalAlignment="Left" Margin="232,396,0,0" VerticalAlignment="Top" Width="120">
             <System:String>Aday</System:String>
-            <System:String>Çalışan</System:String>
+            <System:String>Aday Değil</System:String>
         </ComboBox>
         <ComboBox x:Name="medenihal" HorizontalAlignment="Left" Margin="232,365,0,0" VerticalAlignment="Top" Width="120">
             <System:String>Evli</System:String>

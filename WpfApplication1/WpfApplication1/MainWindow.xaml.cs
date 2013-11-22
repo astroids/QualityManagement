@@ -37,13 +37,6 @@ namespace WpfApplication1
             this.Close();
         }
 
-        private void dokuman_Click(object sender, RoutedEventArgs e)
-        {
-            Wdokuman doc = new Wdokuman();
-            doc.Show();
-            this.Close();
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Toplanti topl = new Toplanti();

@@ -25,33 +25,33 @@ namespace WpfApplication1
     public partial class Wegitimincele : MetroWindow
     {
 
-        private int secilenEgitim;
+        private int secilenizin;
         private SqlConnection con = new SqlConnection();
         private int selected_personel;
         public void setSelectedPers(int i)
         {
-            //InitializeComponent();
+            InitializeComponent();
             selected_personel = i;
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenEgitim,@selected_personel,NULL);";
-                cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
+                cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenizin,@selected_personel,NULL);";
+                cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
                 cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-                cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                cmd.Parameters.AddWithValue("@id", secilenizin);
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -62,6 +62,7 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show("Seçtiğiniz Kişi Zaten Eğitim Listesinde");
+                ex.ToString();
                 this.Close();
             }
 
@@ -71,10 +72,10 @@ namespace WpfApplication1
         {
             
             InitializeComponent();
-            secilenEgitim = sid;
+            secilenizin = sid;
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -105,7 +106,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-            cmd.Parameters.AddWithValue("@id", secilenEgitim);
+            cmd.Parameters.AddWithValue("@id", secilenizin);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             adap.Fill(dt);
@@ -132,12 +133,12 @@ namespace WpfApplication1
             selected_personel = Convert.ToInt32(ID);
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenEgitim and Tbl_Personel_Egitim.PE_id=@selected_personel;";
-            cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
+            cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenizin and Tbl_Personel_Egitim.PE_id=@selected_personel;";
+            cmd.Parameters.AddWithValue("@secilenizin", secilenizin);
             cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
             cmd.ExecuteNonQuery();
