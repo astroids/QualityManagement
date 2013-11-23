@@ -34,7 +34,7 @@ namespace WpfApplication1
 
         private int egitimveren;
         private string yeniDegisenIcerik;
-
+        
 
 
 
@@ -60,7 +60,7 @@ namespace WpfApplication1
             con.Close();
 
         }
-
+        
         private void refreshTable()
         {
             con.Open();
@@ -85,7 +85,7 @@ namespace WpfApplication1
             secilenEgitim = sid;
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -130,7 +130,7 @@ namespace WpfApplication1
                 selected_personel = Convert.ToInt32(ID);
 
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -155,14 +155,14 @@ namespace WpfApplication1
         {
             //InitializeComponent();
             selected_personel = i;
-
+           
             tarihdegisti = false;
             eVerenDegisti = false;
 
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -173,7 +173,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -218,7 +218,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -254,13 +254,13 @@ namespace WpfApplication1
                 }
 
                 con.Close();
-
+                
 
 
 
 
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("Değiştirme sırasında bir hata oluştu");
                 this.Close();

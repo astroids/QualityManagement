@@ -18,6 +18,7 @@
         <DataGrid Name="eAlanPers" AutoGenerateColumns="True"   HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308" IsReadOnly="True" />
         <Button Name="ePersEkle" FontFamily="Segoe WP" FontSize="12" Content="Ekle" HorizontalAlignment="Left" Margin="59,491,0,0" VerticalAlignment="Top" Width="75" Click="ePersEkle_Click"/>
         <Button Name="ePersCikar" FontFamily="Segoe WP" FontSize="12" Content="Çıkar" HorizontalAlignment="Left" Margin="59,524,0,0" VerticalAlignment="Top" Width="75" Click="ePersCikar_Click" />
+        <Button Name="yazdir" FontFamily="Segoe WP" FontSize="12" Content="yazdır" HorizontalAlignment="Left" Margin="683,524,0,0" VerticalAlignment="Top" Width="75" Click="yazdir_Click"/>
 
 
 

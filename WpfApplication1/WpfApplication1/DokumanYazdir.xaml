@@ -1,0 +1,51 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.DokumanYazdir" ShowTitleBar="False"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dokuman Yazdir" Height="1280" Width="1024">
+    <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+        <Grid>
+            <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+                <FixedDocument Name="custRapor" >
+                    <PageContent>
+                        <FixedPage>
+            <Image Name="logoS" HorizontalAlignment="Left" Height="100" Margin="652,27,0,0" VerticalAlignment="Top" Width="100"/>
+            <TextBlock Name="sadi" HorizontalAlignment="Left" Margin="472,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="33"><Run Language="tr-tr" Text="adi"/></TextBlock>
+            <TextBlock Name="stel" HorizontalAlignment="Left" Margin="472,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="telefon"/></TextBlock>
+            <TextBlock Name="sweb" HorizontalAlignment="Left" Margin="472,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="web"/></TextBlock>
+            <TextBlock Name="semail" HorizontalAlignment="Left" Margin="472,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="email"/></TextBlock>
+            <TextBlock Name="sadres" HorizontalAlignment="Left" Margin="472,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="34"><Run Language="tr-tr" Text="adres"/></TextBlock>
+
+            <TextBlock Name="id" HorizontalAlignment="Left" Height="23" Margin="89,180,0,0" TextWrapping="Wrap" Text="id" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="adi" HorizontalAlignment="Left" Height="23" Margin="234,180,0,0" TextWrapping="Wrap" Text="adi" VerticalAlignment="Top" Width="326"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="234,208,0,0" TextWrapping="Wrap" Text="Revizyon No" VerticalAlignment="Top" Width="78"/>
+            <TextBlock Name="rev" HorizontalAlignment="Left" Height="23" Margin="332,208,0,0" TextWrapping="Wrap" Text="rev" VerticalAlignment="Top" Width="78"/>
+            <TextBlock Name="acik" HorizontalAlignment="Left" Height="23" Margin="234,248,0,0" TextWrapping="Wrap" Text="açıklama" VerticalAlignment="Top" Width="431"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,296,0,0" TextWrapping="Wrap" Text="Doküman Tipi" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="dtip" HorizontalAlignment="Left" Height="23" Margin="234,296,0,0" TextWrapping="Wrap" Text="tip" VerticalAlignment="Top" Width="120"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,345,0,0" TextWrapping="Wrap" Text="İlgili Departman" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="dep" HorizontalAlignment="Left" Height="23" Margin="234,345,0,0" TextWrapping="Wrap" Text="dep" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="baslik" HorizontalAlignment="Left" Height="45" Margin="234,397,0,0" TextWrapping="Wrap" Text="Başlık" VerticalAlignment="Top" Width="431"/>
+            <TextBlock Name="icerik" HorizontalAlignment="Left" Height="282" Margin="89,473,0,0" TextWrapping="Wrap" Text="içerik" VerticalAlignment="Top" Width="834"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,835,0,0" TextWrapping="Wrap" Text="Hazırlayan Personel" VerticalAlignment="Top" Width="192"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="472,248,0,0" TextWrapping="Wrap" Text="Tarih" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="tarih" HorizontalAlignment="Left" Height="23" Margin="638,248,0,0" TextWrapping="Wrap" Text="ONAYLANMADI" VerticalAlignment="Top" Width="145"/>
+            <TextBlock Name="hadi" HorizontalAlignment="Left" Height="23" Margin="89,863,0,0" TextWrapping="Wrap" Text="hadi" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="hsadi" HorizontalAlignment="Left" Height="23" Margin="243,863,0,0" TextWrapping="Wrap" Text="hsadi" VerticalAlignment="Top" Width="192"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="440,835,0,0" TextWrapping="Wrap" Text="Onaylayan Personel" VerticalAlignment="Top" Width="192"/>
+            <TextBlock Name="oadi" HorizontalAlignment="Left" Height="23" Margin="440,863,0,0" TextWrapping="Wrap" Text="Onay" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="osadi" HorizontalAlignment="Left" Height="23" Margin="591,863,0,0" TextWrapping="Wrap" Text="Bekliyor" VerticalAlignment="Top" Width="192"/>
+            <TextBlock Name="hdep" HorizontalAlignment="Left" Height="23" Margin="89,891,0,0" TextWrapping="Wrap" Text="hdep" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="hopoz" HorizontalAlignment="Left" Height="23" Margin="243,891,0,0" TextWrapping="Wrap" Text="hpoz" VerticalAlignment="Top" Width="192"/>
+            <TextBlock Name="odep" HorizontalAlignment="Left" Height="23" Margin="440,891,0,0" TextWrapping="Wrap" Text="Onay" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="opoz" HorizontalAlignment="Left" Height="23" Margin="591,891,0,0" TextWrapping="Wrap" Text="Bekliyor" VerticalAlignment="Top" Width="192"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,248,0,0" TextWrapping="Wrap" Text="Açıklama" VerticalAlignment="Top" Width="120"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,397,0,0" TextWrapping="Wrap" Text="Doküman Başlığı" VerticalAlignment="Top" Width="120"/>
+
+                        </FixedPage>
+                    </PageContent>
+                </FixedDocument>
+            </ScrollViewer>
+        </Grid>
+    </ScrollViewer>
+</Controls:MetroWindow>

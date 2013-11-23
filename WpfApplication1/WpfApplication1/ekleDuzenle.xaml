@@ -5,7 +5,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="WpfApplication1.ekleDuzenle" ShowTitleBar="False"
         Title="KALİTE YÖNETİM SİSTEMİ" Height="525" Width="525" HorizontalAlignment="Center">
 
-    <Grid Margin="0,0,-66,-110">
+    <Grid >
         <Label Content="İSİM" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="135"/>
         <Label Content="SOYİSİM" HorizontalAlignment="Left" Margin="24,61,0,0" VerticalAlignment="Top" Width="135"/>
         <Label Content="TC KİMLİK" HorizontalAlignment="Left" Margin="24,91,0,0" VerticalAlignment="Top" Width="135"/>
@@ -30,14 +30,11 @@
             <System:String>Erkek</System:String>
         </ComboBox>
         <TextBox x:Name="pozisyon" HorizontalAlignment="Left" Height="23" Margin="232,303,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
-        <ComboBox x:Name="departman" HorizontalAlignment="Left" Margin="232,334,0,0" VerticalAlignment="Top" Width="120">
-            <System:String>Ar-Ge</System:String>
-            <System:String>Üretim</System:String>
-            <System:String>Kalite Kontrol</System:String>
+        <ComboBox x:Name="departman" HorizontalAlignment="Left" Margin="232,334,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" SelectionChanged="depSec_SelectionChanged" >
         </ComboBox>
         <ComboBox x:Name="adaydurumu" HorizontalAlignment="Left" Margin="232,396,0,0" VerticalAlignment="Top" Width="120">
             <System:String>Aday</System:String>
-            <System:String>Aday Değil</System:String>
+            <System:String>Çalışan</System:String>
         </ComboBox>
         <ComboBox x:Name="medenihal" HorizontalAlignment="Left" Margin="232,365,0,0" VerticalAlignment="Top" Width="120">
             <System:String>Evli</System:String>

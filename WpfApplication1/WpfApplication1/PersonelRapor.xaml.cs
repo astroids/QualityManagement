@@ -27,12 +27,12 @@ namespace WpfApplication1
         private SqlConnection con = new SqlConnection();
         private int selected_personel;
 
-        public PersonelRapor(int sid)
+      public PersonelRapor(int sid)
         {
             selected_personel = sid;
             InitializeComponent();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -42,13 +42,19 @@ namespace WpfApplication1
             while (reader.Read())
             {
                 PersonelAdi.Text = reader["P_Adi"].ToString();
-                PersonelSoyadi.Text = reader["P_Soyadi"].ToString();
+              PersonelSoyadi.Text = reader["P_Soyadi"].ToString();
                 Tc.Text = reader["P_TcKimlik"].ToString();
-                Tel1.Text = reader["P_Tel1"].ToString();
-                tel2.Text = reader["P_Tel2"].ToString();
-                Email.Text = reader["P_Email"].ToString();
+             Tel1.Text = reader["P_Tel1"].ToString();
+             tel2.Text = reader["P_Tel2"].ToString();
+             Email.Text = reader["P_Email"].ToString();
             }
             con.Close();
+            sadi.Text = sir.name;
+            sadi.Text = sir.lname;
+            stel.Text = sir.tel;
+            Email.Text = sir.email;
+            sweb.Text = sir.web;
+            logoS.Source = sir.ket;
 
         }
     }

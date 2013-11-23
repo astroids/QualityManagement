@@ -51,7 +51,7 @@ namespace WpfApplication1
             adap.Fill(dt);
 
             adap.Fill(ds, "Tbl_Personel");
-          
+
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -60,16 +60,16 @@ namespace WpfApplication1
                 soyisim.Content = reader["P_Soyadi"].ToString();
             }
 
-            
+
             neden.ItemsSource = ds.Tables[0].DefaultView.ToString();
-            
+
             con.Close();
-            
+
             //this column will display as text
-       //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
+            //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
 
             //this column will use as back end value who can you use in selectedValue property
-         //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
+            //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
 
 
         }

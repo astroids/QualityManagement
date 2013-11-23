@@ -51,7 +51,7 @@ namespace WpfApplication1
 
         private void dokuman_Click(object sender, RoutedEventArgs e)
         {
-       
+
         }
     }
 }

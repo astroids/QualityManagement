@@ -4,23 +4,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PersonelRapor" Height="800" Width="800">
     <Grid>
-        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+        <!--<ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
             <FixedDocument Name="custRapor" >
 
                 <PageContent>
-                    <FixedPage>
-                        <TextBlock FontSize="20" Name="PersonelAdi" HorizontalAlignment="Left" Margin="265,22,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="24" Width="186" />
-                        <TextBlock Name="PersonelSoyadi" Text="PersonelSoyadi" HorizontalAlignment="Left" Margin="380,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="Tc" HorizontalAlignment="Left" Margin="502,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="Tel1" HorizontalAlignment="Left" Margin="380,118,0,0" TextWrapping="Wrap" Text="Tel1" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="tel2" HorizontalAlignment="Left" Margin="502,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Text="Email" Name="Email" HorizontalAlignment="Left" Margin="31,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
+                    <FixedPage>-->
+        <Image Name="logoS" HorizontalAlignment="Left" Height="100" Margin="652,27,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock Name="sadi" HorizontalAlignment="Left" Margin="472,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="33"><Run Language="tr-tr" Text="adi"/></TextBlock>
+        <TextBlock Name="stel" HorizontalAlignment="Left" Margin="472,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="telefon"/></TextBlock>
+        <TextBlock Name="sweb" HorizontalAlignment="Left" Margin="472,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="web"/></TextBlock>
+        <TextBlock Name="semail" HorizontalAlignment="Left" Margin="472,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="email"/></TextBlock>
+        <TextBlock Name="sadres" HorizontalAlignment="Left" Margin="472,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="34"><Run Language="tr-tr" Text="adres"/></TextBlock>
+        <TextBlock FontSize="20" Name="PersonelAdi" HorizontalAlignment="Left" Margin="219,117,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="24" Width="186" />
+                        <TextBlock Name="PersonelSoyadi" Text="PersonelSoyadi" HorizontalAlignment="Left" Margin="380,210,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="Tc" HorizontalAlignment="Left" Margin="380,277,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="Tel1" HorizontalAlignment="Left" Margin="380,236,0,0" TextWrapping="Wrap" Text="Tel1" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="tel2" HorizontalAlignment="Left" Margin="608,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Text="Email" Name="Email" HorizontalAlignment="Left" Margin="380,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
 
 
-                    </FixedPage>
+        <!--</FixedPage>
                 </PageContent>
             </FixedDocument>
-        </ScrollViewer>
+        </ScrollViewer>-->
     </Grid>
 
 

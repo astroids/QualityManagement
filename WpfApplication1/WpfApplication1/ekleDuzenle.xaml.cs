@@ -26,22 +26,76 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         public SqlCommand cmd = new SqlCommand();
-
-        int x;
-        int idd;
-        public ekleDuzenle(int tur,int id)
+        private string dep;
+        private int x;
+        private int idd;
+        public ekleDuzenle(int tur, int id)
         {
-            
+
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+
+            if (x == 2)
+             {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+  
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+  
+                cmd.Parameters.AddWithValue("@id", idd);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    isim.Text = reader["P_Adi"].ToString();
+                    soyisim.Text = reader["P_Soyadi"].ToString();
+                    tckimlik.Text = reader["P_TcKimlik"].ToString();
+                    telefonno.Text = reader["P_tel1"].ToString();
+                    ceptelefon.Text = reader["P_tel2"].ToString();
+                    email.Text = reader["P_Email"].ToString();
+                    cinsiyet.Text = reader["P_Cinsiyet"].ToString();
+                    dogumtarihi.Text = reader["P_D_Tar"].ToString();
+                    dogumyeri.Text = reader["P_D_Yer"].ToString();
+                    pozisyon.Text = reader["P_Pozisyon"].ToString();
+                    medenihal.Text = reader["P_Med_Hal"].ToString();
+                    adaydurumu.Text = reader["P_Aday"].ToString();
+                }
+                con.Close();
+            }
+            fillCombo();
+        }
+        private void fillCombo()
+        {
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from Tbl_Departman";
+            cmd.Connection = con;
+            con.Open();
+            DataTable dt = new DataTable();
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
+            adap.Fill(dt);
+            departman.ItemsSource = dt.DefaultView;
+            departman.DisplayMemberPath = "DPT_adi";
+            departman.SelectedValuePath = "DPT_id";
+            con.Close();
 
         }
+        private void depSec_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dep = departman.SelectedValue.ToString();
+        }
+
+
+
 
         private void isim_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -52,113 +106,112 @@ namespace WpfApplication1
         private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
         {
 
-
             if (x == 1)
             {
-                
-                  if (isim.Text == "")
-                 {
-                       MessageBox.Show("Adını boş geçemezsiniz!!");
-                   return;
+
+                if (isim.Text == "")
+                {
+                    MessageBox.Show("Adını boş geçemezsiniz!!");
+                    return;
                 }
-      
-                    if (soyisim.Text == "")
-                    {
-                   MessageBox.Show("Soyadını boş geçemezsiniz!!");
-                       return;
+
+                if (soyisim.Text == "")
+                {
+                    MessageBox.Show("Soyadını boş geçemezsiniz!!");
+                    return;
                 }
-   
-                   if (tckimlik.Text == "")
-                   {
-                      MessageBox.Show("TC Kimliğini boş geçemezsiniz!!");
-                      return;
-                  }
- 
-                   if (tckimlik.Text.Length != 11)
-                   {
-                       MessageBox.Show("TC Kimlik eksik yada fazla olamaz!!");
-                        return;
-                    }
-    
-                        if (telefonno.Text == "")
-                      {
-                              MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
-                           return;
-                     }
-       
+
+                if (tckimlik.Text == "")
+                {
+                    MessageBox.Show("TC Kimliğini boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (tckimlik.Text.Length != 11)
+                {
+                    MessageBox.Show("TC Kimlik eksik yada fazla olamaz!!");
+                    return;
+                }
+
+                if (telefonno.Text == "")
+                {
+                    MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
+                    return;
+                }
+
                 if (ceptelefon.Text == "")
                 {
-                        MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
-                        return;
-                    }
-       
-                    if (telefonno.Text.Length != 11)
-                    {
-                        MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
-                        return;
-                    }
-       
-                    if (ceptelefon.Text.Length != 11)
-                    {
-                        MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
-                        return;
-                    }
-       
-                    if (email.Text == "")
-                    {
-                       MessageBox.Show("E-Mail i boş geçemezsiniz!!");
-                        return;
-                    }
-       
-                    if (cinsiyet.Text == "")
-                    {
-                          MessageBox.Show("Cinsiyet i seciniz!!");
-                       return;
-                    }
-       
-                    if (dogumtarihi.Text == "")
-                    {
-                       MessageBox.Show("Dogum tarihini boş geçemezsiniz!!");
-                        return;
-                    }
-       
-                    if (dogumyeri.Text == "")
-                    {
-                        MessageBox.Show("Dogum yerini boş geçemezsiniz!!");
-                        return;
-                    }
-       
-                    if (pozisyon.Text == "")
-                    {
-                        MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
-                        return;
-                    }
-       
-                    if (departman.Text == "")
-                    {
-                        MessageBox.Show("Departman ı seciniz!!");
-                        return;
-                    }
-       
-                    if (medenihal.Text == "")
-                    {
-                       MessageBox.Show("Medeni Hal i seciniz!!");
-                               return;
-                           }
-       
-                   if (adaydurumu.Text == "")
-                    {
-                       MessageBox.Show("Aday durumunu seciniz!!");
-                            return;
-                        }
-                    
+                    MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (telefonno.Text.Length != 11)
+                {
+                    MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
+                    return;
+                }
+
+                if (ceptelefon.Text.Length != 11)
+                {
+                    MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
+                    return;
+                }
+
+                if (email.Text == "")
+                {
+                    MessageBox.Show("E-Mail i boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (cinsiyet.Text == "")
+                {
+                    MessageBox.Show("Cinsiyet i seciniz!!");
+                    return;
+                }
+
+                if (dogumtarihi.Text == "")
+                {
+                    MessageBox.Show("Dogum tarihini boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (dogumyeri.Text == "")
+                {
+                    MessageBox.Show("Dogum yerini boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (pozisyon.Text == "")
+                {
+                    MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
+                    return;
+                }
+
+                if (departman.Text == "")
+                {
+                    MessageBox.Show("Departman ı seciniz!!");
+                    return;
+                }
+
+                if (medenihal.Text == "")
+                {
+                    MessageBox.Show("Medeni Hal i seciniz!!");
+                    return;
+                }
+
+                if (adaydurumu.Text == "")
+                {
+                    MessageBox.Show("Aday durumunu seciniz!!");
+                    return;
+                }
+
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
                 }
                 cmd.Connection = con;
-                cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday)";
+                cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil)";
 
                 cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                 cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -170,10 +223,11 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
                 cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
                 cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
-                cmd.Parameters.AddWithValue("@P_Dept", departman.Text);
+                cmd.Parameters.AddWithValue("@P_Dept", dep);
                 cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                cmd.Parameters.AddWithValue("@P_Aday", adaydurumu.Text);
-
+                string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
+                cmd.Parameters.AddWithValue("@P_Aday", drm);
+                cmd.Parameters.AddWithValue("@P_Sil", "0");
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Kayıt Yapıldı..");
@@ -185,14 +239,13 @@ namespace WpfApplication1
 
 
 
-            }
-            
-                        if (x == 2)
+                }
+ if (x == 2)
                         {
                             if (con.State == ConnectionState.Closed)
-                            {
+                           {
                                 con.Open();
-                            }
+                           }
                             
                             cmd.Connection = con;
                             cmd.CommandText = @"update Tbl_Personel set P_Adi=@P_Adi,P_Soyadi=@P_Soyadi,P_TcKimlik=@P_TcKimlik,P_Tel1=@P_Tel1,P_Tel2=@P_Tel2,P_Email=@P_Email,
@@ -210,9 +263,10 @@ namespace WpfApplication1
                             cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
                             cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
                             cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
-                            cmd.Parameters.AddWithValue("@P_Dept", departman.Text);
-                           cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                            cmd.Parameters.AddWithValue("@P_Aday", adaydurumu.Text);
+                            cmd.Parameters.AddWithValue("@P_Dept", dep);
+                            cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
+                            string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
+                            cmd.Parameters.AddWithValue("@P_Aday", drm);
             
                             cmd.ExecuteNonQuery();
             
@@ -221,10 +275,10 @@ namespace WpfApplication1
                             PersonelEkleSil ek = new PersonelEkleSil(1);
                             ek.Show();
                             con.Close();
-                        }
+                       }
             
+               }
+
+
         }
-
-
-    }
 }

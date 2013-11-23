@@ -38,8 +38,13 @@
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -63,11 +68,32 @@
     <Compile Include="AAABOSKOPYALA.xaml.cs">
       <DependentUpon>AAABOSKOPYALA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AYARLAR.xaml.cs">
+      <DependentUpon>AYARLAR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanIncele.xaml.cs">
+      <DependentUpon>DokumanIncele.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanListesi.xaml.cs">
+      <DependentUpon>DokumanListesi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanRapor.xaml.cs">
+      <DependentUpon>DokumanRapor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanRevizyon.xaml.cs">
+      <DependentUpon>DokumanRevizyon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanYazdir.xaml.cs">
+      <DependentUpon>DokumanYazdir.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Egitim Rapor.xaml.cs">
       <DependentUpon>Egitim Rapor.xaml</DependentUpon>
     </Compile>
     <Compile Include="egitimEkleme.xaml.cs">
       <DependentUpon>egitimEkleme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EgitimRaporToplu.xaml.cs">
+      <DependentUpon>EgitimRaporToplu.xaml</DependentUpon>
     </Compile>
     <Compile Include="ekleDuzenle.xaml.cs">
       <DependentUpon>ekleDuzenle.xaml</DependentUpon>
@@ -75,8 +101,17 @@
     <Compile Include="izinIste.xaml.cs">
       <DependentUpon>izinIste.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Personel Raporu Departma Secme.xaml.cs">
+      <DependentUpon>Personel Raporu Departma Secme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Personel Raporu Toplu.xaml.cs">
+      <DependentUpon>Personel Raporu Toplu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonelAraMenu.xaml.cs">
       <DependentUpon>PersonelAraMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonelDepartmanRapor.xaml.cs">
+      <DependentUpon>PersonelDepartmanRapor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PersonelEkleSil.xaml.cs">
       <DependentUpon>PersonelEkleSil.xaml</DependentUpon>
@@ -84,11 +119,17 @@
     <Compile Include="PersonelRapor.xaml.cs">
       <DependentUpon>PersonelRapor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SirketAyarlari.xaml.cs">
+      <DependentUpon>SirketAyarlari.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Toplanti.xaml.cs">
       <DependentUpon>Toplanti.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToplantiEkle.xaml.cs">
       <DependentUpon>ToplantiEkle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wdokuman.xaml.cs">
+      <DependentUpon>Wdokuman.xaml</DependentUpon>
     </Compile>
     <Compile Include="WegitimDegistir.xaml.cs">
       <DependentUpon>WegitimDegistir.xaml</DependentUpon>
@@ -103,11 +144,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AYARLAR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanIncele.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanListesi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanRapor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanRevizyon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanYazdir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Egitim Rapor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="egitimEkleme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EgitimRaporToplu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,7 +200,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Personel Raporu Departma Secme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Personel Raporu Toplu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PersonelAraMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonelDepartmanRapor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,11 +228,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SirketAyarlari.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Toplanti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToplantiEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wdokuman.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ref.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

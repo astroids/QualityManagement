@@ -2,25 +2,33 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AAABOSKOPYALA" Height="800" Width="800">
+        Title="AAABOSKOPYALA" Height="1024" Width="800">
     <Grid>
         <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
-            <FixedDocument Name="custRapor" >
-
+           <FixedDocument Name="custRapor" >
                 <PageContent>
                     <FixedPage>
-                        <TextBlock FontSize="20" Name="baslik" HorizontalAlignment="Left" Margin="265,22,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="24" Width="186" />
-                        <TextBlock Text="Başlangıç Tarihi" HorizontalAlignment="Left" Margin="380,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="baslan" HorizontalAlignment="Left" Margin="502,80,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="380,118,0,0" TextWrapping="Wrap" Text="Bitiş Tarihi" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="bitis" HorizontalAlignment="Left" Margin="502,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Text="Eğitim Veren" HorizontalAlignment="Left" Margin="31,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="eVeren" HorizontalAlignment="Left" Margin="164,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
-                        <TextBlock Name="icerik" HorizontalAlignment="Left" Margin="31,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="258" Width="697"/>
-                        <TextBlock Text="Eğitime Katılan Personel" HorizontalAlignment="Left" Margin="31,466,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="180"/>
-                        <TextBlock Name="personel" HorizontalAlignment="Left" Margin="31,492,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="258" Width="697"/>
-
-                    </FixedPage>
+                        <TextBlock Name="tarih" HorizontalAlignment="Left" Margin="73,27,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="139" Height="28"/>
+                        <TextBlock FontSize="20"  HorizontalAlignment="Left" Margin="226,75,0,0" TextWrapping="Wrap" Text="Eğitim Detayları" VerticalAlignment="Top" Height="34" Width="186" />
+                        <TextBlock FontSize="20" Name="baslik" HorizontalAlignment="Left" Margin="226,38,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="186" />
+                        <TextBlock Text="Başlangıç Tarihi" HorizontalAlignment="Left" Margin="472,195,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="baslan" HorizontalAlignment="Left" Margin="651,195,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="472,238,0,0" TextWrapping="Wrap" Text="Bitiş Tarihi" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="bitis" Text="bitis" HorizontalAlignment="Left" Margin="651,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Text="Eğitim Veren" HorizontalAlignment="Left" Margin="88,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
+                        <TextBlock Name="eVeren" Text="everen" HorizontalAlignment="Left" Margin="211,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="101"/>
+        
+                        <TextBlock Name="icerik" Text="icerik" HorizontalAlignment="Left" Margin="88,336,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="318" Width="651"/>
+                        <TextBlock Text="Eğitime Katılan Personel Performansı" HorizontalAlignment="Left" Margin="88,668,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="224"/>
+                        <DataGrid Name="eAlanPers" HorizontalAlignment="Left" Margin="88,694,0,0" VerticalAlignment="Top"/>
+                        <Image Name="logoS" HorizontalAlignment="Left" Height="100" Margin="652,27,0,0" VerticalAlignment="Top" Width="100"/>
+                        <TextBlock Name="sadi" HorizontalAlignment="Left" Margin="472,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="33"><Run Language="tr-tr" Text="adi"/></TextBlock>
+                        <TextBlock Name="stel" HorizontalAlignment="Left" Margin="472,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="telefon"/></TextBlock>
+                        <TextBlock Name="sweb" HorizontalAlignment="Left" Margin="472,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="web"/></TextBlock>
+                        <TextBlock Name="semail" HorizontalAlignment="Left" Margin="472,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="email"/></TextBlock>
+                        <TextBlock Name="sadres" HorizontalAlignment="Left" Margin="472,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="34"><Run Language="tr-tr" Text="adres"/></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Height="23" Margin="88,296,0,0" TextWrapping="Wrap" Text="Eğitim İçeriği" VerticalAlignment="Top" Width="120"/>
+                  </FixedPage>
                 </PageContent>
             </FixedDocument>
         </ScrollViewer>

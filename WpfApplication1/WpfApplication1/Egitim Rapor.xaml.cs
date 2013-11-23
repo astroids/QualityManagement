@@ -25,7 +25,7 @@ namespace WpfApplication1
     public partial class Egitim_Rapor : MetroWindow
     {
 
-
+       
         private SqlConnection con = new SqlConnection();
         private int selected_egitim;
 
@@ -35,7 +35,7 @@ namespace WpfApplication1
             selected_egitim = sid;
             InitializeComponent();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -48,10 +48,31 @@ namespace WpfApplication1
                 icerik.Text = reader["E_Icerik"].ToString();
                 baslan.Text = reader["E_BasTarih"].ToString();
                 bitis.Text = reader["E_BitTarih"].ToString();
-                eVeren.Text = reader["P_Adi"].ToString() + " " + reader["P_Soyadi"].ToString();
+                eVeren.Text = reader["P_Adi"].ToString() +" "+ reader["P_Soyadi"].ToString();
 
             }
             con.Close();
+            
+            con.Open();
+            cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.Parameters.AddWithValue("@id", selected_egitim);
+            DataTable dt = new DataTable();
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            adap.Fill(dt);
+
+            eAlanPers.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
+            logoS.Source = sir.ket;
+            sadi.Text = sir.lname;
+            stel.Text = sir.tel;
+            sweb.Text = sir.web;
+            semail.Text = sir.email;
+            sadres.Text = sir.adress;
+            tarih.Text = DateTime.Now.ToString("M/d/yyyy");
 
         }
     }
