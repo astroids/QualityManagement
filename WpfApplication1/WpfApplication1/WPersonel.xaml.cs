@@ -23,13 +23,13 @@ namespace WpfApplication1
     /// </summary>
     public partial class WPersonel : MetroWindow
     {
-        
+
         public WPersonel()
         {
             InitializeComponent();
             int i = 45;
             i++;
-            
+
         }
 
 
@@ -59,6 +59,19 @@ namespace WpfApplication1
             PersonelEkleSil eg = new PersonelEkleSil(3);
             eg.Show();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil pr = new PersonelEkleSil(10);
+            pr.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            PersonelEkleSil pe = new PersonelEkleSil(12);
+            pe.Show();
         }
 
     }
