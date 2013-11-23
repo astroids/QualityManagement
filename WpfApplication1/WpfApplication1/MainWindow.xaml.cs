@@ -43,5 +43,15 @@ namespace WpfApplication1
             topl.Show();
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dokuman_Click(object sender, RoutedEventArgs e)
+        {
+       
+        }
     }
 }

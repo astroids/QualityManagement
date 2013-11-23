@@ -90,6 +90,9 @@
     <Compile Include="ToplantiEkle.xaml.cs">
       <DependentUpon>ToplantiEkle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WegitimDegistir.xaml.cs">
+      <DependentUpon>WegitimDegistir.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wegitimincele.xaml.cs">
       <DependentUpon>Wegitimincele.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToplantiEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WegitimDegistir.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

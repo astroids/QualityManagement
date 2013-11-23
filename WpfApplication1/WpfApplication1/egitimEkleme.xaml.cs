@@ -53,8 +53,8 @@ namespace WpfApplication1
             cmd.Parameters.AddWithValue("@adi", eAdi.Text);
             cmd.Parameters.AddWithValue("@verenid", egitimverenid);
             cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
-            cmd.Parameters.AddWithValue("@btr",baslngic.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@sontr",bitisTar.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@btr", baslngic.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@sontr", bitisTar.ToString("yyyy-MM-dd"));
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -66,7 +66,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select max(e.E_id) as next from Tbl_Egitim e ";
-            SqlDataReader reader =cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 egitimno = Convert.ToInt32(reader["next"].ToString());
@@ -119,7 +119,7 @@ namespace WpfApplication1
             baslngic = (DateTime)basla.SelectedDate;
             MessageBox.Show(baslngic.ToString());
         }
-      
+
         public void bitis_SelectedDateChanged(object sender, RoutedEventArgs e)
         {
             bitisTar = (DateTime)basla.SelectedDate;
@@ -134,13 +134,25 @@ namespace sel
     public static class ected
     {
         private static int idint;
+        private static int everenDegistir;
         private static WpfApplication1.egitimEkleme openwindow;
         private static WpfApplication1.Wegitimincele openwindow2;
-        public static void setSelect(int i){
-            idint=i;
+        private static WpfApplication1.WegitimDegistir eDegistir;//egitim degistir
+        public static void setSelect(int i)
+        {
+            idint = i;
             openwindow.setEgitimVeren(idint);
-            idint=0;
+            idint = 0;
         }
+        public static void setDegistirEitim(int i)
+        {
+            everenDegistir = i;
+            eDegistir.setEgitimVeren(everenDegistir);
+            everenDegistir = 0;
+        }
+
+
+        //kullanılmıyor olabilir
         public static int getSelect()
         {
             return idint;
@@ -149,6 +161,12 @@ namespace sel
         {
             openwindow2 = cur;
         }
+
+        public static void setOpenwindowED(WpfApplication1.WegitimDegistir cur)
+        {
+            eDegistir = cur;
+        }
+
 
         public static void setOpenwindow(WpfApplication1.egitimEkleme cur)
         {
@@ -159,9 +177,23 @@ namespace sel
         {
             idPers = i;
             openwindow2.setSelectedPers(idPers);
-            
-            
+
+
         }
+        public static void personel_degistirEkle(int i)
+        {
+            idPers = i;
+            eDegistir.setSelectedPers(idPers);                        //fonksiyon ekle
+        }
+
+        public static void personel_Degistirekle(int i)
+        {
+            idPers = i;
+            eDegistir.setSelectedPers(idPers);
+
+
+        }
+
 
     }
 }
