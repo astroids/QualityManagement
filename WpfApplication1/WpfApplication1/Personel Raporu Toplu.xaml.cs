@@ -58,7 +58,75 @@ namespace WpfApplication1
                 quer = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_D_Yer as 'Doğum Yeri',p.P_Med_Hal as 'Medeni Durumu'  from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0  and p.P_Aday=1";
                 baslik.Text = "Stajyer ve Aday Listesi";
 
-            }else{
+            }
+            else if (selectionType == 4)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+            else if (selectionType == 5)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+                else if (selectionType == 6)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 7)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 8)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 9)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 10)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType ==11)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType ==12)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 13)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+                else if (selectionType == 14)
+            {
+                MessageBox.Show("Hatalı Seçim");
+                this.Close();
+
+            }
+            
+            else
+            {
                 MessageBox.Show("Hatalı Seçim");
                 this.Close();
             }
