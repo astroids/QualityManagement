@@ -93,6 +93,99 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
+            else if (cagiranmenutipi == 20)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 21)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 22)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 23)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            else if (cagiranmenutipi == 24)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 25)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+
+            }
+                 else if (cagiranmenutipi == 26)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 27)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 28)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 29)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 30)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 31)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 32)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 33)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 34)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 35)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 36)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+                 else if (cagiranmenutipi == 37)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            }
+
+
             con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
             
