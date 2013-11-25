@@ -22,16 +22,23 @@ namespace WpfApplication1
     /// </summary>
     public partial class izinIste : MetroWindow
     {
+        private int persid;
         private SqlConnection con = new SqlConnection();
+        private int nedenid
+        {
+            set;
+            get;
+        }
         public izinIste(int iid)
         {
 
             InitializeComponent();
             _sicil.Content = iid;
+            persid = iid;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
@@ -51,7 +58,7 @@ namespace WpfApplication1
             adap.Fill(dt);
 
             adap.Fill(ds, "Tbl_Personel");
-
+          
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -59,18 +66,76 @@ namespace WpfApplication1
                 isim.Content = reader["P_Adi"].ToString();
                 soyisim.Content = reader["P_Soyadi"].ToString();
             }
-
-
-            neden.ItemsSource = ds.Tables[0].DefaultView.ToString();
-
+                   
+            
+            
             con.Close();
-
+            fillCombo();
             //this column will display as text
-            //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
+       //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
 
             //this column will use as back end value who can you use in selectedValue property
-            //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
+         //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
 
+
+        }
+        void fillCombo()
+        {
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from Tbl_Izin_Tur";
+            cmd.Connection = con;
+            con.Open();
+            DataTable dt = new DataTable();
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
+            adap.Fill(dt);
+            neden.ItemsSource = dt.DefaultView;
+            neden.DisplayMemberPath = "IT_adi";
+            neden.SelectedValuePath = "IT_id";
+            con.Close();
+
+        }
+
+
+
+
+
+
+        private void kaydet_Click(object sender, RoutedEventArgs e)
+        {
+
+            DateTime basl =(DateTime)baslan.SelectedDate;
+            DateTime biti =(DateTime)baslan.SelectedDate;
+            TimeSpan sure = biti-basl;
+
+            //try
+            //{
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "insert into Tbl_Personel_Izin values(@id,@tur,@bas,@bit,@sure,NULL,NULL)";
+                cmd.Parameters.AddWithValue("@id", persid);
+                cmd.Parameters.AddWithValue("@tur", nedenid);
+                cmd.Parameters.AddWithValue("@bas", (basl.ToString("yyyy-MM-dd")));
+                cmd.Parameters.AddWithValue("@bit", (biti.ToString("yyyy-MM-dd")));
+                cmd.Parameters.AddWithValue("@sure", sure.Days.ToString());
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("İzin istegit başarıyla tamamlandı");
+                this.Close();
+            //}
+            //catch {
+            //    MessageBox.Show("Hatlı işlem");
+
+            //}
+        }
+
+        private void neden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string t = neden.SelectedValue.ToString();
+            nedenid = Convert.ToInt32(t);
 
         }
     }

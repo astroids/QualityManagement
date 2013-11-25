@@ -16,6 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel;
+using System.Windows.Xps.Packaging;
 using System.IO;
 
 namespace WpfApplication1
@@ -28,14 +29,14 @@ namespace WpfApplication1
         public int cagiranmenutipi;
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
-
+        
 
         //1 ekle sil 2 izin  3 egitim görüntüle  4 id seç ve dön
         public PersonelEkleSil(int vers)
         {
             InitializeComponent();
-            // this.Closing += pers_Closing; // pers kapama silindi ---
-
+           // this.Closing += pers_Closing; // pers kapama silindi ---
+            
 
             cagiranmenutipi = vers;
             if (cagiranmenutipi == 1)
@@ -65,21 +66,21 @@ namespace WpfApplication1
                 egDegistir.Visibility = Visibility.Visible;
                 egCikar.Visibility = Visibility.Visible;
                 egIncele.Visibility = Visibility.Visible;
-
-
+               
+                
 
 
             }
-            else if (cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
+            else if (cagiranmenutipi == 4|| cagiranmenutipi == 5 || cagiranmenutipi == 6||cagiranmenutipi==7 || cagiranmenutipi==8)                     
             {
                 egEkle.Content = "Seç";
                 egEkle.Visibility = Visibility.Visible;
-
+                
             }
             else if (cagiranmenutipi == 9)
             {
                 yenile.Visibility = Visibility.Hidden;
-
+                
             }
 
             else if (cagiranmenutipi == 10)
@@ -92,14 +93,14 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
-
+            
             listele(null);
         }
 
 
-
+        
 
         private void listele(string ser)
         {
@@ -114,11 +115,12 @@ namespace WpfApplication1
 
                 if (ser == null || ser.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='0'";
+                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
+                        
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='0'";
+                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 and p.P_Adi like @Title";
                     cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
             }
@@ -193,13 +195,13 @@ namespace WpfApplication1
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            listele(SEARCH.Text);
+              listele(SEARCH.Text);
 
         }
 
         private void ekle_Click_1(object sender, RoutedEventArgs e)
         {
-            ekleDuzenle dzn = new ekleDuzenle(1, 0);
+            ekleDuzenle dzn = new ekleDuzenle(1,0);
             dzn.Show();
         }
 
@@ -207,7 +209,7 @@ namespace WpfApplication1
         //eski ekle
         private void duzenle_Click_1(object sender, RoutedEventArgs e)
         {
-
+            
             object item = p_grid.SelectedItem;
             if (item != null)
             {
@@ -252,16 +254,16 @@ namespace WpfApplication1
         private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
         {
             string d = DateTime.Now.ToString("yyyy-MM-dd");
-
-
+            
+            
             SqlCommand cmd = new SqlCommand();
-            // MessageBox.Show(d);
+           // MessageBox.Show(d);
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@CTime", d);
             cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
-
+            
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
@@ -269,7 +271,7 @@ namespace WpfApplication1
             p_grid.ItemsSource = dt.DefaultView;
             cmd.ExecuteNonQuery();
             con.Close();
-
+           
         }
         //burası-------------------------------------------
         private void izingecmisi_Click(object sender, RoutedEventArgs e)
@@ -315,7 +317,7 @@ namespace WpfApplication1
         }
         private void onayla_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             object item = p_grid.SelectedItem;
             if (item != null)
             {
@@ -325,7 +327,7 @@ namespace WpfApplication1
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
+                cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=1,PI_OnayVeren_id =7003 where PI_id = @sid";
                 cmd.Parameters.AddWithValue("@sid", selectedID);
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -333,14 +335,16 @@ namespace WpfApplication1
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
                 con.Close();
+                MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
+
             }
             else
             {
                 MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
             }
 
-            */
-            MessageBox.Show("in progress");
+            
+           // MessageBox.Show("in progress");
         }
 
 
@@ -384,17 +388,7 @@ namespace WpfApplication1
                 selectedID = Convert.ToInt32(ID);
                 izinIste iz = new izinIste(selectedID);
                 iz.Show();
-                //SqlCommand cmd = new SqlCommand();
-                //con.Open();
-                //cmd.Connection = con;
-                //cmd.CommandType = CommandType.Text;
-                //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
-                //cmd.Parameters.AddWithValue("@id", selectedID);
-                //SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                //DataTable dt = new DataTable();
-                //adap.Fill(dt);
-                //cmd.ExecuteNonQuery();
-                //con.Close();
+
             }
             else
             {
@@ -598,7 +592,7 @@ namespace WpfApplication1
                     {
                         MessageBox.Show("İşleminiz Sırasında Bir Hata Oluştu");
                     }
-
+                    
 
                 }
 
@@ -623,7 +617,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -659,19 +653,16 @@ namespace WpfApplication1
 
         private void egRapor_Click_1(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            if (cagiranmenutipi == 10)
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                int selected_personel = Convert.ToInt32(ID);
-                Egitim_Rapor rap = new Egitim_Rapor(selected_personel);
+                Personel_Raporu_Departma_Secme rap = new Personel_Raporu_Departma_Secme();
                 rap.Show();
-                selected_personel = Convert.ToInt32(-1);
             }
-
             else
             {
-                MessageBox.Show("Lütfen bir kişi seçinz");
+
+                EgitimRaporToplu rap = new EgitimRaporToplu();
+                rap.Show();
             }
 
         }

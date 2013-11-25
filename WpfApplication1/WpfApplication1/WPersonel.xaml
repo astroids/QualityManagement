@@ -2,17 +2,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PERSONEL" Height="525" Width="525" HorizontalAlignment="Center"  >
+        Title="PERSONEL" Height="600" Width="525" HorizontalAlignment="Center"  >
     <Grid>
 
         <Button Content="PERSONEL İŞLEMLERİ" Name="PersIs" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,103,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="PersIs_Button_Click"/>
         <Button Content= "PERSONEL EGİTİM PLAMLAMA" Name="PersEgi" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,224,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="persegButton_Click"/>
-        <Button Content="EĞİTİM DEĞERLENDİRME" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="EĞİTİM DEĞERLENDİRME" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="53,345,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
         <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click"/>
-        <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
-        <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,364,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
+        <Button Content="PERSONEL EGİTİM PLANI RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,224,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1"/>
+        <Button Content="PERSONEL RAPORU" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="298,346,0,0" VerticalAlignment="Top" Width="180" Height="60"/>
         <Label Content="PERSONEL" FontFamily="Segoe WP" FontSize="16" FontStyle="Oblique" HorizontalAlignment="Left" Margin="135,37,0,0" VerticalAlignment="Top" />
-        <Image Margin="43,0,408,426" Source="personel.PNG" Stretch="None"/>
+        <Image  Margin="43,0,408,501" Source="personel.PNG" Stretch="None"/>
+        <Button Name="back" Content="ANA Menu" FontFamily="Segoe WP" FontSize="16" HorizontalAlignment="Left" Margin="53,470,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="back_Click"/>
+        <Image Name="im" HorizontalAlignment="Left" Height="114" Margin="326,445,0,0" VerticalAlignment="Top" Width="114"  />
 
     </Grid>
 </Controls:MetroWindow>
