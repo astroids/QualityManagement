@@ -5,11 +5,11 @@
         Title="ARAÇLAR" Height="450" Width="400">
     <Grid>
         
-        <Button Content="Hesap Makinesi" HorizontalAlignment="Left" Margin="10,132,0,0"  VerticalAlignment="Top" Width="126" Height="73" />
-        <Button Content="Not Defteri" HorizontalAlignment="Left" Margin="204,33,0,0" Height="73" VerticalAlignment="Top" Width="126" RenderTransformOrigin="-0.107,-0.36" />
-        <DatePicker HorizontalAlignment="Left"   Margin="10,33,0,0" VerticalAlignment="Top" Height="73"  Width="126"/>
+        <Button Content="Hesap Makinesi" HorizontalAlignment="Left" Margin="10,132,0,0"  VerticalAlignment="Top" Width="126" Height="73" Click="Button_Click_1"/>
+        <Button Content="Not Defteri" HorizontalAlignment="Left" Margin="204,33,0,0" Height="73" VerticalAlignment="Top" Width="126" RenderTransformOrigin="-0.107,-0.36" Click="Button_Click_2"/>
+        <DatePicker HorizontalAlignment="Left"   Margin="10,33,0,0" VerticalAlignment="Top" Height="73" SelectedDateChanged="DatePicker_SelectedDateChanged" Width="126"/>
         <Calendar HorizontalAlignment="Left" Visibility="Hidden" Name="takvim"  Margin="155,220,0,0" VerticalAlignment="Top" Width="227" Height="163" RenderTransformOrigin="0.498,0.239"/>
-        <Button Content="TAKVİM" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" Width="126"  Height="73"/>
+        <Button Content="TAKVİM" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click_3" Height="73"/>
         
 
     </Grid>
