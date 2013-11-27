@@ -65,71 +65,14 @@ namespace WpfApplication1
                 this.Close();
 
             }
-            else if (selectionType == 5)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-                else if (selectionType == 6)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 7)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 8)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 9)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 10)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType ==11)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType ==12)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 13)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
-                else if (selectionType == 14)
-            {
-                MessageBox.Show("Hatalı Seçim");
-                this.Close();
-
-            }
+            
             
             else
             {
                 MessageBox.Show("Hatalı Seçim");
                 this.Close();
             }
+            
         }
 
 
@@ -138,7 +81,7 @@ namespace WpfApplication1
         {
             SqlConnection con = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;

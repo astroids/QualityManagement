@@ -80,6 +80,12 @@ namespace WpfApplication1
             AYARLAR ay = new AYARLAR();
             ay.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Araclar ar = new Araclar();
+            ar.Show();
+        }
     }
 
 
@@ -89,7 +95,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

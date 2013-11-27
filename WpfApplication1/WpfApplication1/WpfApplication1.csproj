@@ -68,6 +68,9 @@
     <Compile Include="AAABOSKOPYALA.xaml.cs">
       <DependentUpon>AAABOSKOPYALA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Araçlar.xaml.cs">
+      <DependentUpon>Araçlar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AYARLAR.xaml.cs">
       <DependentUpon>AYARLAR.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
       <DependentUpon>WPersonel.xaml</DependentUpon>
     </Compile>
     <Page Include="AAABOSKOPYALA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Araçlar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
