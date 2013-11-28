@@ -88,7 +88,13 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-
+            else if (cagiranmenutipi == 11)
+            {
+                secim.Visibility = Visibility.Visible;
+                arama.Visibility = Visibility.Hidden;
+                SEARCH.Visibility = Visibility.Hidden;
+                yenile.Visibility = Visibility.Visible;
+            }
             else if (cagiranmenutipi == 12)
             {
                 p_grid.Visibility = Visibility.Visible;
@@ -205,7 +211,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 || cagiranmenutipi == 11)
             {
 
                 if (ser == null || ser.Length == 0)
@@ -618,7 +624,13 @@ namespace WpfApplication1
                 sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
                 this.Close();
             }
-           
+            else if (cagiranmenutipi == 11)
+            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
+                this.Close();
+            }
             else if (cagiranmenutipi == 10)
             {
                 object item = p_grid.SelectedItem;
@@ -778,12 +790,52 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+
+            //  cmd.Parameters.AddWithValue("@id", idd);
+            SqlDataReader reader = cmd.ExecuteReader();
         }
 
         private void secim_Click(object sender, RoutedEventArgs e)
         {
-            
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                ToplantiEkle x = new ToplantiEkle(selectedID, 1);
+                x.Show();
+                this.Hide();
+
+                /*con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Toplanti where Top_id = @Top_id";
+                cmd.Parameters.AddWithValue("@Top_id", selectedID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    //isim.Text = reader["P_Adi"].ToString();
+
+                }
+                con.Close();
+                */
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Secim yapmadiniz!\n");
+            }
         }
 
 

@@ -64,7 +64,8 @@ namespace WpfApplication1
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            ToplantiEkle ekle = new ToplantiEkle(0, 2);
+            ekle.Show();
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
@@ -74,17 +75,71 @@ namespace WpfApplication1
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+            object item = data_grid.SelectedItem;
+            if (item != null)
+            {
+
+
+                if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                    string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "delete from Tbl_Toplanti where Top_id = @Top_id";
+
+                    cmd.Parameters.AddWithValue("@Top_id", selectedID);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Silme Yapıldı..");
+
+                    con.Close();
+
+                    //rows number of record got deleted
+
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Silinecek olan toplantiyi secdiginize emin olunuz!");
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            
+            object item = data_grid.SelectedItem;
+            if (item != null)
+            {
+
+
+
+                //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                ToplantiEkle x = new ToplantiEkle(selectedID, 2);
+                x.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Degistirmek icin bir toplanti secmelisiniz!");
+            }
+
+
+
+
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            
+            listele(null);
         }
 
     }
