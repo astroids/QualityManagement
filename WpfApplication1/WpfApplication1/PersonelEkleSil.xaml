@@ -25,7 +25,9 @@
 
         <Label Content="ARAMA" Name="arama" HorizontalAlignment="Right" Margin="0,0,155,0" VerticalAlignment="Top"/>
         <TextBox Name="SEARCH" HorizontalAlignment="Right" Height="23" Margin="0,0,30,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button Name="secim" Visibility="Hidden" Content="Secim" HorizontalAlignment="Left" Height="40" Margin="377,503,0,0" VerticalAlignment="Top" Width="152" Click="secim_Click"/>
         <Button Name="yenile" Height="25" Width="25"  Click="yenile_Click" Margin="991,1,0,543">
+            
             <Image Name="im" Visibility="Visible"   Source="/Ref.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False" ToolTip="Yenile" />
         </Button>
 

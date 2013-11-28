@@ -33,7 +33,7 @@ namespace WpfApplication1
             x = secim;
             idd = id;
             InitializeComponent();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             if (secim == 1)
             {
                 no.Visibility = Visibility.Visible;
@@ -88,67 +88,13 @@ namespace WpfApplication1
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (x == 1)
-            {
-
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
-
-                cmd.Connection = con;
-                cmd.CommandText = @"Insert Into Tbl_Toplanti(Top_id,Top_Tar,Top_Baskani,Top_Katilanlar,Top_Gundem,Top_Aciklama,Top_Yapilanlar)
-                            values(@Top_id,@Top_Tar,@Top_Baskani,@Top_Katilanlar,@Top_Gundem,@Top_Aciklama,@Top_Yapilanlar)";
-                cmd.Parameters.AddWithValue("@Top_id", no.Text);
-                cmd.Parameters.AddWithValue("@Top_Tar", tarih.SelectedDate.Value);
-                cmd.Parameters.AddWithValue("@Top_Baskani", baskan.Text);
-                cmd.Parameters.AddWithValue("@Top_Katilanlar", katilan.Text);
-                cmd.Parameters.AddWithValue("@Top_Gundem", gundem.Text);
-                cmd.Parameters.AddWithValue("@Top_Aciklama", aciklama.Text);
-                cmd.Parameters.AddWithValue("@Top_Yapilanlar", yapilanlar.Text);
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Kayıt Yapıldı..");
-                this.Hide();
-
-                con.Close();
-            }
-            else if (x == 2)
-            {
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
-
-                cmd.Connection = con;
-                cmd.CommandText = @"Update Tbl_Toplanti set Top_Tar=@Top_Tar,Top_Baskani=@Top_Baskani,Top_Katilanlar=@Top_Katilanlar,
-                                  Top_Gundem=@Top_Gundem,Top_Aciklama=@Top_Aciklama,Top_Yapilanlar=@Top_Yapilanlar 
-                                  where Top_id=@Top_id";
-
-                cmd.Parameters.AddWithValue("@Top_id", idd);
-                cmd.Parameters.AddWithValue("@Top_Tar", tarih.SelectedDate.Value);
-                cmd.Parameters.AddWithValue("@Top_Baskani", baskan.Text);
-                cmd.Parameters.AddWithValue("@Top_Katilanlar", katilan.Text);
-                cmd.Parameters.AddWithValue("@Top_Gundem", gundem.Text);
-                cmd.Parameters.AddWithValue("@Top_Aciklama", aciklama.Text);
-                cmd.Parameters.AddWithValue("@Top_Yapilanlar", yapilanlar.Text);
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Kayıt Yapıldı..");
-                this.Hide();
-
-                con.Close();
 
 
-            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PersonelEkleSil secim = new PersonelEkleSil(11);
-            secim.Show();
+
         }
 
     }

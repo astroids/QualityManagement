@@ -35,7 +35,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -46,7 +46,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -74,7 +74,7 @@ namespace WpfApplication1
             secilenEgitim = sid;
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -132,7 +132,7 @@ namespace WpfApplication1
             selected_personel = Convert.ToInt32(ID);
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;

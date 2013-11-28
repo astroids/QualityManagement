@@ -34,7 +34,7 @@ namespace WpfApplication1
         private void listele(string s)
         {
 
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             SqlCommand cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -60,29 +60,31 @@ namespace WpfApplication1
 
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        DataTable table = new DataTable();
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            listele(arama.Text);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
     }

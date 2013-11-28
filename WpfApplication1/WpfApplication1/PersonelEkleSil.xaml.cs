@@ -88,6 +88,7 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
+
             else if (cagiranmenutipi == 12)
             {
                 p_grid.Visibility = Visibility.Visible;
@@ -118,68 +119,68 @@ namespace WpfApplication1
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 25)
+            else if (cagiranmenutipi == 25)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
 
             }
-                 else if (cagiranmenutipi == 26)
+            else if (cagiranmenutipi == 26)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 27)
+            else if (cagiranmenutipi == 27)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 28)
+            else if (cagiranmenutipi == 28)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 29)
+            else if (cagiranmenutipi == 29)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 30)
+            else if (cagiranmenutipi == 30)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 31)
+            else if (cagiranmenutipi == 31)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 32)
+            else if (cagiranmenutipi == 32)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 33)
+            else if (cagiranmenutipi == 33)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 34)
+            else if (cagiranmenutipi == 34)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 35)
+            else if (cagiranmenutipi == 35)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 36)
+            else if (cagiranmenutipi == 36)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
             }
-                 else if (cagiranmenutipi == 37)
+            else if (cagiranmenutipi == 37)
             {
                 p_grid.Visibility = Visibility.Visible;
                 egRapor.Visibility = Visibility.Visible;
@@ -187,7 +188,7 @@ namespace WpfApplication1
             
 
 
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -617,13 +618,7 @@ namespace WpfApplication1
                 sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
                 this.Close();
             }
-            else if (cagiranmenutipi == 11)
-            {
-                object item = p_grid.SelectedItem;
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                sel.ected.personel_degistirEkle(Convert.ToInt32(ID));
-                this.Close();
-            }
+           
             else if (cagiranmenutipi == 10)
             {
                 object item = p_grid.SelectedItem;
@@ -711,7 +706,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -779,6 +774,16 @@ namespace WpfApplication1
             }
 
 
+        }
+
+        private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
+        private void secim_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
 
