@@ -21,6 +21,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Net;
 
+
 namespace WpfApplication1
 {
     /// <summary>
@@ -32,6 +33,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
+      
         [DllImport("user32.dll")]
         static extern IntPtr SetParent(IntPtr child, IntPtr newParent);
         [DllImport("user32.dll")]
@@ -48,15 +50,16 @@ namespace WpfApplication1
             string exeyolu = "calc.exe";
             
             Process calistir = Process.Start(exeyolu);
-          /*  while (calistir.MainWindowHandle == IntPtr.Zero || !IsWindowvisible(calistir.MainWindowHandle)) {
+         /*   while (calistir.MainWindowHandle == IntPtr.Zero || !IsWindowvisible(calistir.MainWindowHandle)) {
 
                 System.Threading.Thread.Sleep(10);
                 calistir.Refresh();
             
             }
+           
             calistir.WaitForInputIdle();
-          SetParent(calistir.MainWindowHandle, this.panell.AddHandler();
-           SendMessage(calistir.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);*/
+          SetParent(calistir.MainWindowHandle, this.panell.AddHandler();*/
+           SendMessage(calistir.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -89,7 +92,11 @@ namespace WpfApplication1
             takvim.Visibility = Visibility.Visible;
         }
 
-        
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Mail ml = new Mail();
+            ml.Show();
+        }
 
     }
 }

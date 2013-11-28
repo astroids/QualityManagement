@@ -104,6 +104,9 @@
     <Compile Include="izinIste.xaml.cs">
       <DependentUpon>izinIste.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mail.xaml.cs">
+      <DependentUpon>Mail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Personel Raporu Departma Secme.xaml.cs">
       <DependentUpon>Personel Raporu Departma Secme.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="izinIste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

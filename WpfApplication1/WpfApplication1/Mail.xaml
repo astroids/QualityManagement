@@ -1,0 +1,20 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.Mail" ShowTitleBar="False"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MAIL" Height="700" Width="700">
+    <Grid>
+        <Label Content="kime" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="başlık" HorizontalAlignment="Left" Margin="20,93,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="TextboxKime" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Name="TextboxBaslik" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <Label Content="metin" HorizontalAlignment="Left" Margin="20,184,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="TextboxMetin" Height="205" Margin="137,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
+        <Label Content="email" HorizontalAlignment="Left" Margin="20,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="şifre" HorizontalAlignment="Left" Margin="20,504,0,0" VerticalAlignment="Top"/>
+        <Button Content="gönder" HorizontalAlignment="Left" Margin="567,471,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Name="TextboxMail" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
+        <TextBox HorizontalAlignment="Left" Name="TextboxSifre" Height="23" Margin="121,505,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
+
+    </Grid>
+</Controls:MetroWindow>
