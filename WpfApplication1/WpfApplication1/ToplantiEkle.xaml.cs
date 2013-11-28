@@ -33,7 +33,7 @@ namespace WpfApplication1
             x = secim;
             idd = id;
             InitializeComponent();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             if (secim == 1)
             {
                 no.Visibility = Visibility.Visible;

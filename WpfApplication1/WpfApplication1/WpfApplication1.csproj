@@ -89,6 +89,9 @@
     <Compile Include="DokumanYazdir.xaml.cs">
       <DependentUpon>DokumanYazdir.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Döviz2.xaml.cs">
+      <DependentUpon>Döviz2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Egitim Rapor.xaml.cs">
       <DependentUpon>Egitim Rapor.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DokumanYazdir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Döviz2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

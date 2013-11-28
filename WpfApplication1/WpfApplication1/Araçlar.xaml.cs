@@ -43,7 +43,11 @@ namespace WpfApplication1
         private static extern bool IsWindowvisible(IntPtr hWnd);
         private const int WM_SYSCOMMAND = 274;
         private const int SC_MAXIMIZE = 61488;
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Döviz2 dv = new Döviz2();
+            dv.Show();
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
