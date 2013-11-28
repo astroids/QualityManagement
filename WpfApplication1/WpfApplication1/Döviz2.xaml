@@ -31,19 +31,19 @@
         <Label Content="SUUDİ ARABİSTAN RİYALİ" HorizontalAlignment="Left" Margin="10,215,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblriyal" HorizontalAlignment="Left" Margin="320,215,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblriyals" HorizontalAlignment="Left" Margin="520,215,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="10,275,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="ÇAPRAZ KURLAR" HorizontalAlignment="Left" Margin="10,275,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblkur1" HorizontalAlignment="Left" Margin="320,310,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblkur2" HorizontalAlignment="Left" Margin="320,345,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblkur3" HorizontalAlignment="Left" Margin="320,415,0,0" Height="25" VerticalAlignment="Top"/>
         <Label Content="" Name="lblkur4" HorizontalAlignment="Left" Margin="320,380,0,0" Height="25" VerticalAlignment="Top"/> 
-       <Label Content="" HorizontalAlignment="Left" Margin="10,415,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="520,415,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="10,345,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="520,345,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="10,380,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="520,380,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="10,310,0,0" Height="25" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="520,310,0,0" Height="25" VerticalAlignment="Top"/>
+       <Label Content="1 ABD DOLARI" HorizontalAlignment="Left" Margin="10,415,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="SUUDİ ARABİSTAN RİYALİ" HorizontalAlignment="Left" Margin="520,415,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="1 EURO" HorizontalAlignment="Left" Margin="10,345,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="ABD DOLARI" HorizontalAlignment="Left" Margin="520,345,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="1 STERLİN" HorizontalAlignment="Left" Margin="10,380,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="ABD DOLARI" HorizontalAlignment="Left" Margin="520,380,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="1 ABD DOLARI" HorizontalAlignment="Left" Margin="10,310,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Content="1 İSVİÇRE FRANGI" HorizontalAlignment="Left" Margin="520,310,0,0" Height="25" VerticalAlignment="Top"/>
 
     </Grid>
 </Controls:MetroWindow>
