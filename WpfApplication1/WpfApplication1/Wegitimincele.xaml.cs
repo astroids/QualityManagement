@@ -35,7 +35,6 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -46,7 +45,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -59,10 +58,10 @@ namespace WpfApplication1
                 eAlanPers.ItemsSource = dt.DefaultView;
                 con.Close();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Seçtiğiniz Kişi Zaten Eğitim Listesinde");
-                this.Close();
+                con.Close();
             }
 
         }
@@ -74,7 +73,7 @@ namespace WpfApplication1
             secilenEgitim = sid;
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -104,7 +103,7 @@ namespace WpfApplication1
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,d.DPT_adi as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e join Tbl_Personel p  on  p.P_id = e.PE_id)  as eg  join Tbl_Departman d on eg.P_Dept = d.DPT_id where eg.PE_Egitim_id =@id;";
             cmd.Parameters.AddWithValue("@id", secilenEgitim);
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
@@ -132,7 +131,7 @@ namespace WpfApplication1
             selected_personel = Convert.ToInt32(ID);
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;

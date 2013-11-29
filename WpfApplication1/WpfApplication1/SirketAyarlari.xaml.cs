@@ -80,7 +80,7 @@ namespace WpfApplication1
         public SirketAyarlari()
         {
             InitializeComponent();
-
+            fillall();
 
 
         }
@@ -94,7 +94,7 @@ namespace WpfApplication1
             smail.Text = sir.email;
             sweb.Text = sir.web;
             logoIM.Source = sir.ket;
-
+            sadresi.Text = sir.adress;
         }
 
 
@@ -122,7 +122,7 @@ namespace WpfApplication1
                     fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
 
                     fs.Close();
-                    con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                    con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
 
 
@@ -157,6 +157,193 @@ namespace WpfApplication1
             catch (Exception) { throw; }
             
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow back = new MainWindow();
+            back.Show();
+            this.Close();
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try{
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Kisa_Adi = @ad;";
+                cmd.Parameters.AddWithValue("@ad",adi.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+            
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Adı Başarıyla Değiştirildi");
+            }catch{
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void uzunadi_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Ticari_Adi = @ad;";
+                cmd.Parameters.AddWithValue("@ad", uadi.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Ticari Adı Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void vergin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_VNo  = @ad;";
+                cmd.Parameters.AddWithValue("@ad", vergi.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Vergi Numarasi Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void vdeg_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Adres = @ad;";
+                cmd.Parameters.AddWithValue("@ad", sadresi.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Adresi Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void teldegistir_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Tel = @ad;";
+                cmd.Parameters.AddWithValue("@ad", stel.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Telefonu Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+        private void webdegisitir_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Web= @ad;";
+                cmd.Parameters.AddWithValue("@ad", sweb.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Websitesi Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+
+
+
+        
+
+
 
 
     }

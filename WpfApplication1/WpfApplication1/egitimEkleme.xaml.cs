@@ -32,7 +32,7 @@ namespace WpfApplication1
         public egitimEkleme()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
         }
 
         private void eVerenSec_Click(object sender, RoutedEventArgs e)
@@ -138,6 +138,12 @@ namespace sel
         private static WpfApplication1.egitimEkleme openwindow;
         private static WpfApplication1.Wegitimincele openwindow2;
         private static WpfApplication1.WegitimDegistir eDegistir;//egitim degistir
+        private static WpfApplication1.MainWindow mwin;
+
+
+
+
+
         public static void setSelect(int i){
             idint=i;
             openwindow.setEgitimVeren(idint);
@@ -149,7 +155,15 @@ namespace sel
             eDegistir.setEgitimVeren(everenDegistir);
             everenDegistir = 0;
         }
+        public static void setOpenMain(WpfApplication1.MainWindow m)
+        {
+            mwin = m;
+        }
 
+        public static void mainClose()
+        {
+            mwin.Close();
+        }
 
         //kullanılmıyor olabilir
         public static int getSelect()

@@ -21,12 +21,15 @@
         <TextBox Name="smail" HorizontalAlignment="Left" Height="23" Margin="733,324,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
         <TextBox Name="sweb" HorizontalAlignment="Left" Height="23" Margin="733,428,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
         <Button Name="logo" Content="Değiştir" HorizontalAlignment="Left" Margin="673,79,0,0" VerticalAlignment="Top" Width="55" Click="logo_Click"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="673,232,0,0" VerticalAlignment="Top" Width="55"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="673,324,0,0" VerticalAlignment="Top" Width="55"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="673,427,0,0" VerticalAlignment="Top" Width="55"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="144,79,0,0" VerticalAlignment="Top" Width="55"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="144,231,0,0" VerticalAlignment="Top" Width="55"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="139,324,0,0" VerticalAlignment="Top" Width="55"/>
+        <Button Name="teldegistir" Content="Değiştir" HorizontalAlignment="Left" Margin="673,232,0,0" VerticalAlignment="Top" Width="55" Click="teldegistir_Click"/>
+        <Button Name="emaildegistir" Content="Değiştir" HorizontalAlignment="Left" Margin="673,324,0,0" VerticalAlignment="Top" Width="55" Click="Button_Click_1"/>
+        <Button Name="webdegisitir" Content="Değiştir" HorizontalAlignment="Left" Margin="673,427,0,0" VerticalAlignment="Top" Width="55" Click="webdegisitir_Click"/>
+        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="144,79,0,0" VerticalAlignment="Top" Width="55" Click="Button_Click" />
+        <Button Name="uzunadi" Content="Değiştir" HorizontalAlignment="Left" Margin="144,231,0,0" VerticalAlignment="Top" Width="55" Click="uzunadi_Click"/>
+        <Button Name="vergin" Content="Değiştir" HorizontalAlignment="Left" Margin="139,324,0,0" VerticalAlignment="Top" Width="55" Click="vergin_Click" />
+        <Button Name="addegistir" Content="Değiştir" HorizontalAlignment="Left" Margin="144,428,0,0" VerticalAlignment="Top" Width="55" Click="vdeg_Click"/>
+
+        <Button Name="Back" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Content="Ana Menu" Margin="43,646,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Back_Click"/>
 
     </Grid>
 </Controls:MetroWindow>

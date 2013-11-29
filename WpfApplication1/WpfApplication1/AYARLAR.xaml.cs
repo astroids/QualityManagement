@@ -32,6 +32,7 @@ namespace WpfApplication1
         {
             SirketAyarlari sir = new SirketAyarlari();
             sir.Show();
+            sel.ected.mainClose();
             this.Close();
         }
     }

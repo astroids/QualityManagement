@@ -78,6 +78,7 @@ namespace WpfApplication1
         private void ayarlar_Click(object sender, RoutedEventArgs e)
         {
             AYARLAR ay = new AYARLAR();
+            sel.ected.setOpenMain(this);
             ay.Show();
         }
 
@@ -95,7 +96,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
