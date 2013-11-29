@@ -6,15 +6,16 @@
     <Grid>
         <Label Content="kime" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
         <Label Content="başlık" HorizontalAlignment="Left" Margin="20,93,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="TextboxKime" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Name="TextboxBaslik" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <TextBox HorizontalAlignment="Left" Name="Kime" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Name="Baslik" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
         <Label Content="metin" HorizontalAlignment="Left" Margin="20,184,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="TextboxMetin" Height="205" Margin="137,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
+        <TextBox HorizontalAlignment="Left" Name="Metin" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
         <Label Content="email" HorizontalAlignment="Left" Margin="20,445,0,0" VerticalAlignment="Top"/>
         <Label Content="şifre" HorizontalAlignment="Left" Margin="20,504,0,0" VerticalAlignment="Top"/>
-        <Button Content="gönder" HorizontalAlignment="Left" Margin="567,471,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Name="TextboxMail" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
-        <TextBox HorizontalAlignment="Left" Name="TextboxSifre" Height="23" Margin="121,505,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
+        <Button Content="gönder" HorizontalAlignment="Left" Margin="567,504,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Name="Gonderen" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
+        <PasswordBox HorizontalAlignment="Left" Name="sifre" Margin="121,504,0,0" VerticalAlignment="Top" Width="158"/>
+        <ComboBox HorizontalAlignment="Left" Name="personelSec" Margin="431,20,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="personelSec_SelectionChanged"/>
 
     </Grid>
 </Controls:MetroWindow>
