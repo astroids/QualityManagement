@@ -19,13 +19,11 @@ using System.Net.Mail;
 using System.Net;
 namespace WpfApplication1
 {
-    /// <summary>
-    /// Interaction logic for AAABOSKOPYALA.xaml
-    /// </summary>
+  
     public partial class Mail : MetroWindow
     {
         private SqlConnection con = new SqlConnection();
-        private int selectedID = 0;
+        private string yollancakMailAdresi;
         private string selectedPersonel;
 
         void fillCombo()
@@ -42,7 +40,7 @@ namespace WpfApplication1
             adap.Fill(dt);
             personelSec.ItemsSource = dt.DefaultView;
             personelSec.DisplayMemberPath = "P_Adi";
-            personelSec.SelectedValuePath = "P_Id";
+            personelSec.SelectedValuePath = "P_id";
             con.Close();
 
         }
@@ -51,8 +49,8 @@ namespace WpfApplication1
         public Mail()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-            listele(null);
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            //listele(null);
             fillCombo();
 
 
@@ -61,8 +59,8 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Kime.Text = selectedPersonel;
-            MailMessage MyMailMessage = new MailMessage(Gonderen.Text, Kime.Text, Baslik.Text, Metin.Text);
+            //Kime.Text = selectedPersonel;
+            MailMessage MyMailMessage = new MailMessage(Gonderen.Text, yollancakMailAdresi, Baslik.Text, Metin.Text);
 
             MyMailMessage.IsBodyHtml = false;
 
@@ -95,27 +93,39 @@ namespace WpfApplication1
 
         void listele(string tip)
         {
-
-
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            if (tip == null)
+            try
             {
 
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
-            }
-            else
-            {
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select p.P_Email as 'Email',  from Tbl_Personel p";
-                selectedPersonel = cmd.CommandText;
-                cmd.Parameters.AddWithValue("@Email", tip);
-            }
-            
-            con.Close();
+                //if (tip == null)
+                //{
 
+                //    cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
+                //}
+                //else
+                {
+
+
+                    cmd.Connection = con; cmd.CommandText = "select *  from Tbl_Personel where P_id=@pid";
+                    cmd.Parameters.AddWithValue("@pid", tip);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        yollancakMailAdresi = reader["P_Email"].ToString();
+                        pkime.Text = yollancakMailAdresi;
+                       // pkime.Text = " " + reader["P_Soyadi"].ToString();
+                    }
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                con.Close();
+            }
 
         }
 
