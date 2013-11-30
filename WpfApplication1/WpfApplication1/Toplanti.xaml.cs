@@ -34,7 +34,7 @@ namespace WpfApplication1
         private void listele(string s)
         {
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             SqlCommand cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -140,6 +140,13 @@ namespace WpfApplication1
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             listele(null);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow bac = new MainWindow();
+            bac.Show();
+            this.Close();
         }
 
     }

@@ -194,7 +194,7 @@ namespace WpfApplication1
             
 
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -453,7 +453,7 @@ namespace WpfApplication1
         private static void pers_Closing(object sender, CancelEventArgs e)
         {
             //sil
-            WPersonel p = new WPersonel();
+            WPersonel p = new WPersonel(MainWindow.kim,MainWindow.kimsifre);
             p.Show();
         }
 
@@ -482,21 +482,24 @@ namespace WpfApplication1
 
         private void iziniste_Click(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
-            {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                izinIste iz = new izinIste(selectedID);
-                iz.Show();
+          
+          
 
-            }
-            else
-            {
-                MessageBox.Show("İzin almak için için bir kişi seçinz");
-            }
-        }
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    izinIste iz = new izinIste(selectedID);
+                    iz.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("İzin almak için için bir kişi seçinz");
+                }
+            }
+      
         private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
         {
             object item = p_grid.SelectedItem;
@@ -718,7 +721,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -790,7 +793,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

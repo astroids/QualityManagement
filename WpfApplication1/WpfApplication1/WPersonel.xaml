@@ -1,5 +1,5 @@
 ﻿<Controls:MetroWindow x:Class="WpfApplication1.WPersonel" ShowTitleBar="False" 
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PERSONEL" Height="600" Width="525" HorizontalAlignment="Center"  >

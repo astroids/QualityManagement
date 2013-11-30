@@ -29,6 +29,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class Araclar: MetroWindow
     {
+        int i = 1;
         public Araclar()
         {
             InitializeComponent();
@@ -93,7 +94,19 @@ namespace WpfApplication1
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            takvim.Visibility = Visibility.Visible;
+            i++;
+            if (i % 2 == 0)
+            {
+                takvim.Visibility = Visibility.Visible;
+            }
+            if (i == 10)
+            {
+                i = 0;
+            }
+            if (i % 2 == 1)
+            {
+                takvim.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)

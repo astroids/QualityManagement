@@ -38,5 +38,12 @@ namespace WpfApplication1
             DokumanRevizyon rev = new DokumanRevizyon();
             rev.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow bac = new MainWindow();
+            bac.Show();
+            this.Close();
+        }
     }
 }

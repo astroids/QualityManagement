@@ -35,7 +35,7 @@ namespace WpfApplication1
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             if (x == 2)
              {
@@ -228,6 +228,19 @@ namespace WpfApplication1
                 string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                 cmd.Parameters.AddWithValue("@P_Aday", drm);
                 cmd.Parameters.AddWithValue("@P_Sil", "0");
+                if (dep == null)
+                            {
+                                MessageBox.Show("Departmini secmediniz!!!");
+                                
+                                return;
+                               
+                            }
+                if (drm == null)
+                {
+
+                    MessageBox.Show("Aday durumunu secmediniz!!!");
+                    return;
+                }
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Kayıt Yapıldı..");

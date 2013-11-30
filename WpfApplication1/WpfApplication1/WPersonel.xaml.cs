@@ -23,9 +23,14 @@ namespace WpfApplication1
     /// </summary>
     public partial class WPersonel : MetroWindow
     {
-        
-        public WPersonel()
+      public static  int yetki;
+        public WPersonel(string a,string b)
         {
+            if (a == "7003" && b == "3333331112")
+            {
+                yetki = 0;
+            }
+
             InitializeComponent();
             im.Source = sir.ket;
             int i = 45;
@@ -36,7 +41,9 @@ namespace WpfApplication1
 
         private void PersIs_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (WPersonel.yetki == 0) {
+                PersIs.Visibility = Visibility.Hidden;
+            }
             PersonelAraMenu ek = new PersonelAraMenu(this);
             ek.Show();
             //this.Hide();
