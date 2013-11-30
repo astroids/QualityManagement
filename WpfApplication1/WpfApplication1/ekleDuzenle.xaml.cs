@@ -35,37 +35,45 @@ namespace WpfApplication1
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-
-            if (x == 2)
-             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-  
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
-  
-                cmd.Parameters.AddWithValue("@id", idd);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            try
+            {
+                if (x == 2)
                 {
-                    isim.Text = reader["P_Adi"].ToString();
-                    soyisim.Text = reader["P_Soyadi"].ToString();
-                    tckimlik.Text = reader["P_TcKimlik"].ToString();
-                    telefonno.Text = reader["P_tel1"].ToString();
-                    ceptelefon.Text = reader["P_tel2"].ToString();
-                    email.Text = reader["P_Email"].ToString();
-                    cinsiyet.Text = reader["P_Cinsiyet"].ToString();
-                    dogumtarihi.Text = reader["P_D_Tar"].ToString();
-                    dogumyeri.Text = reader["P_D_Yer"].ToString();
-                    pozisyon.Text = reader["P_Pozisyon"].ToString();
-                    medenihal.Text = reader["P_Med_Hal"].ToString();
-                    adaydurumu.Text = reader["P_Aday"].ToString();
+
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", idd);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        isim.Text = reader["P_Adi"].ToString();
+                        soyisim.Text = reader["P_Soyadi"].ToString();
+                        tckimlik.Text = reader["P_TcKimlik"].ToString();
+                        telefonno.Text = reader["P_tel1"].ToString();
+                        ceptelefon.Text = reader["P_tel2"].ToString();
+                        email.Text = reader["P_Email"].ToString();
+                        cinsiyet.Text = reader["P_Cinsiyet"].ToString();
+                        dogumtarihi.Text = reader["P_D_Tar"].ToString();
+                        dogumyeri.Text = reader["P_D_Yer"].ToString();
+                        pozisyon.Text = reader["P_Pozisyon"].ToString();
+                        medenihal.Text = reader["P_Med_Hal"].ToString();
+                        adaydurumu.Text = reader["P_Aday"].ToString();
+                    }
+                    con.Close();
                 }
-                con.Close();
+                fillCombo();
             }
-            fillCombo();
+            catch
+            {
+                MessageBox.Show("Duzenleme Sirasinda Bir Hata Oluştu");
+            }
         }
         private void fillCombo()
         {
@@ -209,46 +217,53 @@ namespace WpfApplication1
                 {
                     con.Open();
                 }
-                cmd.Connection = con;
-                cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi) 
+                try
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi) 
                                  values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil)";
 
-                cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
-                cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
-                cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
-                cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
-                cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
-                cmd.Parameters.AddWithValue("@P_Email", email.Text);
-                cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
-                cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
-                cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
-                cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
-                cmd.Parameters.AddWithValue("@P_Dept", dep);
-                cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
-                cmd.Parameters.AddWithValue("@P_Aday", drm);
-                cmd.Parameters.AddWithValue("@P_Sil", "0");
-                if (dep == null)
-                            {
-                                MessageBox.Show("Departmini secmediniz!!!");
-                                
-                                return;
-                               
-                            }
-                if (drm == null)
-                {
+                    cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
+                    cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
+                    cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
+                    cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
+                    cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
+                    cmd.Parameters.AddWithValue("@P_Email", email.Text);
+                    cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
+                    cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
+                    cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
+                    cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
+                    cmd.Parameters.AddWithValue("@P_Dept", dep);
+                    cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
+                    string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
+                    cmd.Parameters.AddWithValue("@P_Aday", drm);
+                    cmd.Parameters.AddWithValue("@P_Sil", "0");
+                    if (dep == null)
+                    {
+                        MessageBox.Show("Departmini secmediniz!!!");
 
-                    MessageBox.Show("Aday durumunu secmediniz!!!");
-                    return;
+                        return;
+
+                    }
+                    if (drm == null)
+                    {
+
+                        MessageBox.Show("Aday durumunu secmediniz!!!");
+                        return;
+                    }
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Kayıt Yapıldı..");
+                    this.Hide();
+
+                    PersonelEkleSil ek = new PersonelEkleSil(1);
+                    ek.Show();
+                    con.Close();
                 }
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Kayıt Yapıldı..");
-                this.Hide();
-
-                PersonelEkleSil ek = new PersonelEkleSil(1);
-                ek.Show();
-                con.Close();
+                catch
+                {
+                    MessageBox.Show("Kayit Yapilirkan Bir Hata Oluştu");
+                }
 
 
 
@@ -259,35 +274,42 @@ namespace WpfApplication1
                            {
                                 con.Open();
                            }
-                            
-                            cmd.Connection = con;
-                            cmd.CommandText = @"update Tbl_Personel set P_Adi=@P_Adi,P_Soyadi=@P_Soyadi,P_TcKimlik=@P_TcKimlik,P_Tel1=@P_Tel1,P_Tel2=@P_Tel2,P_Email=@P_Email,
+                            try
+                            {
+                                cmd.Connection = con;
+                                cmd.CommandText = @"update Tbl_Personel set P_Adi=@P_Adi,P_Soyadi=@P_Soyadi,P_TcKimlik=@P_TcKimlik,P_Tel1=@P_Tel1,P_Tel2=@P_Tel2,P_Email=@P_Email,
                                                P_Cinsiyet=@P_Cinsiyet,P_D_Tar=@P_D_Tar,P_D_Yer=@P_D_Yer,P_Pozisyon=@P_Pozisyon,P_Dept=@P_Dept,P_Med_Hal=@P_Med_Hal,P_Aday=@P_Aday where P_id=@P_id";
-              
-                            
-                            cmd.Parameters.AddWithValue("P_id", idd);
-                            cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
-                            cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
-                            cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
-                            cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
-                            cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
-                            cmd.Parameters.AddWithValue("@P_Email", email.Text);
-                            cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
-                            cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
-                            cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
-                            cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
-                            cmd.Parameters.AddWithValue("@P_Dept", dep);
-                            cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                            string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
-                            cmd.Parameters.AddWithValue("@P_Aday", drm);
-            
-                            cmd.ExecuteNonQuery();
-            
-                            MessageBox.Show("Degisiklik Yapildi..");
-                            this.Hide();
-                            PersonelEkleSil ek = new PersonelEkleSil(1);
-                            ek.Show();
-                            con.Close();
+
+
+                                cmd.Parameters.AddWithValue("P_id", idd);
+                                cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
+                                cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
+                                cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
+                                cmd.Parameters.AddWithValue("@P_Tel1", telefonno.Text);
+                                cmd.Parameters.AddWithValue("@P_Tel2", ceptelefon.Text);
+                                cmd.Parameters.AddWithValue("@P_Email", email.Text);
+                                cmd.Parameters.AddWithValue("@P_Cinsiyet", cinsiyet.Text);
+                                cmd.Parameters.AddWithValue("@P_D_Tar", dogumtarihi.SelectedDate.Value);
+                                cmd.Parameters.AddWithValue("@P_D_Yer", dogumyeri.Text);
+                                cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
+                                cmd.Parameters.AddWithValue("@P_Dept", dep);
+                                cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
+                                string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
+                                cmd.Parameters.AddWithValue("@P_Aday", drm);
+
+                                cmd.ExecuteNonQuery();
+
+                                MessageBox.Show("Degisiklik Yapildi..");
+                                this.Hide();
+                                PersonelEkleSil ek = new PersonelEkleSil(1);
+                                ek.Show();
+                                con.Close();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Guncelleme Yapilirkan Bir Hata Oluştu");
+                            }
+
                        }
             
                }

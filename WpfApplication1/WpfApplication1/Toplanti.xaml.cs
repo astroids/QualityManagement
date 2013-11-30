@@ -34,7 +34,7 @@ namespace WpfApplication1
         private void listele(string s)
         {
 
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             SqlCommand cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -75,34 +75,42 @@ namespace WpfApplication1
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            
             object item = data_grid.SelectedItem;
             if (item != null)
             {
 
-
-                if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
                 {
-                    //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
-                    string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    selectedID = Convert.ToInt32(ID);
+                    if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                        string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                        selectedID = Convert.ToInt32(ID);
 
-                    con.Open();
+                        con.Open();
 
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "delete from Tbl_Toplanti where Top_id = @Top_id";
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = con;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "delete from Tbl_Toplanti where Top_id = @Top_id";
 
-                    cmd.Parameters.AddWithValue("@Top_id", selectedID);
+                        cmd.Parameters.AddWithValue("@Top_id", selectedID);
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Silme Yapıldı..");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Silme Yapıldı..");
 
-                    con.Close();
+                        con.Close();
 
-                    //rows number of record got deleted
+                        //rows number of record got deleted
 
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Silme Islemi Sirasinda Bir Hata Oluştu");
+                }
+            
 
 
             }

@@ -32,7 +32,7 @@ namespace WpfApplication1
         public egitimEkleme()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
         }
 
         private void eVerenSec_Click(object sender, RoutedEventArgs e)
@@ -47,39 +47,46 @@ namespace WpfApplication1
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Tbl_Egitim values (@adi,@icerik,@verenid,@btr,@sontr);";
-            cmd.Parameters.AddWithValue("@adi", eAdi.Text);
-            cmd.Parameters.AddWithValue("@verenid", egitimverenid);
-            cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
-            cmd.Parameters.AddWithValue("@btr",baslngic.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@sontr",bitisTar.ToString("yyyy-MM-dd"));
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-
-            //izinin idsini bul
-            con.Open();
-            cmd = new SqlCommand();
-
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select max(e.E_id) as next from Tbl_Egitim e ";
-            SqlDataReader reader =cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                egitimno = Convert.ToInt32(reader["next"].ToString());
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "insert into Tbl_Egitim values (@adi,@icerik,@verenid,@btr,@sontr);";
+                cmd.Parameters.AddWithValue("@adi", eAdi.Text);
+                cmd.Parameters.AddWithValue("@verenid", egitimverenid);
+                cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
+                cmd.Parameters.AddWithValue("@btr", baslngic.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@sontr", bitisTar.ToString("yyyy-MM-dd"));
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+                //izinin idsini bul
+                con.Open();
+                cmd = new SqlCommand();
+
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select max(e.E_id) as next from Tbl_Egitim e ";
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    egitimno = Convert.ToInt32(reader["next"].ToString());
+                }
+
+
+                //cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show(egitimno.ToString());
+
+                Wegitimincele n = new Wegitimincele(egitimno);
+                n.Show();
+                this.Close();
             }
-
-
-            //cmd.ExecuteNonQuery();
-            con.Close();
-            MessageBox.Show(egitimno.ToString());
-
-            Wegitimincele n = new Wegitimincele(egitimno);
-            n.Show();
-            this.Close();
+            catch
+            {
+                MessageBox.Show("Kaydetme Sirasinda Bir Hata Oluştu");
+            }
 
 
 
