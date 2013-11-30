@@ -41,8 +41,48 @@ namespace WpfApplication1
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-          
-        try
+          try
+             {
+                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
+                 SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
+                 string sql = "";
+                 sql = "select * FROM Tbl_Personel WHERE P_id=@P1 and P_TcKimlik=@P2";
+                 SqlCommand cmd = new SqlCommand(sql, con);
+
+                 cmd.Parameters.Add(prm1);
+                 cmd.Parameters.Add(prm2);
+
+                 SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                 DataTable dt = new DataTable();
+
+                 da.Fill(dt);
+
+                 if (dt.Rows.Count > 0)
+                 {
+                     MessageBox.Show("Hosgeldiniz");
+                    // Response.Redirect("Default.aspx");
+                     MainWindow mw = new MainWindow();
+                     i ++;
+                     MainWindow.kim = kullanıcı.Text;
+                     MainWindow.kimsifre = sifre.Password;
+                     this.Close();
+                     mw.Show();
+                 }
+                 else
+                 {
+                     MessageBox.Show("Veritabanında böyle bir kullanıcı bulunamadı");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.Message);
+             }
+             finally
+             {
+                 con.Close();
+             }
+         /*  try
             //{
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
@@ -82,7 +122,7 @@ namespace WpfApplication1
 
                     }
 
-                } 
+                } */
              /*   con.Close();
                    catch (Exception ex)
              {

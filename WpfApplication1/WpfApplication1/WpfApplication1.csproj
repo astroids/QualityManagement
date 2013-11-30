@@ -104,6 +104,9 @@
     <Compile Include="ekleDuzenle.xaml.cs">
       <DependentUpon>ekleDuzenle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GirisEkrani.xaml.cs">
+      <DependentUpon>GirisEkrani.xaml</DependentUpon>
+    </Compile>
     <Compile Include="izinIste.xaml.cs">
       <DependentUpon>izinIste.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
     <Page Include="ekleDuzenle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GirisEkrani.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="izinIste.xaml">
       <SubType>Designer</SubType>
