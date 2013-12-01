@@ -40,7 +40,7 @@ namespace WpfApplication1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
           try
              {
                  SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);

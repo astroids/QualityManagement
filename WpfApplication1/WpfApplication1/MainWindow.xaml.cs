@@ -39,7 +39,10 @@ namespace WpfApplication1
         public static string kimsifre;
         public MainWindow()
         {
-            
+            GirisEkrani gr = new GirisEkrani();
+
+            gr.Show();
+            this.Hide();
             InitializeComponent();
             slogo.refresh();
             im.Source = sir.ket;
@@ -100,7 +103,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

@@ -35,7 +35,7 @@ namespace WpfApplication1
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             try
             {
                 if (x == 2)
@@ -279,7 +279,101 @@ namespace WpfApplication1
                                 cmd.Connection = con;
                                 cmd.CommandText = @"update Tbl_Personel set P_Adi=@P_Adi,P_Soyadi=@P_Soyadi,P_TcKimlik=@P_TcKimlik,P_Tel1=@P_Tel1,P_Tel2=@P_Tel2,P_Email=@P_Email,
                                                P_Cinsiyet=@P_Cinsiyet,P_D_Tar=@P_D_Tar,P_D_Yer=@P_D_Yer,P_Pozisyon=@P_Pozisyon,P_Dept=@P_Dept,P_Med_Hal=@P_Med_Hal,P_Aday=@P_Aday where P_id=@P_id";
+                                if (isim.Text == "")
+                                {
+                                    MessageBox.Show("Adını boş geçemezsiniz!!");
+                                    return;
+                                }
 
+                                if (soyisim.Text == "")
+                                {
+                                    MessageBox.Show("Soyadını boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (tckimlik.Text == "")
+                                {
+                                    MessageBox.Show("TC Kimliğini boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (tckimlik.Text.Length != 11)
+                                {
+                                    MessageBox.Show("TC Kimlik eksik yada fazla olamaz!!");
+                                    return;
+                                }
+
+                                if (telefonno.Text == "")
+                                {
+                                    MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (ceptelefon.Text == "")
+                                {
+                                    MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (telefonno.Text.Length != 11)
+                                {
+                                    MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
+                                    return;
+                                }
+
+                                if (ceptelefon.Text.Length != 11)
+                                {
+                                    MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
+                                    return;
+                                }
+
+                                if (email.Text == "")
+                                {
+                                    MessageBox.Show("E-Mail i boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (cinsiyet.Text == "")
+                                {
+                                    MessageBox.Show("Cinsiyet i seciniz!!");
+                                    return;
+                                }
+
+                                if (dogumtarihi.Text == "")
+                                {
+                                    MessageBox.Show("Dogum tarihini boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (dogumyeri.Text == "")
+                                {
+                                    MessageBox.Show("Dogum yerini boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (pozisyon.Text == "")
+                                {
+                                    MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
+                                    return;
+                                }
+
+                                if (departman.Text == "")
+                                {
+                                    MessageBox.Show("Departman ı seciniz!!");
+                                    return;
+                                }
+
+                                if (medenihal.Text == "")
+                                {
+                                    MessageBox.Show("Medeni Hal i seciniz!!");
+                                    return;
+                                }
+
+                                if (adaydurumu.Text == "")
+                                {
+                                    MessageBox.Show("Aday durumunu seciniz!!");
+                                    return;
+                                }
 
                                 cmd.Parameters.AddWithValue("P_id", idd);
                                 cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
@@ -296,6 +390,8 @@ namespace WpfApplication1
                                 cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
                                 string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                                 cmd.Parameters.AddWithValue("@P_Aday", drm);
+                                
+
 
                                 cmd.ExecuteNonQuery();
 
