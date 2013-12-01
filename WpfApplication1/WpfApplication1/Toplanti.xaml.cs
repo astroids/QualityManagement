@@ -34,7 +34,7 @@ namespace WpfApplication1
         private void listele(string s)
         {
 
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             SqlCommand cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -64,7 +64,7 @@ namespace WpfApplication1
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ToplantiEkle ekle = new ToplantiEkle(0, 2);
+            ToplantiEkle ekle = new ToplantiEkle();
             ekle.Show();
         }
 
@@ -75,7 +75,7 @@ namespace WpfApplication1
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+
             object item = data_grid.SelectedItem;
             if (item != null)
             {
@@ -110,7 +110,7 @@ namespace WpfApplication1
                 {
                     MessageBox.Show("Silme Islemi Sirasinda Bir Hata Oluştu");
                 }
-            
+
 
 
             }
@@ -131,8 +131,8 @@ namespace WpfApplication1
                 //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
                 string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
-                ToplantiEkle x = new ToplantiEkle(selectedID, 2);
-                x.Show();
+                //ToplantiEkle x = new ToplantiEkle(selectedID, 2);
+                //x.Show();
 
             }
             else

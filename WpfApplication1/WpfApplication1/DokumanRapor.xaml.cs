@@ -36,7 +36,7 @@ namespace WpfApplication1
         {
 
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             SqlCommand cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;

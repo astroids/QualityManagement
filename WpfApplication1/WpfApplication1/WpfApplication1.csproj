@@ -131,11 +131,17 @@
     <Compile Include="PersonelRapor.xaml.cs">
       <DependentUpon>PersonelRapor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonelSelector.xaml.cs">
+      <DependentUpon>PersonelSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SirketAyarlari.xaml.cs">
       <DependentUpon>SirketAyarlari.xaml</DependentUpon>
     </Compile>
     <Compile Include="Toplanti.xaml.cs">
       <DependentUpon>Toplanti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToplantiDokumanPersonelEkle.xaml.cs">
+      <DependentUpon>ToplantiDokumanPersonelEkle.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToplantiEkle.xaml.cs">
       <DependentUpon>ToplantiEkle.xaml</DependentUpon>
@@ -252,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PersonelSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -263,6 +273,10 @@
     <Page Include="Toplanti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToplantiDokumanPersonelEkle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ToplantiEkle.xaml">
       <SubType>Designer</SubType>
