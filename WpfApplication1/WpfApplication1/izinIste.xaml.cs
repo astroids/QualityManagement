@@ -110,8 +110,8 @@ namespace WpfApplication1
             DateTime biti =(DateTime)baslan.SelectedDate;
             TimeSpan sure = biti-basl;
 
-            //try
-            //{
+            try
+            {
                 SqlCommand cmd = new SqlCommand();
                 con.Open();
                 cmd.Connection = con;
@@ -125,11 +125,11 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("İzin istegit başarıyla tamamlandı");
                 this.Close();
-            //}
-            //catch {
-            //    MessageBox.Show("Hatlı işlem");
-
-            //}
+            }
+            catch 
+            {
+                MessageBox.Show("Hatlı işlem");
+            }
         }
 
         private void neden_SelectionChanged(object sender, SelectionChangedEventArgs e)

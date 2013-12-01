@@ -422,6 +422,8 @@ namespace WpfApplication1
             object item = p_grid.SelectedItem;
             if (item != null)
             {
+                try
+                {
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
                 SqlCommand cmd = new SqlCommand();
@@ -437,6 +439,11 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
+                }
+                catch
+                {
+                MessageBox.Show("Guncelleme Sirasinda Bir Hata Oluştu");
+                }
 
             }
             else
