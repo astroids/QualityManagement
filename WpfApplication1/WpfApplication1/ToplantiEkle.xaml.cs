@@ -31,7 +31,7 @@ namespace WpfApplication1
         public ToplantiEkle()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             fillCombo();
 
 

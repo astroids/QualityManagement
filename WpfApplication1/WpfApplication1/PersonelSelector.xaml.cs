@@ -30,7 +30,7 @@ namespace WpfApplication1
         public PersonelSelector()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             fillgrid();
         }
         void fillgrid()

@@ -74,6 +74,9 @@
     <Compile Include="AYARLAR.xaml.cs">
       <DependentUpon>AYARLAR.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Departman.xaml.cs">
+      <DependentUpon>Departman.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DokumanIncele.xaml.cs">
       <DependentUpon>DokumanIncele.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AYARLAR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Departman.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,5 +35,13 @@ namespace WpfApplication1
             sel.ected.mainClose();
             this.Close();
         }
+
+        private void dep_Click(object sender, RoutedEventArgs e)
+        {
+
+            Departman dd = new Departman();
+            dd.Show();
+            this.Hide();
+        }
     }
 }
