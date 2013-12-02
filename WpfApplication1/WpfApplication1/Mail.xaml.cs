@@ -49,7 +49,7 @@ namespace WpfApplication1
         public Mail()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             //listele(null);
             fillCombo();
 
@@ -111,7 +111,7 @@ namespace WpfApplication1
                     cmd.Connection = con; cmd.CommandText = "select *  from Tbl_Personel where P_id=@pid";
                     cmd.Parameters.AddWithValue("@pid", tip);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                while (reader.Read())
                     {
                         yollancakMailAdresi = reader["P_Email"].ToString();
                         pkime.Text = yollancakMailAdresi;
@@ -134,6 +134,11 @@ namespace WpfApplication1
         {
             string t = personelSec.SelectedValue.ToString();
             listele(t);
+        }
+
+        private void pkime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

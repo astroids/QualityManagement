@@ -194,7 +194,7 @@ namespace WpfApplication1
             
 
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -459,6 +459,7 @@ namespace WpfApplication1
 
         private static void pers_Closing(object sender, CancelEventArgs e)
         {
+            //sil
             WPersonel p = new WPersonel();
             p.Show();
         }
@@ -727,7 +728,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -799,7 +800,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
@@ -818,8 +819,8 @@ namespace WpfApplication1
             {
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
-                //   ToplantiEkle x = new ToplantiEkle(selectedID, 1);                                                                                             //TOPLANTI EKLE
-                //x.Show();
+                ToplantiEkle x = new ToplantiEkle(selectedID, 1);
+                x.Show();
                 this.Hide();
 
                 /*con.Open();

@@ -21,7 +21,7 @@ namespace WpfApplication1
     /// <summary>
     /// Interaction logic for DepartmanDüzenle.xaml
     /// </summary>
-    public partial class Departman : MetroWindow
+    public partial class Departman: MetroWindow
     {
         private int selectedID = 0;
         private SqlConnection con = new SqlConnection();
@@ -30,7 +30,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             listele(null);
         }
         private void listele(string ser)
@@ -61,11 +61,15 @@ namespace WpfApplication1
             this.Close();
         }
 
-       
+        private void depekle_Click(object sender, RoutedEventArgs e)
+        {
+            DepartmanDüzenle dep = new DepartmanDüzenle(0,2);
+            dep.Show();
+        }
 
         private void depsil_Click(object sender, RoutedEventArgs e)
         {
-
+            
             object item = grid.SelectedItem;
             if (item != null)
             {
@@ -100,7 +104,7 @@ namespace WpfApplication1
                 {
                     MessageBox.Show("Silme Islemi Sirasinda Bir Hata Oluştu");
                 }
-
+            
 
 
             }
@@ -121,7 +125,8 @@ namespace WpfApplication1
                 //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
                 string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
-              
+                DepartmanDüzenle dep = new DepartmanDüzenle(0, 1);
+                dep.Show();
 
             }
             else
@@ -129,7 +134,7 @@ namespace WpfApplication1
                 MessageBox.Show("Degistirmek icin bir departman secmelisiniz!");
             }
         }
-    }
+        }
 
-}
+    }
 

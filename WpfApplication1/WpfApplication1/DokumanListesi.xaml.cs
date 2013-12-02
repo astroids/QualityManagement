@@ -32,7 +32,7 @@ namespace WpfApplication1
 
         void fillCombo()
         {
-
+            
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Departman";
@@ -40,7 +40,7 @@ namespace WpfApplication1
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
+           
             adap.Fill(dt);
             depSec.ItemsSource = dt.DefaultView;
             depSec.DisplayMemberPath = "DPT_adi";
@@ -53,7 +53,7 @@ namespace WpfApplication1
         public DokumanListesi()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             listele(null);
             fillCombo();
 

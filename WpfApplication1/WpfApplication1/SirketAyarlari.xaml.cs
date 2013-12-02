@@ -122,7 +122,7 @@ namespace WpfApplication1
                     fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
 
                     fs.Close();
-                    con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
 
@@ -171,7 +171,7 @@ namespace WpfApplication1
         {
             try{
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -194,7 +194,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -219,7 +219,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -244,7 +244,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -269,7 +269,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -294,7 +294,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -319,7 +319,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -344,130 +344,6 @@ namespace WpfApplication1
         
 
 
-
-
-    }
-}
-namespace yet
-{
-    static public class ki
-    {
-        static public int al
-        {
-            get;
-            set;
-        }
-        static public int id
-        {
-            get;
-            set;
-        }
-        static public string kadi
-        {
-            get;
-            set;
-        }
-    }
-
-}
-
-namespace sel
-{
-    public static class ected
-    {
-        private static int idint;
-        private static int everenDegistir;
-        private static WpfApplication1.egitimEkleme openwindow;
-        private static WpfApplication1.Wegitimincele openwindow2;
-        private static WpfApplication1.WegitimDegistir eDegistir;//egitim degistir
-        private static WpfApplication1.MainWindow mwin;
-        private static WpfApplication1.ToplantiEkle tpl
-        {
-            set;
-            get;
-        }
-
-
-
-
-        public static void setSelect(int i)
-        {
-            idint = i;
-            openwindow.setEgitimVeren(idint);
-            idint = 0;
-        }
-        public static void setDegistirEitim(int i)
-        {
-            everenDegistir = i;
-            eDegistir.setEgitimVeren(everenDegistir);
-            everenDegistir = 0;
-        }
-        public static void setOpenMain(WpfApplication1.MainWindow m)
-        {
-            mwin = m;
-        }
-
-        public static void mainClose()
-        {
-            mwin.Close();
-        }
-
-        //kullanılmıyor olabilir
-        public static int getSelect()
-        {
-            return idint;
-        }
-
-        public static void addToToplani(int i)
-        {
-            tpl.baskaniSec(i);
-
-        }
-
-
-
-        public static void setOpenwindowTPL(WpfApplication1.ToplantiEkle t)
-        {
-            tpl = t;
-        }
-
-
-        public static void setOpenwindow2(WpfApplication1.Wegitimincele cur)
-        {
-            openwindow2 = cur;
-        }
-
-        public static void setOpenwindowED(WpfApplication1.WegitimDegistir cur)
-        {
-            eDegistir = cur;
-        }
-
-
-        public static void setOpenwindow(WpfApplication1.egitimEkleme cur)
-        {
-            openwindow = cur;
-        }
-        private static int idPers;
-        public static void personel_ekle(int i)
-        {
-            idPers = i;
-            openwindow2.setSelectedPers(idPers);
-
-
-        }
-        public static void personel_degistirEkle(int i)
-        {
-            idPers = i;
-            eDegistir.setSelectedPers(idPers);                        //fonksiyon ekle
-        }
-
-        public static void personel_Degistirekle(int i)
-        {
-            idPers = i;
-            eDegistir.setSelectedPers(idPers);
-
-
-        }
 
 
     }

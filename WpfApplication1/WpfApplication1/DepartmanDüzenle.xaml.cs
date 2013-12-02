@@ -46,7 +46,54 @@ namespace WpfApplication1
 
         }
 
-       
+        public DepartmanDüzenle(int id, int secim)
+        {
+            x = secim;
+            idd = id;
+            InitializeComponent();
+            
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            fillCombo();
+            if (secim == 2)
+            {
+                depno.Visibility = Visibility.Visible;
+                depno.IsEnabled = true;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
+                cmd.Parameters.AddWithValue("@pid", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DepAdi.Text = reader["DPT_adi"].ToString();
+                    DepBaskani.Text = reader["DPT_baskani"].ToString();
+                }
+                con.Close();
+            }
+            //listele(null);
+
+            else if (secim == 1)
+            {
+               
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
+                cmd.Parameters.AddWithValue("@pid", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DepAdi.Text = reader["DPT_adi"].ToString();
+                    DepBaskani.Text = reader["DPT_baskani"].ToString();
+                }
+                con.Close();
+            }
+            
+        }
+      
 
         void listele(string tip)
         {
@@ -65,7 +112,7 @@ namespace WpfApplication1
                 {
 
 
-                    cmd.Connection = con; cmd.CommandText = "select *  from Tbl_Personel where P_id=@pid";
+                    cmd.Connection = con; cmd.CommandText ="select *  from Tbl_Personel where P_id=@pid";
                     cmd.Parameters.AddWithValue("@pid", tip);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -92,8 +139,61 @@ namespace WpfApplication1
             listele(t);
         }
 
-       
+        private void depKaydet_Click(object sender, RoutedEventArgs e)
+        {
+           if (x == 2)
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
 
-        
+                cmd.Connection = con;
+                cmd.CommandText = @"Insert Into Tbl_Departman(DPT_adi,DPT_baskani)
+                            values(@DPT_adi,@DPT_baskani)";
+
+              //  cmd.Parameters.AddWithValue("@Top_id", idd);
+                cmd.Parameters.AddWithValue("@DPT_baskani", DepBaskani.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@DPT_adi", DepAdi.Text);
+                
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Kayıt Yapıldı..");
+                this.Hide();
+
+                con.Close();
+
+
+            }
+
+           if (x == 1)
+           {
+               if (con.State == ConnectionState.Closed)
+               {
+                   con.Open();
+               }
+
+               cmd.Connection = con;
+               cmd.CommandText = @"Update Tbl_Departman set DPT_baskani=@DPT_baskani,DPT_adi=@DPT_adi
+                                  where DPT_id = @DPT_id";
+
+               //  cmd.Parameters.AddWithValue("@Top_id", idd);
+               cmd.Parameters.AddWithValue("@DPT_id", idd);
+               cmd.Parameters.AddWithValue("@DPT_baskani", DepBaskani.SelectedValue.ToString());
+               cmd.Parameters.AddWithValue("@DPT_adi", DepAdi.Text);
+
+
+               cmd.ExecuteNonQuery();
+
+               MessageBox.Show("Düzenleme Yapıldı..");
+               this.Hide();
+
+               con.Close();
+
+
+           }
+
+        }
     }
 }

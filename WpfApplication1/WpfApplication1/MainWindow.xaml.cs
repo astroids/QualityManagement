@@ -25,7 +25,7 @@ namespace WpfApplication1
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-
+    
 
 
 
@@ -33,13 +33,16 @@ namespace WpfApplication1
     public partial class MainWindow : MetroWindow
     {
 
-        //public static string[] kullaniciAdi;
-        //public static string[] sifre;
+        public static string[] kullaniciAdi;
+        public static string[] sifre;
         public static string kim;
         public static string kimsifre;
         public MainWindow()
         {
+            GirisEkrani gr = new GirisEkrani();
 
+            gr.Show();
+            this.Hide();
             InitializeComponent();
             slogo.refresh();
             im.Source = sir.ket;
@@ -100,7 +103,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
@@ -110,7 +113,7 @@ namespace WpfApplication1
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-
+               
                 sir.name = reader["S_Kisa_Adi"].ToString();
                 sir.lname = reader["S_Ticari_Adi"].ToString();
                 sir.vno = reader["S_VNO"].ToString();
