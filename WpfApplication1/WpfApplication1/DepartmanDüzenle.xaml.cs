@@ -51,7 +51,7 @@ namespace WpfApplication1
             x = secim;
             idd = id;
             InitializeComponent();
-            
+
             con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             fillCombo();
             if (secim == 2)
@@ -76,7 +76,7 @@ namespace WpfApplication1
 
             else if (secim == 1)
             {
-               
+
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
@@ -91,9 +91,9 @@ namespace WpfApplication1
                 }
                 con.Close();
             }
-            
+
         }
-      
+
 
         void listele(string tip)
         {
@@ -112,7 +112,7 @@ namespace WpfApplication1
                 {
 
 
-                    cmd.Connection = con; cmd.CommandText ="select *  from Tbl_Personel where P_id=@pid";
+                    cmd.Connection = con; cmd.CommandText = "select *  from Tbl_Personel where P_id=@pid";
                     cmd.Parameters.AddWithValue("@pid", tip);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -141,7 +141,7 @@ namespace WpfApplication1
 
         private void depKaydet_Click(object sender, RoutedEventArgs e)
         {
-           if (x == 2)
+            if (x == 2)
             {
                 if (con.State == ConnectionState.Closed)
                 {
@@ -152,10 +152,10 @@ namespace WpfApplication1
                 cmd.CommandText = @"Insert Into Tbl_Departman(DPT_adi,DPT_baskani)
                             values(@DPT_adi,@DPT_baskani)";
 
-              //  cmd.Parameters.AddWithValue("@Top_id", idd);
+                //  cmd.Parameters.AddWithValue("@Top_id", idd);
                 cmd.Parameters.AddWithValue("@DPT_baskani", DepBaskani.SelectedValue.ToString());
                 cmd.Parameters.AddWithValue("@DPT_adi", DepAdi.Text);
-                
+
 
                 cmd.ExecuteNonQuery();
 
@@ -167,32 +167,32 @@ namespace WpfApplication1
 
             }
 
-           if (x == 1)
-           {
-               if (con.State == ConnectionState.Closed)
-               {
-                   con.Open();
-               }
+            if (x == 1)
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
 
-               cmd.Connection = con;
-               cmd.CommandText = @"Update Tbl_Departman set DPT_baskani=@DPT_baskani,DPT_adi=@DPT_adi
+                cmd.Connection = con;
+                cmd.CommandText = @"Update Tbl_Departman set DPT_baskani=@DPT_baskani,DPT_adi=@DPT_adi
                                   where DPT_id = @DPT_id";
 
-               //  cmd.Parameters.AddWithValue("@Top_id", idd);
-               cmd.Parameters.AddWithValue("@DPT_id", idd);
-               cmd.Parameters.AddWithValue("@DPT_baskani", DepBaskani.SelectedValue.ToString());
-               cmd.Parameters.AddWithValue("@DPT_adi", DepAdi.Text);
+                //  cmd.Parameters.AddWithValue("@Top_id", idd);
+                cmd.Parameters.AddWithValue("@DPT_id", idd);
+                cmd.Parameters.AddWithValue("@DPT_baskani", DepBaskani.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@DPT_adi", DepAdi.Text);
 
 
-               cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-               MessageBox.Show("Düzenleme Yapıldı..");
-               this.Hide();
+                MessageBox.Show("Düzenleme Yapıldı..");
+                this.Hide();
 
-               con.Close();
+                con.Close();
 
 
-           }
+            }
 
         }
     }

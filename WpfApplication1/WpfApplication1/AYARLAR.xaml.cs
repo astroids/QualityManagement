@@ -23,9 +23,6 @@ namespace WpfApplication1
     /// </summary>
     public partial class AYARLAR : MetroWindow
     {
-
-        private SqlConnection con = new SqlConnection();
-        public SqlCommand cmd = new SqlCommand();
         public AYARLAR()
         {
             InitializeComponent();
@@ -41,6 +38,7 @@ namespace WpfApplication1
 
         private void dep_Click(object sender, RoutedEventArgs e)
         {
+
             Departman dd = new Departman();
             dd.Show();
             this.Hide();

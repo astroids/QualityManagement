@@ -459,7 +459,6 @@ namespace WpfApplication1
 
         private static void pers_Closing(object sender, CancelEventArgs e)
         {
-            //sil
             WPersonel p = new WPersonel();
             p.Show();
         }
@@ -819,8 +818,8 @@ namespace WpfApplication1
             {
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 selectedID = Convert.ToInt32(ID);
-                ToplantiEkle x = new ToplantiEkle(selectedID, 1);
-                x.Show();
+                //   ToplantiEkle x = new ToplantiEkle(selectedID, 1);                                                                                             //TOPLANTI EKLE
+                //x.Show();
                 this.Hide();
 
                 /*con.Open();
