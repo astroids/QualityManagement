@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,23 +14,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data;
-using System.Data.SqlClient;
-using System.ComponentModel;
-using System.Net.Mail;
-using System.Net;
+
 namespace WpfApplication1
 {
-  
-    public partial class Mail : MetroWindow
+    /// <summary>
+    /// Interaction logic for DepartmanDüzenle.xaml
+    /// </summary>
+    public partial class DepartmanDüzenle : MetroWindow
     {
         private SqlConnection con = new SqlConnection();
-        private string yollancakMailAdresi;
-        private string selectedPersonel;
+        public SqlCommand cmd = new SqlCommand();
+        private string secilenPersonel;
+        private int idd = 0;
+        int x = 0;
 
         void fillCombo()
         {
-            
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Personel";
@@ -36,60 +37,16 @@ namespace WpfApplication1
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
-           
+
             adap.Fill(dt);
-            personelSec.ItemsSource = dt.DefaultView;
-            personelSec.DisplayMemberPath = "P_Adi";
-            personelSec.SelectedValuePath = "P_id";
+            DepBaskani.ItemsSource = dt.DefaultView;
+            DepBaskani.DisplayMemberPath = "P_Adi";
+            DepBaskani.SelectedValuePath = "P_id";
             con.Close();
 
         }
 
-
-        public Mail()
-        {
-            InitializeComponent();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
-            //listele(null);
-            fillCombo();
-
-
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Kime.Text = selectedPersonel;
-            MailMessage MyMailMessage = new MailMessage(Gonderen.Text, yollancakMailAdresi, Baslik.Text, Metin.Text);
-
-            MyMailMessage.IsBodyHtml = false;
-
-            NetworkCredential mailAuthentication = new NetworkCredential(Gonderen.Text, sifre.Password);
-
-            SmtpClient mailClient = new SmtpClient("smtp.gmail.com", 587);
-
-            mailClient.EnableSsl = false;
-
-            mailClient.UseDefaultCredentials = false;
-
-            mailClient.Credentials = mailAuthentication;
-
-
-            try
-            {
-                MessageBox.Show("Mailiniz gönderiliyor.......");
-                mailClient.Send(MyMailMessage);
-                MessageBox.Show("Mailiniz gönderildi");
-
-            }
-            catch (Exception exp)
-            {
-
-                MessageBox.Show("Mailiniz gönderilemedi" + exp.Message);
-            }
-
-
-        }
+       
 
         void listele(string tip)
         {
@@ -113,9 +70,9 @@ namespace WpfApplication1
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        yollancakMailAdresi = reader["P_Email"].ToString();
-                        pkime.Text = yollancakMailAdresi;
-                       // pkime.Text = " " + reader["P_Soyadi"].ToString();
+                        secilenPersonel = reader["P_id"].ToString();
+                        secilenPer.Text = secilenPersonel;
+                        // pkime.Text = " " + reader["P_Soyadi"].ToString();
                     }
                 }
 
@@ -129,11 +86,14 @@ namespace WpfApplication1
 
         }
 
-
-        private void personelSec_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DepBaskani_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string t = personelSec.SelectedValue.ToString();
+            string t = DepBaskani.SelectedValue.ToString();
             listele(t);
         }
+
+       
+
+        
     }
 }

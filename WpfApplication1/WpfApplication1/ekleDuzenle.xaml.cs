@@ -35,7 +35,7 @@ namespace WpfApplication1
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             try
             {
                 if (x == 2)
