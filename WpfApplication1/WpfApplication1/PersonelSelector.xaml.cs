@@ -64,6 +64,37 @@ namespace WpfApplication1
             else
             {
                 MessageBox.Show("Lütfen bir kişi seçinz");
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
+                cmd.Parameters.AddWithValue("@id", sid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    baslik.Text = reader["E_Adi"].ToString();
+                    icerik.Text = reader["E_Icerik"].ToString();
+                    baslan.Text = reader["E_BasTarih"].ToString();
+                    bitis.Text = reader["E_BitTarih"].ToString();
+                    eVeren.Text = reader["P_Adi"].ToString() + " " + reader["P_Soyadi"].ToString();
+
+                }
+                con.Close();
+
+                con.Open();
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+                cmd.Parameters.AddWithValue("@id", selected_egitim);
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                adap.Fill(dt);
+
+                eAlanPers.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+
             }
         }
 
