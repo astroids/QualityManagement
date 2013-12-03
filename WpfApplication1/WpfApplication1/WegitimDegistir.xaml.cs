@@ -40,42 +40,56 @@ namespace WpfApplication1
 
         public void setEgitimVeren(int eg)
         {
-            egitimveren = eg;
-            eVerenDegisti = true;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
-
-            cmd.Parameters.AddWithValue("@id", egitimveren);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                eVerenAdi.Text = reader["P_Adi"].ToString();
-                eVerenSoy.Text = reader["p_Soyadi"].ToString();
-            }
+                egitimveren = eg;
+                eVerenDegisti = true;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
 
-            con.Close();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+
+                cmd.Parameters.AddWithValue("@id", egitimveren);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    eVerenAdi.Text = reader["P_Adi"].ToString();
+                    eVerenSoy.Text = reader["p_Soyadi"].ToString();
+                }
+
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Egitim Veren Kisi Secilirken Bir Hata Olustu");
+            }
 
         }
         
         private void refreshTable()
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
-            cmd.Parameters.AddWithValue("@id", secilenEgitim);
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            adap.Fill(dt);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+                cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                adap.Fill(dt);
 
-            eAlanPers.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+                eAlanPers.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yenileme Sirasinda Bir Hata Olustu");
+            }
 
         }
 
@@ -85,7 +99,7 @@ namespace WpfApplication1
             secilenEgitim = sid;
 
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
@@ -130,7 +144,7 @@ namespace WpfApplication1
                 selected_personel = Convert.ToInt32(ID);
 
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -162,7 +176,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -173,7 +187,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -218,7 +232,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;

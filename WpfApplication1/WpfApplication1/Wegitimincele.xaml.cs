@@ -45,7 +45,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -68,29 +68,38 @@ namespace WpfApplication1
 
         public Wegitimincele(int sid)
         {
-            
-            InitializeComponent();
-            secilenEgitim = sid;
-
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
-            cmd.Parameters.AddWithValue("@id", sid);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                eAdi.Text = reader["E_Adi"].ToString();
-                eIcerik.Text = reader["E_Icerik"].ToString();
-                eBas.Text = reader["E_BasTarih"].ToString();
-                eBit.Text = reader["E_BitTarih"].ToString();
-                eVerenAdi.Text = reader["P_Adi"].ToString();
-                eVerenSoy.Text = reader["P_Soyadi"].ToString();
+
+                InitializeComponent();
+                secilenEgitim = sid;
+
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
+                cmd.Parameters.AddWithValue("@id", sid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    eAdi.Text = reader["E_Adi"].ToString();
+                    eIcerik.Text = reader["E_Icerik"].ToString();
+                    eBas.Text = reader["E_BasTarih"].ToString();
+                    eBit.Text = reader["E_BitTarih"].ToString();
+                    eVerenAdi.Text = reader["P_Adi"].ToString();
+                    eVerenSoy.Text = reader["P_Soyadi"].ToString();
+
+                }
+                con.Close();
 
             }
-            con.Close();
+            catch
+            {
+                MessageBox.Show("Egitim Inceleme Sirasinda Bir Hata Olustu");
+            }
+
             
             refreshTable();
 
@@ -101,17 +110,24 @@ namespace WpfApplication1
         {
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,d.DPT_adi as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e join Tbl_Personel p  on  p.P_id = e.PE_id)  as eg  join Tbl_Departman d on eg.P_Dept = d.DPT_id where eg.PE_Egitim_id =@id;";
-            cmd.Parameters.AddWithValue("@id", secilenEgitim);
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            adap.Fill(dt);
+            try
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,d.DPT_adi as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e join Tbl_Personel p  on  p.P_id = e.PE_id)  as eg  join Tbl_Departman d on eg.P_Dept = d.DPT_id where eg.PE_Egitim_id =@id;";
+                cmd.Parameters.AddWithValue("@id", secilenEgitim);
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                adap.Fill(dt);
 
-            eAlanPers.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+                eAlanPers.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yenileme Sirasinda Bir Hata Olustu");
+            }
 
         }
 
@@ -126,21 +142,28 @@ namespace WpfApplication1
 
         private void ePersCikar_Click(object sender, RoutedEventArgs e)
         {
-            object item = eAlanPers.SelectedItem;
-            string ID = (eAlanPers.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            selected_personel = Convert.ToInt32(ID);
+            try
+            {
+                object item = eAlanPers.SelectedItem;
+                string ID = (eAlanPers.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selected_personel = Convert.ToInt32(ID);
 
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenEgitim and Tbl_Personel_Egitim.PE_id=@selected_personel;";
-            cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
-            cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenEgitim and Tbl_Personel_Egitim.PE_id=@selected_personel;";
+                cmd.Parameters.AddWithValue("@secilenEgitim", secilenEgitim);
+                cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
-            cmd.ExecuteNonQuery();
-            con.Close();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Egitim Silme Sirasinda Bir Hata Olustu");
+            }
             refreshTable();
 
 
