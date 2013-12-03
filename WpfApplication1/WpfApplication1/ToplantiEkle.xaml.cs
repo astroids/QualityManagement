@@ -31,7 +31,7 @@ namespace WpfApplication1
         public ToplantiEkle()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             fillCombo();
 
 
@@ -88,42 +88,55 @@ namespace WpfApplication1
         }
         void fillCombo()
         {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman";
+                cmd.Connection = con;
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Departman";
-            cmd.Connection = con;
-            con.Open();
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            depSec.ItemsSource = dt.DefaultView;
-            depSec.DisplayMemberPath = "DPT_adi";
-            depSec.SelectedValuePath = "DPT_id";
-            con.Close();
+                adap.Fill(dt);
+                depSec.ItemsSource = dt.DefaultView;
+                depSec.DisplayMemberPath = "DPT_adi";
+                depSec.SelectedValuePath = "DPT_id";
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+            }
 
         }
 
         public void baskaniSec(int _toplanti_baskani)
         {
-            toplanti_baskani = _toplanti_baskani;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel p where p.P_id = @id";
-            cmd.Parameters.AddWithValue("@id", toplanti_baskani);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
+                toplanti_baskani = _toplanti_baskani;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel p where p.P_id = @id";
+                cmd.Parameters.AddWithValue("@id", toplanti_baskani);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
-                baskanN.Text = reader["P_Adi"].ToString();
-                baskanS.Text = reader["P_Soyadi"].ToString();
-                baskanC.Text = reader["P_Pozisyon"].ToString();
+                    baskanN.Text = reader["P_Adi"].ToString();
+                    baskanS.Text = reader["P_Soyadi"].ToString();
+                    baskanC.Text = reader["P_Pozisyon"].ToString();
 
+                }
+                con.Close();
             }
-            con.Close();
+            catch
+            {
+                MessageBox.Show("Baskan Secimi Sirasinda Bir Hata Olustu");
+            }
         }
 
 

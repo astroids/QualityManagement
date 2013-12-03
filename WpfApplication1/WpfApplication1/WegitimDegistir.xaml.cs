@@ -96,29 +96,38 @@ namespace WpfApplication1
         public WegitimDegistir(int sid)
         {
             InitializeComponent();
-            secilenEgitim = sid;
-
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
-            cmd.Parameters.AddWithValue("@id", sid);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                eAdi.Text = reader["E_Adi"].ToString();
-                eIcerik.Text = reader["E_Icerik"].ToString();
-                eBas.Text = reader["E_BasTarih"].ToString();
-                eBit.Text = reader["E_BitTarih"].ToString();
-                tarihEskibaslangic = eBas.Text;
-                tarihEskibitis = eBit.Text;
-                eVerenAdi.Text = reader["P_Adi"].ToString();
-                eVerenSoy.Text = reader["P_Soyadi"].ToString();
+                secilenEgitim = sid;
+
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
+                cmd.Parameters.AddWithValue("@id", sid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    eAdi.Text = reader["E_Adi"].ToString();
+                    eIcerik.Text = reader["E_Icerik"].ToString();
+                    eBas.Text = reader["E_BasTarih"].ToString();
+                    eBit.Text = reader["E_BitTarih"].ToString();
+                    tarihEskibaslangic = eBas.Text;
+                    tarihEskibitis = eBit.Text;
+                    eVerenAdi.Text = reader["P_Adi"].ToString();
+                    eVerenSoy.Text = reader["P_Soyadi"].ToString();
+
+                }
+                con.Close();
 
             }
-            con.Close();
+            catch
+            {
+                MessageBox.Show("Egitim Duzenleme Sirasinda Bir Hata Olustu");
+            }
+            
 
             refreshTable();
         }
@@ -144,7 +153,7 @@ namespace WpfApplication1
                 selected_personel = Convert.ToInt32(ID);
 
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -176,7 +185,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -187,7 +196,7 @@ namespace WpfApplication1
                 cmd.ExecuteNonQuery();
                 con.Close();
                 cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -232,7 +241,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;

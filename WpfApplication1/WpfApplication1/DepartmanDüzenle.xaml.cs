@@ -52,7 +52,7 @@ namespace WpfApplication1
             idd = id;
             InitializeComponent();
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             fillCombo();
             if (secim == 2)
             {
