@@ -122,7 +122,7 @@ namespace WpfApplication1
                     fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
 
                     fs.Close();
-                    con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                    con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
 
 
@@ -171,7 +171,7 @@ namespace WpfApplication1
         {
             try{
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -194,7 +194,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -219,7 +219,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -244,7 +244,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -269,7 +269,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -294,7 +294,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -314,12 +314,13 @@ namespace WpfApplication1
             }
         }
 
+        
         private void webdegisitir_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -338,8 +339,126 @@ namespace WpfApplication1
                 MessageBox.Show("Hatalı Girdi");
             }
         }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
 
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
 
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
+                cmd.Parameters.AddWithValue("@ad", smail.Text);
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
+            }
+            catch
+            {
+                MessageBox.Show("Hatalı Girdi");
+            }
+        }
 
         
 
