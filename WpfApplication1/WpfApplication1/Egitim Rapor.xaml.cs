@@ -35,7 +35,7 @@ namespace WpfApplication1
             selected_egitim = sid;
             InitializeComponent();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
 
             try
             {
@@ -60,7 +60,7 @@ namespace WpfApplication1
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
+                cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.DPT_adi as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e , Tbl_Personel p ,Tbl_Departman d where p.P_id = e.PE_id and p.P_Dept = d.DPT_id)as eg where eg.PE_Egitim_id = @id";
                 cmd.Parameters.AddWithValue("@id", selected_egitim);
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);

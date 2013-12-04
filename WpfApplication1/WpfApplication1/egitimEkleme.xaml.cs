@@ -32,7 +32,7 @@ namespace WpfApplication1
         public egitimEkleme()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
         }
 
         private void eVerenSec_Click(object sender, RoutedEventArgs e)

@@ -143,9 +143,6 @@
     <Compile Include="SirketAyarlari.xaml.cs">
       <DependentUpon>SirketAyarlari.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sirketyapilanma.xaml.cs">
-      <DependentUpon>sirketyapilanma.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Toplanti.xaml.cs">
       <DependentUpon>Toplanti.xaml</DependentUpon>
     </Compile>
@@ -284,10 +281,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SirketAyarlari.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="sirketyapilanma.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

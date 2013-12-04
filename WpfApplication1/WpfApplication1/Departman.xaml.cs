@@ -30,7 +30,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
 
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
             listele(null);
         }
         private void listele(string ser)
