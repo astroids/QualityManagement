@@ -87,21 +87,28 @@ namespace WpfApplication1
 
         private void fillall()
         {
-            adi.Text = sir.name;
-            uadi.Text = sir.lname;
-            vergi.Text = sir.vno;
-            stel.Text = sir.tel;
-            smail.Text = sir.email;
-            sweb.Text = sir.web;
-            logoIM.Source = sir.ket;
-            sadresi.Text = sir.adress;
+            try
+            {
+                adi.Text = sir.name;
+                uadi.Text = sir.lname;
+                vergi.Text = sir.vno;
+                stel.Text = sir.tel;
+                smail.Text = sir.email;
+                sweb.Text = sir.web;
+                logoIM.Source = sir.ket;
+                sadresi.Text = sir.adress;
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+            }
         }
 
 
 
         private void logo_Click(object sender, RoutedEventArgs e)
         {
-            
+                
 
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
                 dlg.Title = "Select a picture";
@@ -110,34 +117,41 @@ namespace WpfApplication1
                     "Portable Network Graphic (*.png)|*.png";
                 if (dlg.ShowDialog() == true)
                 {
+                    try
+                    {
+
+
+                        FileStream fs = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read);
 
 
 
-                    FileStream fs = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read);
+                        sir.logarray = new byte[fs.Length];
+
+                        fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
+
+                        fs.Close();
+                        con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
 
-                    sir.logarray = new byte[fs.Length];
+                        logoIM.Source = new BitmapImage(new Uri(dlg.FileName));
+                        sir.ket = new BitmapImage(new Uri(dlg.FileName));
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand();
 
-                    fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
+                        cmd.Connection = con;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "update Tbl_Sirket set S_Logo =@lo ";
+                        cmd.Parameters.AddWithValue("@lo", sir.logarray);
 
-                    fs.Close();
-                    con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
-
-
-
-                    logoIM.Source = new BitmapImage(new Uri(dlg.FileName));
-                    sir.ket = new BitmapImage(new Uri(dlg.FileName));
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "update Tbl_Sirket set S_Logo =@lo ";
-                    cmd.Parameters.AddWithValue("@lo", sir.logarray);
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Logo Secimi Sirasinda Bir Hata Olustu");
+                    }
+                
 
 
 
@@ -171,7 +185,7 @@ namespace WpfApplication1
         {
             try{
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -194,7 +208,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -219,7 +233,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -244,7 +258,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -269,7 +283,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -294,7 +308,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -320,7 +334,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -344,7 +358,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -368,7 +382,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -392,7 +406,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -416,7 +430,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -440,7 +454,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;

@@ -33,30 +33,36 @@ namespace WpfApplication1
         }
         private void listele(string s)
         {
-
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-
-
-            if (s == null || s.Length == 0)
+            try
             {
-                cmd.CommandText = "Select * From Tbl_Toplanti";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                ///-------------------------------------------------------------------------arama kutusu cagirma tipi
+
+
+                if (s == null || s.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Toplanti";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Top_Baskani like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
+                }
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                data_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
-            else
+            catch
             {
-                cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Top_Baskani like @Title";
-                cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
+                MessageBox.Show("Listeleme Sirasinda Bir Hata Olustu");
             }
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            data_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
 
         }
 

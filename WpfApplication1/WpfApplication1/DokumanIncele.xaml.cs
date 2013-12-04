@@ -40,7 +40,7 @@ namespace WpfApplication1
         {
             SqlConnection con = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             try
             {
             con.Open();
