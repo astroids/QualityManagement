@@ -39,7 +39,7 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Departman";
             cmd.Connection = con;
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
