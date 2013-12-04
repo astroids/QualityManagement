@@ -45,7 +45,7 @@ namespace WpfApplication1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             try
             {
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
@@ -87,8 +87,8 @@ namespace WpfApplication1
             {
                 con.Close();
             }
-            /*  try
-               //{
+              try
+               {
                    con.Open();
                    SqlCommand cmd = new SqlCommand();
 
@@ -105,7 +105,7 @@ namespace WpfApplication1
                        }
                    }
                
-                  // for (int b = 0; MainWindow.kullaniciAdi[b] == null; b++)
+                   for (int b = 0; MainWindow.kullaniciAdi[b] == null; b++)
                    for (int b = 0; MainWindow.sifre == null;b++ )
                    {
                    
@@ -127,13 +127,41 @@ namespace WpfApplication1
 
                        }
 
-                   } */
-            /*   con.Close();
+                   } 
+              con.Close();
                   catch (Exception ex)
             {
              /  MessageBox.Show(ex.Message);
-            }*/
+            }
 
+             try
+                {
+                    if (MessageBox.Show("Girmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        
+                        string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                        selectedID = Convert.ToInt32(ID);
+
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = con;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "delete from Tbl_Departman where DPT_id = @pid";
+
+                        cmd.Parameters.AddWithValue("@pid", selectedID);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Giris Yapıldı..");
+
+                        con.Close();
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Giris Sirasinda Bir Hata Oluştu");
+                }
 
 
 

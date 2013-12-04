@@ -30,7 +30,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
 
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             listele(null);
         }
         private void listele(string ser)
@@ -74,7 +74,7 @@ namespace WpfApplication1
                 {
                     if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                        
                         string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                         selectedID = Convert.ToInt32(ID);
 
@@ -91,8 +91,6 @@ namespace WpfApplication1
                         MessageBox.Show("Silme Yapıldı..");
 
                         con.Close();
-
-                        //rows number of record got deleted
 
                     }
                 }

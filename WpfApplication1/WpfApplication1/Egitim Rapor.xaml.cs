@@ -35,7 +35,7 @@ namespace WpfApplication1
             selected_egitim = sid;
             InitializeComponent();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
             try
             {
