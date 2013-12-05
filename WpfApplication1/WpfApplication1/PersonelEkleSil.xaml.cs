@@ -39,7 +39,7 @@ namespace WpfApplication1
             
 
             cagiranmenutipi = vers;
-            if (GirisEkrani.yetki == "1")
+           /* if (GirisEkrani.yetki == "1")
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -195,10 +195,10 @@ namespace WpfApplication1
                 {
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
-                }
+                }  */
 
             }
-            if (GirisEkrani.yetki == "2")
+           /* if (GirisEkrani.yetki == "2")
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -358,13 +358,13 @@ namespace WpfApplication1
                 }
 
             }
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
         }
 
-
+            */
         
 
         private void listele(string ser)
@@ -903,7 +903,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -975,7 +975,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

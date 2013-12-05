@@ -43,8 +43,8 @@ namespace WpfApplication1
             //    this.Close();
 
             //}
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
-       //     con2.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+       //     con2.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
