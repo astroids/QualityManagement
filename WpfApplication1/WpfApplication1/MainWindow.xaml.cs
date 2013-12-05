@@ -100,7 +100,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 
