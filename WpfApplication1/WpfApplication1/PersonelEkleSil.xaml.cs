@@ -194,7 +194,7 @@ namespace WpfApplication1
             
 
 
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -205,85 +205,91 @@ namespace WpfApplication1
 
         private void listele(string ser)
         {
-
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 || cagiranmenutipi == 11)
+            try
             {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                ///-------------------------------------------------------------------------arama kutusu cagirma tipi
+                if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 || cagiranmenutipi == 11)
+                {
 
-                if (ser == null || ser.Length == 0)
-                {
-                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
-                        
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
+
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 and p.P_Adi like @Title";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
                 }
-                else
+                else if (cagiranmenutipi == 3)                                               //3 else           ???
                 {
-                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 and p.P_Adi like @Title";
-                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='0'";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
+
                 }
+                else if (cagiranmenutipi == 9)
+                {
+
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
+                }
+                else if (cagiranmenutipi == 10)
+                {
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
+                }
+                else if (cagiranmenutipi == 12)                                               //3 else           ???
+                {
+
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
+
+                }
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
-            else if (cagiranmenutipi == 3)                                               //3 else           ???
+            catch
             {
-
-                if (ser == null || ser.Length == 0)
-                {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
-                }
-                else
-                {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='0'";
-                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                }
-
+                MessageBox.Show("Listeleme İslemi Sirasinda Bir Hata Oluştu");
             }
-            else if (cagiranmenutipi == 9)
-            {
-
-                if (ser == null || ser.Length == 0)
-                {
-                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
-                }
-                else
-                {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
-                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                }
-            }
-            else if (cagiranmenutipi == 10)
-            {
-                if (ser == null || ser.Length == 0)
-                {
-                    cmd.CommandText = "Select * From Tbl_Personel";
-                }
-                else
-                {
-                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
-                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                }
-            }
-            else if (cagiranmenutipi == 12)                                               //3 else           ???
-            {
-
-                if (ser == null || ser.Length == 0)
-                {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
-                }
-                else
-                {
-                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
-                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                }
-
-            }
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
 
 
 
@@ -310,18 +316,24 @@ namespace WpfApplication1
         //eski ekle
         private void duzenle_Click_1(object sender, RoutedEventArgs e)
         {
-            
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
-                dzn.Show();
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
+                    dzn.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Deiştirmek için bir kişi seçinz");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Deiştirmek için bir kişi seçinz");
+                MessageBox.Show("Düzenleme İslemi Sirasinda Bir Hata Oluştu");
             }
         }
         //sil eski
@@ -727,7 +739,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -799,7 +811,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

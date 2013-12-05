@@ -29,7 +29,7 @@ namespace WpfApplication1
         public ToplantiDokumanPersonelEkle()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
         }
 
         private void kaydet_Click(object sender, RoutedEventArgs e)

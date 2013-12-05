@@ -130,7 +130,7 @@ namespace WpfApplication1
                         fs.Read(sir.logarray, 0, System.Convert.ToInt32(fs.Length));
 
                         fs.Close();
-                        con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                        con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
 
@@ -185,7 +185,7 @@ namespace WpfApplication1
         {
             try{
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -208,7 +208,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -233,7 +233,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -258,7 +258,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -283,7 +283,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -308,7 +308,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -334,7 +334,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -358,7 +358,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -382,7 +382,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -406,7 +406,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -430,7 +430,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -454,7 +454,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
