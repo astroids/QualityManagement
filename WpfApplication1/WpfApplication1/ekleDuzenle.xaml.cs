@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
 
+
 namespace WpfApplication1
 {
     /// <summary>
@@ -29,13 +30,14 @@ namespace WpfApplication1
         private string dep;
         private int x;
         private int idd;
+        private int P_Yetki;
         public ekleDuzenle(int tur, int id)
         {
 
             InitializeComponent();
             x = tur;
             idd = id;
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             try
             {
                 if (x == 2)
@@ -212,16 +214,30 @@ namespace WpfApplication1
                     MessageBox.Show("Aday durumunu seciniz!!");
                     return;
                 }
+                if (checkmudur.IsChecked == true) {
+                    P_Yetki = 1;
+                }
+                if (checkmYardım.IsChecked == true) {
+                    P_Yetki = 2;
 
+                }
+                if (checkper.IsChecked == true) {
+                    P_Yetki = 3;
+                }
+                if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
+                {
+                    MessageBox.Show("En fazla bir pozisyon seçebilirsiniz");
+                }
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
                 }
+               
                 try
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil)";
+                    cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_Yetki)";
 
                     cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                     cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -238,6 +254,7 @@ namespace WpfApplication1
                     string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                     cmd.Parameters.AddWithValue("@P_Aday", drm);
                     cmd.Parameters.AddWithValue("@P_Sil", "0");
+                    cmd.Parameters.AddWithValue("@P_Yetki", P_Yetki);
                     if (dep == null)
                     {
                         MessageBox.Show("Departmini secmediniz!!!");
@@ -374,7 +391,23 @@ namespace WpfApplication1
                         MessageBox.Show("Aday durumunu seciniz!!");
                         return;
                     }
+                    if (checkmudur.IsChecked == true)
+                    {
+                        P_Yetki = 1;
+                    }
+                    if (checkmYardım.IsChecked == true)
+                    {
+                        P_Yetki = 2;
 
+                    }
+                    if (checkper.IsChecked == true)
+                    {
+                        P_Yetki = 3;
+                    }
+                    if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
+                    {
+                        MessageBox.Show("En fazla bir pozisyon seçebilirsiniz");
+                    }
                     cmd.Parameters.AddWithValue("P_id", idd);
                     cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                     cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -390,6 +423,7 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
                     string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                     cmd.Parameters.AddWithValue("@P_Aday", drm);
+                    cmd.Parameters.AddWithValue("@P_Yetki", P_Yetki);
 
                     if (dep == null)
                     {
@@ -419,6 +453,24 @@ namespace WpfApplication1
                 }
 
             }
+
+        }
+
+       
+
+        private void checkmYardım_Checked(object sender, RoutedEventArgs e)
+        {
+
+       
+        }
+
+        private void checkper_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void checkmudur_Checked(object sender, RoutedEventArgs e)
+        {
 
         }
 

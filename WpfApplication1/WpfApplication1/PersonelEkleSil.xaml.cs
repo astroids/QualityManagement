@@ -194,7 +194,7 @@ namespace WpfApplication1
             
 
 
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
             
             listele(null);
@@ -739,7 +739,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
@@ -811,7 +811,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

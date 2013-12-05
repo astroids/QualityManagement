@@ -45,7 +45,7 @@ namespace WpfApplication1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
             try
             {
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
@@ -76,7 +76,7 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("Veritabanında böyle bir kullanıcı bulunamadı");
+                    MessageBox.Show("Kullanıcı adı yada şifre hatalı!!!");
                 }
             }
             catch (Exception ex)
@@ -87,84 +87,9 @@ namespace WpfApplication1
             {
                 con.Close();
             }
-              try
-               {
-                   con.Open();
-                   SqlCommand cmd = new SqlCommand();
-
-                   cmd.Connection = con;
-                   cmd.CommandType = CommandType.Text;
-                   cmd.CommandText = "select * from Tbl_Personel";
-                   SqlDataReader reader = cmd.ExecuteReader();
-                   while (reader.Read())
-                   {
-                       for (int a = 0; reader["P_id"] == null; a++)
-                       {
-                           MainWindow.kullaniciAdi[a] = reader["P_id"].ToString();
-                           MainWindow.sifre[a] = reader["P_TcKimlik"].ToString();
-                       }
-                   }
-               
-                   for (int b = 0; MainWindow.kullaniciAdi[b] == null; b++)
-                   for (int b = 0; MainWindow.sifre == null;b++ )
-                   {
-                   
-                       if ((kullanıcı.Text == MainWindow.kullaniciAdi[b] && sifre.Password == MainWindow.sifre[b] ) )
-                       {
-                           MainWindow mw = new MainWindow();
-                           mw.Show();
-                           this.Close();
-                       }
-                       if (kullanıcı.Text == "admin" && sifre.Password == "1234")
-                       {
-                           MainWindow mw = new MainWindow();
-                           mw.Show();
-                           this.Close();
-                       }
-                       else
-                       {
-                           MessageBox.Show("Kullanici Adi veya Sifre yanlis!!!");
-
-                       }
-
-                   } 
-              con.Close();
-                  catch (Exception ex)
-            {
-             /  MessageBox.Show(ex.Message);
-            }
-
-             try
-                {
-                    if (MessageBox.Show("Girmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        
-                        string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                        selectedID = Convert.ToInt32(ID);
-
-                        con.Open();
-
-                        SqlCommand cmd = new SqlCommand();
-                        cmd.Connection = con;
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "delete from Tbl_Departman where DPT_id = @pid";
-
-                        cmd.Parameters.AddWithValue("@pid", selectedID);
-
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Giris Yapıldı..");
-
-                        con.Close();
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Giris Sirasinda Bir Hata Oluştu");
-                }
-
-
-
+             
+                  
+           
 
         }
 
