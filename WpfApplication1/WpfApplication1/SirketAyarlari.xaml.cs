@@ -424,6 +424,39 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Hatalı Girdi");
             }
+            try
+            {
+                selected_personel = sid;
+                InitializeComponent();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Select * From Tbl_Personel   ";
+                cmd.Parameters.AddWithValue("@id", sid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    PersonelAdi.Text = reader["P_Adi"].ToString();
+                    PersonelSoyadi.Text = reader["P_Soyadi"].ToString();
+                    Tc.Text = reader["P_TcKimlik"].ToString();
+                    Tel1.Text = reader["P_Tel1"].ToString();
+                    tel2.Text = reader["P_Tel2"].ToString();
+                    Email.Text = reader["P_Email"].ToString();
+                }
+                con.Close();
+                sadi.Text = sir.name;
+                sadi.Text = sir.lname;
+                stel.Text = sir.tel;
+                Email.Text = sir.email;
+                sweb.Text = sir.web;
+                logoS.Source = sir.ket;
+            }
+            catch
+            {
+                MessageBox.Show("Şirket isminde Bir Hata Olustu");
+            }
         }
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
