@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel;
-
+using System.Data.SqlClient;
 
 namespace WpfApplication1
 {
@@ -27,7 +27,10 @@ namespace WpfApplication1
     public partial class GirisEkrani : MetroWindow
     {
 
-
+        private SqlConnection con = new SqlConnection();
+   //     private SqlConnection con2 = new SqlConnection();
+       public SqlCommand cmd = new SqlCommand();
+        static public string yetki;
 
 
         //public static int i = 1;
@@ -40,37 +43,45 @@ namespace WpfApplication1
             //    this.Close();
 
             //}
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+       //     con2.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+           
+            
+            
             try
             {
+                con.Open();
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
                 SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
+               
                 string sql = "";
                 sql = "select * FROM Tbl_Personel WHERE P_id=@P1 and P_Sifre=@P2";
                 SqlCommand cmd = new SqlCommand(sql, con);
-
+                
                 cmd.Parameters.Add(prm1);
                 cmd.Parameters.Add(prm2);
-
+                
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 DataTable dt = new DataTable();
 
                 da.Fill(dt);
-
+                
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Hosgeldiniz");
+                    yetki = dt.Rows[0].ItemArray[16].ToString();
+                    
                     // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
                     //i ++;
                     yet.ki.kadi = kullanıcı.Text;
                     yet.ki.al = 1;
+                    
                     this.Close();
                     mw.Show();
                 }
