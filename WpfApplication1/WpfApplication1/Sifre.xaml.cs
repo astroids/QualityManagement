@@ -68,7 +68,50 @@ namespace WpfApplication1
             }
 
         }
+          
+            try
+            {
+                con.Open();
+                SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
+                SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
+               
+                string sql = "";
+                sql = "select * FROM Tbl_Personel WHERE P_id=@P1 and P_Sifre=@P2";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                
+                cmd.Parameters.Add(prm1);
+                cmd.Parameters.Add(prm2);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("Hosgeldiniz");
+                    yetki = dt.Rows[0].ItemArray[16].ToString();
+                    ilksifre = sifre.Password;
+                    kulAdi = kullanıcı.Text;
+                    // Response.Redirect("Default.aspx");
+                    MainWindow mw = new MainWindow();
+                    //i ++;
+                    yet.ki.kadi = kullanıcı.Text;
+                    yet.ki.al = 1;
+                    
+                    this.Close();
+                    mw.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Kullanıcı adı yada şifre hatalı!!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
     }
 }
 

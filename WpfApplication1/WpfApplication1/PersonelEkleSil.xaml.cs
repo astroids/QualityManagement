@@ -541,7 +541,7 @@ namespace WpfApplication1
                     egRapor.IsEnabled = false;
                 }
             }
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
 
             listele(null);
@@ -1086,7 +1086,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
