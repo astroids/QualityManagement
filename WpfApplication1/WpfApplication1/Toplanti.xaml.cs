@@ -35,21 +35,19 @@ namespace WpfApplication1
         {
             try
             {
-                con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                con.ConnectionString = yet.ki.con;
                 SqlCommand cmd = new SqlCommand();
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-
-
+                
                 if (s == null || s.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Toplanti";
+                    cmd.CommandText = "Select * From Tbl_Toplanti where Tpl_Iptal=0 or Tpl_Iptal is NULL";
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Top_Baskani like @Title";
+                    cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Tpl_Gundem like @Title";
                     cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
                 }
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);

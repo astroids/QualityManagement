@@ -28,7 +28,7 @@ namespace WpfApplication1
         public DokumanRevizyon()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
             listele(null);
         }
         void listele(string tip)

@@ -53,7 +53,7 @@ namespace WpfApplication1
         public DokumanListesi()
         {
             InitializeComponent();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
             listele(null);
             fillCombo();
 

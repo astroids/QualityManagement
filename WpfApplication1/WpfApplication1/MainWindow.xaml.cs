@@ -74,10 +74,6 @@ namespace WpfApplication1
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ayarlar_Click(object sender, RoutedEventArgs e)
         {
@@ -86,11 +82,13 @@ namespace WpfApplication1
             ay.Show();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void araclar_Click(object sender, RoutedEventArgs e)
         {
             Araclar ar = new Araclar();
             ar.Show();
         }
+
+
     }
 
 
@@ -100,7 +98,7 @@ namespace WpfApplication1
         public static void refresh()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

@@ -29,431 +29,261 @@ namespace WpfApplication1
         public int cagiranmenutipi;
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
-        
+
 
         //1 ekle sil 2 izin  3 egitim görüntüle  4 id seç ve dön
         public PersonelEkleSil(int vers)
         {
             InitializeComponent();
-           // this.Closing += pers_Closing; // pers kapama silindi ---
-            
+            // this.Closing += pers_Closing; // pers kapama silindi ---
+
 
             cagiranmenutipi = vers;
-           /* if (GirisEkrani.yetki == "1")
+            if (cagiranmenutipi == 1)
             {
-                if (cagiranmenutipi == 1)
-                {
-
-                    Title = "Personel Kayıt";
-                    perskayit.Visibility = Visibility.Visible;
-
-                    persedit.Visibility = Visibility.Visible;
-
-                    silme.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 2)
-                {
-                    Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
-                    izindeolanlar.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    izingecmisi.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    onayla.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 3)
-                {
-                    Title = "Personel Egitim";
-                    SEARCH.IsEnabled = false;// ------------------------------bu menuye ozel olmali
-
-                    egEkle.Visibility = Visibility.Visible;
-                    egDegistir.Visibility = Visibility.Visible;
-                    egCikar.Visibility = Visibility.Visible;
-                    egIncele.Visibility = Visibility.Visible;
-
-
-
-
-                }
-                else if (cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
-                {
-                    egEkle.Content = "Seç";
-                    egEkle.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 9)
-                {
-                    yenile.Visibility = Visibility.Hidden;
-
-                }
-
-                else if (cagiranmenutipi == 10)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 11)
-                {
-                    secim.Visibility = Visibility.Visible;
-                    arama.Visibility = Visibility.Hidden;
-                    SEARCH.Visibility = Visibility.Hidden;
-                    yenile.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 12)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }  */
+                Title = "Personel Kayıt";
+                perskayit.Visibility = Visibility.Visible;
+                persedit.Visibility = Visibility.Visible;
+                silme.Visibility = Visibility.Visible;
 
             }
-           /* if (GirisEkrani.yetki == "2")
+            else if (cagiranmenutipi == 2)
             {
-                if (cagiranmenutipi == 1)
-                {
+                Title = "Personel İzin";
+                iziniste.Visibility = Visibility.Visible;
+                izindeolanlar.Visibility = Visibility.Visible;
+                onaybekliyenler.Visibility = Visibility.Visible;
+                izingecmisi.Visibility = Visibility.Visible;
+                onaybekliyenler.Visibility = Visibility.Visible;
+                onayla.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 3)
+            {
+                Title = "Personel Egitim";
+                SEARCH.IsEnabled = false;// ------------------------------bu menuye ozel olmali
 
-                    Title = "Personel Kayıt";
-                    perskayit.Visibility = Visibility.Visible;
-                    perskayit.IsEnabled = false;
-                    persedit.Visibility = Visibility.Visible;
-                    persedit.IsEnabled = false;
-                    silme.Visibility = Visibility.Visible;
-                    silme.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 2)
-                {
-                    Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
-                    izindeolanlar.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    izingecmisi.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    onayla.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 3)
-                {
-                    Title = "Personel Egitim";
-                    SEARCH.IsEnabled = false;// ------------------------------bu menuye ozel olmali
-
-                    egEkle.Visibility = Visibility.Visible;
-                    egDegistir.Visibility = Visibility.Visible;
-                    egCikar.Visibility = Visibility.Visible;
-                    egIncele.Visibility = Visibility.Visible;
-
-                    egCikar.IsEnabled = false;
-                    egDegistir.IsEnabled = false;
+                egEkle.Visibility = Visibility.Visible;
+                egDegistir.Visibility = Visibility.Visible;
+                egCikar.Visibility = Visibility.Visible;
+                egIncele.Visibility = Visibility.Visible;
 
 
-                }
-                else if (cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
-                {
-                    egEkle.Content = "Seç";
-                    egEkle.Visibility = Visibility.Visible;
 
-                }
-                else if (cagiranmenutipi == 9)
-                {
-                    yenile.Visibility = Visibility.Hidden;
-
-                }
-
-                else if (cagiranmenutipi == 10)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 11)
-                {
-                    secim.Visibility = Visibility.Visible;
-                    arama.Visibility = Visibility.Hidden;
-                    SEARCH.Visibility = Visibility.Hidden;
-                    yenile.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 12)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
 
             }
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            else if (cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
+            {
+                egEkle.Content = "Seç";
+                egEkle.Visibility = Visibility.Visible;
 
-            
+            }
+            else if (cagiranmenutipi == 9)
+            {
+                yenile.Visibility = Visibility.Hidden;
+
+            }
+
+            else if (cagiranmenutipi == 10)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 11)
+            {
+                secim.Visibility = Visibility.Visible;
+                arama.Visibility = Visibility.Hidden;
+                SEARCH.Visibility = Visibility.Hidden;
+                yenile.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 12)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 20)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 21)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 22)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 23)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 24)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 25)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+
+            }
+            else if (cagiranmenutipi == 26)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 27)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 28)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 29)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 30)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 31)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 32)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 33)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 34)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 35)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 36)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+            else if (cagiranmenutipi == 37)
+            {
+                p_grid.Visibility = Visibility.Visible;
+                egRapor.Visibility = Visibility.Visible;
+            }
+
+
+
+            con.ConnectionString = yet.ki.con;
+
+
             listele(null);
         }
 
-            */
-        
+
+
 
         private void listele(string ser)
         {
-            try
+
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            ///-------------------------------------------------------------------------arama kutusu cagirma tipi
+            if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 || cagiranmenutipi == 11)
             {
-                SqlCommand cmd = new SqlCommand();
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                ///-------------------------------------------------------------------------arama kutusu cagirma tipi
-                if (cagiranmenutipi == 1 || cagiranmenutipi == 2 || cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8 || cagiranmenutipi == 11)
+
+                if (ser == null || ser.Length == 0)
                 {
-
-                    if (ser == null || ser.Length == 0)
-                    {
-                        cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
-
-                    }
-                    else
-                    {
-                        cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 and p.P_Adi like @Title";
-                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                    }
-                }
-                else if (cagiranmenutipi == 3)                                               //3 else           ???
-                {
-
-                    if (ser == null || ser.Length == 0)
-                    {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
-                    }
-                    else
-                    {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='0'";
-                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                    }
+                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
 
                 }
-                else if (cagiranmenutipi == 9)
+                else
                 {
-
-                    if (ser == null || ser.Length == 0)
-                    {
-                        cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
-                    }
-                    else
-                    {
-                        cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
-                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                    }
+                    cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 and p.P_Adi like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
                 }
-                else if (cagiranmenutipi == 10)
-                {
-                    if (ser == null || ser.Length == 0)
-                    {
-                        cmd.CommandText = "Select * From Tbl_Personel";
-                    }
-                    else
-                    {
-                        cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
-                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                    }
-                }
-                else if (cagiranmenutipi == 12)                                               //3 else           ???
-                {
-
-                    if (ser == null || ser.Length == 0)
-                    {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
-                    }
-                    else
-                    {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
-                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
-                    }
-
-                }
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-                p_grid.ItemsSource = dt.DefaultView;
-                cmd.ExecuteNonQuery();
-                con.Close();
             }
-            catch
+            else if (cagiranmenutipi == 3)                                               //3 else           ???
             {
-                MessageBox.Show("Listeleme İslemi Sirasinda Bir Hata Oluştu");
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                }
+                else
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title; and p.P_Silindi='0'";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+
             }
+            else if (cagiranmenutipi == 9)
+            {
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title and p.P_Silindi='1'";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+            }
+            else if (cagiranmenutipi == 10)
+            {
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+            }
+            else if (cagiranmenutipi == 12)                                               //3 else           ???
+            {
+
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                }
+                else
+                {
+                    cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id and e.E_Adi like @Title;";
+                    cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                }
+
+            }
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            p_grid.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
 
 
 
@@ -466,13 +296,13 @@ namespace WpfApplication1
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-              listele(SEARCH.Text);
+            listele(SEARCH.Text);
 
         }
 
         private void ekle_Click_1(object sender, RoutedEventArgs e)
         {
-            ekleDuzenle dzn = new ekleDuzenle(1,0);
+            ekleDuzenle dzn = new ekleDuzenle(1, 0);
             dzn.Show();
         }
 
@@ -480,24 +310,18 @@ namespace WpfApplication1
         //eski ekle
         private void duzenle_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+
+            object item = p_grid.SelectedItem;
+            if (item != null)
             {
-                object item = p_grid.SelectedItem;
-                if (item != null)
-                {
-                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    selectedID = Convert.ToInt32(ID);
-                    ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
-                    dzn.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Deiştirmek için bir kişi seçinz");
-                }
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
+                dzn.Show();
             }
-            catch
+            else
             {
-                MessageBox.Show("Düzenleme İslemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Deiştirmek için bir kişi seçinz");
             }
         }
         //sil eski
@@ -531,16 +355,16 @@ namespace WpfApplication1
         private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
         {
             string d = DateTime.Now.ToString("yyyy-MM-dd");
-            
-            
+
+
             SqlCommand cmd = new SqlCommand();
-           // MessageBox.Show(d);
+            // MessageBox.Show(d);
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@CTime", d);
             cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
-            
+
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
@@ -548,7 +372,7 @@ namespace WpfApplication1
             p_grid.ItemsSource = dt.DefaultView;
             cmd.ExecuteNonQuery();
             con.Close();
-           
+
         }
         //burası-------------------------------------------
         private void izingecmisi_Click(object sender, RoutedEventArgs e)
@@ -594,31 +418,31 @@ namespace WpfApplication1
         }
         private void onayla_Click(object sender, RoutedEventArgs e)
         {
-            
+
             object item = p_grid.SelectedItem;
             if (item != null)
             {
                 try
                 {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                SqlCommand cmd = new SqlCommand();
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=1,PI_OnayVeren_id =7003 where PI_id = @sid";
-                cmd.Parameters.AddWithValue("@sid", selectedID);
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-                p_grid.ItemsSource = dt.DefaultView;
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    SqlCommand cmd = new SqlCommand();
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=1,PI_OnayVeren_id =7003 where PI_id = @sid";
+                    cmd.Parameters.AddWithValue("@sid", selectedID);
+                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adap.Fill(dt);
+                    p_grid.ItemsSource = dt.DefaultView;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
                 }
                 catch
                 {
-                MessageBox.Show("Guncelleme Sirasinda Bir Hata Oluştu");
+                    MessageBox.Show("Guncelleme Sirasinda Bir Hata Oluştu");
                 }
 
             }
@@ -627,8 +451,8 @@ namespace WpfApplication1
                 MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
             }
 
-            
-           // MessageBox.Show("in progress");
+
+            // MessageBox.Show("in progress");
         }
 
 
@@ -664,24 +488,24 @@ namespace WpfApplication1
 
         private void iziniste_Click(object sender, RoutedEventArgs e)
         {
-          
-          
 
-                object item = p_grid.SelectedItem;
-                if (item != null)
-                {
-                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    selectedID = Convert.ToInt32(ID);
-                    izinIste iz = new izinIste(selectedID);
-                    iz.Show();
 
-                }
-                else
-                {
-                    MessageBox.Show("İzin almak için için bir kişi seçinz");
-                }
+
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                selectedID = Convert.ToInt32(ID);
+                izinIste iz = new izinIste(selectedID);
+                iz.Show();
+
             }
-      
+            else
+            {
+                MessageBox.Show("İzin almak için için bir kişi seçinz");
+            }
+        }
+
         private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
         {
             object item = p_grid.SelectedItem;
@@ -878,7 +702,7 @@ namespace WpfApplication1
                     {
                         MessageBox.Show("İşleminiz Sırasında Bir Hata Oluştu");
                     }
-                    
+
 
                 }
 
@@ -903,7 +727,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = yet.ki.con;
 
 
                     con.Open();
@@ -975,7 +799,7 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
             con.Open();
             SqlCommand cmd = new SqlCommand();
 

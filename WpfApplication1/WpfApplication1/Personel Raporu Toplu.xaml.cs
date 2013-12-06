@@ -81,7 +81,7 @@ namespace WpfApplication1
         {
             SqlConnection con = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
