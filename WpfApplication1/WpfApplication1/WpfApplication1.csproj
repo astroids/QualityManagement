@@ -140,6 +140,9 @@
     <Compile Include="PersonelSelector.xaml.cs">
       <DependentUpon>PersonelSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sifre.xaml.cs">
+      <DependentUpon>Sifre.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SirketAyarlari.xaml.cs">
       <DependentUpon>SirketAyarlari.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sifre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SirketAyarlari.xaml">
       <SubType>Designer</SubType>

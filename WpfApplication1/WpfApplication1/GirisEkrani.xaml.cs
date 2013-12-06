@@ -31,7 +31,8 @@ namespace WpfApplication1
    //     private SqlConnection con2 = new SqlConnection();
        public SqlCommand cmd = new SqlCommand();
         static public string yetki;
-
+        static public string kulAdi;
+        static public string ilksifre;
 
         //public static int i = 1;
         public GirisEkrani()
@@ -75,7 +76,8 @@ namespace WpfApplication1
                 {
                     MessageBox.Show("Hosgeldiniz");
                     yetki = dt.Rows[0].ItemArray[16].ToString();
-                    
+                    ilksifre = sifre.Password;
+                    kulAdi = kullanıcı.Text;
                     // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
                     //i ++;
