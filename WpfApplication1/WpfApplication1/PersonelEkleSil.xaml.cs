@@ -818,6 +818,57 @@ namespace WpfApplication1
         {
             ekleDuzenle dzn = new ekleDuzenle(1, 0);
             dzn.Show();
+             try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman";
+                cmd.Connection = con;
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
+                adap.Fill(dt);
+                depSec.ItemsSource = dt.DefaultView;
+                depSec.DisplayMemberPath = "DPT_adi";
+                depSec.SelectedValuePath = "DPT_id";
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+            }
+
+        }
+
+        public void personelSec(int _personel)
+        {
+            try
+            {
+                personel = _personel;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel p where p.P_id = @id";
+                cmd.Parameters.AddWithValue("@id", toplanti_baskani);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    baskanN.Text = reader["P_Adi"].ToString();
+                    baskanS.Text = reader["P_Soyadi"].ToString();
+                    baskanC.Text = reader["P_Pozisyon"].ToString();
+
+                }
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Personel Secimi Sirasinda Bir Hata Olustu");
+            }
+        }
+
         }
 
 
