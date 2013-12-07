@@ -11,7 +11,6 @@
         <Calendar HorizontalAlignment="Left" Visibility="Hidden" Name="takvim"  Margin="155,220,0,0" VerticalAlignment="Top" Width="227" Height="163" RenderTransformOrigin="0.498,0.239"/>
         <Button Content="TAKVİM" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click_3" Height="73"/>
         <Button Content="mail" HorizontalAlignment="Left" Margin="19,358,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
-        <StackPanel HorizontalAlignment="Left" Name="panell" Height="218" Margin="443,33,0,0" VerticalAlignment="Top" Width="139"/>
         <DockPanel HorizontalAlignment="Left" Name="panel" Height="159" LastChildFill="False" Margin="443,251,0,0" VerticalAlignment="Top" Width="128"/>
         <StackPanel Binding.XmlNamespaceManager="{Binding asd}" HorizontalAlignment="Left" Name="pane" Height="100" Margin="248,310,0,0" VerticalAlignment="Top" Width="100"/>
 

@@ -39,8 +39,14 @@ namespace WpfApplication1
         public static string kimsifre;
         public MainWindow()
         {
-
+            
             InitializeComponent();
+            if (GirisEkrani.yetki == "3")
+            {
+                dokuman.IsEnabled = false;
+                toplanti.IsEnabled = false;
+                ayarlar.IsEnabled = false;
+            }
             slogo.refresh();
             im.Source = sir.ket;
         }

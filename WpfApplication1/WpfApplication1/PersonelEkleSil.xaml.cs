@@ -26,6 +26,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class PersonelEkleSil : MetroWindow
     {
+        int i = 0;
         public int cagiranmenutipi;
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
@@ -701,7 +702,7 @@ namespace WpfApplication1
 
             }
          * */
-            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
             listele(null);
@@ -860,6 +861,10 @@ namespace WpfApplication1
                 try
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    if (ID != GirisEkrani.kulAdi) {
+                      
+                        MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
+                    }
                     selectedID = Convert.ToInt32(ID);
                     izinIste iz = new izinIste(selectedID);
                     iz.Show();
@@ -920,12 +925,19 @@ namespace WpfApplication1
         //burası-------------------------------------------
         private void izingecmisi_Click(object sender, RoutedEventArgs e)
         {
+            
             object item = p_grid.SelectedItem;
             if (item != null)
             {
                 try
-                {
+                { 
+                 
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    if (ID != GirisEkrani.kulAdi)
+                    {
+
+                        MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
+                    }
                     selectedID = Convert.ToInt32(ID);
                     SqlCommand cmd = new SqlCommand();
                     con.Open();
@@ -1324,7 +1336,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();

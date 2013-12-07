@@ -12,7 +12,7 @@
             <Image Name="im"  HorizontalAlignment="Left" Height="114" VerticalAlignment="Top" Width="114" Canvas.Left="319" Canvas.Top="359"/>
         </Canvas>
         <Button Content="PERSONEL" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,97,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Personel_Button_Click"/>
-        <Button Content="TOPLANTI YÖNETİMİ" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="36,229,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1"/>
+        <Button Content="TOPLANTI YÖNETİMİ" Name="toplanti" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="36,229,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1"/>
         <Button Name="dokuman" Content="DÖKÜMAN" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,97,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="dokuman_Click_1" />
         <Button Name="ayarlar" Content="Sistem AYarları" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,229,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="ayarlar_Click" />
         <Label Content="KALİTE YÖNETİM SİSTEMİ" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="128,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
