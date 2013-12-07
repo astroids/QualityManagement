@@ -367,7 +367,7 @@ namespace WpfApplication1
                     perskayit.Visibility = Visibility.Visible;
                     perskayit.IsEnabled = false;
                     persedit.Visibility = Visibility.Visible;
-                    persedit.IsEnabled = false;
+                 //   persedit.IsEnabled = false;
                     silme.Visibility = Visibility.Visible;
                     silme.IsEnabled = false;
                 }
@@ -700,7 +700,7 @@ namespace WpfApplication1
                 }
 
             }
-            con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
             listele(null);
@@ -1245,7 +1245,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=Mustafa-HP; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();

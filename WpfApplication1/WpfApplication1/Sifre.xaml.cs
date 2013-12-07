@@ -67,27 +67,26 @@ namespace WpfApplication1
                 MessageBox.Show(" eski şifre hatalı!!!");
             }
 
-        }
-          
-            try
+
+      /*      try
             {
                 con.Open();
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
                 SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
-               
+
                 string sql = "";
                 sql = "select * FROM Tbl_Personel WHERE P_id=@P1 and P_Sifre=@P2";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                
+
                 cmd.Parameters.Add(prm1);
                 cmd.Parameters.Add(prm2);
-                
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 DataTable dt = new DataTable();
 
                 da.Fill(dt);
-                
+
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Hosgeldiniz");
@@ -99,7 +98,7 @@ namespace WpfApplication1
                     //i ++;
                     yet.ki.kadi = kullanıcı.Text;
                     yet.ki.al = 1;
-                    
+
                     this.Close();
                     mw.Show();
                 }
@@ -111,7 +110,10 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
+
+        }
+
     }
 }
 

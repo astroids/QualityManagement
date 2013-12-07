@@ -38,6 +38,24 @@ namespace WpfApplication1
             x = tur;
             idd = id;
             con.ConnectionString = yet.ki.con;
+            if (GirisEkrani.yetki == "3") {
+                isim.IsEnabled = false;
+                soyisim.IsEnabled = false;
+                tckimlik.IsEnabled = false;
+              //  telefonno.IsEnabled = false;
+                email.IsEnabled = false;
+                dogumtarihi.IsEnabled = false;
+                dogumyeri.IsEnabled = false;
+                cinsiyet.IsEnabled = false;
+                pozisyon.IsEnabled = false;
+                departman.IsEnabled = false;
+                adaydurumu.IsEnabled = false;
+                checkmudur.IsEnabled = false;
+                checkmYardım.IsEnabled=false;
+                checkper.IsEnabled=false;
+            
+            
+            }
             try
             {
                 if (x == 2)
@@ -196,23 +214,26 @@ namespace WpfApplication1
                     MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
                     return;
                 }
-
-                if (departman.Text == "")
+                if (GirisEkrani.yetki != "3")
                 {
-                    MessageBox.Show("Departman ı seciniz!!");
-                    return;
+                    if (departman.Text == "")
+                    {
+                        MessageBox.Show("Departman ı seciniz!!");
+                        return;
+                    }
                 }
-
                 if (medenihal.Text == "")
                 {
                     MessageBox.Show("Medeni Hal i seciniz!!");
                     return;
                 }
-
-                if (adaydurumu.Text == "")
+                if (GirisEkrani.yetki != "3")
                 {
-                    MessageBox.Show("Aday durumunu seciniz!!");
-                    return;
+                    if (adaydurumu.Text == "")
+                    {
+                        MessageBox.Show("Aday durumunu seciniz!!");
+                        return;
+                    }
                 }
                 if (checkmudur.IsChecked == true) {
                     P_Yetki = 1;
@@ -373,11 +394,13 @@ namespace WpfApplication1
                         MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
                         return;
                     }
-
-                    if (departman.Text == "")
+                    if (GirisEkrani.yetki != "3")
                     {
-                        MessageBox.Show("Departman ı seciniz!!");
-                        return;
+                        if (departman.Text == "")
+                        {
+                            MessageBox.Show("Departman ı seciniz!!");
+                            return;
+                        }
                     }
 
                     if (medenihal.Text == "")
@@ -385,11 +408,13 @@ namespace WpfApplication1
                         MessageBox.Show("Medeni Hal i seciniz!!");
                         return;
                     }
-
-                    if (adaydurumu.Text == "")
+                    if (GirisEkrani.yetki != "3")
                     {
-                        MessageBox.Show("Aday durumunu seciniz!!");
-                        return;
+                        if (adaydurumu.Text == "")
+                        {
+                            MessageBox.Show("Aday durumunu seciniz!!");
+                            return;
+                        }
                     }
                     if (checkmudur.IsChecked == true)
                     {
@@ -424,21 +449,25 @@ namespace WpfApplication1
                     string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                     cmd.Parameters.AddWithValue("@P_Aday", drm);
                     cmd.Parameters.AddWithValue("@P_Yetki", P_Yetki);
-
-                    if (dep == null)
+                    if (GirisEkrani.yetki != "3")
                     {
-                        MessageBox.Show("Departmini secmediniz!!!");
+                        if (dep == null)
+                        {
+                            MessageBox.Show("Departmini secmediniz!!!");
 
-                        return;
+                            return;
 
+                        }
                     }
-                    if (drm == null)
+                    if (GirisEkrani.yetki != "3")
                     {
+                        if (drm == null)
+                        {
 
-                        MessageBox.Show("Aday durumunu secmediniz!!!");
-                        return;
+                            MessageBox.Show("Aday durumunu secmediniz!!!");
+                            return;
+                        }
                     }
-
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Degisiklik Yapildi..");
@@ -472,6 +501,12 @@ namespace WpfApplication1
         private void checkmudur_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Sifre sfr = new Sifre();
+            sfr.Show();
         }
 
 
