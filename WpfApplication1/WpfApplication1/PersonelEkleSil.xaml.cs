@@ -701,7 +701,7 @@ namespace WpfApplication1
 
             }
          * */
-            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
             listele(null);
@@ -857,21 +857,29 @@ namespace WpfApplication1
             object item = p_grid.SelectedItem;
             if (item != null)
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                izinIste iz = new izinIste(selectedID);
-                iz.Show();
-                //SqlCommand cmd = new SqlCommand();
-                //con.Open();
-                //cmd.Connection = con;
-                //cmd.CommandType = CommandType.Text;
-                //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
-                //cmd.Parameters.AddWithValue("@id", selectedID);
-                //SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                //DataTable dt = new DataTable();
-                //adap.Fill(dt);
-                //cmd.ExecuteNonQuery();
-                //con.Close();
+                try
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    izinIste iz = new izinIste(selectedID);
+                    iz.Show();
+                    //SqlCommand cmd = new SqlCommand();
+                    //con.Open();
+                    //cmd.Connection = con;
+                    //cmd.CommandType = CommandType.Text;
+                    //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
+                    //cmd.Parameters.AddWithValue("@id", selectedID);
+                    //SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    //DataTable dt = new DataTable();
+                    //adap.Fill(dt);
+                    //cmd.ExecuteNonQuery();
+                    //con.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Izin İsteme Sirasinda Bir Hata Oluştu");
+                }
+
             }
             else
             {
@@ -881,24 +889,32 @@ namespace WpfApplication1
 
         private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
         {
-            string d = DateTime.Now.ToString("yyyy-MM-dd");
+            try
+            {
+                string d = DateTime.Now.ToString("yyyy-MM-dd");
 
 
-            SqlCommand cmd = new SqlCommand();
-            // MessageBox.Show(d);
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@CTime", d);
-            cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
+                SqlCommand cmd = new SqlCommand();
+                // MessageBox.Show(d);
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@CTime", d);
+                cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
 
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = null;
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = null;
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Izınde Olanlar Ekrana Getirilirken Bir Hata Oluştu");
+            }
+
 
         }
         //burası-------------------------------------------
@@ -907,20 +923,28 @@ namespace WpfApplication1
             object item = p_grid.SelectedItem;
             if (item != null)
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                SqlCommand cmd = new SqlCommand();
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'Soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Onay Veren Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
-                cmd.Parameters.AddWithValue("@sid", selectedID);
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-                p_grid.ItemsSource = dt.DefaultView;
-                cmd.ExecuteNonQuery();
-                con.Close();
+                try
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    SqlCommand cmd = new SqlCommand();
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'Soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Onay Veren Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
+                    cmd.Parameters.AddWithValue("@sid", selectedID);
+                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adap.Fill(dt);
+                    p_grid.ItemsSource = dt.DefaultView;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Izin Gecmisi Ekrana Getirilirken Bir Hata Oluştu");
+                }
+
             }
             else
             {
@@ -930,18 +954,26 @@ namespace WpfApplication1
 
         private void onaybekliyenler_Click(object sender, RoutedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel p , Tbl_Personel_Izin i ,Tbl_Izin_Tur t where p.P_id=i.PI_id and i.PI_Izin_Tur=t.IT_id and i.PI_Onay is null";
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel p , Tbl_Personel_Izin i ,Tbl_Izin_Tur t where p.P_id=i.PI_id and i.PI_Izin_Tur=t.IT_id and i.PI_Onay is null";
 
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Onay Bekleyenler Ekrana Getirilirken Bir Hata Oluştu");
+            }
+
         }
         private void onayla_Click(object sender, RoutedEventArgs e)
         {
@@ -1002,10 +1034,18 @@ namespace WpfApplication1
             object item = p_grid.SelectedItem;
             if (item != null)
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
-                dzn.Show();
+                try
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
+                    dzn.Show();
+                }
+                catch
+                {
+                    MessageBox.Show("Bir Hata Oluştu");
+                }
+
             }
             else
             {
@@ -1017,44 +1057,59 @@ namespace WpfApplication1
         {
 
 
-
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                izinIste iz = new izinIste(selectedID);
-                iz.Show();
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    izinIste iz = new izinIste(selectedID);
+                    iz.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("İzin almak için için bir kişi seçinz");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("İzin almak için için bir kişi seçinz");
+                MessageBox.Show("Izin İsteme Sirasinda Bir Hata Oluştu");
             }
+
         }
 
         private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                SqlCommand cmd = new SqlCommand();
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
-                MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-                p_grid.ItemsSource = dt.DefaultView;
-                cmd.ExecuteNonQuery();
-                con.Close();
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
+                    MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
+                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adap.Fill(dt);
+                    p_grid.ItemsSource = dt.DefaultView;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
+                MessageBox.Show("Izın Gecmisi Ekrana Getirme Sirasinda Bir Hata Oluştu");
             }
+
         }
 
 
@@ -1062,19 +1117,27 @@ namespace WpfApplication1
 
         private void egDegistir_Click(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                WegitimDegistir incele = new WegitimDegistir(selectedID);
-                incele.Show();
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    WegitimDegistir incele = new WegitimDegistir(selectedID);
+                    incele.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+                MessageBox.Show("Egitim Degistime İslemi Sirasinda Bir Hata Oluştu");
             }
+
 
 
         }
@@ -1085,20 +1148,27 @@ namespace WpfApplication1
         }
         private void egIncele_Click(object sender, RoutedEventArgs e)
         {
-
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                Wegitimincele incele = new Wegitimincele(selectedID);
-                incele.Show();
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    Wegitimincele incele = new Wegitimincele(selectedID);
+                    incele.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+                MessageBox.Show("Egitim Inceleme İslemi Sirasinda Bir Hata Oluştu");
             }
+
 
         }
 
@@ -1254,7 +1324,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();

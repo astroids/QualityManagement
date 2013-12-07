@@ -501,7 +501,7 @@ namespace yet
             get;
             set;
         }
-        static public string con = "Server=ACER; Database=Personel; Integrated Security=true;";
+        static public string con = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
   
 
 
