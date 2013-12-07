@@ -77,7 +77,7 @@ namespace WpfApplication1
                     MessageBox.Show("Hosgeldiniz");
                     yetki = dt.Rows[0].ItemArray[16].ToString();
                     ilksifre = sifre.Password;
-                    kulAdi = kullanıcı.Text;
+                    kulAdi = dt.Rows[0].ItemArray[0].ToString();
                     // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
                     //i ++;

@@ -541,7 +541,7 @@ namespace WpfApplication1
                     egRapor.IsEnabled = false;
                 }
             }
-            if (GirisEkrani.yetki == "4")
+        /*    if (GirisEkrani.yetki == "4")
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -700,7 +700,8 @@ namespace WpfApplication1
                 }
 
             }
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+         * */
+            con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
 
             listele(null);
@@ -828,13 +829,21 @@ namespace WpfApplication1
                 if (item != null)
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    if (GirisEkrani.yetki == "3")
+                    {
+                        if (GirisEkrani.kulAdi != ID)
+                        {
+                            MessageBox.Show("Bu kişi üzerinde işlem yapamazsınız, Lütfen kendi bilgilerinizi seçiniz");
+                        }
+                    }
                     selectedID = Convert.ToInt32(ID);
+                    
                     ekleDuzenle dzn = new ekleDuzenle(2, selectedID);
                     dzn.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Deiştirmek için bir kişi seçinz");
+                    MessageBox.Show("Değiştirmek için bir kişi seçinz");
                 }
             }
             catch
@@ -1000,7 +1009,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Deiştirmek için bir kişi seçinz");
+                MessageBox.Show("Değiştirmek için bir kişi seçinz");
             }
         }
 
@@ -1245,7 +1254,7 @@ namespace WpfApplication1
                     selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                    //con.ConnectionString = "Server=ACER; Database=Personel; Integrated Security=true;";
 
 
                     con.Open();
