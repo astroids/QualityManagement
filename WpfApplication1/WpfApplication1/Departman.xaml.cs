@@ -42,7 +42,7 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             if (ser == null || ser.Length == 0)
             {
-                cmd.CommandText = "Select * From Tbl_Departman ";
+                cmd.CommandText = "SPgenelDeprtman ";
             }
 
             SqlDataAdapter adap = new SqlDataAdapter(cmd);

@@ -29,7 +29,7 @@ namespace WpfApplication1
 
         private SqlConnection con = new SqlConnection();
    //     private SqlConnection con2 = new SqlConnection();
-       public SqlCommand cmd = new SqlCommand();
+        public SqlCommand cmd = new SqlCommand();
         static public string yetki;
         static public string kulAdi;
         static public string ilksifre;

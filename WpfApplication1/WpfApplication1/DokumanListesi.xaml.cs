@@ -71,12 +71,12 @@ namespace WpfApplication1
             {
 
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
+                cmd.CommandText = "SPgetAllDok";
             }
             else
             {
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id where d.DKM_Ilgili_Departman=@id";
+                cmd.CommandText = "SPgetDokumanByID @id";
                 cmd.Parameters.AddWithValue("@id", tip);
             }
             SqlDataAdapter adap = new SqlDataAdapter(cmd);

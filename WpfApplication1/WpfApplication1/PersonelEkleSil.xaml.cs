@@ -26,7 +26,6 @@ namespace WpfApplication1
     /// </summary>
     public partial class PersonelEkleSil : MetroWindow
     {
-        int i = 0;
         public int cagiranmenutipi;
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
@@ -37,9 +36,14 @@ namespace WpfApplication1
         {
             InitializeComponent();
             // this.Closing += pers_Closing; // pers kapama silindi ---
-
-
+                
             cagiranmenutipi = vers;
+            decideVisuals();
+            listele(null);
+
+        }
+        private void decideVisuals()
+        {
             if (GirisEkrani.yetki == "1")
             {
                 if (cagiranmenutipi == 1)
@@ -106,97 +110,7 @@ namespace WpfApplication1
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
                 }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
 
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
 
             }
             if (GirisEkrani.yetki == "2")
@@ -266,97 +180,7 @@ namespace WpfApplication1
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
                 }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
 
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
 
             }
             if (GirisEkrani.yetki == "3")
@@ -368,7 +192,7 @@ namespace WpfApplication1
                     perskayit.Visibility = Visibility.Visible;
                     perskayit.IsEnabled = false;
                     persedit.Visibility = Visibility.Visible;
-                 //   persedit.IsEnabled = false;
+                    //   persedit.IsEnabled = false;
                     silme.Visibility = Visibility.Visible;
                     silme.IsEnabled = false;
                 }
@@ -433,281 +257,12 @@ namespace WpfApplication1
                     egRapor.Visibility = Visibility.Visible;
                     egRapor.IsEnabled = false;
                 }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
-                }
-            }
-        /*    if (GirisEkrani.yetki == "4")
-            {
-                if (cagiranmenutipi == 1)
-                {
-
-                    Title = "Personel Kayıt";
-                    perskayit.Visibility = Visibility.Visible;
-
-                    persedit.Visibility = Visibility.Visible;
-
-                    silme.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 2)
-                {
-                    Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
-                    izindeolanlar.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    izingecmisi.Visibility = Visibility.Visible;
-                    onaybekliyenler.Visibility = Visibility.Visible;
-                    onayla.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 3)
-                {
-                    Title = "Personel Egitim";
-                    SEARCH.IsEnabled = false;// ------------------------------bu menuye ozel olmali
-
-                    egEkle.Visibility = Visibility.Visible;
-                    egDegistir.Visibility = Visibility.Visible;
-                    egCikar.Visibility = Visibility.Visible;
-                    egIncele.Visibility = Visibility.Visible;
-
-
-
-
-                }
-                else if (cagiranmenutipi == 4 || cagiranmenutipi == 5 || cagiranmenutipi == 6 || cagiranmenutipi == 7 || cagiranmenutipi == 8)
-                {
-                    egEkle.Content = "Seç";
-                    egEkle.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 9)
-                {
-                    yenile.Visibility = Visibility.Hidden;
-
-                }
-
-                else if (cagiranmenutipi == 10)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 11)
-                {
-                    secim.Visibility = Visibility.Visible;
-                    arama.Visibility = Visibility.Hidden;
-                    SEARCH.Visibility = Visibility.Hidden;
-                    yenile.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 12)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 20)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 21)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 22)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 23)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 24)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 25)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-
-                }
-                else if (cagiranmenutipi == 26)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 27)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 28)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 29)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 30)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 31)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 32)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 33)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 34)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 35)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 36)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
-                else if (cagiranmenutipi == 37)
-                {
-                    p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                }
 
             }
-         * */
-            con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+            con.ConnectionString = yet.ki.con;
 
 
-            listele(null);
         }
-
 
 
 
@@ -818,56 +373,7 @@ namespace WpfApplication1
         {
             ekleDuzenle dzn = new ekleDuzenle(1, 0);
             dzn.Show();
-             try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Departman";
-                cmd.Connection = con;
-                con.Open();
-                DataTable dt = new DataTable();
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-                adap.Fill(dt);
-                depSec.ItemsSource = dt.DefaultView;
-                depSec.DisplayMemberPath = "DPT_adi";
-                depSec.SelectedValuePath = "DPT_id";
-                con.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
-            }
-
-        }
-
-        public void personelSec(int _personel)
-        {
-            try
-            {
-                personel = _personel;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Personel p where p.P_id = @id";
-                cmd.Parameters.AddWithValue("@id", toplanti_baskani);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    baskanN.Text = reader["P_Adi"].ToString();
-                    baskanS.Text = reader["P_Soyadi"].ToString();
-                    baskanC.Text = reader["P_Pozisyon"].ToString();
-
-                }
-                con.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Personel Secimi Sirasinda Bir Hata Olustu");
-            }
-        }
+ 
 
         }
 
