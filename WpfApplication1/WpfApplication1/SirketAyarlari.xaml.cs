@@ -501,7 +501,7 @@ namespace yet
             get;
             set;
         }
-        static public string con = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+        static public string con = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
   
 
 

@@ -60,7 +60,37 @@ namespace WpfApplication1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Kime.Text = selectedPersonel;
-            MailMessage MyMailMessage = new MailMessage(Gonderen.Text, yollancakMailAdresi, Baslik.Text, Metin.Text);
+            //Kime.Text = selectedPersonel;
+            MailMessage mesaj = new MailMessage();
+            if (yollancakMailAdresi == null)
+            {
+
+                yollancakMailAdresi = pkime.Text;
+            }
+            mesaj.To.Add(yollancakMailAdresi);
+            mesaj.From = new MailAddress(Gonderen.Text);
+            mesaj.Body = Metin.Text;
+            mesaj.Subject = Baslik.Text;
+            SmtpClient cli = new SmtpClient();
+            cli.EnableSsl = true;
+            cli.Credentials = new System.Net.NetworkCredential(Gonderen.Text, sifre.Password);
+            cli.Host = "smtp.gmail.com";
+            cli.Port = 465;
+
+            try
+            {
+
+                cli.Send(mesaj);
+                MessageBox.Show("Mailiniz gönderiliyor.......");
+                MessageBox.Show("Mailiniz gönderildi");
+
+            }
+            catch (Exception exp)
+            {
+
+                MessageBox.Show("Mailiniz gönderilemedi" + exp.Message);
+            }
+           /* MailMessage MyMailMessage = new MailMessage(Gonderen.Text, yollancakMailAdresi, Baslik.Text, Metin.Text);
 
             MyMailMessage.IsBodyHtml = false;
 
@@ -87,7 +117,7 @@ namespace WpfApplication1
 
                 MessageBox.Show("Mailiniz gönderilemedi" + exp.Message);
             }
-
+            */
 
         }
 
