@@ -47,15 +47,15 @@ namespace WpfApplication1
         private void queryselection()
         {
             if(selectionType==1){
-                quer="select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_D_Yer as 'Doğum Yeri',p.P_Med_Hal as 'Medeni Durumu'  from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0 ";
+                quer = "SPgetTumPersonelRapor";
                 baslik.Text = "Tüm Personel Listesi";
 
             }else if(selectionType==2){
-                quer = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_D_Yer as 'Doğum Yeri',p.P_Med_Hal as 'Medeni Durumu'  from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0  and p.P_Aday=0 ";
+                quer = "SPgetTumKadroluPersonelRapor";
                 baslik.Text = "Kadrolu Personel Listesi";
                 
             }else if (selectionType==3){
-                quer = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_D_Yer as 'Doğum Yeri',p.P_Med_Hal as 'Medeni Durumu'  from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0  and p.P_Aday=1";
+                quer = "SPgetAdayPersonelRapor";
                 baslik.Text = "Stajyer ve Aday Listesi";
 
             }

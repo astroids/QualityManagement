@@ -47,7 +47,7 @@ namespace WpfApplication1
         }
         private void queryselection()
         {
-            quer = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_D_Tar as 'Doğum Tarihi',p.P_D_Yer as 'Doğum Yeri',p.P_Med_Hal as 'Medeni Durumu'  from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0  and p.P_Aday=0 and p.P_Dept =@dep";
+            quer = "SPgetDepartmanPersonelRapor @dep";
 
         }
         

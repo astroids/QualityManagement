@@ -280,7 +280,7 @@ namespace WpfApplication1
 
                     if (ser == null || ser.Length == 0)
                     {
-                        cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu',p.P_Email as 'E-Mail',p.P_Tel1 as 'Telefon',p.P_Aday as 'Aday Durumu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
+                        cmd.CommandText = "SPgetPersonel";
 
                     }
                     else
@@ -294,7 +294,7 @@ namespace WpfApplication1
 
                     if (ser == null || ser.Length == 0)
                     {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                        cmd.CommandText = "SPgetTumEgitim";
                     }
                     else
                     {
@@ -308,7 +308,7 @@ namespace WpfApplication1
 
                     if (ser == null || ser.Length == 0)
                     {
-                        cmd.CommandText = "Select * From Tbl_Personel where P_Silindi='1'";
+                        cmd.CommandText = "SPgetSilinen";
                     }
                     else
                     {
@@ -333,7 +333,7 @@ namespace WpfApplication1
 
                     if (ser == null || ser.Length == 0)
                     {
-                        cmd.CommandText = "select E_id as 'id', e.E_Adi as 'Egitim Adı',e.E_BasTarih as 'Başlangış tarihi', e.E_BitTarih as 'Bitiş Tarihi',p.P_Adi as 'Egitim Veren',p.P_Soyadi as 'soyadı' from Tbl_Egitim e, Tbl_Personel p where e.E_Egi_Veren=p.P_id";
+                        cmd.CommandText = "SPgetTumEgitim";
                     }
                     else
                     {
@@ -462,8 +462,7 @@ namespace WpfApplication1
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@CTime", d);
-                cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel_Izin i, Tbl_Personel p,Tbl_Izin_Tur t where (@CTime between  i.PI_BasTarih and i.PI_BitTarih ) and p.P_id= i.PI_Pers_id and t.IT_id= i.PI_Izin_Tur and not i.PI_Onay is null;";
-
+                cmd.CommandText = "SPgetIzindeOlanlar @CTime";
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adap.Fill(dt);
@@ -489,19 +488,20 @@ namespace WpfApplication1
                 try
                 { 
                  
-                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    if (ID != GirisEkrani.kulAdi)
-                    {
+                    //string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    //if (ID != GirisEkrani.kulAdi)
+                    //{
 
-                        MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
-                    }
+                    //    MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
+                    //}
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedID = Convert.ToInt32(ID);
                     SqlCommand cmd = new SqlCommand();
                     con.Open();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'Soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' ,iz.PI_Onay as 'Onay durumu',p2.P_Adi as 'Onay Veren Adi',p2.P_Soyadi as 'Onay Veren Soyadı' From Tbl_Personel_Izin iz, Tbl_Personel pe ,Tbl_Personel p2,Tbl_Izin_Tur t where pe.P_id =iz.PI_Pers_id and  iz.PI_Pers_id=@sid and p2.P_id=iz.PI_OnayVeren_id and t.IT_id = iz.PI_Izin_Tur;";
-                    cmd.Parameters.AddWithValue("@sid", selectedID);
+                    cmd.CommandText = "SPizinGecmisi @ID";
+                    cmd.Parameters.AddWithValue("@ID", selectedID);
                     SqlDataAdapter adap = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adap.Fill(dt);
@@ -509,9 +509,10 @@ namespace WpfApplication1
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-                catch
+                catch ( Exception ex)
                 {
-                    MessageBox.Show("Izin Gecmisi Ekrana Getirilirken Bir Hata Oluştu");
+                    MessageBox.Show(ex.ToString());
+                   // MessageBox.Show("Izin Gecmisi Ekrana Getirilirken Bir Hata Oluştu");
                 }
 
             }
@@ -529,7 +530,7 @@ namespace WpfApplication1
                 con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select p.P_Adi , p.P_id,i.PI_BasTarih,i.PI_BasTarih,t.IT_adi from Tbl_Personel p , Tbl_Personel_Izin i ,Tbl_Izin_Tur t where p.P_id=i.PI_id and i.PI_Izin_Tur=t.IT_id and i.PI_Onay is null";
+                cmd.CommandText = "SPgetIzinOnayListele";
 
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -558,8 +559,9 @@ namespace WpfApplication1
                     con.Open();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=1,PI_OnayVeren_id =7003 where PI_id = @sid";
+                    cmd.CommandText = "SPizinOnayla @sid @over";                            //buraya virgul olabilir
                     cmd.Parameters.AddWithValue("@sid", selectedID);
+                    //cmd.Parameters.AddWithValue("@OverID",);
                     SqlDataAdapter adap = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adap.Fill(dt);
@@ -570,7 +572,9 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Guncelleme Sirasinda Bir Hata Oluştu");
+                    MessageBox.Show("Yetkiden Sonra Düzlet Burayı");
+                    //commenti kaldır yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
+                    con.Close();
                 }
 
             }
@@ -580,7 +584,6 @@ namespace WpfApplication1
             }
 
 
-            // MessageBox.Show("in progress");
         }
 
 
@@ -649,37 +652,39 @@ namespace WpfApplication1
 
         }
 
-        private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                object item = p_grid.SelectedItem;
-                if (item != null)
-                {
-                    SqlCommand cmd = new SqlCommand();
-                    con.Open();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "Select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı', PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',iz.PI_Onay as 'Onay durumu' From Tbl_Personel_Izin iz, Tbl_Personel pe where pe.P_id =2 and  iz.PI_Pers_id=2";
-                    MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
-                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adap.Fill(dt);
-                    p_grid.ItemsSource = dt.DefaultView;
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-                else
-                {
-                    MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Izın Gecmisi Ekrana Getirme Sirasinda Bir Hata Oluştu");
-            }
+        //private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        object item = p_grid.SelectedItem;
+        //        if (item != null)
+        //        {
+        //            string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+        //            SqlCommand cmd = new SqlCommand();
+        //            con.Open();
+        //            cmd.Connection = con;
+        //            cmd.CommandType = CommandType.Text;
+        //            cmd.CommandText = "SPizinGecmisi @ID";
+        //            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(ID).ToString());
+        //            MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
+        //            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            adap.Fill(dt);
+        //            p_grid.ItemsSource = dt.DefaultView;
+        //            cmd.ExecuteNonQuery();
+        //            con.Close();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Izın Gecmisi Ekrana Getirme Sirasinda Bir Hata Oluştu");
+        //    }
 
-        }
+        //}
 
 
         // ---------------------------------------------------------------Egitim-----------------------------------------------------------------------------------
@@ -829,7 +834,7 @@ namespace WpfApplication1
             con.Open();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select pe.P_id as 'Sicil No', pe.P_Adi as 'Adı', pe.P_Soyadi as 'soyadı',iz.PI_id as 'İzin No' , PI_BasTarih as 'Başlangıç Tarihi',iz.PI_BitTarih 'Bitiş Tarihi',t.IT_adi as 'İzin Türü' from Tbl_Personel_Izin iz , Tbl_Personel pe,Tbl_Izin_Tur t where iz.PI_Pers_id=pe.P_id and iz.PI_Onay is NULL and iz.PI_Izin_Tur=t.IT_id;";
+            cmd.CommandText = "SPizinOnayiBekleyenPersonel";
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adap.Fill(dt);
@@ -901,7 +906,7 @@ namespace WpfApplication1
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "update Tbl_Personel set P_Silindi='1' where P_id = @P_id";
+                    cmd.CommandText = "SPistenCikarma @P_id";
 
                     cmd.Parameters.AddWithValue("@P_id", selectedID);
 
