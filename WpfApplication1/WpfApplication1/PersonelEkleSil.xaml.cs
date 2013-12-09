@@ -829,18 +829,25 @@ namespace WpfApplication1
 
         private void onaybekliyenler_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Meneger only");
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SPizinOnayiBekleyenPersonel";
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
+            try
+            {
+                MessageBox.Show("Meneger only");
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SPizinOnayiBekleyenPersonel";
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Onay Bekliyenler Ekrana Getirilirken Bir Hata Olustu");
+            }
 
 
         }
@@ -893,29 +900,36 @@ namespace WpfApplication1
 
                 if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
-                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    selectedID = Convert.ToInt32(ID);
+                    try
+                    {
+                        //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
+                        string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                        selectedID = Convert.ToInt32(ID);
 
 
-                    //con.ConnectionString = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+                        //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
-                    con.Open();
+                        con.Open();
 
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SPistenCikarma @P_id";
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = con;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SPistenCikarma @P_id";
 
-                    cmd.Parameters.AddWithValue("@P_id", selectedID);
+                        cmd.Parameters.AddWithValue("@P_id", selectedID);
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Silme Yapıldı..");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Silme Yapıldı..");
 
-                    con.Close();
-                    listele(null);
-                    //rows number of record got deleted
+                        con.Close();
+                        listele(null);
+                        //rows number of record got deleted
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Silme Islemi Sirasinda Bir Hata Olustu");
+                    }
 
                 }
 
@@ -950,19 +964,26 @@ namespace WpfApplication1
 
         private void PerRapor_Click_1(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                int selected_personel = Convert.ToInt32(ID);
-                PersonelRapor rap = new PersonelRapor(selected_personel);
-                rap.Show();
-                selected_personel = Convert.ToInt32(-1);
-            }
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    int selected_personel = Convert.ToInt32(ID);
+                    PersonelRapor rap = new PersonelRapor(selected_personel);
+                    rap.Show();
+                    selected_personel = Convert.ToInt32(-1);
+                }
 
-            else
+                else
+                {
+                    MessageBox.Show("Lütfen bir kişi seçinz");
+                }
+            }
+            catch
             {
-                MessageBox.Show("Lütfen bir kişi seçinz");
+                MessageBox.Show("Personel Raporlama Sirasinda Bir Hata Olustu");
             }
 
 
@@ -970,52 +991,67 @@ namespace WpfApplication1
 
         private void p_grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            con.ConnectionString = yet.ki.con;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                con.ConnectionString = yet.ki.con;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
 
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
 
-            //  cmd.Parameters.AddWithValue("@id", idd);
-            SqlDataReader reader = cmd.ExecuteReader();
+                //  cmd.Parameters.AddWithValue("@id", idd);
+                SqlDataReader reader = cmd.ExecuteReader();
+            }
+            catch
+            {
+                MessageBox.Show("Personel Tablosundan Kisi Secimi Sirasinda Bir Hata Olustu");
+            }
         }
 
         private void secim_Click(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            if (item != null)
+            try
             {
-                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                //   ToplantiEkle x = new ToplantiEkle(selectedID, 1);                                                                                             //TOPLANTI EKLE
-                //x.Show();
-                this.Hide();
-
-                /*con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Toplanti where Top_id = @Top_id";
-                cmd.Parameters.AddWithValue("@Top_id", selectedID);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                object item = p_grid.SelectedItem;
+                if (item != null)
                 {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    //   ToplantiEkle x = new ToplantiEkle(selectedID, 1);                                                                                             //TOPLANTI EKLE
+                    //x.Show();
+                    this.Hide();
+
+                    /*con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from Tbl_Toplanti where Top_id = @Top_id";
+                    cmd.Parameters.AddWithValue("@Top_id", selectedID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
                     
-                    //isim.Text = reader["P_Adi"].ToString();
+                        //isim.Text = reader["P_Adi"].ToString();
+
+                    }
+                    con.Close();
+                    */
+
+
 
                 }
-                con.Close();
-                */
-
-
-
+                else
+                {
+                    MessageBox.Show("Secim yapmadiniz!\n");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Secim yapmadiniz!\n");
+                MessageBox.Show("Personel Tablosundan Kisi Secimi Sirasinda Bir Hata Olustu");
             }
+
         }
 
 
