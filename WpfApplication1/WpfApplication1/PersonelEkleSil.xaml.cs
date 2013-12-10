@@ -44,7 +44,7 @@ namespace WpfApplication1
         }
         private void decideVisuals()
         {
-            if (GirisEkrani.yetki == "1")
+            if (yet.ki.yetki == 1)
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -113,7 +113,7 @@ namespace WpfApplication1
 
 
             }
-            if (GirisEkrani.yetki == "2")
+            if (yet.ki.yetki == 2)
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -183,7 +183,7 @@ namespace WpfApplication1
 
 
             }
-            if (GirisEkrani.yetki == "3")
+            if (yet.ki.yetki == 3)
             {
                 if (cagiranmenutipi == 1)
                 {
@@ -387,9 +387,9 @@ namespace WpfApplication1
                 if (item != null)
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    if (GirisEkrani.yetki == "3")
+                    if (yet.ki.yetki == 3)
                     {
-                        if (GirisEkrani.kulAdi != ID)
+                        if (yet.ki.kulID != ID)
                         {
                             MessageBox.Show("Bu kişi üzerinde işlem yapamazsınız, Lütfen kendi bilgilerinizi seçiniz");
                         }
@@ -418,9 +418,9 @@ namespace WpfApplication1
                 try
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    if (ID != GirisEkrani.kulAdi) {
+                    if (ID != yet.ki.kulID) {
                       
-                        MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
+                        MessageBox.Show("Böyle bir seçim yapmaya yet.ki.yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
                     }
                     selectedID = Convert.ToInt32(ID);
                     izinIste iz = new izinIste(selectedID);
@@ -489,10 +489,10 @@ namespace WpfApplication1
                 { 
                  
                     //string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    //if (ID != GirisEkrani.kulAdi)
+                    //if (ID != GirisEkrani.yet.ki.kulID)
                     //{
 
-                    //    MessageBox.Show("Böyle bir seçim yapmaya yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
+                    //    MessageBox.Show("Böyle bir seçim yapmaya yet.ki.yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
                     //}
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedID = Convert.ToInt32(ID);
@@ -572,8 +572,8 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Yetkiden Sonra Düzlet Burayı");
-                    //commenti kaldır yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
+                    MessageBox.Show("yet.ki.yetkiden Sonra Düzlet Burayı");
+                    //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
                     con.Close();
                 }
 

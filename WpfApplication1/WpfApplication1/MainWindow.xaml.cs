@@ -41,7 +41,7 @@ namespace WpfApplication1
         {
             
             InitializeComponent();
-            if (GirisEkrani.yetki == "3")
+            if (yet.ki.yetki == 3)
             {
                 dokuman.IsEnabled = false;
                 toplanti.IsEnabled = false;

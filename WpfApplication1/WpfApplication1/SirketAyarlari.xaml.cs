@@ -496,12 +496,34 @@ namespace yet
             get;
             set;
         }
-        static public string kadi
+        static public string kulID
         {
             get;
             set;
         }
-        static public string con = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
+        static public string kulADI
+        {
+            set;
+            get;
+        }
+
+        static public int yetki
+        {
+            set;
+            get;
+        }
+        static public string kulAdi
+        {
+            set;
+            get;
+        }
+        static public string ilksifre
+        {
+            set;
+            get;
+        }
+
+        static public string con = "Server=NAGASH; Database=Personel; Integrated Security=true;";
   
 
 

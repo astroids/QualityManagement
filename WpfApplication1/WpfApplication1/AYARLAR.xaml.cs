@@ -26,7 +26,7 @@ namespace WpfApplication1
         public AYARLAR()
         {
             InitializeComponent();
-            if (GirisEkrani.yetki == "2") {
+            if (yet.ki.yetki == 2) {
                 sirket.IsEnabled = false;
             }
         }

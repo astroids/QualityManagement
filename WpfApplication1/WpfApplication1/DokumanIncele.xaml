@@ -6,7 +6,7 @@
     <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
         <Grid>
 
-                            <TextBlock Name="id" HorizontalAlignment="Left" Height="23" Margin="89,93,0,0" TextWrapping="Wrap" Text="id" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="id" HorizontalAlignment="Left" Height="23" Margin="89,93,0,0" TextWrapping="Wrap" Text="id" VerticalAlignment="Top" Width="120"/>
             <TextBlock Name="adi" HorizontalAlignment="Left" Height="23" Margin="234,93,0,0" TextWrapping="Wrap" Text="adi" VerticalAlignment="Top" Width="326"/>
             <TextBlock Name="rev" HorizontalAlignment="Left" Height="23" Margin="587,93,0,0" TextWrapping="Wrap" Text="rev" VerticalAlignment="Top" Width="78"/>
             <TextBlock Name="acik" HorizontalAlignment="Left" Height="23" Margin="234,184,0,0" TextWrapping="Wrap" Text="açıklama" VerticalAlignment="Top" Width="431"/>
@@ -16,16 +16,14 @@
             <TextBlock Name="dep" HorizontalAlignment="Left" Height="23" Margin="234,296,0,0" TextWrapping="Wrap" Text="dep" VerticalAlignment="Top" Width="120"/>
             <TextBlock Name="baslik" HorizontalAlignment="Left" Height="45" Margin="234,365,0,0" TextWrapping="Wrap" Text="Başlık" VerticalAlignment="Top" Width="431"/>
             <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
-            <TextBlock Name="icerik" HorizontalAlignment="Left" Height="250" Margin="89,473,0,0" TextWrapping="Wrap" Text="içerik" VerticalAlignment="Top" Width="834"/>
+            <TextBlock Name="icerik" HorizontalAlignment="Left" Height="300" Margin="89,410,0,0" TextWrapping="Wrap" Text="içerik" VerticalAlignment="Top" Width="834"/>
             </ScrollViewer>
             <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,770,0,0" TextWrapping="Wrap" Text="Hazırlayan Personel" VerticalAlignment="Top" Width="192"/>
             <TextBlock HorizontalAlignment="Left" Height="23" Margin="638,248,0,0" TextWrapping="Wrap" Text="Tarih" VerticalAlignment="Top" Width="120"/>
             <TextBlock Name="tarih" HorizontalAlignment="Left" Height="23" Margin="778,248,0,0" TextWrapping="Wrap" Text="tarih" VerticalAlignment="Top" Width="145"/>
-            <TextBlock Name="hadi" HorizontalAlignment="Left" Height="23" Margin="89,798,0,0" TextWrapping="Wrap" Text="hadi" VerticalAlignment="Top" Width="120"/>
-            <TextBlock Name="hsadi" HorizontalAlignment="Left" Height="23" Margin="234,798,0,0" TextWrapping="Wrap" Text="hsadi" VerticalAlignment="Top" Width="192"/>
+            <TextBlock Name="hadi" HorizontalAlignment="Left" Height="23" Margin="89,798,0,0" TextWrapping="Wrap" Text="hadi" VerticalAlignment="Top" Width="171"/>
             <TextBlock HorizontalAlignment="Left" Height="23" Margin="566,770,0,0" TextWrapping="Wrap" Text="Onaylayan Personel" VerticalAlignment="Top" Width="192"/>
-            <TextBlock Name="oadi" HorizontalAlignment="Left" Height="23" Margin="566,798,0,0" TextWrapping="Wrap" Text="Onay" VerticalAlignment="Top" Width="120"/>
-            <TextBlock Name="osadi" HorizontalAlignment="Left" Height="23" Margin="731,798,0,0" TextWrapping="Wrap" Text="Bekliyor" VerticalAlignment="Top" Width="192"/>
+            <TextBlock Name="oadi" HorizontalAlignment="Left" Height="23" Margin="566,798,0,0" TextWrapping="Wrap" Text="Onay" VerticalAlignment="Top" Width="192"/>
             <TextBlock Name="hdep" HorizontalAlignment="Left" Height="23" Margin="89,841,0,0" TextWrapping="Wrap" Text="hdep" VerticalAlignment="Top" Width="120"/>
             <TextBlock Name="hopoz" HorizontalAlignment="Left" Height="23" Margin="234,841,0,0" TextWrapping="Wrap" Text="hpoz" VerticalAlignment="Top" Width="192"/>
             <TextBlock Name="odep" HorizontalAlignment="Left" Height="23" Margin="566,841,0,0" TextWrapping="Wrap" Text="Onay" VerticalAlignment="Top" Width="120"/>
@@ -33,8 +31,8 @@
             <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,184,0,0" TextWrapping="Wrap" Text="Açıklama" VerticalAlignment="Top" Width="120"/>
             <TextBlock HorizontalAlignment="Left" Height="23" Margin="89,365,0,0" TextWrapping="Wrap" Text="Doküman Başlığı" VerticalAlignment="Top" Width="120"/>
             <Button Name="yazdir" Content="Yazdır" HorizontalAlignment="Left" Margin="919,10,0,0" VerticalAlignment="Top" Width="75" Click="yazdir_Click" />
-            <Button Name="onceki" Content="Önceki Hali" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" />
-            <Button Name="sonraki" Content="Yeni Versiyou" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top" Width="100" />
+            <Button Name="onceki" Content="Önceki Hali" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="onceki_Click" />
+            <Button Name="sonraki" Content="Yeni Versiyou" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top" Width="100" Click="sonraki_Click" />
 
 
         </Grid>

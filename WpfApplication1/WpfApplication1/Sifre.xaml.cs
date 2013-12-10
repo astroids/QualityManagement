@@ -37,7 +37,7 @@ namespace WpfApplication1
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
 
-            if (eski.Text == GirisEkrani.ilksifre)
+            if (eski.Text == yet.ki.ilksifre)
             {
                 lbl.Content = "Şifre doğru";
                 try
@@ -47,7 +47,7 @@ namespace WpfApplication1
                     con.Open();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"update Tbl_Personel set P_Sifre=@yeni.Password where P_id=@GirisEkrani.kulAdi";
+                    cmd.CommandText = @"update Tbl_Personel set P_Sifre=@yeni.Password where P_id=@GirisEkrani.yet.ki.kulID";
                     cmd.Parameters.AddWithValue("@P_Sifre", yeni.Password);
                     SqlDataAdapter adap = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -90,9 +90,9 @@ namespace WpfApplication1
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Hosgeldiniz");
-                    yetki = dt.Rows[0].ItemArray[16].ToString();
-                    ilksifre = sifre.Password;
-                    kulAdi = kullanıcı.Text;
+                    yet.ki.yetki = dt.Rows[0].ItemArray[16].ToString();
+                    yet.ki.ilksifre = sifre.Password;
+                    yet.ki.kulID = kullanıcı.Text;
                     // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
                     //i ++;

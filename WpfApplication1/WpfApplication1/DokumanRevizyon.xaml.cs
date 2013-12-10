@@ -42,7 +42,7 @@ namespace WpfApplication1
             {
 
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
+                cmd.CommandText = "SPgetAllDok";
             }
             else
             {
@@ -58,6 +58,25 @@ namespace WpfApplication1
             con.Close();
 
 
+        }
+
+        private void revize_Click(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                DokumanYeniRevize rev = new DokumanYeniRevize(ID);
+                rev.Show();
+                
+            }
+            else
+            {
+                DokumanYeniRevize rev = new DokumanYeniRevize(null);
+                rev.Show();
+                
+            }
+            
         }
 
 

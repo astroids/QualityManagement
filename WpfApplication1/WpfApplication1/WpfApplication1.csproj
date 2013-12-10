@@ -80,6 +80,9 @@
     <Compile Include="DepartmanDüzenle.xaml.cs">
       <DependentUpon>DepartmanDüzenle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DokumanGecerlilikDagitim.xaml.cs">
+      <DependentUpon>DokumanGecerlilikDagitim.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DokumanIncele.xaml.cs">
       <DependentUpon>DokumanIncele.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,9 @@
     </Compile>
     <Compile Include="DokumanYazdir.xaml.cs">
       <DependentUpon>DokumanYazdir.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanYeniRevize.xaml.cs">
+      <DependentUpon>DokumanYeniRevize.xaml</DependentUpon>
     </Compile>
     <Compile Include="Döviz2.xaml.cs">
       <DependentUpon>Döviz2.xaml</DependentUpon>
@@ -187,6 +193,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DokumanGecerlilikDagitim.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DokumanIncele.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DokumanYazdir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanYeniRevize.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

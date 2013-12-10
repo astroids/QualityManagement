@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel;
-using System.Data.SqlClient;
 
 namespace WpfApplication1
 {
@@ -30,9 +29,8 @@ namespace WpfApplication1
         private SqlConnection con = new SqlConnection();
    //     private SqlConnection con2 = new SqlConnection();
         public SqlCommand cmd = new SqlCommand();
-        static public string yetki;
-        static public string kulAdi;
-        static public string ilksifre;
+        
+
 
         //public static int i = 1;
         public GirisEkrani()
@@ -74,16 +72,18 @@ namespace WpfApplication1
                 
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("Hosgeldiniz");
-                    yetki = dt.Rows[0].ItemArray[16].ToString();
-                    ilksifre = sifre.Password;
-                    kulAdi = dt.Rows[0].ItemArray[0].ToString();
+                    
+                    yet.ki.yetki = Convert.ToInt32( dt.Rows[0].ItemArray[16].ToString());
+                    yet.ki.ilksifre = sifre.Password;
+                    yet.ki.kulID = dt.Rows[0].ItemArray[0].ToString();
+                    yet.ki.kulAdi = dt.Rows[0].ItemArray[1].ToString();
+                    yet.ki.al =Convert.ToInt32( dt.Rows[0].ItemArray[16].ToString());
                     // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
                     //i ++;
-                    yet.ki.kadi = kullanıcı.Text;
-                    yet.ki.al = 1;
+                    yet.ki.kulID = kullanıcı.Text;
                     
+                    MessageBox.Show(yet.ki.kulAdi +" Bey\nHosgeldiniz");
                     this.Close();
                     mw.Show();
                 }

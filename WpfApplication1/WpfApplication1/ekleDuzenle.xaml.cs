@@ -30,7 +30,6 @@ namespace WpfApplication1
         private string dep;
         private int x;
         private int idd;
-        private int P_Yetki;
         public ekleDuzenle(int tur, int id)
         {
 
@@ -38,7 +37,7 @@ namespace WpfApplication1
             x = tur;
             idd = id;
             con.ConnectionString = yet.ki.con;
-            if (GirisEkrani.yetki == "3") {
+            if (yet.ki.yetki == 3) {
                 isim.IsEnabled = false;
                 soyisim.IsEnabled = false;
                 tckimlik.IsEnabled = false;
@@ -133,7 +132,7 @@ namespace WpfApplication1
 
         private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
         {
-            if (GirisEkrani.yetki != "3")
+            if (yet.ki.yetki != 3)
             {
                 if (x == 1)
                 {
@@ -215,7 +214,7 @@ namespace WpfApplication1
                         MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
                         return;
                     }
-                    if (GirisEkrani.yetki != "3")
+                    if (yet.ki.yetki != 3)
                     {
                         if (departman.Text == "")
                         {
@@ -228,7 +227,7 @@ namespace WpfApplication1
                         MessageBox.Show("Medeni Hal i seciniz!!");
                         return;
                     }
-                    if (GirisEkrani.yetki != "3")
+                    if (yet.ki.yetki != 3)
                     {
                         if (adaydurumu.Text == "")
                         {
@@ -238,16 +237,16 @@ namespace WpfApplication1
                     }
                     if (checkmudur.IsChecked == true)
                     {
-                        P_Yetki = 1;
+                        yet.ki.yetki = 1;
                     }
                     if (checkmYardım.IsChecked == true)
                     {
-                        P_Yetki = 2;
+                        yet.ki.yetki = 2;
 
                     }
                     if (checkper.IsChecked == true)
                     {
-                        P_Yetki = 3;
+                        yet.ki.yetki = 3;
                     }
                     if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
                     {
@@ -261,8 +260,8 @@ namespace WpfApplication1
                     try
                     {
                         cmd.Connection = con;
-                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_Yetki)";
+                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_yet.ki.yetki) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet.ki.yetki)";
 
                         cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                         cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -279,7 +278,7 @@ namespace WpfApplication1
                         string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                         cmd.Parameters.AddWithValue("@P_Aday", drm);
                         cmd.Parameters.AddWithValue("@P_Sil", "0");
-                        cmd.Parameters.AddWithValue("@P_Yetki", P_Yetki);
+                        cmd.Parameters.AddWithValue("@P_yet.ki.yetki", yet.ki.yetki);
                         if (dep == null)
                         {
                             MessageBox.Show("Departmini secmediniz!!!");
@@ -308,7 +307,7 @@ namespace WpfApplication1
                     }
                 }
             }
-            if (GirisEkrani.yetki != "3")
+            if (yet.ki.yetki != 3)
             {
 
                 if (x == 2)
@@ -421,16 +420,16 @@ namespace WpfApplication1
                         
                         if (checkmudur.IsChecked == true)
                         {
-                            P_Yetki = 1;
+                            yet.ki.yetki = 1;
                         }
                         if (checkmYardım.IsChecked == true)
                         {
-                            P_Yetki = 2;
+                            yet.ki.yetki = 2;
 
                         }
                         if (checkper.IsChecked == true)
                         {
-                            P_Yetki = 3;
+                            yet.ki.yetki = 3;
                         }
                         if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
                         {
@@ -451,7 +450,7 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
                         string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
                         cmd.Parameters.AddWithValue("@P_Aday", drm);
-                        cmd.Parameters.AddWithValue("@P_Yetki", P_Yetki);
+                        cmd.Parameters.AddWithValue("@P_yet.ki.yetki", yet.ki.yetki);
                        
                             if (dep == null)
                             {
@@ -485,7 +484,7 @@ namespace WpfApplication1
                 }
 
             }
-            if (GirisEkrani.yetki == "3")
+            if (yet.ki.yetki == 3)
             {
 
                 if (x == 2)

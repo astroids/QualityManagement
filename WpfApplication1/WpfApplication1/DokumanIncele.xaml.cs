@@ -26,6 +26,17 @@ namespace WpfApplication1
     /// </summary>
     public partial class DokumanIncele : MetroWindow
     {
+
+        private string parent
+        {
+            set;
+            get;
+        }
+        private string child
+        {
+            set;
+            get;
+        }
         private int docid{
             get;
             set;
@@ -54,6 +65,8 @@ namespace WpfApplication1
                 id.Text = reader["id"].ToString();
                 adi.Text = reader["dadı"].ToString();
                 rev.Text = reader["rev"].ToString();
+                child = reader["child"].ToString();
+                parent = reader["parent"].ToString();
                 acik.Text = reader["açık"].ToString();
                 dtip.Text = reader["dtip"].ToString();
                 dep.Text = reader["ddep"].ToString();
@@ -61,9 +74,7 @@ namespace WpfApplication1
                 icerik.Text = reader["icer"].ToString();
                 tarih.Text = reader["tar"].ToString();
                 hadi.Text = reader["hazper"].ToString();
-                hsadi.Text = reader["hazsoy"].ToString();
                 oadi.Text = reader["oper"].ToString();
-                osadi.Text = reader["osoy"].ToString();
                 hdep.Text = reader["odep"].ToString();
                 hopoz.Text = reader["hpoz"].ToString();
                 odep.Text = reader["odep"].ToString();
@@ -71,10 +82,23 @@ namespace WpfApplication1
 
             }
             con.Close();
-            }
-            catch
+            if (parent =="")
             {
-                MessageBox.Show("Doldurma Sirasinda Bir Hata Oluştu");
+                onceki.IsEnabled = false;
+            }else{
+                onceki.IsEnabled=true;
+            }
+            if (child == "")
+            {
+                sonraki.IsEnabled = false;
+            }else{
+                sonraki.IsEnabled=true;
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("Doldurma Sirasinda Bir Hata Oluştu");
             }
 
         }
@@ -83,6 +107,18 @@ namespace WpfApplication1
         {
             DokumanYazdir doc = new DokumanYazdir(docid);
             doc.Show();
+        }
+
+        private void onceki_Click(object sender, RoutedEventArgs e)
+        {
+            docid =Convert.ToInt32(parent);
+            fill();
+        }
+
+        private void sonraki_Click(object sender, RoutedEventArgs e)
+        {
+            docid = Convert.ToInt32(child);
+            fill();
         }
 
 

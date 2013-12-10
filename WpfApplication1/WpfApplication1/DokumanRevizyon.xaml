@@ -7,7 +7,7 @@
     <Grid>
         <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="32,72,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
         <Button Visibility="Visible" Name="yeni" Content="Yeni" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="32,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28"  />
-        <Button Visibility="Visible" Name="revize" Content="Revize Et" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="586,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28"  />
+        <Button Visibility="Visible" Name="revize" Content="Revize Et" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="586,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="revize_Click"  />
 
         <!--<ComboBox Name="depSec" HorizontalAlignment="Left" Margin="662,28,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" SelectionChanged="depSec_SelectionChanged" >
 
