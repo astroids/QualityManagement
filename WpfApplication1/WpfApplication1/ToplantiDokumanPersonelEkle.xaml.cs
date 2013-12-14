@@ -87,7 +87,35 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            try
+            {
+                con.ConnectionString = yet.ki.con;
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+
+                if (s == null || s.Length == 0)
+                {
+                    cmd.CommandText = "Select * From Tbl_Toplanti where Tpl_Iptal=0 or Tpl_Iptal is NULL";
+                }
+                else
+                {
+                    cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Tpl_Gundem like @Title";
+                    cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
+                }
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                data_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Dokuman gosterimi sirasinda Bir Hata Olustu");
+            }
         }
     }
 }
