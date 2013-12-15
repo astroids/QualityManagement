@@ -11,15 +11,19 @@
         <Label Content="Doküman Sorumlu Personel" HorizontalAlignment="Left" Margin="23,153,0,0" VerticalAlignment="Top" Width="165"/>
         <Label Content="Personel Dağıtım Tarihi" HorizontalAlignment="Left" Margin="23,198,0,0" VerticalAlignment="Top" Width="204"/>
 
-        <Button Content="Ekle" HorizontalAlignment="Left" Margin="23,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ekle" Content="Ekle" HorizontalAlignment="Left" Margin="23,265,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="Çıkar" HorizontalAlignment="Left" Margin="23,497,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Doküman Sorumlu Personel" HorizontalAlignment="Left" Margin="214,153,0,0" VerticalAlignment="Top" Width="182"/>
+        <Label Name="dSor" Content="Doküman Sorumlu Personel" HorizontalAlignment="Left" Margin="214,153,0,0" VerticalAlignment="Top" Width="182"/>
         <Button Name="sec" Content="SEÇ" HorizontalAlignment="Left" Margin="439,153,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid Name="p_grid" HorizontalAlignment="Left" Margin="146,265,0,0" VerticalAlignment="Top"/>
-        <DataGrid HorizontalAlignment="Left" Margin="146,497,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Mail ile Bildir" HorizontalAlignment="Left" Margin="351,202,0,0" VerticalAlignment="Top" Width="98"/>
+        <DataGrid Name="p_grid" IsReadOnly="True" HorizontalAlignment="Left" Margin="146,265,0,0" VerticalAlignment="Top"/>
+        <DataGrid Name="p2_grid" HorizontalAlignment="Left" IsReadOnly="True" Margin="146,497,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="mailCB" Content="Mail ile Bildir" HorizontalAlignment="Left" Margin="351,202,0,0" VerticalAlignment="Top" Width="98"/>
         <DatePicker HorizontalAlignment="Left" Margin="214,198,0,0" VerticalAlignment="Top"/>
         <Button Name="kaydet" Content="kaydet" HorizontalAlignment="Left" Margin="603,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox Name="dArStip" HorizontalAlignment="Left" Margin="376,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="dGecSure" Text="" HorizontalAlignment="Left" Margin="202,71,0,0" VerticalAlignment="Top" Width="155"/>
+        <TextBox x:Name="dArSure" Text="" HorizontalAlignment="Left" Margin="202,111,0,0" VerticalAlignment="Top" Width="155"/>
+        <ComboBox Name="dGecStip" HorizontalAlignment="Left" Margin="376,71,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Controls:MetroWindow>

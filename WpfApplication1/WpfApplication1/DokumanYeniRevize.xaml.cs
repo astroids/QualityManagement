@@ -19,6 +19,10 @@ namespace WpfApplication1
     /// <summary>
     /// Interaction logic for DokumanYeniRevize.xaml
     /// </summary>
+    /// 
+
+
+    //SADECE REVIZE //yeeni yok
     public partial class DokumanYeniRevize : MetroWindow
     {
         SqlConnection con = new SqlConnection();
@@ -28,6 +32,7 @@ namespace WpfApplication1
             set;
             get;
         }
+
         public DokumanYeniRevize(string _docID)
         {
             InitializeComponent();
@@ -102,7 +107,7 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
-            DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim();
+            DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim(Convert.ToInt32(docID));
             this.Close();
             gec.Show();
         }
