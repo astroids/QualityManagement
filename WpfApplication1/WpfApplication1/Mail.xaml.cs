@@ -1,8 +1,11 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
+using System.Threading;
+using MahApps.Metro.Controls;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,20 +18,32 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel;
-using System.Net.Mail;
-using System.Net;
+
 namespace WpfApplication1
 {
-  
+
     public partial class Mail : MetroWindow
     {
         private SqlConnection con = new SqlConnection();
         private string yollancakMailAdresi;
-        private string selectedPersonel;
+        public string From = string.Empty;
+        public string To = string.Empty;
+        public string User = string.Empty;
+        public string Password = string.Empty;
+        public string Subject = string.Empty;
+        public string Body = string.Empty;
+        public string AttachmentPath = string.Empty;
+        public string Host = "127.0.0.1";
+        public int Port = 25;
+        public string CC = string.Empty;
+        public bool IsHtml = false;
+        public int SendUsing = 0;//0 = Network, 1 = PickupDirectory, 2 = SpecifiedPickupDirectory
+        public bool UseSSL = true;
+        public int AuthenticationMode = 1;//0 = No authentication, 1 = Plain Text, 2 = NTLM authentication
 
         void fillCombo()
         {
-            
+
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Personel";
@@ -36,7 +51,7 @@ namespace WpfApplication1
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
-           
+
             adap.Fill(dt);
             personelSec.ItemsSource = dt.DefaultView;
             personelSec.DisplayMemberPath = "P_Adi";
@@ -59,65 +74,25 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Kime.Text = selectedPersonel;
-            //Kime.Text = selectedPersonel;
-            MailMessage mesaj = new MailMessage();
-            if (yollancakMailAdresi == null)
-            {
-
-                yollancakMailAdresi = pkime.Text;
-            }
-            mesaj.To.Add(yollancakMailAdresi);
-            mesaj.From = new MailAddress(Gonderen.Text);
-            mesaj.Body = Metin.Text;
-            mesaj.Subject = Baslik.Text;
-            SmtpClient cli = new SmtpClient();
-            cli.EnableSsl = true;
-            cli.Credentials = new System.Net.NetworkCredential(Gonderen.Text, sifre.Password);
-            cli.Host = "smtp.gmail.com";
-            cli.Port = 465;
-
+            Mail wpfEmailer = new Mail();
+            wpfEmailer.User = txtUserName.Text;
+            wpfEmailer.Password = txtPassword.Password;
+            wpfEmailer.From = txtUserName.Text;
+            wpfEmailer.To = txtTo.Text;
+            //  wpfEmailer.Host = txtSMTPServerName.Text;
+            //wpfEmailer.Port = 25;
+            wpfEmailer.Subject = txtSubject.Text;
+            wpfEmailer.Body = txtBody.Text;
             try
             {
-
-                cli.Send(mesaj);
-                MessageBox.Show("Mailiniz gönderiliyor.......");
-                MessageBox.Show("Mailiniz gönderildi");
-
+                MessageBox.Show("Mailiniz gönderiliyor...");
+                wpfEmailer.SendEmail();
+                MessageBox.Show("Mailiniz basariyla gönderildi.");
             }
-            catch (Exception exp)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Mailiniz gönderilemedi" + exp.Message);
+                MessageBox.Show("Error:" + ex.ToString());
             }
-           /* MailMessage MyMailMessage = new MailMessage(Gonderen.Text, yollancakMailAdresi, Baslik.Text, Metin.Text);
-
-            MyMailMessage.IsBodyHtml = false;
-
-            NetworkCredential mailAuthentication = new NetworkCredential(Gonderen.Text, sifre.Password);
-
-            SmtpClient mailClient = new SmtpClient("smtp.gmail.com", 587);
-
-            mailClient.EnableSsl = false;
-
-            mailClient.UseDefaultCredentials = false;
-
-            mailClient.Credentials = mailAuthentication;
-
-
-            try
-            {
-                MessageBox.Show("Mailiniz gönderiliyor.......");
-                mailClient.Send(MyMailMessage);
-                MessageBox.Show("Mailiniz gönderildi");
-
-            }
-            catch (Exception exp)
-            {
-
-                MessageBox.Show("Mailiniz gönderilemedi" + exp.Message);
-            }
-            */
 
         }
 
@@ -144,8 +119,11 @@ namespace WpfApplication1
                     while (reader.Read())
                     {
                         yollancakMailAdresi = reader["P_Email"].ToString();
-                        pkime.Text = yollancakMailAdresi;
-                       // pkime.Text = " " + reader["P_Soyadi"].ToString();
+                        if (checkPer.IsChecked == true)
+                        {
+                            txtTo.Text = yollancakMailAdresi;
+                        }
+                        // pkime.Text = " " + reader["P_Soyadi"].ToString();
                     }
                 }
 
@@ -164,6 +142,89 @@ namespace WpfApplication1
         {
             string t = personelSec.SelectedValue.ToString();
             listele(t);
+        }
+        public void SendEmail()
+        {
+            new Thread(new ThreadStart(SendMessage)).Start();
+        }
+        /// <summary>
+        /// Send Email Message method.
+        /// </summary>
+        private void SendMessage()
+        {
+            try
+            {
+                MailMessage oMessage = new MailMessage();
+                SmtpClient smtpClient = new SmtpClient(Host);
+
+                oMessage.From = new MailAddress(From);
+                oMessage.To.Add(To);
+                oMessage.Subject = Subject;
+                oMessage.IsBodyHtml = IsHtml;
+                oMessage.Body = Body;
+
+                if (CC != string.Empty)
+                    oMessage.CC.Add(CC);
+
+                switch (SendUsing)
+                {
+                    case 0:
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        break;
+                    case 1:
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.PickupDirectoryFromIis;
+                        break;
+                    case 2:
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                        break;
+                    default:
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        break;
+
+                }
+                if (AuthenticationMode > 0)
+                {
+                    smtpClient.Credentials = new NetworkCredential(User, Password);
+                }
+
+                smtpClient.Port = Port;
+                smtpClient.EnableSsl = UseSSL;
+
+                // Create and add the attachment
+                if (AttachmentPath != string.Empty)
+                {
+                    oMessage.Attachments.Add(new Attachment(AttachmentPath));
+                }
+
+                try
+                {
+                    // Deliver the message  
+
+                    smtpClient.Send(oMessage);
+
+                }
+
+                catch (Exception ex)
+                {
+                    ex.ToString();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (checkPer.IsChecked == true)
+            {
+                checkPer.Visibility = Visibility.Hidden;
+                personeller.Visibility = Visibility.Visible;
+                personelSec.Visibility = Visibility.Visible;
+               
+            }
         }
     }
 }

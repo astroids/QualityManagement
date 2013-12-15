@@ -6,17 +6,18 @@
     <Grid>
         <Label Content="kime" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
         <Label Content="başlık" HorizontalAlignment="Left" Margin="20,93,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="pkime" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Name="Baslik" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <TextBox HorizontalAlignment="Left" Name="txtTo" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Name="txtSubject" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
         <Label Content="metin" HorizontalAlignment="Left" Margin="20,184,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="Metin" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
+        <TextBox HorizontalAlignment="Left" Name="txtBody" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
         <Label Content="email" HorizontalAlignment="Left" Margin="20,445,0,0" VerticalAlignment="Top"/>
         <Label Content="şifre" HorizontalAlignment="Left" Margin="20,504,0,0" VerticalAlignment="Top"/>
         <Button Content="gönder" HorizontalAlignment="Left" Margin="567,504,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Name="Gonderen" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
-        <PasswordBox HorizontalAlignment="Left" Name="sifre" Margin="121,504,0,0" VerticalAlignment="Top" Width="158"/>
-        <ComboBox HorizontalAlignment="Left" Name="personelSec" Margin="508,22,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="personelSec_SelectionChanged"/>
-        <Label Content="Personel Seç" HorizontalAlignment="Left" Margin="411,21,0,0" VerticalAlignment="Top" Width="82" Height="27"/>
+        <TextBox HorizontalAlignment="Left" Name="txtUserName" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
+        <PasswordBox HorizontalAlignment="Left" Name="txtPassword" Margin="121,504,0,0" VerticalAlignment="Top" Width="158"/>
+        <ComboBox HorizontalAlignment="Left" Visibility="Hidden" Name="personelSec" Margin="508,22,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="personelSec_SelectionChanged"/>
+        <Label Content="PersonelLer" Visibility="Hidden" Name="personeller" HorizontalAlignment="Left" Margin="411,21,0,0" VerticalAlignment="Top" Width="82" Height="27"/>
+        <CheckBox Content="Personel Seç" Name="checkPer" HorizontalAlignment="Left" Margin="439,25,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
 
     </Grid>
 </Controls:MetroWindow>
