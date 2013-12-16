@@ -32,14 +32,20 @@ namespace WpfApplication1
             set;
             get;
         }
-
+        private string sorumlu_personel
+        {
+            set;
+            get;
+        }
         public DokumanYeniRevize(string _docID)
         {
             InitializeComponent();
+            wdn.Width = 700;
             docID = _docID;
             con.ConnectionString = yet.ki.con;
             fillCombo();
             fillBox();
+            fillPersonel();
         }
         void fillCombo()
         {
@@ -97,7 +103,8 @@ namespace WpfApplication1
                     hadi.Text = reader["hazper"].ToString();
                     hdep.Text = reader["odep"].ToString();
                     hopoz.Text = reader["hpoz"].ToString();
-
+                    tipSec.Text = reader["dtip"].ToString();
+                    depSec.Text= reader["ddep"].ToString();
                 }
                 con.Close();
             }
@@ -107,11 +114,85 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
+
+
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SPgetDocIDincele @did";
+            cmd.Parameters.AddWithValue("@id", docID);
+            cmd.Parameters.AddWithValue("@dadı", docID);
+            cmd.Parameters.AddWithValue("@rev", docID);
+            cmd.Parameters.AddWithValue("@açık", docID);
+            cmd.Parameters.AddWithValue("@baslik", docID);
+            cmd.Parameters.AddWithValue("@hazper", docID);
+            cmd.Parameters.AddWithValue("@odep", docID);
+            cmd.Parameters.AddWithValue("@dtip", docID);
+            cmd.Parameters.AddWithValue("@ddep", docID);
+            
             DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim(Convert.ToInt32(docID));
             this.Close();
             gec.Show();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (wdn.Width == 700)
+            {
+                wdn.Width = 1050;
+            }
+            else
+            {
+                wdn.Width = 700;
+            }
+        }
+        private void fillPersonel()
+        {
+            try
+            {
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SPgetDokumanDagitmPers @did=@id";
+                cmd.Parameters.AddWithValue("@id", docID.ToString());
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Seçili Personel Zaten Listede");
+            }
+        }
+
+        private void personelSec_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = p_grid.SelectedItem;
+                sorumlu_personel = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+
+
+                con.Open();
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update Tbl_Dokuman set DKM_Hazirlayan_Personel = @sp where DKM_id = @di";
+                cmd.Parameters.AddWithValue("@di", docID);
+                cmd.Parameters.AddWithValue("@sp", sorumlu_personel);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+             //   MessageBox.Show("Hatalı seçim");
+            }
+            fillBox();
+        }
 
 
 

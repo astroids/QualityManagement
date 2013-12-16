@@ -45,6 +45,7 @@ namespace WpfApplication1
             fillGrid();
             fillBoxes();
             fillPersonel();
+            wnd.Width = 545;
         }
 
         private void fillGrid()
@@ -117,37 +118,74 @@ namespace WpfApplication1
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ekle_Click(object sender, RoutedEventArgs e)
         {
-            object item = p_grid.SelectedItem;
-            string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            if (item != null)
+
+            try
             {
-                try
-                {
-                    
-                    con.Open();
-                    cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@did", docID.ToString());
-                    cmd.Parameters.AddWithValue("@pid", ID.ToString());
-                    cmd.Parameters.AddWithValue("@mail", "TRUE");
-                    cmd.Parameters.AddWithValue("@dagit", "2013-12-11");
-                    cmd.CommandText = "insert into Tbl_Dokuman_Dagitim(DKMD_id,DKMD_personel,DKMD_mail,DKMD_Dagitim_Tarihi) values(@did,@pid,@mail,@dagit)";
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    selected_personel = Convert.ToInt32(ID);
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    con.Close();
-                }
-                fillPersonel();
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                con.Open();
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@did", docID.ToString());
+                cmd.Parameters.AddWithValue("@pid", ID.ToString());
+                cmd.Parameters.AddWithValue("@mail", "TRUE");
+                cmd.Parameters.AddWithValue("@dagit", "2013-12-11");
+                cmd.CommandText = "insert into Tbl_Dokuman_Dagitim(DKMD_id,DKMD_personel,DKMD_mail,DKMD_Dagitim_Tarihi) values(@did,@pid,@mail,@dagit)";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                selected_personel = Convert.ToInt32(ID);
+
+            }
+            catch
+            {
+                MessageBox.Show("Eklediğiniz kişi zaten listede!");
+                con.Close();
+            }
+            fillPersonel();
+            
+        }
+
+        private void cikar_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                object item = p2_grid.SelectedItem;
+                string ID = (p2_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                con.Open();
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@did", docID.ToString());
+                cmd.Parameters.AddWithValue("@pid", ID.ToString());
+                cmd.CommandText = "delete from Tbl_Dokuman_Dagitim where DKMD_id=@did and DKMD_personel=@pid";
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lütfen bir personel seçiniz!");
+                con.Close();
+            }
+            fillPersonel();
+        }
+
+        private void goster_Click(object sender, RoutedEventArgs e)
+        {
+            if (wnd.Width == 545)
+            {
+                wnd.Width = 1024;
+                goster.Content = "kapat";
+            }else{
+                wnd.Width = 545;
+                goster.Content = "seç";
             }
         }
+
+
 
 
     }
