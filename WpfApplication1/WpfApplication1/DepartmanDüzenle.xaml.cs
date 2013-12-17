@@ -30,66 +30,80 @@ namespace WpfApplication1
 
         void fillCombo()
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel";
-            cmd.Connection = con;
-            con.Open();
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel";
+                cmd.Connection = con;
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            adap.Fill(dt);
-            DepBaskani.ItemsSource = dt.DefaultView;
-            DepBaskani.DisplayMemberPath = "P_Adi";
-            DepBaskani.SelectedValuePath = "P_id";
-            con.Close();
+                adap.Fill(dt);
+                DepBaskani.ItemsSource = dt.DefaultView;
+                DepBaskani.DisplayMemberPath = "P_Adi";
+                DepBaskani.SelectedValuePath = "P_id";
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+            }
 
         }
 
         public DepartmanDüzenle(int id, int secim)
         {
-            x = secim;
-            idd = id;
-            InitializeComponent();
-
-            con.ConnectionString = yet.ki.con;
-            fillCombo();
-            if (secim == 2)
+            try
             {
-                depno.Visibility = Visibility.Visible;
-                depno.IsEnabled = true;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
-                cmd.Parameters.AddWithValue("@pid", id);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                x = secim;
+                idd = id;
+                InitializeComponent();
+
+                con.ConnectionString = yet.ki.con;
+                fillCombo();
+                if (secim == 2)
                 {
-                    DepAdi.Text = reader["DPT_adi"].ToString();
-                    DepBaskani.Text = reader["DPT_baskani"].ToString();
+                    depno.Visibility = Visibility.Visible;
+                    depno.IsEnabled = true;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
+                    cmd.Parameters.AddWithValue("@pid", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        DepAdi.Text = reader["DPT_adi"].ToString();
+                        DepBaskani.Text = reader["DPT_baskani"].ToString();
+                    }
+                    con.Close();
                 }
-                con.Close();
+                //listele(null);
+
+                else if (secim == 1)
+                {
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
+                    cmd.Parameters.AddWithValue("@pid", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        DepAdi.Text = reader["DPT_adi"].ToString();
+                        DepBaskani.Text = reader["DPT_baskani"].ToString();
+                    }
+                    con.Close();
+                }
             }
-            //listele(null);
-
-            else if (secim == 1)
+            catch
             {
-
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Departman where  DPT_id = @pid";
-                cmd.Parameters.AddWithValue("@pid", id);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    DepAdi.Text = reader["DPT_adi"].ToString();
-                    DepBaskani.Text = reader["DPT_baskani"].ToString();
-                }
-                con.Close();
+                MessageBox.Show("Depertman Duzenleme Islemleri Sirasinda Bir Hata Olustu");
             }
 
         }

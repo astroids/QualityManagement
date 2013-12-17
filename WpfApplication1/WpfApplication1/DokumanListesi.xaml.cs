@@ -32,20 +32,26 @@ namespace WpfApplication1
 
         void fillCombo()
         {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman";
+                cmd.Connection = con;
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Departman";
-            cmd.Connection = con;
-            con.Open();
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            depSec.ItemsSource = dt.DefaultView;
-            depSec.DisplayMemberPath = "DPT_adi";
-            depSec.SelectedValuePath = "DPT_id";
-            con.Close();
+                adap.Fill(dt);
+                depSec.ItemsSource = dt.DefaultView;
+                depSec.DisplayMemberPath = "DPT_adi";
+                depSec.SelectedValuePath = "DPT_id";
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+            }
 
         }
 
@@ -63,29 +69,34 @@ namespace WpfApplication1
         void listele(string tip)
         {
 
-
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            if (tip == null)
+            try
             {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                if (tip == null)
+                {
 
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SPgetAllDok";
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SPgetAllDok";
+                }
+                else
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SPgetDokumanByID @id";
+                    cmd.Parameters.AddWithValue("@id", tip);
+                }
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
-            else
+            catch
             {
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SPgetDokumanByID @id";
-                cmd.Parameters.AddWithValue("@id", tip);
+                MessageBox.Show("Listeleme Islemi Sirasinda Bir Hata Olustu");
             }
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
-
 
         }
 
