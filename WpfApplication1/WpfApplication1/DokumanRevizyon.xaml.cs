@@ -34,28 +34,34 @@ namespace WpfApplication1
         void listele(string tip)
         {
 
-
-            SqlCommand cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            if (tip == null)
+            try
             {
+                SqlCommand cmd = new SqlCommand();
+                con.Open();
+                cmd.Connection = con;
+                if (tip == null)
+                {
 
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SPgetAllDok";
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SPgetAllDok";
+                }
+                else
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id where d.DKM_Ilgili_Departman=@id";
+                    cmd.Parameters.AddWithValue("@id", tip);
+                }
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
-            else
+            catch
             {
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id where d.DKM_Ilgili_Departman=@id";
-                cmd.Parameters.AddWithValue("@id", tip);
+                MessageBox.Show("Listeleme islemi sirasinda bir hata olustu");
             }
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-            con.Close();
 
 
         }

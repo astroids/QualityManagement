@@ -50,33 +50,40 @@ namespace WpfApplication1
         void fillCombo()
         {
 
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman";
+                cmd.Connection = con;
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
+                adap.Fill(dt);
+                depSec.ItemsSource = dt.DefaultView;
+                depSec.DisplayMemberPath = "DPT_adi";
+                depSec.SelectedValuePath = "DPT_id";
+                con.Close();
+
+                cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Dokuman_Tipi";
+                cmd.Connection = con;
+                con.Open();
+                dt = new DataTable();
+                adap = new SqlDataAdapter(cmd);
+
+                adap.Fill(dt);
+                tipSec.ItemsSource = dt.DefaultView;
+                tipSec.DisplayMemberPath = "DKMT_Adi";
+                tipSec.SelectedValuePath = "DKMT_id";
+                con.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Bir hata olustu");
+            }
             
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Departman";
-            cmd.Connection = con;
-            con.Open();
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            depSec.ItemsSource = dt.DefaultView;
-            depSec.DisplayMemberPath = "DPT_adi";
-            depSec.SelectedValuePath = "DPT_id";
-            con.Close();
-
-            cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Dokuman_Tipi";
-            cmd.Connection = con;
-            con.Open();
-            dt = new DataTable();
-            adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            tipSec.ItemsSource = dt.DefaultView;
-            tipSec.DisplayMemberPath = "DKMT_Adi";
-            tipSec.SelectedValuePath = "DKMT_id";
-            con.Close();
         }
 
 
@@ -84,29 +91,36 @@ namespace WpfApplication1
         {
             if (docID != null)
             {
-                int docid = Convert.ToInt32(docID);
-
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SPgetDocIDincele @did";
-                cmd.Parameters.AddWithValue("@did", docid);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                try
                 {
-                    id.Text = reader["id"].ToString();
-                    adi.Text = reader["dadı"].ToString();
-                    rev.Text = reader["rev"].ToString();
-                    acik.Text = reader["açık"].ToString();
-                    baslik.Text = reader["baslik"].ToString();
-                    icerik.Text = reader["icer"].ToString();
-                    hadi.Text = reader["hazper"].ToString();
-                    hdep.Text = reader["odep"].ToString();
-                    hopoz.Text = reader["hpoz"].ToString();
-                    tipSec.Text = reader["dtip"].ToString();
-                    depSec.Text= reader["ddep"].ToString();
+                    int docid = Convert.ToInt32(docID);
+
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SPgetDocIDincele @did";
+                    cmd.Parameters.AddWithValue("@did", docid);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        id.Text = reader["id"].ToString();
+                        adi.Text = reader["dadı"].ToString();
+                        rev.Text = reader["rev"].ToString();
+                        acik.Text = reader["açık"].ToString();
+                        baslik.Text = reader["baslik"].ToString();
+                        icerik.Text = reader["icer"].ToString();
+                        hadi.Text = reader["hazper"].ToString();
+                        hdep.Text = reader["odep"].ToString();
+                        hopoz.Text = reader["hpoz"].ToString();
+                        tipSec.Text = reader["dtip"].ToString();
+                        depSec.Text = reader["ddep"].ToString();
+                    }
+                    con.Close();
                 }
-                con.Close();
+                catch
+                {
+                    MessageBox.Show("Bir hata olustu");
+                }
             }
 
 
@@ -115,21 +129,26 @@ namespace WpfApplication1
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
 
-
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SPgetDocIDincele @did";
-            cmd.Parameters.AddWithValue("@id", docID);
-            cmd.Parameters.AddWithValue("@dadı", docID);
-            cmd.Parameters.AddWithValue("@rev", docID);
-            cmd.Parameters.AddWithValue("@açık", docID);
-            cmd.Parameters.AddWithValue("@baslik", docID);
-            cmd.Parameters.AddWithValue("@hazper", docID);
-            cmd.Parameters.AddWithValue("@odep", docID);
-            cmd.Parameters.AddWithValue("@dtip", docID);
-            cmd.Parameters.AddWithValue("@ddep", docID);
-            
+            try
+            {
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SPgetDocIDincele @did";
+                cmd.Parameters.AddWithValue("@id", docID);
+                cmd.Parameters.AddWithValue("@dadı", docID);
+                cmd.Parameters.AddWithValue("@rev", docID);
+                cmd.Parameters.AddWithValue("@açık", docID);
+                cmd.Parameters.AddWithValue("@baslik", docID);
+                cmd.Parameters.AddWithValue("@hazper", docID);
+                cmd.Parameters.AddWithValue("@odep", docID);
+                cmd.Parameters.AddWithValue("@dtip", docID);
+                cmd.Parameters.AddWithValue("@ddep", docID);
+            }
+            catch
+            {
+                MessageBox.Show("Dokuman revize islemi sirasinda bir hata olustu");
+            }
             DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim(Convert.ToInt32(docID));
             this.Close();
             gec.Show();
