@@ -30,6 +30,8 @@ namespace WpfApplication1
         private string dep;
         private int x;
         private int idd;
+        private int ilkyetki;
+        private int ilksifre;
         public ekleDuzenle(int tur, int id)
         {
 
@@ -237,17 +239,23 @@ namespace WpfApplication1
                     }
                     if (checkmudur.IsChecked == true)
                     {
-                        yet.ki.yetki = 1;
+                       ilkyetki=1;
+                        // yet.ki.yetki = 1;
                     }
                     if (checkmYardım.IsChecked == true)
                     {
-                        yet.ki.yetki = 2;
+                       ilkyetki=2;
+
+                        // yet.ki.yetki = 2;
 
                     }
                     if (checkper.IsChecked == true)
-                    {
-                        yet.ki.yetki = 3;
+                    { 
+                        ilkyetki=3;
+                        //yet.ki.yetki = 3;
                     }
+                    Random rn = new Random();
+                    ilksifre=rn.Next(1000, 9999);
                     if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
                     {
                         MessageBox.Show("En fazla bir pozisyon seçebilirsiniz");
@@ -260,8 +268,9 @@ namespace WpfApplication1
                     try
                     {
                         cmd.Connection = con;
-                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet)";
+                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki,P_Sifre) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet,@P_Sifre)";
+
 
                         cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                         cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -278,13 +287,14 @@ namespace WpfApplication1
                         int drm = (adaydurumu.Text == "Çalışan") ? 0 : 1;
                         cmd.Parameters.AddWithValue("@P_Aday", drm.ToString());
                         cmd.Parameters.AddWithValue("@P_Sil", "0");
+                        cmd.Parameters.AddWithValue("@P_Sifre", ilksifre);
                         if (drm == 1)
                         {
                             cmd.Parameters.AddWithValue("@P_yet", 4);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@P_yet", "NULL");
+                            cmd.Parameters.AddWithValue("@P_yet", ilkyetki);
                         }
                         if (dep == null)
                         {
@@ -297,6 +307,8 @@ namespace WpfApplication1
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Kayıt Yapıldı..");
+
+                        MessageBox.Show("İlk Sifreniz: " + ilksifre.ToString());
                         this.Hide();
 
                         PersonelEkleSil ek = new PersonelEkleSil(1);
