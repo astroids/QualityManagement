@@ -24,13 +24,33 @@ namespace WpfApplication1
     public partial class ToplantiDokumanPersonelEkle : MetroWindow
     {
 
-        SqlConnection con = new SqlConnection();
+        private SqlConnection con = new SqlConnection();
+        private SqlCommand cmd = new SqlCommand();
+        private int currentTpl
+        {
+            set;
+            get;
+        }
+        private int selectedDoc
+        {
+            set;
+            get;
+        }
+        private int seletedPers
+        {
+            set;
+            get;
 
-        public ToplantiDokumanPersonelEkle()
+        }
+
+        public ToplantiDokumanPersonelEkle(int _tpl)
         {
             InitializeComponent();
+            currentTpl = _tpl;
             con.ConnectionString = yet.ki.con;
             fillGrids();
+            fillTplDocs();
+            wnm.Width = 512;
         }
 
         private void fillGrids()
@@ -52,6 +72,7 @@ namespace WpfApplication1
             catch
             {
                 MessageBox.Show("Doküman Listesini Doldururken bir sorun oluştu!");
+                con.Close();
             }
 
             try
@@ -71,10 +92,42 @@ namespace WpfApplication1
             catch
             {
                 MessageBox.Show("Persone Listesini Doldurma Islemi Sirasinda Bir Hata Olustu");
+                con.Close();
             }
         }
 
+        private void fillTplDocs()
+        {
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SPToplantiyaKatilanlar @tplid";
+            cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            tplDocu.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
 
+        }
+
+        private void fillTplPers()
+        {
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SPToplantiyaKatilanPersonelListele @tplid";
+            cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adap.Fill(dt);
+            tplPer.ItemsSource = dt.DefaultView;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
@@ -86,14 +139,133 @@ namespace WpfApplication1
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void docEkle_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                object item = docALL.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (docALL.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedDoc = Convert.ToInt32(ID);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = "insert into Tbl_Toplanti_Dokuman values(@tpl,@dcm)";
+                    cmd.Parameters.AddWithValue("@tpl", currentTpl.ToString());
+                    cmd.Parameters.AddWithValue("@dcm", selectedDoc.ToString());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    fillTplDocs();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Seçtiğiniz Doküman Zaten Toplantı Listesinde");
+                con.Close();
+            }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void uzat_Click(object sender, RoutedEventArgs e)
         {
-
+            if (wnm.Width == 512)
+            {
+                wnm.Width = 1024;
+            }
+            else
+            {
+                wnm.Width = 512;
+            }
         }
+
+        private void cikar_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = tplDocu.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (tplDocu.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedDoc = Convert.ToInt32(ID);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = "delete Tbl_Toplanti_Dokuman where Tpld_tid =@tpl and Tpld_did =@dcm;";
+                    cmd.Parameters.AddWithValue("@tpl", currentTpl.ToString());
+                    cmd.Parameters.AddWithValue("@dcm", selectedDoc.ToString());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    fillTplDocs();
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Çıkarma Sırasında Bir Hata Oluştu");
+                con.Close();
+            }
+        }
+
+        private void penke_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = persALL.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (persALL.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    seletedPers = Convert.ToInt32(ID);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = "insert into Tbl_Tpl_Katilanlar values(@tpl,@dcm,NULL,NULL)";
+                    cmd.Parameters.AddWithValue("@tpl", currentTpl.ToString());
+                    cmd.Parameters.AddWithValue("@dcm", seletedPers.ToString());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    fillTplPers();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Seçtiğiniz Doküman Zaten Toplantı Listesinde");
+                con.Close();
+
+            }
+        }
+
+        private void pcikar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = tplPer.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (tplPer.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    seletedPers = Convert.ToInt32(ID);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = "delete Tbl_Tpl_Katilanlar where Tpld_tid =@tpl and Tpld_did =@dcm;";
+                    cmd.Parameters.AddWithValue("@tpl", currentTpl.ToString());
+                    cmd.Parameters.AddWithValue("@dcm", seletedPers.ToString());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    fillTplPers();
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Çıkarma Sırasında Bir Hata Oluştu");
+                con.Close();
+            }
+        }
+
+
     }
 }

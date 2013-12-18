@@ -260,8 +260,8 @@ namespace WpfApplication1
                     try
                     {
                         cmd.Connection = con;
-                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_yet.ki.yetki) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet.ki.yetki)";
+                        cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki) 
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet)";
 
                         cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                         cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -275,10 +275,17 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
                         cmd.Parameters.AddWithValue("@P_Dept", dep);
                         cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                        string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
-                        cmd.Parameters.AddWithValue("@P_Aday", drm);
+                        int drm = (adaydurumu.Text == "Çalışan") ? 0 : 1;
+                        cmd.Parameters.AddWithValue("@P_Aday", drm.ToString());
                         cmd.Parameters.AddWithValue("@P_Sil", "0");
-                        cmd.Parameters.AddWithValue("@P_yet.ki.yetki", yet.ki.yetki);
+                        if (drm == 1)
+                        {
+                            cmd.Parameters.AddWithValue("@P_yet", 4);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@P_yet", "NULL");
+                        }
                         if (dep == null)
                         {
                             MessageBox.Show("Departmini secmediniz!!!");
@@ -286,12 +293,7 @@ namespace WpfApplication1
                             return;
 
                         }
-                        if (drm == null)
-                        {
 
-                            MessageBox.Show("Aday durumunu secmediniz!!!");
-                            return;
-                        }
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Kayıt Yapıldı..");
@@ -301,8 +303,9 @@ namespace WpfApplication1
                         ek.Show();
                         con.Close();
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        MessageBox.Show(ex.ToString());
                         MessageBox.Show("Kayit Yapilirkan Bir Hata Oluştu");
                     }
                 }
@@ -448,9 +451,16 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
                         cmd.Parameters.AddWithValue("@P_Dept", dep);
                         cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                        string drm = (adaydurumu.Text == "Çalışan") ? "0" : "1";
-                        cmd.Parameters.AddWithValue("@P_Aday", drm);
-                        cmd.Parameters.AddWithValue("@P_yet.ki.yetki", yet.ki.yetki);
+                        int drm = (adaydurumu.Text == "Çalışan") ? 0 : 1;
+                        cmd.Parameters.AddWithValue("@P_Aday", drm.ToString());
+                        if (drm == 1)
+                        {
+                            cmd.Parameters.AddWithValue("@P_yet", 4);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@P_yet", "NULL");
+                        }
                        
                             if (dep == null)
                             {
@@ -460,14 +470,7 @@ namespace WpfApplication1
 
                             }
                         
-                        
-                            if (drm == null)
-                            {
 
-                                MessageBox.Show("Aday durumunu secmediniz!!!");
-                                return;
-                            }
-                        
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Degisiklik Yapildi..");

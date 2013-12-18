@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TOPLANTI YÖNETİMİ" Height="400" Width="956">
     <Grid>
-        <DataGrid Name="data_grid" HorizontalAlignment="Left" Margin="23,31,0,0" VerticalAlignment="Top" Height="267" Width="899"></DataGrid>
+        <DataGrid Name="data_grid" RowHeight="24" AutoGenerateColumns="True" HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"  Margin="23,31,0,0" VerticalAlignment="Top" Height="267" Width="899"></DataGrid>
         <Label Content="ARAMA" HorizontalAlignment="Left" Margin="32,320,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.4,0.296"/>
         <TextBox Name="arama" HorizontalAlignment="Left" Height="23" Margin="96,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged_1"/>
         <Button Content="Toplantı Ekle" HorizontalAlignment="Left" Margin="300,322,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_1"/>

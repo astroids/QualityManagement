@@ -28,6 +28,11 @@ namespace WpfApplication1
         private SqlConnection con = new SqlConnection();
         private int toplanti_baskani;
         private string toplanti_departmani;
+        private int selectedTpl
+        {
+            set;
+            get;
+        }
         public ToplantiEkle()
         {
             InitializeComponent();
@@ -101,7 +106,7 @@ namespace WpfApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = con;
                 cmd.CommandText = @"Insert Into Tbl_Toplanti(Tpl_Baskani,Tpl_Tarihi,Tpl_Gundem,Tpl_Aciklama,Tpl_Departman,Tpl_Yeri,Tpl_Iptal)
-                            values(@Tpl_Baskani,@Tpl_Tarihi,@Tpl_Gundem,@Tpl_Aciklama,@Tpl_Departman,@Tpl_Yeri,@Tpl_Iptal)";
+                            values(@Tpl_Baskani,@Tpl_Tarihi,@Tpl_Gundem,@Tpl_Aciklama,@Tpl_Departman,@Tpl_Yeri,@Tpl_Iptal);SELECT SCOPE_IDENTITY();";
 
                 cmd.Parameters.AddWithValue("@Tpl_Tarihi", tarih.SelectedDate.Value);
                 cmd.Parameters.AddWithValue("@Tpl_Yeri", toplantiyeri.Text);
@@ -113,12 +118,13 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@Tpl_Departman", toplanti_departmani);
 
                 //           cmd.Parameters.AddWithValue("@Tpl_Yapilanlar", yapilanlar.Text);
-
-                cmd.ExecuteNonQuery();
+                string asd = cmd.ExecuteScalar().ToString();
+                selectedTpl = Convert.ToInt32(asd);
+              //  selectedTpl=(int)cmd.ExecuteScalar();
 
                 MessageBox.Show("Kayıt Yapıldı..");
                 con.Close();
-                ToplantiDokumanPersonelEkle pd = new ToplantiDokumanPersonelEkle();
+                ToplantiDokumanPersonelEkle pd = new ToplantiDokumanPersonelEkle(selectedTpl);
                 pd.Show();
                 this.Close();
             }
