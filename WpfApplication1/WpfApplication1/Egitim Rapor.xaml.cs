@@ -69,11 +69,7 @@ namespace WpfApplication1
                 eAlanPers.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
                  if (con.State == ConnectionState.Open){con.Close();}
-            }
-            catch
-            {
-                MessageBox.Show("Raporlama Sirasinda Bir Hata Oluştu");
-            }
+            
             logoS.Source = sir.ket;
             sadi.Text = sir.lname;
             stel.Text = sir.tel;
@@ -81,6 +77,11 @@ namespace WpfApplication1
             semail.Text = sir.email;
             sadres.Text = sir.adress;
             tarih.Text = DateTime.Now.ToString("M/d/yyyy");
+            }
+            catch
+            {
+                MessageBox.Show("Raporlama Sirasinda Bir Hata Oluştu");
+            }
 
         }
     }

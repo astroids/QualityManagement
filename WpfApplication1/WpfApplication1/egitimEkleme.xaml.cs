@@ -100,24 +100,31 @@ namespace WpfApplication1
         }
         public void setEgitimVeren(int i)
         {
-            egitimverenid = i;
-            MessageBox.Show(egitimverenid.ToString());
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
-
-            cmd.Parameters.AddWithValue("@id", egitimverenid);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                eVAdi.Content = reader["P_Adi"].ToString();
-                eVSoyadi.Content = reader["p_Soyadi"].ToString();
-            }
+                egitimverenid = i;
+                MessageBox.Show(egitimverenid.ToString());
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                SqlCommand cmd = new SqlCommand();
 
-             if (con.State == ConnectionState.Open){con.Close();}
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel where P_id = @id";
+
+                cmd.Parameters.AddWithValue("@id", egitimverenid);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    eVAdi.Content = reader["P_Adi"].ToString();
+                    eVSoyadi.Content = reader["p_Soyadi"].ToString();
+                }
+
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch
+            {
+                MessageBox.Show("Egitim Veren Kisi Secillirken Sirasinda Bir Hata Oluştu");
+            }
 
 
         }

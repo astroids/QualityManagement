@@ -43,20 +43,28 @@ namespace WpfApplication1
 
         void fillCombo()
         {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Personel";
+                cmd.Connection = con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Personel";
-            cmd.Connection = con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                adap.Fill(dt);
+                personelSec.ItemsSource = dt.DefaultView;
+                personelSec.DisplayMemberPath = "P_Adi";
+                personelSec.SelectedValuePath = "P_id";
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            
+            catch
+            {
+                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Oluştu");
+            }
 
-            adap.Fill(dt);
-            personelSec.ItemsSource = dt.DefaultView;
-            personelSec.DisplayMemberPath = "P_Adi";
-            personelSec.SelectedValuePath = "P_id";
-             if (con.State == ConnectionState.Open){con.Close();}
 
         }
 
@@ -74,6 +82,7 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+        
             Mail wpfEmailer = new Mail();
             wpfEmailer.User = txtUserName.Text;
             wpfEmailer.Password = txtPassword.Password;
