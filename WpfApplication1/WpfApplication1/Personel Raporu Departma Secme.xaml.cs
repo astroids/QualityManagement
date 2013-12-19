@@ -40,7 +40,7 @@ namespace WpfApplication1
             cmd.CommandText = "select * from Tbl_Departman";
             cmd.Connection = con;
             con.ConnectionString = yet.ki.con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -48,7 +48,7 @@ namespace WpfApplication1
             departman.ItemsSource = dt.DefaultView;
             departman.DisplayMemberPath = "DPT_adi";
             departman.SelectedValuePath = "DPT_id";
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
         }
         private void depSec_SelectionChanged(object sender, SelectionChangedEventArgs e)

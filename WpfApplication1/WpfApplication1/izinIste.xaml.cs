@@ -39,7 +39,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             con.ConnectionString = yet.ki.con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -69,7 +69,7 @@ namespace WpfApplication1
                    
             
             
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
             fillCombo();
             //this column will display as text
        //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
@@ -86,7 +86,7 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Izin_Tur";
             cmd.Connection = con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -94,7 +94,7 @@ namespace WpfApplication1
             neden.ItemsSource = dt.DefaultView;
             neden.DisplayMemberPath = "IT_adi";
             neden.SelectedValuePath = "IT_id";
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
         }
 
@@ -113,7 +113,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "insert into Tbl_Personel_Izin values(@id,@tur,@bas,@bit,@sure,NULL,NULL)";
@@ -128,6 +128,7 @@ namespace WpfApplication1
             }
             catch 
             {
+                if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Hatlı işlem");
             }
         }

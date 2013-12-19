@@ -44,7 +44,7 @@ namespace WpfApplication1
             {
                 egitimveren = eg;
                 eVerenDegisti = true;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = con;
@@ -59,11 +59,13 @@ namespace WpfApplication1
                     eVerenSoy.Text = reader["p_Soyadi"].ToString();
                 }
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Egitim Veren Kisi Secilirken Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -72,7 +74,7 @@ namespace WpfApplication1
         {
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -84,11 +86,13 @@ namespace WpfApplication1
 
                 eAlanPers.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Yenileme Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -102,7 +106,7 @@ namespace WpfApplication1
 
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
@@ -120,12 +124,14 @@ namespace WpfApplication1
                     eVerenSoy.Text = reader["P_Soyadi"].ToString();
 
                 }
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
 
             }
             catch
             {
                 MessageBox.Show("Egitim Duzenleme Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
             
 
@@ -154,7 +160,7 @@ namespace WpfApplication1
 
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "delete from Tbl_Personel_Egitim  where Tbl_Personel_Egitim.PE_Egitim_id = @secilenEgitim and Tbl_Personel_Egitim.PE_id=@selected_personel;";
@@ -162,12 +168,14 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 refreshTable();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Çıkarılacak kişiyi seçiniz");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -186,7 +194,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "insert into Tbl_Personel_Egitim values(@secilenEgitim,@selected_personel,NULL);";
@@ -194,10 +202,10 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@selected_personel", selected_personel);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select eg.P_id as 'Sicil No', eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' ,eg.PE_Egitim_Degerlendirme as 'Egitim Degerlendirme' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;"; //"	select eg.P_Adi as 'Adı', eg.P_Soyadi as 'Soyadı' ,eg.P_Dept as 'Departmanı' from(select * from Tbl_Personel_Egitim e,Tbl_Personel p where p.P_id = e.PE_id)as eg where eg.PE_Egitim_id = @id;";
@@ -207,11 +215,13 @@ namespace WpfApplication1
 
                 adap.Fill(dt);
                 eAlanPers.ItemsSource = dt.DefaultView;
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Seçtiğiniz Kişi Zaten Eğitim Listesinde");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
                 this.Close();
             }
 
@@ -242,18 +252,18 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Egitim set E_Icerik=@icerik where  E_id=@id";
                 cmd.Parameters.AddWithValue("@id", secilenEgitim);
                 cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 if (tarihdegisti)
                 {
                     cmd = new SqlCommand();
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "update Tbl_Egitim set E_BasTarih=@bas ,E_BitTarih=@bit where  E_id=@id";
@@ -261,22 +271,22 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@bas", ((DateTime)DateS.SelectedDate).ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@bit", ((DateTime)DateE.SelectedDate).ToString("yyyy-MM-dd"));
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
                 if (eVerenDegisti)
                 {
                     cmd = new SqlCommand();
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "update Tbl_Egitim set E_Egi_Veren=@everen where  E_id=@id";
                     cmd.Parameters.AddWithValue("@id", secilenEgitim);
                     cmd.Parameters.AddWithValue("@everen", egitimveren);
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 
 
 
@@ -286,6 +296,8 @@ namespace WpfApplication1
             catch(Exception ex)
             {
                 MessageBox.Show("Değiştirme sırasında bir hata oluştu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
                 this.Close();
             }
             MessageBox.Show("Değişiklikleriniz Başarıyla Kaydedildi");

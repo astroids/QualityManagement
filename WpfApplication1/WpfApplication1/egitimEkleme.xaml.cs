@@ -44,7 +44,7 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             SqlCommand cmd = new SqlCommand();
 
             try
@@ -58,11 +58,11 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@btr", baslngic.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@sontr", bitisTar.ToString("yyyy-MM-dd"));
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
 
 
                 //izinin idsini bul
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd = new SqlCommand();
 
                 cmd.Connection = con;
@@ -76,7 +76,7 @@ namespace WpfApplication1
 
 
                 //cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show(egitimno.ToString());
 
                 Wegitimincele n = new Wegitimincele(egitimno);
@@ -102,7 +102,7 @@ namespace WpfApplication1
         {
             egitimverenid = i;
             MessageBox.Show(egitimverenid.ToString());
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             SqlCommand cmd = new SqlCommand();
 
             cmd.Connection = con;
@@ -117,7 +117,7 @@ namespace WpfApplication1
                 eVSoyadi.Content = reader["p_Soyadi"].ToString();
             }
 
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
 
         }

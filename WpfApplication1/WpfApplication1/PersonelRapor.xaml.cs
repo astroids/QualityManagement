@@ -35,7 +35,7 @@ namespace WpfApplication1
                 InitializeComponent();
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "Select * From Tbl_Personel   ";
@@ -50,7 +50,7 @@ namespace WpfApplication1
                     tel2.Text = reader["P_Tel2"].ToString();
                     Email.Text = reader["P_Email"].ToString();
                 }
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 sadi.Text = sir.name;
                 sadi.Text = sir.lname;
                 stel.Text = sir.tel;
@@ -61,6 +61,8 @@ namespace WpfApplication1
             catch
             {
                 MessageBox.Show("Raporlama Islemi Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }

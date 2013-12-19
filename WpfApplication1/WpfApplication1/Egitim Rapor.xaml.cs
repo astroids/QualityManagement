@@ -39,7 +39,7 @@ namespace WpfApplication1
 
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
@@ -54,9 +54,9 @@ namespace WpfApplication1
                     eVeren.Text = reader["P_Adi"].ToString() + " " + reader["P_Soyadi"].ToString();
 
                 }
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
 
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -68,7 +68,7 @@ namespace WpfApplication1
 
                 eAlanPers.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {

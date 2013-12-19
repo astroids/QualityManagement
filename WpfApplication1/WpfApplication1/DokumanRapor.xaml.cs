@@ -39,7 +39,7 @@ namespace WpfApplication1
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = yet.ki.con;
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
@@ -48,7 +48,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {

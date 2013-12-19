@@ -36,7 +36,7 @@ namespace WpfApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Personel";
                 cmd.Connection = con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -44,7 +44,7 @@ namespace WpfApplication1
                 DepBaskani.ItemsSource = dt.DefaultView;
                 DepBaskani.DisplayMemberPath = "P_Adi";
                 DepBaskani.SelectedValuePath = "P_id";
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -67,7 +67,7 @@ namespace WpfApplication1
                 {
                     depno.Visibility = Visibility.Visible;
                     depno.IsEnabled = true;
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
@@ -79,14 +79,14 @@ namespace WpfApplication1
                         DepAdi.Text = reader["DPT_adi"].ToString();
                         DepBaskani.Text = reader["DPT_baskani"].ToString();
                     }
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
                 //listele(null);
 
                 else if (secim == 1)
                 {
 
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
@@ -98,7 +98,7 @@ namespace WpfApplication1
                         DepAdi.Text = reader["DPT_adi"].ToString();
                         DepBaskani.Text = reader["DPT_baskani"].ToString();
                     }
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
             }
             catch
@@ -115,7 +115,7 @@ namespace WpfApplication1
             {
 
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.CommandType = CommandType.Text;
                 //if (tip == null)
                 //{
@@ -137,12 +137,12 @@ namespace WpfApplication1
                     }
                 }
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
 
         }
@@ -159,7 +159,7 @@ namespace WpfApplication1
             {
                 if (con.State == ConnectionState.Closed)
                 {
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 }
 
                 cmd.Connection = con;
@@ -176,7 +176,7 @@ namespace WpfApplication1
                 MessageBox.Show("Kayıt Yapıldı..");
                 this.Hide();
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
 
 
             }
@@ -185,7 +185,7 @@ namespace WpfApplication1
             {
                 if (con.State == ConnectionState.Closed)
                 {
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 }
 
                 cmd.Connection = con;
@@ -203,7 +203,7 @@ namespace WpfApplication1
                 MessageBox.Show("Düzenleme Yapıldı..");
                 this.Hide();
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
 
 
             }

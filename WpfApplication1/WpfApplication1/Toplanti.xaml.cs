@@ -37,17 +37,17 @@ namespace WpfApplication1
             {
                 con.ConnectionString = yet.ki.con;
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 
                 if (s == null || s.Length == 0)
                 {
-                    cmd.CommandText = "Select * From Tbl_Toplanti where Tpl_Iptal=0 or Tpl_Iptal is NULL";
+                    cmd.CommandText = "SPToplantiListele ";
                 }
                 else
                 {
-                    cmd.CommandText = "Select * From Tbl_Toplanti s Where s.Tpl_Gundem like @Title";
+                    cmd.CommandText = "select t.Tpl_id as 'Toplatı ID', p.P_Adi + ' ' + p.P_Soyadi as 'Toplantı Başkanı',d.DPT_adi as 'Ilgili Departman'  ,t.Tpl_Gundem as 'Toplantı Gündemi' , t.Tpl_Yeri as 'Toplantı Yeri', t.Tpl_Tarihi as 'Toplantı Tarihi'from Tbl_Toplanti t join Tbl_Personel p on t.Tpl_Baskani=p.P_id left join Tbl_Departman d on t.Tpl_Departman=d.DPT_id where t.Tpl_Gundem like @Title order by t.Tpl_Tarihi desc";
                     cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
                 }
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
@@ -55,11 +55,13 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 data_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Listeleme Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -92,19 +94,19 @@ namespace WpfApplication1
                         string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                         selectedID = Convert.ToInt32(ID);
 
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
 
                         SqlCommand cmd = new SqlCommand();
                         cmd.Connection = con;
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "delete from Tbl_Toplanti where Top_id = @Top_id";
+                        cmd.CommandText = "update Tbl_Toplanti set Tpl_Iptal=1  where Tpl_id=@Top_id";
 
                         cmd.Parameters.AddWithValue("@Top_id", selectedID);
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Silme Yapıldı..");
-
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
+                         listele(null);
+                         MessageBox.Show("Toplantı İptal Edild");
 
                         //rows number of record got deleted
 
@@ -112,7 +114,9 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Silme Islemi Sirasinda Bir Hata Oluştu");
+                    MessageBox.Show("İptal Islemi Sirasinda Bir Hata Oluştu");
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+
                 }
 
 
@@ -120,7 +124,9 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Silinecek olan toplantiyi secdiginize emin olunuz!");
+                MessageBox.Show("İptal edilecek toplantiyi secdiginize emin olunuz!");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
         }
 
@@ -141,6 +147,7 @@ namespace WpfApplication1
             }
             else
             {
+                if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Degistirmek icin bir toplanti secmelisiniz!");
             }
 

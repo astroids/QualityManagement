@@ -271,7 +271,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 ///-------------------------------------------------------------------------arama kutusu cagirma tipi
@@ -347,11 +347,12 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Listeleme İslemi Sirasinda Bir Hata Oluştu");
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
 
 
@@ -426,7 +427,7 @@ namespace WpfApplication1
                     izinIste iz = new izinIste(selectedID);
                     iz.Show();
                     //SqlCommand cmd = new SqlCommand();
-                    //con.Open();
+                    //if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     //cmd.Connection = con;
                     //cmd.CommandType = CommandType.Text;
                     //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
@@ -435,7 +436,7 @@ namespace WpfApplication1
                     //DataTable dt = new DataTable();
                     //adap.Fill(dt);
                     //cmd.ExecuteNonQuery();
-                    //con.Close();
+                    // if (con.State == ConnectionState.Open){con.Close();}
                 }
                 catch
                 {
@@ -458,7 +459,7 @@ namespace WpfApplication1
 
                 SqlCommand cmd = new SqlCommand();
                 // MessageBox.Show(d);
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@CTime", d);
@@ -469,7 +470,7 @@ namespace WpfApplication1
                 p_grid.ItemsSource = null;
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -497,7 +498,7 @@ namespace WpfApplication1
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedID = Convert.ToInt32(ID);
                     SqlCommand cmd = new SqlCommand();
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "SPizinGecmisi @ID";
@@ -507,7 +508,7 @@ namespace WpfApplication1
                     adap.Fill(dt);
                     p_grid.ItemsSource = dt.DefaultView;
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
                 catch ( Exception ex)
                 {
@@ -527,7 +528,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPgetIzinOnayListele";
@@ -537,7 +538,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -556,7 +557,7 @@ namespace WpfApplication1
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedID = Convert.ToInt32(ID);
                     SqlCommand cmd = new SqlCommand();
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "SPizinOnayla @sid @over";                            //buraya virgul olabilir
@@ -567,14 +568,14 @@ namespace WpfApplication1
                     adap.Fill(dt);
                     p_grid.ItemsSource = dt.DefaultView;
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                     MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
                 }
                 catch
                 {
                     MessageBox.Show("yet.ki.yetkiden Sonra Düzlet Burayı");
                     //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
 
             }
@@ -661,7 +662,7 @@ namespace WpfApplication1
         //        {
         //            string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
         //            SqlCommand cmd = new SqlCommand();
-        //            con.Open();
+        //            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
         //            cmd.Connection = con;
         //            cmd.CommandType = CommandType.Text;
         //            cmd.CommandText = "SPizinGecmisi @ID";
@@ -672,7 +673,7 @@ namespace WpfApplication1
         //            adap.Fill(dt);
         //            p_grid.ItemsSource = dt.DefaultView;
         //            cmd.ExecuteNonQuery();
-        //            con.Close();
+        //             if (con.State == ConnectionState.Open){con.Close();}
         //        }
         //        else
         //        {
@@ -833,7 +834,7 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Meneger only");
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPizinOnayiBekleyenPersonel";
@@ -842,7 +843,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -866,13 +867,13 @@ namespace WpfApplication1
                         string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                         selectedID = Convert.ToInt32(ID);
                         SqlCommand cmd = new SqlCommand();
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                         cmd.Connection = con;
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "delete Tbl_Egitim where E_id =@sid";
                         cmd.Parameters.AddWithValue("@sid", selectedID);
                         cmd.ExecuteNonQuery();
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                         listele(null);
                         MessageBox.Show("İşleminiz Başarıyla gerçekleştirildi");
                     }
@@ -910,7 +911,7 @@ namespace WpfApplication1
                         //con.ConnectionString = "Server=ERSINBM-8; Database=Personel; Integrated Security=true;";
 
 
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
 
                         SqlCommand cmd = new SqlCommand();
                         cmd.Connection = con;
@@ -922,7 +923,7 @@ namespace WpfApplication1
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Silme Yapıldı..");
 
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                         listele(null);
                         //rows number of record got deleted
                     }
@@ -994,7 +995,7 @@ namespace WpfApplication1
             try
             {
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = con;
@@ -1023,7 +1024,7 @@ namespace WpfApplication1
                     //x.Show();
                     this.Hide();
 
-                    /*con.Open();
+                    /*if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
@@ -1036,7 +1037,7 @@ namespace WpfApplication1
                         //isim.Text = reader["P_Adi"].ToString();
 
                     }
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                     */
 
 

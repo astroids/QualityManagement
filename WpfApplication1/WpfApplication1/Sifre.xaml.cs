@@ -44,7 +44,7 @@ namespace WpfApplication1
                 {
                     SqlCommand cmd = new SqlCommand();
                     con.ConnectionString = yet.ki.con;
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = @"update Tbl_Personel set P_Sifre=@yeni.Password where P_id=@GirisEkrani.yet.ki.kulID";
@@ -54,12 +54,14 @@ namespace WpfApplication1
                     adap.Fill(dt);
 
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                     MessageBox.Show("Şifre Başarıyla Değiştirildi");
                 }
                 catch
                 {
                     MessageBox.Show("Hatalı Girdi");
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+
                 }
             }
             else
@@ -70,7 +72,7 @@ namespace WpfApplication1
 
       /*      try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
                 SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
 

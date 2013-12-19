@@ -105,7 +105,7 @@ namespace WpfApplication1
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = yet.ki.con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             SqlCommand cmd = new SqlCommand();
 
             cmd.Connection = con;
@@ -126,7 +126,7 @@ namespace WpfApplication1
 
             }
 
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
             MemoryStream strm = new MemoryStream();
             strm.Write(sir.logarray, 0, sir.logarray.Length);
             strm.Position = 0;

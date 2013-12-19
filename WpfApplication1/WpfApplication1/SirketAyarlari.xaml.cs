@@ -136,7 +136,7 @@ namespace WpfApplication1
 
                         logoIM.Source = new BitmapImage(new Uri(dlg.FileName));
                         sir.ket = new BitmapImage(new Uri(dlg.FileName));
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                         SqlCommand cmd = new SqlCommand();
 
                         cmd.Connection = con;
@@ -145,7 +145,7 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@lo", sir.logarray);
 
                         cmd.ExecuteNonQuery();
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                     }
                     catch
                     {
@@ -186,7 +186,7 @@ namespace WpfApplication1
             try{
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Kisa_Adi = @ad;";
@@ -196,7 +196,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
             
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Adı Başarıyla Değiştirildi");
             }catch{
                 MessageBox.Show("Hatalı Girdi");
@@ -209,7 +209,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Ticari_Adi = @ad;";
@@ -219,7 +219,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Ticari Adı Başarıyla Değiştirildi");
             }
             catch
@@ -234,7 +234,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_VNo  = @ad;";
@@ -244,7 +244,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Vergi Numarasi Başarıyla Değiştirildi");
             }
             catch
@@ -259,7 +259,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Adres = @ad;";
@@ -269,7 +269,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Adresi Başarıyla Değiştirildi");
             }
             catch
@@ -284,7 +284,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Tel = @ad;";
@@ -294,7 +294,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Telefonu Başarıyla Değiştirildi");
             }
             catch
@@ -309,7 +309,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -319,7 +319,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -335,7 +335,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Web= @ad;";
@@ -345,7 +345,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Websitesi Başarıyla Değiştirildi");
             }
             catch
@@ -359,7 +359,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -369,7 +369,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -383,7 +383,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -393,7 +393,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -407,7 +407,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -417,7 +417,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -432,7 +432,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -442,7 +442,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -456,7 +456,7 @@ namespace WpfApplication1
             {
                 SqlCommand cmd = new SqlCommand();
                 con.ConnectionString = yet.ki.con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "update Tbl_Sirket set S_Mail= @ad;";
@@ -466,7 +466,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
 
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 MessageBox.Show("Şirket Emaili Başarıyla Değiştirildi");
             }
             catch
@@ -523,7 +523,7 @@ namespace yet
             get;
         }
 
-        static public string con = "Server=MURAT-HP; Database=Personel; Integrated Security=true;";
+        static public string con = "Server=NAGASH; Database=Personel; Integrated Security=true;";
   
 
 

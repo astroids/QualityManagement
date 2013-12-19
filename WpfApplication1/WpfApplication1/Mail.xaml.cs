@@ -48,7 +48,7 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Personel";
             cmd.Connection = con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -56,7 +56,7 @@ namespace WpfApplication1
             personelSec.ItemsSource = dt.DefaultView;
             personelSec.DisplayMemberPath = "P_Adi";
             personelSec.SelectedValuePath = "P_id";
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
         }
 
@@ -92,6 +92,8 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show("Error:" + ex.ToString());
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -102,7 +104,7 @@ namespace WpfApplication1
             {
 
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.CommandType = CommandType.Text;
                 //if (tip == null)
                 //{
@@ -127,12 +129,12 @@ namespace WpfApplication1
                     }
                 }
 
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
 
         }

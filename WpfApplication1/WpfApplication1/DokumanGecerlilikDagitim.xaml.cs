@@ -53,7 +53,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select p.P_id as 'Personel ID',p.P_Adi as 'Personel Adi',p.P_Soyadi as 'Soyadı',d.DPT_adi as 'Departmanı',p.P_Pozisyon as 'Pozisyonu' from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_Silindi = 0;";
@@ -62,7 +62,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -74,7 +74,7 @@ namespace WpfApplication1
         {
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPgetGecerlilik @gid=@did";
@@ -89,7 +89,7 @@ namespace WpfApplication1
                     dArStip.Text = reader["dtar"].ToString();
                     dSor.Content = reader["sorumlu"].ToString();
                 }
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@ namespace WpfApplication1
         {
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPgetDokumanDagitmPers @did=@id";
@@ -110,7 +110,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p2_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -125,7 +125,7 @@ namespace WpfApplication1
             {
                 object item = p_grid.SelectedItem;
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -135,14 +135,14 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@dagit", "2013-12-11");
                 cmd.CommandText = "insert into Tbl_Dokuman_Dagitim(DKMD_id,DKMD_personel,DKMD_mail,DKMD_Dagitim_Tarihi) values(@did,@pid,@mail,@dagit)";
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 selected_personel = Convert.ToInt32(ID);
 
             }
             catch
             {
                 MessageBox.Show("Eklediğiniz kişi zaten listede!");
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             fillPersonel();
             
@@ -155,7 +155,7 @@ namespace WpfApplication1
             {
                 object item = p2_grid.SelectedItem;
                 string ID = (p2_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -163,12 +163,12 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@pid", ID.ToString());
                 cmd.CommandText = "delete from Tbl_Dokuman_Dagitim where DKMD_id=@did and DKMD_personel=@pid";
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Lütfen bir personel seçiniz!");
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             fillPersonel();
         }

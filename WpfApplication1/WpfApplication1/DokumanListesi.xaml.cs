@@ -38,7 +38,7 @@ namespace WpfApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Departman";
                 cmd.Connection = con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -46,7 +46,7 @@ namespace WpfApplication1
                 depSec.ItemsSource = dt.DefaultView;
                 depSec.DisplayMemberPath = "DPT_adi";
                 depSec.SelectedValuePath = "DPT_id";
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
@@ -72,7 +72,7 @@ namespace WpfApplication1
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 if (tip == null)
                 {
@@ -91,7 +91,7 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {

@@ -47,7 +47,7 @@ namespace WpfApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Departman";
                 cmd.Connection = con;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 DataTable dt = new DataTable();
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -55,11 +55,13 @@ namespace WpfApplication1
                 depSec.ItemsSource = dt.DefaultView;
                 depSec.DisplayMemberPath = "DPT_adi";
                 depSec.SelectedValuePath = "DPT_id";
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
 
         }
@@ -69,7 +71,7 @@ namespace WpfApplication1
             try
             {
                 toplanti_baskani = _toplanti_baskani;
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -84,11 +86,13 @@ namespace WpfApplication1
                     baskanC.Text = reader["P_Pozisyon"].ToString();
 
                 }
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
             catch
             {
                 MessageBox.Show("Baskan Secimi Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
         }
 
@@ -100,7 +104,7 @@ namespace WpfApplication1
             {
                 if (con.State == ConnectionState.Closed)
                 {
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 }
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
@@ -123,7 +127,7 @@ namespace WpfApplication1
               //  selectedTpl=(int)cmd.ExecuteScalar();
 
                 MessageBox.Show("Kayıt Yapıldı..");
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
                 ToplantiDokumanPersonelEkle pd = new ToplantiDokumanPersonelEkle(selectedTpl);
                 pd.Show();
                 this.Close();
@@ -132,7 +136,11 @@ namespace WpfApplication1
             {
                 //MessageBox.Show("Kayit Başarısız!");
                 MessageBox.Show(ex.ToString());
-                con.Close();
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
             }
         }
 

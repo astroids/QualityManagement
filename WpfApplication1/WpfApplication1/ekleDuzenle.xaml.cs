@@ -63,7 +63,7 @@ namespace WpfApplication1
                 {
 
 
-                    con.Open();
+                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     SqlCommand cmd = new SqlCommand();
 
                     cmd.Connection = con;
@@ -87,12 +87,13 @@ namespace WpfApplication1
                         medenihal.Text = reader["P_Med_Hal"].ToString();
                         adaydurumu.Text = reader["P_Aday"].ToString();
                     }
-                    con.Close();
+                     if (con.State == ConnectionState.Open){con.Close();}
                 }
                 fillCombo();
             }
             catch
             {
+                if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Duzenleme Sirasinda Bir Hata Oluştu");
             }
         }
@@ -103,7 +104,7 @@ namespace WpfApplication1
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from Tbl_Departman";
             cmd.Connection = con;
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             DataTable dt = new DataTable();
             SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
@@ -111,7 +112,7 @@ namespace WpfApplication1
             departman.ItemsSource = dt.DefaultView;
             departman.DisplayMemberPath = "DPT_adi";
             departman.SelectedValuePath = "DPT_id";
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
         }
         private void depSec_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -262,7 +263,7 @@ namespace WpfApplication1
                     }
                     if (con.State == ConnectionState.Closed)
                     {
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     }
 
                     try
@@ -313,12 +314,14 @@ namespace WpfApplication1
 
                         PersonelEkleSil ek = new PersonelEkleSil(1);
                         ek.Show();
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
                         MessageBox.Show("Kayit Yapilirkan Bir Hata Oluştu");
+                        if (con.State == ConnectionState.Open) { con.Close(); }
+
                     }
                 }
             }
@@ -329,7 +332,7 @@ namespace WpfApplication1
                 {
                     if (con.State == ConnectionState.Closed)
                     {
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     }
                     try
                     {
@@ -489,7 +492,7 @@ namespace WpfApplication1
                         this.Hide();
                         PersonelEkleSil ek = new PersonelEkleSil(1);
                         ek.Show();
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                     }
                     catch
                     {
@@ -506,7 +509,7 @@ namespace WpfApplication1
                 {
                     if (con.State == ConnectionState.Closed)
                     {
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     }
                     try
                     {
@@ -558,7 +561,7 @@ namespace WpfApplication1
                         this.Hide();
                         PersonelEkleSil ek = new PersonelEkleSil(1);
                         ek.Show();
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
                     }
                     catch
                     {

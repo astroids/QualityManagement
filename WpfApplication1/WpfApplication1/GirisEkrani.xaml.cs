@@ -53,7 +53,7 @@ namespace WpfApplication1
             
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
                 SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
                
@@ -98,7 +98,7 @@ namespace WpfApplication1
             }
             finally
             {
-                con.Close();
+                 if (con.State == ConnectionState.Open){con.Close();}
             }
              
                   

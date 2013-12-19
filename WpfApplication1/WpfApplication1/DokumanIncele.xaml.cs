@@ -54,7 +54,7 @@ namespace WpfApplication1
             con.ConnectionString = yet.ki.con;
             try
             {
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SPgetDocIDincele @did";
@@ -81,7 +81,7 @@ namespace WpfApplication1
                 opoz.Text = reader["opoz"].ToString();
 
             }
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
             if (parent =="")
             {
                 onceki.IsEnabled = false;

@@ -37,7 +37,7 @@ namespace WpfApplication1
         {
 
             SqlCommand cmd = new SqlCommand();
-            con.Open();
+            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             if (ser == null || ser.Length == 0)
@@ -50,7 +50,7 @@ namespace WpfApplication1
             adap.Fill(dt);
             grid.ItemsSource = dt.DefaultView;
             cmd.ExecuteNonQuery();
-            con.Close();
+             if (con.State == ConnectionState.Open){con.Close();}
 
         }
 
@@ -78,7 +78,7 @@ namespace WpfApplication1
                         string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                         selectedID = Convert.ToInt32(ID);
 
-                        con.Open();
+                        if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
 
                         SqlCommand cmd = new SqlCommand();
                         cmd.Connection = con;
@@ -90,7 +90,7 @@ namespace WpfApplication1
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Silme Yapıldı..");
 
-                        con.Close();
+                         if (con.State == ConnectionState.Open){con.Close();}
 
                     }
                 }
