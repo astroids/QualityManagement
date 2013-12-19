@@ -35,22 +35,28 @@ namespace WpfApplication1
         }
         private void listele(string ser)
         {
-
-            SqlCommand cmd = new SqlCommand();
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            if (ser == null || ser.Length == 0)
+            try
             {
-                cmd.CommandText = "SPgenelDeprtman ";
-            }
+                SqlCommand cmd = new SqlCommand();
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                if (ser == null || ser.Length == 0)
+                {
+                    cmd.CommandText = "SPgenelDeprtman ";
+                }
 
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-             if (con.State == ConnectionState.Open){con.Close();}
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch
+            {
+                MessageBox.Show("Listeleme Islemi Sirasinda Bir Hata Olustu");
+            }
 
         }
 

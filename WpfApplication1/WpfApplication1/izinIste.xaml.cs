@@ -33,68 +33,81 @@ namespace WpfApplication1
         {
 
             InitializeComponent();
-            _sicil.Content = iid;
-            persid = iid;
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            con.ConnectionString = yet.ki.con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-
-            cmd.CommandText = "Select IT_adi FROM Tbl_Izin_Tur;";
-
-            adap.Fill(dt);
-
-            DataSet ds = new DataSet();
-
-            adap.Fill(ds, "Tbl_Personel_Izin");
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "Select * FROM Tbl_Personel where P_id = @id;";
-            cmd.Parameters.AddWithValue("@id", iid);
-            adap.Fill(dt);
-
-            adap.Fill(ds, "Tbl_Personel");
-          
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                isim.Content = reader["P_Adi"].ToString();
-                soyisim.Content = reader["P_Soyadi"].ToString();
-            }
-                   
-            
-            
-             if (con.State == ConnectionState.Open){con.Close();}
-            fillCombo();
-            //this column will display as text
-       //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
+                _sicil.Content = iid;
+                persid = iid;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                con.ConnectionString = yet.ki.con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            //this column will use as back end value who can you use in selectedValue property
-         //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
+
+                cmd.CommandText = "Select IT_adi FROM Tbl_Izin_Tur;";
+
+                adap.Fill(dt);
+
+                DataSet ds = new DataSet();
+
+                adap.Fill(ds, "Tbl_Personel_Izin");
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "Select * FROM Tbl_Personel where P_id = @id;";
+                cmd.Parameters.AddWithValue("@id", iid);
+                adap.Fill(dt);
+
+                adap.Fill(ds, "Tbl_Personel");
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    isim.Content = reader["P_Adi"].ToString();
+                    soyisim.Content = reader["P_Soyadi"].ToString();
+                }
+
+
+
+                if (con.State == ConnectionState.Open) { con.Close(); }
+                fillCombo();
+                //this column will display as text
+                //     neden.DisplayMemberPath = ds.Tables[0].Columns["IT_adi"].ToString();
+
+                //this column will use as back end value who can you use in selectedValue property
+                //   neden.SelectedValuePath = ds.Tables[0].Columns["IT_id"].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Veritabani Islemleri Sirasinda Bir Hata Olustu");
+            }
 
 
         }
         void fillCombo()
         {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Izin_Tur";
+                cmd.Connection = con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Izin_Tur";
-            cmd.Connection = con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            neden.ItemsSource = dt.DefaultView;
-            neden.DisplayMemberPath = "IT_adi";
-            neden.SelectedValuePath = "IT_id";
-             if (con.State == ConnectionState.Open){con.Close();}
+                adap.Fill(dt);
+                neden.ItemsSource = dt.DefaultView;
+                neden.DisplayMemberPath = "IT_adi";
+                neden.SelectedValuePath = "IT_id";
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+            }
 
         }
 
