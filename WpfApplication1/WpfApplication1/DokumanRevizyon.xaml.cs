@@ -68,21 +68,58 @@ namespace WpfApplication1
 
         private void revize_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    DokumanYeniRevize rev = new DokumanYeniRevize(ID);
+                    rev.Show();
+
+                }
+                else//burası yei doc accak///********************************************************
+                {
+                    DokumanYeniRevize rev = new DokumanYeniRevize("NULL");
+                    rev.Show();
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Bir hata oluştu");
+            }
+            
+        }
+
+        private void yeni_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DokumanYeniRevize rev = new DokumanYeniRevize("NULL");
+                rev.Show();
+            }
+            catch 
+            {
+                MessageBox.Show("Bir hata oluştu");
+            }
+        }
+
+        private void incele_Click(object sender, RoutedEventArgs e)
+        {
             object item = p_grid.SelectedItem;
             if (item != null)
             {
                 string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                DokumanYeniRevize rev = new DokumanYeniRevize(ID);
-                rev.Show();
-                
+                selectedID = Convert.ToInt32(ID);
+                DokumanIncele doc = new DokumanIncele(selectedID);
+                doc.Show();
+
             }
             else
             {
-                DokumanYeniRevize rev = new DokumanYeniRevize(null);
-                rev.Show();
-                
+                MessageBox.Show("Deiştirmek için bir kişi seçinz");
             }
-            
         }
 
 

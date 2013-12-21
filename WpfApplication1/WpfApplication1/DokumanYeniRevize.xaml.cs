@@ -26,7 +26,7 @@ namespace WpfApplication1
     public partial class DokumanYeniRevize : MetroWindow
     {
         SqlConnection con = new SqlConnection();
-        SqlCommand cmd = new SqlCommand();
+        
         private string docID
         {
             set;
@@ -52,6 +52,7 @@ namespace WpfApplication1
 
             try
             {
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Departman";
                 cmd.Connection = con;
@@ -89,13 +90,15 @@ namespace WpfApplication1
 
         private void fillBox()
         {
-            if (docID != null)
+            
+
+            if (docID != "NULL")
             {
                 try
                 {
                     int docid = Convert.ToInt32(docID);
-
-                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                    if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                    SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "SPgetDocIDincele @did";
@@ -112,14 +115,18 @@ namespace WpfApplication1
                         hadi.Text = reader["hazper"].ToString();
                         hdep.Text = reader["odep"].ToString();
                         hopoz.Text = reader["hpoz"].ToString();
+                        sorumlu_personel=reader["hid"].ToString();
                         tipSec.Text = reader["dtip"].ToString();
                         depSec.Text = reader["ddep"].ToString();
                     }
                      if (con.State == ConnectionState.Open){con.Close();}
+                     
                 }
                 catch
                 {
                     MessageBox.Show("Bir hata olustu");
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    this.Close();
                 }
             }
 
@@ -131,34 +138,47 @@ namespace WpfApplication1
 
             try
             {
+                SqlCommand cmd = new SqlCommand();
+
                 if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
-                cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update Tbl_Dokuman set DKM_Adi=@dadı, DKM_Aciklama=@açık,DKM_Tip=@dtip,DKM_Baslik=@baslik,DKM_Hazirlayan_Personel=@hazper,DKM_Ilgili_Departman=@ddep where Tbl_Departman.DPT_id=@id";
-                cmd.Parameters.AddWithValue("@dadı", adi.Text);
+                if (docID != "NULL")
+                {
+                    cmd.CommandText = "insert into Tbl_Dokuman values(@dadi,@acik,@dtip,@baslik,@icer,@hazper,NULL,NULL,@rev,@neden,@parent,NULL,@ddep,NULL)SELECT SCOPE_IDENTITY()";
+                    cmd.Parameters.AddWithValue("@parent", docID);
+                }
+                else
+                {
+                    cmd.CommandText = "insert into Tbl_Dokuman values(@dadi,@acik,@dtip,@baslik,@icer,@hazper,NULL,NULL,@rev,@neden,NULL,NULL,@ddep,NULL)SELECT SCOPE_IDENTITY()";
+                }
+                cmd.Parameters.AddWithValue("@dadi", adi.Text);
                 cmd.Parameters.AddWithValue("@rev", rev.Text);
-                cmd.Parameters.AddWithValue("@açık", acik.Text);
+                cmd.Parameters.AddWithValue("@acik", acik.Text);
                 cmd.Parameters.AddWithValue("@baslik", baslik.Text);
-                cmd.Parameters.AddWithValue("@hazper", sorumlu_personel.ToString());
+                cmd.Parameters.AddWithValue("@hazper", sorumlu_personel);
                 cmd.Parameters.AddWithValue("@dtip", tipSec.SelectedValue);
                 cmd.Parameters.AddWithValue("@ddep", depSec.SelectedValue);
                 cmd.Parameters.AddWithValue("@icer", icerik.Text);
-                cmd.Parameters.AddWithValue("@id", docID);
+                
+                cmd.Parameters.AddWithValue("@neden", revNeden.Text);
+                string doc = cmd.ExecuteScalar().ToString();
                 if (con.State == ConnectionState.Open) { con.Close(); }
-
+                DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim(Convert.ToInt32(doc));
+                MessageBox.Show("Doküman Revizyon Başarılı");
+                this.Close();
+                gec.Show();
 
 
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Dokuman revize islemi sirasinda bir hata olustu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
-            DokumanGecerlilikDagitim gec = new DokumanGecerlilikDagitim(Convert.ToInt32(docID));
-            this.Close();
-            gec.Show();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -176,6 +196,7 @@ namespace WpfApplication1
         {
             try
             {
+                SqlCommand cmd = new SqlCommand();
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -200,24 +221,28 @@ namespace WpfApplication1
             {
                 object item = p_grid.SelectedItem;
                 sorumlu_personel = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-
-
+                SqlCommand cmdr = new SqlCommand();
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-                cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update Tbl_Dokuman set DKM_Hazirlayan_Personel = @sp where DKM_id = @di";
-                cmd.Parameters.AddWithValue("@di", docID);
-                cmd.Parameters.AddWithValue("@sp", sorumlu_personel);
-                cmd.ExecuteNonQuery();
+                cmdr.Connection = con;
+                cmdr.CommandType = CommandType.Text;
+                cmdr.CommandText = "select p.P_Adi+ ' '+ p.P_Soyadi as 'hper',p.P_Pozisyon as 'poz',d.DPT_adi as 'dep' from Tbl_Personel p join Tbl_Departman d on p.P_Dept=d.DPT_id where p.P_id =@id";
+                cmdr.Parameters.AddWithValue("@id", sorumlu_personel);
+                SqlDataReader reade = cmdr.ExecuteReader();
+                while (reade.Read())
+                {
+                    hadi.Text = reade["hper"].ToString();
+                    hdep.Text = reade["dep"].ToString();
+                    hopoz.Text = reade["poz"].ToString();
+
+                }
                  if (con.State == ConnectionState.Open){con.Close();}
             }
             catch (Exception ex)
             {
                 if (con.State == ConnectionState.Open) { con.Close(); }
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Hatalı seçim");
             }
-            fillBox();
         }
 
 
