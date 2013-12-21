@@ -54,5 +54,11 @@ namespace WpfApplication1
             PersonelEkleSil ek = new PersonelEkleSil(9);
             ek.Show();
         }
+
+        private void izinve_Click(object sender, RoutedEventArgs e)
+        {
+            İzinVer ver = new İzinVer();
+            ver.Show();
+        }
     }
 }

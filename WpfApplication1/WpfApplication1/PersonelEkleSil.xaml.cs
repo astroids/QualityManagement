@@ -60,12 +60,12 @@ namespace WpfApplication1
                 else if (cagiranmenutipi == 2)
                 {
                     Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
                     izindeolanlar.Visibility = Visibility.Visible;
                     onaybekliyenler.Visibility = Visibility.Visible;
                     izingecmisi.Visibility = Visibility.Visible;
                     onaybekliyenler.Visibility = Visibility.Visible;
                     onayla.Visibility = Visibility.Visible;
+                    reddet.Visibility = Visibility.Visible;
                 }
                 else if (cagiranmenutipi == 3)
                 {
@@ -129,7 +129,6 @@ namespace WpfApplication1
                 else if (cagiranmenutipi == 2)
                 {
                     Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
                     izindeolanlar.Visibility = Visibility.Visible;
                     onaybekliyenler.Visibility = Visibility.Visible;
                     izingecmisi.Visibility = Visibility.Visible;
@@ -199,7 +198,6 @@ namespace WpfApplication1
                 else if (cagiranmenutipi == 2)
                 {
                     Title = "Personel İzin";
-                    iziniste.Visibility = Visibility.Visible;
                     izindeolanlar.Visibility = Visibility.Visible;
                     izindeolanlar.IsEnabled = false;
                     onaybekliyenler.Visibility = Visibility.Visible;
@@ -410,45 +408,8 @@ namespace WpfApplication1
                 MessageBox.Show("Düzenleme İslemi Sirasinda Bir Hata Oluştu");
             }
         }
-        //sil eski
-        private void iziniste_Click_1(object sender, RoutedEventArgs e)
-        {
-            object item = p_grid.SelectedItem;
-            if (item != null)
-            {
-                try
-                {
-                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                    if (ID != yet.ki.kulID) {
-                      
-                        MessageBox.Show("Böyle bir seçim yapmaya yet.ki.yetkiniz yoktur, Lütfen kendi bulundugunuz satırı seçiniz");
-                    }
-                    selectedID = Convert.ToInt32(ID);
-                    izinIste iz = new izinIste(selectedID);
-                    iz.Show();
-                    //SqlCommand cmd = new SqlCommand();
-                    //if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-                    //cmd.Connection = con;
-                    //cmd.CommandType = CommandType.Text;
-                    //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
-                    //cmd.Parameters.AddWithValue("@id", selectedID);
-                    //SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                    //DataTable dt = new DataTable();
-                    //adap.Fill(dt);
-                    //cmd.ExecuteNonQuery();
-                    // if (con.State == ConnectionState.Open){con.Close();}
-                }
-                catch
-                {
-                    MessageBox.Show("Izin İsteme Sirasinda Bir Hata Oluştu");
-                }
 
-            }
-            else
-            {
-                MessageBox.Show("İzin almak için için bir kişi seçinz");
-            }
-        }
+
 
         private void izindeolanlar_Click_1(object sender, RoutedEventArgs e)
         {
@@ -523,12 +484,12 @@ namespace WpfApplication1
             }
         }
 
-        private void onaybekliyenler_Click(object sender, RoutedEventArgs e)
+        private void onaybekleyenlerlistele()
         {
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPgetIzinOnayListele";
@@ -538,17 +499,22 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                 if (con.State == ConnectionState.Open){con.Close();}
+                if (con.State == ConnectionState.Open) { con.Close(); }
             }
             catch
             {
                 MessageBox.Show("Onay Bekleyenler Ekrana Getirilirken Bir Hata Oluştu");
             }
+        }
+
+        private void onaybekliyenler_Click(object sender, RoutedEventArgs e)
+        {
+            onaybekleyenlerlistele();
 
         }
         private void onayla_Click(object sender, RoutedEventArgs e)
         {
-
+             
             object item = p_grid.SelectedItem;
             if (item != null)
             {
@@ -560,28 +526,32 @@ namespace WpfApplication1
                     if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SPizinOnayla @sid @over";                            //buraya virgul olabilir
+                    cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=1,PI_OnayVeren_id =@OverID where PI_id = @sid";
                     cmd.Parameters.AddWithValue("@sid", selectedID);
-                    //cmd.Parameters.AddWithValue("@OverID",);
+                    cmd.Parameters.AddWithValue("@OverID", yet.ki.kulID);
+                   
+
                     SqlDataAdapter adap = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adap.Fill(dt);
                     p_grid.ItemsSource = dt.DefaultView;
                     cmd.ExecuteNonQuery();
                      if (con.State == ConnectionState.Open){con.Close();}
-                    MessageBox.Show("Onay Veren Personeli Loginle Yap Kayıt Başarılı");
+                     onayBek();
+                    MessageBox.Show("Personel İzni Başarıyla Onaylandı");
                 }
-                catch
+                catch 
                 {
-                    MessageBox.Show("yet.ki.yetkiden Sonra Düzlet Burayı");
                     //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
                      if (con.State == ConnectionState.Open){con.Close();}
+                     MessageBox.Show("Onay işlemi sırasında bir sorun oluştu lütfen yetkinizi konrol ediniz");
+
                 }
 
             }
             else
             {
-                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+                MessageBox.Show("Onaylanacak izini seçiniz");
             }
 
 
@@ -653,42 +623,7 @@ namespace WpfApplication1
 
         }
 
-        //private void izingecmisi_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        object item = p_grid.SelectedItem;
-        //        if (item != null)
-        //        {
-        //            string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-        //            SqlCommand cmd = new SqlCommand();
-        //            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-        //            cmd.Connection = con;
-        //            cmd.CommandType = CommandType.Text;
-        //            cmd.CommandText = "SPizinGecmisi @ID";
-        //            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(ID).ToString());
-        //            MessageBox.Show("buraya kimin izin verdigini  ve izin tipinide ekle");
-        //            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            adap.Fill(dt);
-        //            p_grid.ItemsSource = dt.DefaultView;
-        //            cmd.ExecuteNonQuery();
-        //             if (con.State == ConnectionState.Open){con.Close();}
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("İzin Geçmişini Görmek için bir kişi seçinz");
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Izın Gecmisi Ekrana Getirme Sirasinda Bir Hata Oluştu");
-        //    }
 
-        //}
-
-
-        // ---------------------------------------------------------------Egitim-----------------------------------------------------------------------------------
 
         private void egDegistir_Click(object sender, RoutedEventArgs e)
         {
@@ -827,14 +762,13 @@ namespace WpfApplication1
             PersonelEkleSil se = new PersonelEkleSil(4);
             se.Show();
         }
-
-        private void onaybekliyenler_Click_1(object sender, RoutedEventArgs e)
+        private void onayBek()
         {
             try
             {
                 MessageBox.Show("Meneger only");
                 SqlCommand cmd = new SqlCommand();
-                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SPizinOnayiBekleyenPersonel";
@@ -843,13 +777,18 @@ namespace WpfApplication1
                 adap.Fill(dt);
                 p_grid.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                 if (con.State == ConnectionState.Open){con.Close();}
+                if (con.State == ConnectionState.Open) { con.Close(); }
             }
             catch
             {
                 MessageBox.Show("Onay Bekliyenler Ekrana Getirilirken Bir Hata Olustu");
             }
+        }
 
+
+        private void onaybekliyenler_Click_1(object sender, RoutedEventArgs e)
+        {
+            onayBek();
 
         }
 
@@ -1020,28 +959,7 @@ namespace WpfApplication1
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedID = Convert.ToInt32(ID);
-                    //   ToplantiEkle x = new ToplantiEkle(selectedID, 1);                                                                                             //TOPLANTI EKLE
-                    //x.Show();
                     this.Hide();
-
-                    /*if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from Tbl_Toplanti where Top_id = @Top_id";
-                    cmd.Parameters.AddWithValue("@Top_id", selectedID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                    
-                        //isim.Text = reader["P_Adi"].ToString();
-
-                    }
-                     if (con.State == ConnectionState.Open){con.Close();}
-                    */
-
-
-
                 }
                 else
                 {
@@ -1055,9 +973,50 @@ namespace WpfApplication1
 
         }
 
+        private void reddet_Click(object sender, RoutedEventArgs e)
+        {
+            object item = p_grid.SelectedItem;
+            if (item != null)
+            {
+                try
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    SqlCommand cmd = new SqlCommand();
+                    if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Tbl_Personel_Izin set PI_Onay=0,PI_OnayVeren_id =@OverID where PI_id = @sid";
+                    cmd.Parameters.AddWithValue("@sid", selectedID);
+                    cmd.Parameters.AddWithValue("@OverID", yet.ki.kulID);
+
+
+                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adap.Fill(dt);
+                    p_grid.ItemsSource = dt.DefaultView;
+                    cmd.ExecuteNonQuery();
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    onayBek();
+                    MessageBox.Show("Personeli İzini Reddedildi");
+                }
+                catch (Exception ex)
+                {
+                    //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    MessageBox.Show("Red işlemi sırasında bir sorun oluştu lütfen yetkinizi konrol ediniz");
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Onaylanacak izini seçiniz");
+            }
 
 
 
+        }
 
     }
 }

@@ -141,7 +141,36 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
+            if (mail.IsChecked == true)
+            {
+                try
+                {
+                    cmd = new SqlCommand();
+                    if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                    
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                    cmd.CommandText = "update Tbl_Tpl_Katilanlar set Tplk_mail_onay = 1 where Tbl_Tpl_Katilanlar.Tplk_tid=@id;";
+                    cmd.Parameters.AddWithValue("@id", currentTpl.ToString());
+                    cmd.ExecuteNonQuery();
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    MessageBox.Show("Başarıyla kaydedildi");
+                    this.Close();
 
+                }
+                catch
+                {
+                    MessageBox.Show("Mail Ekleme Sırasında bir sorun oluştu");
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Başarıyla kaydedildi");
+                this.Close();
+            }
         }
 
         private void cikar_Click(object sender, RoutedEventArgs e)
@@ -200,6 +229,7 @@ namespace WpfApplication1
                 {
                     string ID = (tplDocu.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     selectedDoc = Convert.ToInt32(ID);
+                    cmd = new SqlCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = con;
                     if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}

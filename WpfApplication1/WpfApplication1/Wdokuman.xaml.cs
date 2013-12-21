@@ -44,8 +44,13 @@ namespace WpfApplication1
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             MainWindow bac = new MainWindow();
-            this.Close();
             bac.Show();
+        }
+
+        private void onay_Click(object sender, RoutedEventArgs e)
+        {
+            DokumanOnayxaml on = new DokumanOnayxaml();
+            on.Show();
         }
     }
 }

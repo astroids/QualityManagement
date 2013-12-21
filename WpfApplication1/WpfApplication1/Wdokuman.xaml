@@ -7,7 +7,7 @@
         <Button Name="dokumanIslem" Content="Doküman İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="85,45,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dokumanIslem_Click" />
         <Button Name="dokumanRev" Content="Revizyon İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="85,145,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Button_Click" />
         <Button Content="ana sayfa" FontFamily="Segoe WP" FontSize="12"  HorizontalAlignment="Left" Margin="85,326,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1"/>
-        <Button Name="onay" Content="Doküman Onay" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="85,235,0,0" VerticalAlignment="Top"  Width="180" Height="60"  />
+        <Button Name="onay" Content="Doküman Onay" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="85,235,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
 
     </Grid>
 </Controls:MetroWindow>

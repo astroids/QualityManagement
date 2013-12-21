@@ -1,0 +1,14 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.İzinVer" ShowTitleBar="True"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="İzin Ver" Height="600" Width="1024" HorizontalAlignment="Center">
+
+
+    <Grid>
+        <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="32,72,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" RenderTransformOrigin="0.25,-1.8"   />
+
+        <Button Visibility="Visible" Name="sec" Content="izin iste" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="sec_Click"  />
+
+    </Grid>
+</Controls:MetroWindow>

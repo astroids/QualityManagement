@@ -89,6 +89,9 @@
     <Compile Include="DokumanListesi.xaml.cs">
       <DependentUpon>DokumanListesi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DokumanOnayxaml.xaml.cs">
+      <DependentUpon>DokumanOnayxaml.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DokumanRapor.xaml.cs">
       <DependentUpon>DokumanRapor.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,9 @@
     <Compile Include="WPersonel.xaml.cs">
       <DependentUpon>WPersonel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="İzinVer.xaml.cs">
+      <DependentUpon>İzinVer.xaml</DependentUpon>
+    </Compile>
     <Page Include="AAABOSKOPYALA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DokumanListesi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanOnayxaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPersonel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="İzinVer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
