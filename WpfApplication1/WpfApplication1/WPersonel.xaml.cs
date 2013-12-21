@@ -85,5 +85,12 @@ namespace WpfApplication1
             this.Close();
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil pr = new PersonelEkleSil(13);
+
+            pr.Show();
+        }
+
     }
 }

@@ -1,0 +1,50 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.PersonelRaporu" ShowTitleBar="False"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Personel Raporu" Height="1000" Width="1024">
+    <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+        <Grid>
+            <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+                <FixedDocument Name="custRapor" >
+                    <PageContent>
+                        <FixedPage>
+
+          <Label Content="ID" HorizontalAlignment="Left" Margin="71,170,0,0" Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Adı:" HorizontalAlignment="Left" Margin="70,210,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Tel1" HorizontalAlignment="Left" Margin="70,300,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="TC Kimlik No:" HorizontalAlignment="Left"  Height="25" Margin="70,270,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Soyadı" HorizontalAlignment="Left" Margin="70,240,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Tel2" HorizontalAlignment="Left" Margin="70,330,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Email:" HorizontalAlignment="Left" Margin="70,360,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Doğum Tarihi"  HorizontalAlignment="Left" Margin="70,390,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Doğum Yeri" HorizontalAlignment="Left" Margin="70,420,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Departmanı" HorizontalAlignment="Left" Margin="70,450,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Pozisyonu" HorizontalAlignment="Left" Margin="70,480,0,0"  Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Medeni Hali" HorizontalAlignment="Left" Margin="70,510,0,0"  Height="25" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="id" Margin="200,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="adi"  Margin="200,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="soyadi" Margin="200,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="tc" Margin="200,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="tel1" Margin="200,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="tel2" Margin="200,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="email" Margin="200,360,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="dtar" Margin="200,390,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="dyer" Margin="200,420,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="dep" Margin="200,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="poz" Margin="200,480,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Name="med" Margin="200,510,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock Name="tarih" HorizontalAlignment="Left" Margin="70,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139" Height="28"/>
+        <Image Name="logoS" HorizontalAlignment="Left" Height="100" Margin="652,27,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock Name="sadi" HorizontalAlignment="Left" Margin="472,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="33"><Run Language="tr-tr" Text="adi"/></TextBlock>
+        <TextBlock Name="stel" HorizontalAlignment="Left" Margin="472,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="telefon"/></TextBlock>
+        <TextBlock Name="sweb" HorizontalAlignment="Left" Margin="472,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="web"/></TextBlock>
+        <TextBlock Name="semail" HorizontalAlignment="Left" Margin="472,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"><Run Language="tr-tr" Text="email"/></TextBlock>
+        <TextBlock Name="sadres" HorizontalAlignment="Left" Margin="472,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="34"><Run Language="tr-tr" Text="adres"/></TextBlock>
+                        </FixedPage>
+                    </PageContent>
+                </FixedDocument>
+            </ScrollViewer>
+        </Grid>
+    </ScrollViewer>
+</Controls:MetroWindow>

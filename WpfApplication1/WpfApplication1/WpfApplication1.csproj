@@ -146,6 +146,9 @@
     <Compile Include="PersonelRapor.xaml.cs">
       <DependentUpon>PersonelRapor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonelRaporu.xaml.cs">
+      <DependentUpon>PersonelRaporu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonelSelector.xaml.cs">
       <DependentUpon>PersonelSelector.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PersonelRapor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonelRaporu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

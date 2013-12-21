@@ -189,5 +189,10 @@ namespace WpfApplication1
                 e.Handled = true;
             }*/
         }
+
+        private void dosya_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

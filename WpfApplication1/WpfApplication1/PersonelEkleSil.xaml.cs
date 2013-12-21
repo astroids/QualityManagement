@@ -180,7 +180,11 @@ namespace WpfApplication1
                     egRapor.Visibility = Visibility.Visible;
                 }
 
-
+                else if (cagiranmenutipi == 13)
+                {
+                    p_grid.Visibility = Visibility.Visible;
+                    egRapor.Visibility = Visibility.Visible;
+                }
             }
             if (yet.ki.yetki == 3)
             {
@@ -255,6 +259,13 @@ namespace WpfApplication1
                     egRapor.Visibility = Visibility.Visible;
                     egRapor.IsEnabled = false;
                 }
+                else if (cagiranmenutipi == 13)
+                {
+                    p_grid.Visibility = Visibility.Visible;
+                    egRapor.Visibility = Visibility.Visible;
+                    egRapor.IsEnabled = false;
+                    perRapor.Visibility = Visibility.Visible;
+                }
 
             }
             con.ConnectionString = yet.ki.con;
@@ -315,6 +326,18 @@ namespace WpfApplication1
                     }
                 }
                 else if (cagiranmenutipi == 10)
+                {
+                    if (ser == null || ser.Length == 0)
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "Select * From Tbl_Personel p Where p.P_Adi like @Title";
+                        cmd.Parameters.AddWithValue("@Title", '%' + ser + '%');
+                    }
+                }
+                else if (cagiranmenutipi == 13)
                 {
                     if (ser == null || ser.Length == 0)
                     {
@@ -1016,6 +1039,31 @@ namespace WpfApplication1
 
 
 
+        }
+
+        private void perRapor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = p_grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    int selected_personel = Convert.ToInt32(ID);
+                    PersonelRaporu rap = new PersonelRaporu(selected_personel--);
+                    rap.Show();
+                    selected_personel = Convert.ToInt32(-1);
+                }
+
+                else
+                {
+                    MessageBox.Show("Lütfen bir kişi seçinz");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Personel Raporlama Sirasinda Bir Hata Olustu");
+            }
         }
 
     }

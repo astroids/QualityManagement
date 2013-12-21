@@ -11,19 +11,20 @@
         <Label Content="metin" HorizontalAlignment="Left" Margin="20,184,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Name="txtBody" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283" TextChanged="txtBody_TextChanged"/>
         <Label Content="email" HorizontalAlignment="Left" Margin="20,445,0,0" VerticalAlignment="Top"/>
-        <Label Content="şifre" HorizontalAlignment="Left" Margin="23,577,0,0" VerticalAlignment="Top"/>
-        <Button Content="gönder" HorizontalAlignment="Left" Margin="567,557,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="şifre" HorizontalAlignment="Left" Margin="23,503,0,0" VerticalAlignment="Top"/>
+        <Button Content="gönder" HorizontalAlignment="Left" Margin="558,557,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <TextBox HorizontalAlignment="Left" Name="txtUserName" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
-        <PasswordBox HorizontalAlignment="Left" Name="txtPassword" Margin="121,577,0,0" VerticalAlignment="Top" Width="158"/>
+        <PasswordBox HorizontalAlignment="Left" Name="txtPassword" Margin="121,503,0,0" VerticalAlignment="Top" Width="158"/>
         <ComboBox HorizontalAlignment="Left" Visibility="Hidden" Name="personelSec" Margin="508,22,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="personelSec_SelectionChanged"/>
         <Label Content="PersonelLer" Visibility="Hidden" Name="personeller" HorizontalAlignment="Left" Margin="411,21,0,0" VerticalAlignment="Top" Width="82" Height="27"/>
         <CheckBox Content="Personel Seç" Name="checkPer" HorizontalAlignment="Left" Margin="439,25,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
-        <Label Content="Sunucu" HorizontalAlignment="Left" Margin="23,495,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="121,495,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="ComboBox_SelectionChanged">
+        <Label Content="Sunucu" HorizontalAlignment="Left" Margin="313,446,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="475,446,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="@gmail.com" Name="comboBox1" HorizontalAlignment="Left" Width="156"/>
             <ComboBoxItem Content="@hotmail.com" Name="comboBox2" HorizontalAlignment="Left" Width="156"/>
         </ComboBox>
         <Label Content="Dosya Ekle" Name="linkLabel1" HorizontalAlignment="Left" Margin="455,184,0,0" VerticalAlignment="Top" Width="99"/>
+        <Button Content="Dosya Ekle" Name="dosya" HorizontalAlignment="Left" Margin="559,185,0,0" VerticalAlignment="Top" Width="75" Click="dosya_Click"/>
 
     </Grid>
 </Controls:MetroWindow>
