@@ -26,20 +26,10 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         private string yollancakMailAdresi;
-        public string From = string.Empty;
-        public string To = string.Empty;
-        public string User = string.Empty;
-        public string Password = string.Empty;
-        public string Subject = string.Empty;
-        public string Body = string.Empty;
-        public string AttachmentPath = string.Empty;
-        public string Host = "127.0.0.1";
-        public int Port = 25;
-        public string CC = string.Empty;
-        public bool IsHtml = false;
-        public int SendUsing = 0;//0 = Network, 1 = PickupDirectory, 2 = SpecifiedPickupDirectory
-        public bool UseSSL = true;
-        public int AuthenticationMode = 1;//0 = No authentication, 1 = Plain Text, 2 = NTLM authentication
+        string sunucu, kmail, ksifre;
+        int port;
+        bool attach = false;
+        string yol;
 
         void fillCombo()
         {
@@ -82,28 +72,35 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-        
-            Mail wpfEmailer = new Mail();
-            wpfEmailer.User = txtUserName.Text;
-            wpfEmailer.Password = txtPassword.Password;
-            wpfEmailer.From = txtUserName.Text;
-            wpfEmailer.To = txtTo.Text;
-            //  wpfEmailer.Host = txtSMTPServerName.Text;
-            //wpfEmailer.Port = 25;
-            wpfEmailer.Subject = txtSubject.Text;
-            wpfEmailer.Body = txtBody.Text;
             try
             {
-                MessageBox.Show("Mailiniz gönderiliyor...");
-                wpfEmailer.SendEmail();
-                MessageBox.Show("Mailiniz basariyla gönderildi.");
+                kmail = txtUserName.Text;
+                ksifre = txtPassword.Password;
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(sunucu);
+                mail.From = new MailAddress(kmail);
+                mail.To.Add(txtTo.Text);
+                if (attach == true)
+                {
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment(yol);//Attachment yerini belirleme.
+                    mail.Attachments.Add(attachment);//maile attachment ekleme
+                }
+                mail.Subject = txtSubject.Text;
+                mail.Body = txtBody.Text;
+
+                SmtpServer.Port = port;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(kmail, ksifre);//kullanıcı adı ve şifre bilgilerinin girilimi.
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("Mail başarıyla gönderildi.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.ToString());
-                if (con.State == ConnectionState.Open) { con.Close(); }
-
+                MessageBox.Show("Mesajınız gönderilmedi.\nHata raporu: " + ex.ToString());
             }
+          
 
         }
 
@@ -154,78 +151,9 @@ namespace WpfApplication1
             string t = personelSec.SelectedValue.ToString();
             listele(t);
         }
-        public void SendEmail()
-        {
-            new Thread(new ThreadStart(SendMessage)).Start();
-        }
-        /// <summary>
-        /// Send Email Message method.
-        /// </summary>
-        private void SendMessage()
-        {
-            try
-            {
-                MailMessage oMessage = new MailMessage();
-                SmtpClient smtpClient = new SmtpClient(Host);
-
-                oMessage.From = new MailAddress(From);
-                oMessage.To.Add(To);
-                oMessage.Subject = Subject;
-                oMessage.IsBodyHtml = IsHtml;
-                oMessage.Body = Body;
-
-                if (CC != string.Empty)
-                    oMessage.CC.Add(CC);
-
-                switch (SendUsing)
-                {
-                    case 0:
-                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        break;
-                    case 1:
-                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.PickupDirectoryFromIis;
-                        break;
-                    case 2:
-                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                        break;
-                    default:
-                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        break;
-
-                }
-                if (AuthenticationMode > 0)
-                {
-                    smtpClient.Credentials = new NetworkCredential(User, Password);
-                }
-
-                smtpClient.Port = Port;
-                smtpClient.EnableSsl = UseSSL;
-
-                // Create and add the attachment
-                if (AttachmentPath != string.Empty)
-                {
-                    oMessage.Attachments.Add(new Attachment(AttachmentPath));
-                }
-
-                try
-                {
-                    // Deliver the message  
-
-                    smtpClient.Send(oMessage);
-
-                }
-
-                catch (Exception ex)
-                {
-                    ex.ToString();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
-        }
+       
+       
+        
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -236,6 +164,30 @@ namespace WpfApplication1
                 personelSec.Visibility = Visibility.Visible;
                
             }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBox1.IsSelected == true)
+            {
+                port = 587;
+                sunucu = "smtp.gmail.com";
+            }
+            if (comboBox2.IsSelected== true)
+            {
+                port = 587;
+                sunucu = "smtp.live.com";
+            }
+        }
+
+        private void txtBody_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+          /*  if (e.Key == Key.Enter')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }*/
         }
     }
 }
