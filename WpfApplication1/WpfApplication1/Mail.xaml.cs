@@ -18,7 +18,9 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel;
-
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 namespace WpfApplication1
 {
 
@@ -28,8 +30,8 @@ namespace WpfApplication1
         private string yollancakMailAdresi;
         string sunucu, kmail, ksifre;
         int port;
-        bool attach = false;
-        string yol;
+      private  bool attach = false;
+        private string yol;
 
         void fillCombo()
         {
@@ -82,9 +84,19 @@ namespace WpfApplication1
                 mail.To.Add(txtTo.Text);
                 if (attach == true)
                 {
-                    System.Net.Mail.Attachment attachment;
-                    attachment = new System.Net.Mail.Attachment(yol);//Attachment yerini belirleme.
-                    mail.Attachments.Add(attachment);//maile attachment ekleme
+                    try
+                    {
+                        System.Net.Mail.Attachment attachment;
+                        attachment = new System.Net.Mail.Attachment(yol);//Attachment yerini belirleme.
+                        mail.Attachments.Add(attachment);//maile attachment ekleme
+                        MessageBox.Show("Dosya basarıyla eklendi...");
+                    }
+                   
+                    catch
+            {
+                MessageBox.Show("Dosya Ekleme Sirasinda Bir Hata Oluştu");
+            }
+                    
                 }
                 mail.Subject = txtSubject.Text;
                 mail.Body = txtBody.Text;
@@ -192,7 +204,13 @@ namespace WpfApplication1
 
         private void dosya_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog attachments = new Microsoft.Win32.OpenFileDialog();
+            if (attachments.ShowDialog() == true)
 
+            {
+                attach = true;
+                yol = attachments.FileName;
+            }
         }
     }
 }
