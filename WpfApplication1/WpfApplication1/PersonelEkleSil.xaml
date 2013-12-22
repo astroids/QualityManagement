@@ -29,7 +29,7 @@
             
             <Image Name="im" Visibility="Visible"   Source="/Ref.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False" ToolTip="Yenile" />
         </Button>
-        <Button Content="Rapor" Visibility="Hidden" Name="perRapor" HorizontalAlignment="Left" Margin="830,503,0,0" VerticalAlignment="Top" Width="114" Click="perRapor_Click"/>
+        <Button Content="Rapor" Visibility="Hidden" Name="perRapor" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="830,503,0,0" VerticalAlignment="Top" Width="114" Click="perRapor_Click"/>
 
 
     </Grid>

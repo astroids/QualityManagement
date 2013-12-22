@@ -120,7 +120,7 @@ namespace WpfApplication1
         {
 
             DateTime basl =(DateTime)baslan.SelectedDate;
-            DateTime biti =(DateTime)baslan.SelectedDate;
+            DateTime biti = (DateTime)bitis.SelectedDate;
             TimeSpan sure = biti-basl;
 
             try

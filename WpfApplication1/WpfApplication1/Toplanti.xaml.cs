@@ -47,7 +47,7 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    cmd.CommandText = "select t.Tpl_id as 'Toplatı ID', p.P_Adi + ' ' + p.P_Soyadi as 'Toplantı Başkanı',d.DPT_adi as 'Ilgili Departman'  ,t.Tpl_Gundem as 'Toplantı Gündemi' , t.Tpl_Yeri as 'Toplantı Yeri', t.Tpl_Tarihi as 'Toplantı Tarihi'from Tbl_Toplanti t join Tbl_Personel p on t.Tpl_Baskani=p.P_id left join Tbl_Departman d on t.Tpl_Departman=d.DPT_id where t.Tpl_Gundem like @Title order by t.Tpl_Tarihi desc";
+                    cmd.CommandText = "select t.Tpl_id as 'Toplatı ID', p.P_Adi + ' ' + p.P_Soyadi as 'Toplantı Başkanı',d.DPT_adi as 'Ilgili Departman'  ,t.Tpl_Gundem as 'Toplantı Gündemi' , yer.TPLY_id as 'Toplantı Yeri', t.Tpl_Tarihi as 'Toplantı Tarihi' from Tbl_Toplanti t join Tbl_Personel p on t.Tpl_Baskani=p.P_id left join Tbl_Departman d on t.Tpl_Departman=d.DPT_id left join Tbl_TplYerleri yer on t.Tpl_Yeri = yer.TPLY_id where t.Tpl_Gundem like @Title order by t.Tpl_Tarihi desc";
                     cmd.Parameters.AddWithValue("@Title", '%' + s + '%');
                 }
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);

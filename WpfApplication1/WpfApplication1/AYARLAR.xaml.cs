@@ -46,5 +46,11 @@ namespace WpfApplication1
             dd.Show();
             this.Hide();
         }
+
+        private void sifre_Click(object sender, RoutedEventArgs e)
+        {
+            Sifre sfr = new Sifre();
+            sfr.Show();
+        }
     }
 }

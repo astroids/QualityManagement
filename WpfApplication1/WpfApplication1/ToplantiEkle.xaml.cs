@@ -28,6 +28,7 @@ namespace WpfApplication1
         private SqlConnection con = new SqlConnection();
         private int toplanti_baskani;
         private string toplanti_departmani;
+        private string toplantiyeri;
         private int selectedTpl
         {
             set;
@@ -63,6 +64,44 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_TplYerleri";
+                cmd.Connection = con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+
+                adap.Fill(dt);
+                tply.ItemsSource = dt.DefaultView;
+                tply.DisplayMemberPath = "TPLY_adi";
+                tply.SelectedValuePath = "TPLY_id";
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
@@ -100,20 +139,25 @@ namespace WpfApplication1
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
+
+
+
             try
             {
                 if (con.State == ConnectionState.Closed)
                 {
-                    if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                    if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 }
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = con;
                 cmd.CommandText = @"Insert Into Tbl_Toplanti(Tpl_Baskani,Tpl_Tarihi,Tpl_Gundem,Tpl_Aciklama,Tpl_Departman,Tpl_Yeri,Tpl_Iptal)
                             values(@Tpl_Baskani,@Tpl_Tarihi,@Tpl_Gundem,@Tpl_Aciklama,@Tpl_Departman,@Tpl_Yeri,@Tpl_Iptal);SELECT SCOPE_IDENTITY();";
+                DateTime dt = (DateTime)tarih.SelectedDate;
 
-                cmd.Parameters.AddWithValue("@Tpl_Tarihi", tarih.SelectedDate.Value);
-                cmd.Parameters.AddWithValue("@Tpl_Yeri", toplantiyeri.Text);
+                dt = Convert.ToDateTime(dt.ToString("yyyy-MM-dd") + " " + hr.Text + ":" + min.Text);
+                cmd.Parameters.AddWithValue("@Tpl_Tarihi", dt.ToString("MM/dd/yyyy HH:mm"));
+                cmd.Parameters.AddWithValue("@Tpl_Yeri", toplantiyeri);
                 cmd.Parameters.AddWithValue("@Tpl_Baskani", toplanti_baskani);
                 //         cmd.Parameters.AddWithValue("@Tpl_Katilanlar", katilan.Text);
                 cmd.Parameters.AddWithValue("@Tpl_Gundem", gundem.Text);
@@ -124,10 +168,10 @@ namespace WpfApplication1
                 //           cmd.Parameters.AddWithValue("@Tpl_Yapilanlar", yapilanlar.Text);
                 string asd = cmd.ExecuteScalar().ToString();
                 selectedTpl = Convert.ToInt32(asd);
-              //  selectedTpl=(int)cmd.ExecuteScalar();
+                //  selectedTpl=(int)cmd.ExecuteScalar();
 
                 MessageBox.Show("Kayıt Yapıldı..");
-                 if (con.State == ConnectionState.Open){con.Close();}
+                if (con.State == ConnectionState.Open) { con.Close(); }
                 ToplantiDokumanPersonelEkle pd = new ToplantiDokumanPersonelEkle(selectedTpl);
                 pd.Show();
                 this.Close();
@@ -156,6 +200,11 @@ namespace WpfApplication1
         {
             toplanti_departmani = depSec.SelectedValue.ToString();
          
+        }
+
+        private void tply_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            toplantiyeri = tply.SelectedValue.ToString();
         }
 
     }

@@ -45,6 +45,7 @@ namespace WpfApplication1
         {
             MainWindow bac = new MainWindow();
             bac.Show();
+            this.Close();
         }
 
         private void onay_Click(object sender, RoutedEventArgs e)

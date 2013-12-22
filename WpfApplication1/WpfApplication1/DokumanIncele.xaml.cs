@@ -58,7 +58,7 @@ namespace WpfApplication1
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SPgetDocIDincele @did";
-            cmd.Parameters.AddWithValue("@did",docid);
+            cmd.Parameters.AddWithValue("@did",docid.ToString());
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -72,7 +72,7 @@ namespace WpfApplication1
                 dep.Text = reader["ddep"].ToString();
                 baslik.Text = reader["baslik"].ToString();
                 icerik.Text = reader["icer"].ToString();
-                tarih.Text = reader["tar"].ToString();
+                tarih.Text = Convert.ToDateTime(reader["tar"].ToString()).ToString("dd-MM-yyyy");
                 hadi.Text = reader["hazper"].ToString();
                 oadi.Text = reader["oper"].ToString();
                 hdep.Text = reader["odep"].ToString();
@@ -95,9 +95,9 @@ namespace WpfApplication1
                 sonraki.IsEnabled=true;
             }
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Seçtiğiniz Doküman Onaylanmamış Bir Doküman Olabilir");
                 //MessageBox.Show("Doldurma Sirasinda Bir Hata Oluştu");
             }
 
@@ -111,14 +111,28 @@ namespace WpfApplication1
 
         private void onceki_Click(object sender, RoutedEventArgs e)
         {
-            docid =Convert.ToInt32(parent);
-            fill();
+            try
+            {
+                docid = Convert.ToInt32(parent);
+                fill();
+            }
+            catch
+            {
+                MessageBox.Show("Önceki Doküman Gösterilemiyor");
+            }
         }
 
         private void sonraki_Click(object sender, RoutedEventArgs e)
         {
-            docid = Convert.ToInt32(child);
-            fill();
+            try
+            {
+                docid = Convert.ToInt32(child);
+                fill();
+            }
+            catch
+            {
+                MessageBox.Show("Sonraki Doküman Göstrrilemiyor Onaylanmayan Bir Dokümanda Gördüyseniz Sistem Adminine Başvurunuz");
+            }
         }
 
 

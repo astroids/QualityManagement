@@ -59,7 +59,7 @@ namespace WpfApplication1
                     dep.Text = reader["ddep"].ToString();
                     baslik.Text = reader["baslik"].ToString();
                     icerik.Text = reader["icer"].ToString();
-                    tarih.Text = reader["tar"].ToString();
+                    tarih.Text = Convert.ToDateTime(reader["tar"]).ToString("dd-MM-yyyy");
                     hadi.Text = reader["hazper"].ToString();
                     hsadi.Text = reader["hazsoy"].ToString();
                     oadi.Text = reader["oper"].ToString();

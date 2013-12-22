@@ -6,8 +6,8 @@
     <Grid>
         <Label Content="Eski Sifre" HorizontalAlignment="Left" Margin="23,59,0,0" VerticalAlignment="Top" Width="99"/>
         <Label Content="Yeni Sifre" HorizontalAlignment="Left" Margin="23,111,0,0" VerticalAlignment="Top" Width="99"/>
-        <TextBox HorizontalAlignment="Left" Name="eski" Height="23" Margin="147,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="135"/>
-        <PasswordBox HorizontalAlignment="Left" Name="yeni" Margin="147,111,0,0" VerticalAlignment="Top" Width="135"/>
+        <PasswordBox  HorizontalAlignment="Left" Name="eski" Height="23" Margin="147,59,0,0" VerticalAlignment="Top" Width="135"/>
+        <PasswordBox  HorizontalAlignment="Left" Name="yeni" Margin="147,111,0,0" VerticalAlignment="Top" Width="135"/>
         <Button Content="kaydet" Name="kaydet" HorizontalAlignment="Left" Margin="246,169,0,0" VerticalAlignment="Top" Width="75" Click="kaydet_Click"/>
         <Label Content="" Name="lbl" HorizontalAlignment="Left" Margin="299,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.189,0.461" Width="83"/>
 

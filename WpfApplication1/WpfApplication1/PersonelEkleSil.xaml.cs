@@ -110,7 +110,16 @@ namespace WpfApplication1
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
                 }
-
+                else if (cagiranmenutipi == 12)
+                {
+                    p_grid.Visibility = Visibility.Visible;
+                    egRapor.Visibility = Visibility.Visible;
+                }
+                else if (cagiranmenutipi == 13)
+                {
+                    p_grid.Visibility = Visibility.Visible;
+                    perRapor.Visibility = Visibility.Visible;
+                }
 
             }
             if (yet.ki.yetki == 2)
@@ -262,8 +271,6 @@ namespace WpfApplication1
                 else if (cagiranmenutipi == 13)
                 {
                     p_grid.Visibility = Visibility.Visible;
-                    egRapor.Visibility = Visibility.Visible;
-                    egRapor.IsEnabled = false;
                     perRapor.Visibility = Visibility.Visible;
                 }
 
@@ -1050,9 +1057,8 @@ namespace WpfApplication1
                 {
                     string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                     int selected_personel = Convert.ToInt32(ID);
-                    PersonelRaporu rap = new PersonelRaporu(selected_personel--);
+                    PersonelRaporu rap = new PersonelRaporu(selected_personel);
                     rap.Show();
-                    selected_personel = Convert.ToInt32(-1);
                 }
 
                 else

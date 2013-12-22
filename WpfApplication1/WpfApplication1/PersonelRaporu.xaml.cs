@@ -52,7 +52,7 @@ namespace WpfApplication1
                     tel1.Text = reader["P_Tel1"].ToString();
                     tel2.Text = reader["P_Tel2"].ToString();
                     email.Text = reader["P_Email"].ToString();
-                    dtar.Text=reader["P_D_Tar"].ToString();
+                    dtar.Text =  Convert.ToDateTime(reader["P_D_Tar"]).ToString("dd-MM-yyyy");
                     dyer.Text=reader["P_D_Yer"].ToString();
                     dep.Text=reader["P_Dept"].ToString();
                     poz.Text=reader["P_Pozisyon"].ToString();

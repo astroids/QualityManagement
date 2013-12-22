@@ -94,9 +94,16 @@ namespace WpfApplication1
 
         private void pEkle_Click(object sender, RoutedEventArgs e)
         {
-            sel.ected.setOpenwindow(this);
-            PersonelEkleSil sec = new PersonelEkleSil(4);
-            sec.Show();
+            try
+            {
+                sel.ected.setOpenwindow(this);
+                PersonelEkleSil sec = new PersonelEkleSil(4);
+                sec.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Hata");
+            }
         }
         public void setEgitimVeren(int i)
         {
@@ -131,13 +138,11 @@ namespace WpfApplication1
         public void basla_SelectedDateChanged(object sender, RoutedEventArgs e)
         {
             baslngic = (DateTime)basla.SelectedDate;
-            MessageBox.Show(baslngic.ToString());
         }
       
         public void bitis_SelectedDateChanged(object sender, RoutedEventArgs e)
         {
-            bitisTar = (DateTime)basla.SelectedDate;
-            MessageBox.Show(baslngic.ToString());
+            bitisTar = (DateTime)bitis.SelectedDate;
         }
 
 

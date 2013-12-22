@@ -37,7 +37,7 @@ namespace WpfApplication1
         private void kaydet_Click(object sender, RoutedEventArgs e)
         {
 
-            if (eski.Text == yet.ki.ilksifre)
+            if (eski.Password == yet.ki.ilksifre)
             {
                 lbl.Content = "Şifre doğru";
                 try
@@ -47,15 +47,13 @@ namespace WpfApplication1
                     if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"update Tbl_Personel set P_Sifre=@yeni.Password where P_id=@GirisEkrani.yet.ki.kulID";
-                    cmd.Parameters.AddWithValue("@P_Sifre", yeni.Password);
-                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adap.Fill(dt);
-
+                    cmd.CommandText = "update Tbl_Personel set P_Sifre=@sif where P_id=@id";
+                    cmd.Parameters.AddWithValue("@sif", yeni.Password.ToString());
+                    cmd.Parameters.AddWithValue("@id",yet.ki.kulID );
                     cmd.ExecuteNonQuery();
                      if (con.State == ConnectionState.Open){con.Close();}
                     MessageBox.Show("Şifre Başarıyla Değiştirildi");
+                    this.Close();
                 }
                 catch
                 {
@@ -70,49 +68,7 @@ namespace WpfApplication1
             }
 
 
-      /*      try
-            {
-                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-                SqlParameter prm1 = new SqlParameter("@P1", kullanıcı.Text);
-                SqlParameter prm2 = new SqlParameter("@P2", sifre.Password);
 
-                string sql = "";
-                sql = "select * FROM Tbl_Personel WHERE P_id=@P1 and P_Sifre=@P2";
-                SqlCommand cmd = new SqlCommand(sql, con);
-
-                cmd.Parameters.Add(prm1);
-                cmd.Parameters.Add(prm2);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                DataTable dt = new DataTable();
-
-                da.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Hosgeldiniz");
-                    yet.ki.yetki = dt.Rows[0].ItemArray[16].ToString();
-                    yet.ki.ilksifre = sifre.Password;
-                    yet.ki.kulID = kullanıcı.Text;
-                    // Response.Redirect("Default.aspx");
-                    MainWindow mw = new MainWindow();
-                    //i ++;
-                    yet.ki.kadi = kullanıcı.Text;
-                    yet.ki.al = 1;
-
-                    this.Close();
-                    mw.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Kullanıcı adı yada şifre hatalı!!!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
 
         }
 

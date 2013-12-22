@@ -92,5 +92,11 @@ namespace WpfApplication1
             pr.Show();
         }
 
+        private void edeger_Click(object sender, RoutedEventArgs e)
+        {
+            EgitimDegerlendirme ed = new EgitimDegerlendirme();
+            ed.Show();
+        }
+
     }
 }

@@ -110,6 +110,9 @@
     <Compile Include="Egitim Rapor.xaml.cs">
       <DependentUpon>Egitim Rapor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EgitimDegerlendirme.xaml.cs">
+      <DependentUpon>EgitimDegerlendirme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="egitimEkleme.xaml.cs">
       <DependentUpon>egitimEkleme.xaml</DependentUpon>
     </Compile>
@@ -239,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Egitim Rapor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EgitimDegerlendirme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

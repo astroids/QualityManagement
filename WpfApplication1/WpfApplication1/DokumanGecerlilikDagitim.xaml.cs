@@ -1,6 +1,9 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data;
-using System.Data.SqlClient;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Xps.Packaging;
-using System.IO;
+using System.Drawing;
+
+
 namespace WpfApplication1
 {
     /// <summary>
@@ -37,6 +37,11 @@ namespace WpfApplication1
             set;
             get;
         }
+        private string sorumlu_personel
+        {
+            set;
+            get;
+        }
         public DokumanGecerlilikDagitim(int _docID)
         {
             InitializeComponent();
@@ -46,6 +51,7 @@ namespace WpfApplication1
             fillBoxes();
             fillPersonel();
             wnd.Width = 545;
+            wnd.Height = 280;
         }
 
         private void fillGrid()
@@ -117,6 +123,11 @@ namespace WpfApplication1
                 MessageBox.Show("Seçili Personel Zaten Listede");
             }
         }
+        private void dpic_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            wnd.Height = 500;
+        }
+
 
         private void ekle_Click(object sender, RoutedEventArgs e)
         {
@@ -131,8 +142,8 @@ namespace WpfApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@did", docID.ToString());
                 cmd.Parameters.AddWithValue("@pid", ID.ToString());
-                cmd.Parameters.AddWithValue("@mail", "TRUE");
-                cmd.Parameters.AddWithValue("@dagit", "2013-12-11");
+                cmd.Parameters.AddWithValue("@mail", mailCB.IsChecked);
+                cmd.Parameters.AddWithValue("@dagit", dpic.SelectedDate);
                 cmd.CommandText = "insert into Tbl_Dokuman_Dagitim(DKMD_id,DKMD_personel,DKMD_mail,DKMD_Dagitim_Tarihi) values(@did,@pid,@mail,@dagit)";
                 cmd.ExecuteNonQuery();
                  if (con.State == ConnectionState.Open){con.Close();}
@@ -183,6 +194,70 @@ namespace WpfApplication1
                 wnd.Width = 545;
                 goster.Content = "seç";
             }
+        }
+
+        private void kaydet_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@did", docID.ToString());
+                cmd.Parameters.AddWithValue("@gs", dGecSure.Text.ToString());
+                cmd.Parameters.AddWithValue("@gst", dGecStip.Text.ToString());
+                cmd.Parameters.AddWithValue("@gas", dArSure.Text.ToString());
+                cmd.Parameters.AddWithValue("@gat", dArStip.Text.ToString());
+                cmd.Parameters.AddWithValue("@sp", sorumlu_personel.ToString());
+                cmd.CommandText = "insert into Tbl_Dokuman_Gecerlilik values(@did,@gs,@gst,@gas,@gat,@sp)";
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Lütfen bir personel seçiniz!");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+        }
+
+        private void sec_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = p_grid.SelectedItem;
+                sorumlu_personel = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@sp", sorumlu_personel.ToString());
+                cmd.CommandText = "select p.P_Adi+' '+p.P_Soyadi as 'pers' from Tbl_Personel p where p.P_id =@sp";
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dSor.Content = reader["pers"].ToString();
+                }
+                if (con.State == ConnectionState.Open) { con.Close(); }
+                wnd.Width = 512;
+                sec.Visibility = Visibility.Hidden;
+                secg.Visibility = Visibility.Visible;
+                MessageBox.Show("Kayıt başarılı");
+                this.Close();
+            }
+            catch 
+            {
+                MessageBox.Show("Lütfen bir personel seçiniz!");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+        }
+
+        private void secg_Click(object sender, RoutedEventArgs e)
+        {
+            wnd.Width = 1024;
+            secg.Visibility = Visibility.Hidden;
+            sec.Visibility = Visibility.Visible;
         }
 
 

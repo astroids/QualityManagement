@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="Doküman Geçerlilik ve Dağıtım" Height="500" Width="1024"
         Name="wnd">
     <Grid>
@@ -15,16 +16,27 @@
         <Button Name="ekle" Content="Ekle" HorizontalAlignment="Left" Margin="575,423,0,0" VerticalAlignment="Top" Width="75" Click="ekle_Click"/>
         <Button Name="cikar" Content="Çıkar" HorizontalAlignment="Left" Margin="23,303,0,0" VerticalAlignment="Top" Width="75" Click="cikar_Click"/>
         <Label Name="dSor" Content="Doküman Sorumlu Personel" HorizontalAlignment="Left" Margin="214,153,0,0" VerticalAlignment="Top" Width="182"/>
-        <Button Name="sec" Content="SEÇ" HorizontalAlignment="Left" Margin="439,153,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Visibility="Hidden" Name="sec" Content="SEÇ" HorizontalAlignment="Left" Margin="439,153,0,0" VerticalAlignment="Top" Width="75" Click="sec_Click"/>
+        <Button Name="secg" Content="SEÇ" HorizontalAlignment="Left" Margin="439,153,0,0" VerticalAlignment="Top" Width="75" Click="secg_Click"/>
+
         <DataGrid Name="p_grid" IsReadOnly="True" HorizontalAlignment="Left" Margin="575,56,0,0" VerticalAlignment="Top"/>
         <DataGrid Name="p2_grid" HorizontalAlignment="Left" IsReadOnly="True" Margin="124,265,0,0" VerticalAlignment="Top"/>
         <CheckBox Name="mailCB" Content="Mail ile Bildir" HorizontalAlignment="Left" Margin="351,202,0,0" VerticalAlignment="Top" Width="98"/>
-        <DatePicker HorizontalAlignment="Left" Margin="214,198,0,0" VerticalAlignment="Top"/>
-        <Button Name="kaydet" Content="kaydet" HorizontalAlignment="Left" Margin="439,1,0,0" VerticalAlignment="Top" Width="75"/>
-        <ComboBox Name="dArStip" HorizontalAlignment="Left" Margin="376,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="dpic" HorizontalAlignment="Left" Margin="214,198,0,0" VerticalAlignment="Top" SelectedDateChanged="dpic_SelectedDateChanged" />
+        <Button Name="kaydet" Content="kaydet" HorizontalAlignment="Left" Margin="439,1,0,0" VerticalAlignment="Top" Width="75" Click="kaydet_Click"/>
+        <ComboBox Name="dArStip" HorizontalAlignment="Left" Margin="376,111,0,0" VerticalAlignment="Top" Width="120">
+            <System:String>GÜN</System:String>
+            <System:String>AY</System:String>
+            <System:String>YIL</System:String>
+
+        </ComboBox>
         <TextBox Name="dGecSure" Text="" HorizontalAlignment="Left" Margin="202,71,0,0" VerticalAlignment="Top" Width="155"/>
         <TextBox x:Name="dArSure" Text="" HorizontalAlignment="Left" Margin="202,111,0,0" VerticalAlignment="Top" Width="155"/>
-        <ComboBox Name="dGecStip" HorizontalAlignment="Left" Margin="376,71,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="dGecStip" HorizontalAlignment="Left" Margin="376,71,0,0" VerticalAlignment="Top" Width="120">
+            <System:String>AY</System:String>
+            <System:String>YIL</System:String>
+            <System:String>GÜN</System:String>
+        </ComboBox>
         <GridSplitter HorizontalAlignment="Left" Height="458" Margin="545,1,0,0" VerticalAlignment="Top" Width="10"/>
         <Button Name="goster" Content="Sec" HorizontalAlignment="Left" Margin="23,265,0,0" VerticalAlignment="Top" Width="75" Click="goster_Click"/>
 
