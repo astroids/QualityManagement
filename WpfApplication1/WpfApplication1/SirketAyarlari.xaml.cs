@@ -72,7 +72,16 @@ namespace WpfApplication1
             set;
             get;
         }
-        
+        static public string einter
+        {
+            set;
+            get;
+        }
+        static public string estop
+        {
+            set;
+            get;
+        }
     }
 
     /// <summary>

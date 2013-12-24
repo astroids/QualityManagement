@@ -52,5 +52,17 @@ namespace WpfApplication1
             Sifre sfr = new Sifre();
             sfr.Show();
         }
+
+        private void un3_Click(object sender, RoutedEventArgs e)
+        {
+            MailAyarlama ma = new MailAyarlama();
+            ma.Show();
+
+        }
+
+        private void dsizin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

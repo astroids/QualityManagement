@@ -209,6 +209,8 @@ namespace WpfApplication1
                 sir.web = reader["S_Web"].ToString();
                 sir.logarray = (byte[])reader["S_Logo"];
                 sir.epass = reader["S_MailPass"].ToString();
+                sir.einter= reader["S_MailLoop"].ToString();
+                sir.estop = reader["S_MailExit"].ToString();
 
             }
 

@@ -105,6 +105,9 @@
     <Compile Include="DokumanYeniRevize.xaml.cs">
       <DependentUpon>DokumanYeniRevize.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DosyaİzinTipiEkle.xaml.cs">
+      <DependentUpon>DosyaİzinTipiEkle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Döviz2.xaml.cs">
       <DependentUpon>Döviz2.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,9 @@
     </Compile>
     <Compile Include="Mail.xaml.cs">
       <DependentUpon>Mail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MailAyarlama.xaml.cs">
+      <DependentUpon>MailAyarlama.xaml</DependentUpon>
     </Compile>
     <Compile Include="Personel Raporu Departma Secme.xaml.cs">
       <DependentUpon>Personel Raporu Departma Secme.xaml</DependentUpon>
@@ -238,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DosyaİzinTipiEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Döviz2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -271,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Mail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MailAyarlama.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

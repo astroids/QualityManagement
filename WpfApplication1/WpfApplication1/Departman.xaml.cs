@@ -114,23 +114,45 @@ namespace WpfApplication1
             }
         }
 
-        private void depdüzenle_Click(object sender, RoutedEventArgs e)
+
+
+        private void depdüzenle_Click_1(object sender, RoutedEventArgs e)
         {
-            object item = grid.SelectedItem;
-            if (item != null)
+            try
             {
 
+                object item = grid.SelectedItem;
+                if (item != null)
+                {
+                    string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    DepartmanDüzenle dzn = new DepartmanDüzenle(selectedID, 1);
+                    dzn.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("Degistirmek icin bir departman secmelisiniz!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Hata Oluştu");
+            }
 
-                //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
-                string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-              
+        }
+
+        private void depekle_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                    DepartmanDüzenle dzn = new DepartmanDüzenle(0, 2);
+                    dzn.Show();
 
             }
-            else
+            catch
             {
-                MessageBox.Show("Degistirmek icin bir departman secmelisiniz!");
+                MessageBox.Show("Hata Oluştu");
             }
         }
     }

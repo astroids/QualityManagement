@@ -1,0 +1,22 @@
+﻿<Controls:MetroWindow x:Class="WpfApplication1.MailAyarlama" ShowTitleBar="True"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mail Programı Ayarları" Height="400" Width="500">
+    <Grid>
+        <Label Content="Mail İnterfval" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="126"/>
+
+        <Label Content="Mail Adresi" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" Name="mailad" Height="23" Margin="178,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <Button Content="Kaydet" Name="depKaydet" HorizontalAlignment="Left" Margin="383,320,0,0" VerticalAlignment="Top" Width="75" Click="depKaydet_Click"/>
+        <Label Content="Mail Sifre" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Name="mailpass" Margin="178,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Mail Kapa" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" x:Name="mailkapa" Height="23" Margin="178,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <TextBox HorizontalAlignment="Left" Height="23" x:Name="mailinter" Margin="178,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <Label  Content="Yonetici" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox IsEnabled="False" HorizontalAlignment="Left" x:Name="yonet" Height="23" Margin="178,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+
+    </Grid>
+</Controls:MetroWindow>
+
