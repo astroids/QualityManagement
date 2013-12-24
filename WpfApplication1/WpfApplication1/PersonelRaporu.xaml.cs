@@ -40,7 +40,7 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Select * From Tbl_Personel  Where P_id=@id ";
+                cmd.CommandText = "select * from Tbl_Personel p join Tbl_Departman d on p.P_Dept = d.DPT_id where P_id =@id ";
                 cmd.Parameters.AddWithValue("@id", sid);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -54,7 +54,7 @@ namespace WpfApplication1
                     email.Text = reader["P_Email"].ToString();
                     dtar.Text =  Convert.ToDateTime(reader["P_D_Tar"]).ToString("dd-MM-yyyy");
                     dyer.Text=reader["P_D_Yer"].ToString();
-                    dep.Text=reader["P_Dept"].ToString();
+                    dep.Text = reader["DPT_adi"].ToString();
                     poz.Text=reader["P_Pozisyon"].ToString();
                     med.Text=reader["P_Med_Hal"].ToString();
                 }

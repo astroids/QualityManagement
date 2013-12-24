@@ -18,7 +18,7 @@
         <Label Content="DEPARTMAN" HorizontalAlignment="Left" Margin="24,334,0,0" VerticalAlignment="Top" Width="135"/>
         <Label Content="MEDENİ HAL" HorizontalAlignment="Left" Margin="24,365,0,0" VerticalAlignment="Top" Width="135"/>
         <Label Content="ADAY DURUMU" HorizontalAlignment="Left" Margin="24,396,0,0" VerticalAlignment="Top" Width="135"/>
-        <TextBox x:Name="isim"  HorizontalAlignment="Left" Height="23" Margin="232,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239" TextChanged="isim_TextChanged"/>
+        <TextBox x:Name="isim"  HorizontalAlignment="Left" Height="23" Margin="232,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239" />
         <TextBox x:Name="soyisim" HorizontalAlignment="Left" Height="23" Margin="232,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
         <TextBox x:Name="tckimlik" HorizontalAlignment="Left" Height="23" Margin="232,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
         <TextBox x:Name="telefonno" HorizontalAlignment="Left" Height="23" Margin="232,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
@@ -44,13 +44,10 @@
         <TextBox x:Name="dogumyeri" HorizontalAlignment="Left" Height="26" Margin="232,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
         <Button x:Name="kaydetbutonu" Content="Kaydet" HorizontalAlignment="Left" Height="41" Margin="275,525,0,0" VerticalAlignment="Top" Width="120" Click="kaydetbutonu_Click"/>
         <Grid HorizontalAlignment="Left" Height="100" Margin="250,86,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="yet.ki.yetki" HorizontalAlignment="Left" Margin="24,427,0,0" VerticalAlignment="Top" Width="135"/>
-        <CheckBox Content="Müdür" Name="checkmudur" HorizontalAlignment="Left" Margin="230,436,0,0" VerticalAlignment="Top" Checked="checkmudur_Checked"/>
-        <CheckBox Content="Departman Başkanı" Name="checkmYardım" HorizontalAlignment="Left" Margin="306,436,0,0" VerticalAlignment="Top" Checked="checkmYardım_Checked"/>
-        <CheckBox Content="Personel" Name="checkper" HorizontalAlignment="Left" Margin="433,436,0,0" VerticalAlignment="Top" Checked="checkper_Checked"/>
-        <Label Content="Şifre" Name="sifre" HorizontalAlignment="Left" Margin="24,476,0,0" VerticalAlignment="Top" Width="135"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="232,476,0,0" Height="26" VerticalAlignment="Top" Width="163"/>
-        <Button Content="Değiştir" HorizontalAlignment="Left" Margin="414,477,0,0" VerticalAlignment="Top" Height="26" Width="93" Click="Button_Click"/>
+        <Label Content="YETKİ" HorizontalAlignment="Left" Margin="24,427,0,0" VerticalAlignment="Top" Width="135"/>
+        <CheckBox Content="Müdür" Name="checkmudur" HorizontalAlignment="Left" Margin="230,436,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="Departman Başkanı" Name="checkmYardım" HorizontalAlignment="Left" Margin="306,436,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="Personel" Name="checkper" HorizontalAlignment="Left" Margin="433,436,0,0" VerticalAlignment="Top" />
 
 
     </Grid>

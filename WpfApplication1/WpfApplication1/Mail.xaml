@@ -2,28 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MAIL" Height="700" Width="700">
+        Title="MAIL" Height="450" Width="1024">
     <Grid>
         <Label Content="kime" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
         <Label Content="başlık" HorizontalAlignment="Left" Margin="20,93,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="txtTo" Height="23" Margin="121,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
         <TextBox HorizontalAlignment="Left" Height="23" Name="txtSubject" Margin="121,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241"/>
         <Label Content="metin" HorizontalAlignment="Left" Margin="20,184,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="txtBody" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283" TextChanged="txtBody_TextChanged"/>
-        <Label Content="email" HorizontalAlignment="Left" Margin="20,445,0,0" VerticalAlignment="Top"/>
-        <Label Content="şifre" HorizontalAlignment="Left" Margin="23,503,0,0" VerticalAlignment="Top"/>
-        <Button Content="gönder" HorizontalAlignment="Left" Margin="558,557,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Name="txtUserName" Height="23" Margin="121,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
-        <PasswordBox HorizontalAlignment="Left" Name="txtPassword" Margin="121,503,0,0" VerticalAlignment="Top" Width="158"/>
-        <ComboBox HorizontalAlignment="Left" Visibility="Hidden" Name="personelSec" Margin="508,22,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="personelSec_SelectionChanged"/>
+        <TextBox HorizontalAlignment="Left" Name="txtBody" Height="205" Margin="121,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283" />
+        <Button Content="gönder" HorizontalAlignment="Left" Margin="418,364,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <ComboBox HorizontalAlignment="Left" Visibility="Visible" Name="personelSec" Margin="121,21,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="personelSec_SelectionChanged"/>
         <Label Content="PersonelLer" Visibility="Hidden" Name="personeller" HorizontalAlignment="Left" Margin="411,21,0,0" VerticalAlignment="Top" Width="82" Height="27"/>
-        <CheckBox Content="Personel Seç" Name="checkPer" HorizontalAlignment="Left" Margin="439,25,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
-        <Label Content="Sunucu" HorizontalAlignment="Left" Margin="313,446,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="475,446,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="@gmail.com" Name="comboBox1" HorizontalAlignment="Left" Width="156"/>
-            <ComboBoxItem Content="@hotmail.com" Name="comboBox2" HorizontalAlignment="Left" Width="156"/>
-        </ComboBox>
-        <Button Content="Dosya Ekle" Name="dosya" HorizontalAlignment="Left" Margin="475,185,0,0" VerticalAlignment="Top" Width="75" Click="dosya_Click"/>
+        <GridSplitter HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="5"/>
+        <GridSplitter HorizontalAlignment="Left" Height="421" Margin="512,10,0,-12" VerticalAlignment="Top" Width="5"/>
+        <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="549,25,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" RenderTransformOrigin="0.25,-1.8"   />
+        <Button Name="sec" Content="Doküman Seç" HorizontalAlignment="Left" Margin="393,94,0,0" VerticalAlignment="Top" Width="100" Click="sec_Click"/>
+        <Button Content="Personel Raporu Ekel" HorizontalAlignment="Left" Margin="340,53,0,0" VerticalAlignment="Top" Width="153" Click="Button_Click_1"/>
 
     </Grid>
 </Controls:MetroWindow>

@@ -107,6 +107,7 @@ namespace WpfApplication1
                 }
                 else if (cagiranmenutipi == 12)
                 {
+                    Title = "Eğitim Raporu";
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
                 }
@@ -264,6 +265,7 @@ namespace WpfApplication1
                 }
                 else if (cagiranmenutipi == 12)
                 {
+                    Title = "Eğitim Raporu";
                     p_grid.Visibility = Visibility.Visible;
                     egRapor.Visibility = Visibility.Visible;
                     egRapor.IsEnabled = false;
@@ -796,7 +798,6 @@ namespace WpfApplication1
         {
             try
             {
-                MessageBox.Show("Meneger only");
                 SqlCommand cmd = new SqlCommand();
                 if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;

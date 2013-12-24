@@ -79,17 +79,21 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
+                cmd.CommandText = "select P_Adi+ ' ' + P_Soyadi as 'ever',E_Adi,E_Icerik,E_BasTarih,E_BitTarih  from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
                 cmd.Parameters.AddWithValue("@id", sid);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     eAdi.Text = reader["E_Adi"].ToString();
                     eIcerik.Text = reader["E_Icerik"].ToString();
-                    eBas.Text = reader["E_BasTarih"].ToString();
-                    eBit.Text = reader["E_BitTarih"].ToString();
-                    eVerenAdi.Text = reader["P_Adi"].ToString();
-                    eVerenSoy.Text = reader["P_Soyadi"].ToString();
+                    //eBas.Text = reader["E_BasTarih"].ToString();
+                    //eBit.Text = reader["E_BitTarih"].ToString();
+
+                    eBas.Text = Convert.ToDateTime(reader["E_BasTarih"]).ToString("dd/MM/yyyy");
+                    eBit.Text = Convert.ToDateTime(reader["E_BitTarih"]).ToString("dd/MM/yyyy");
+
+
+                    eVerenAdi.Text = reader["ever"].ToString();
 
                 }
                  if (con.State == ConnectionState.Open){con.Close();}

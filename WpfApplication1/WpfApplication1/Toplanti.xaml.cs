@@ -132,25 +132,29 @@ namespace WpfApplication1
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            object item = data_grid.SelectedItem;
-            if (item != null)
+            try
             {
+                object item = data_grid.SelectedItem;
+                if (item != null)
+                {
+
+                    string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                    selectedID = Convert.ToInt32(ID);
+                    ToplantiDokumanPersonelEkle tp = new ToplantiDokumanPersonelEkle(selectedID);
+                    tp.Show();
 
 
-
-                //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
-                string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                selectedID = Convert.ToInt32(ID);
-                //ToplantiEkle x = new ToplantiEkle(selectedID, 2);
-                //x.Show();
-
+                }
+                else
+                {
+                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    MessageBox.Show("Degistirmek icin bir toplanti secmelisiniz!");
+                }
             }
-            else
+            catch
             {
-                if (con.State == ConnectionState.Open) { con.Close(); }
-                MessageBox.Show("Degistirmek icin bir toplanti secmelisiniz!");
+                MessageBox.Show("Doplatı Düzenleme Hatası");
             }
-
 
 
 

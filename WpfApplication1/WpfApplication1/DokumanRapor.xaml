@@ -5,11 +5,11 @@
         Title="Dokuman RaporU" Height="600" Width="800">
 
     <Grid>
-        <!--<ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
+        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto"  >
             <FixedDocument Name="custRapor" >
 
                 <PageContent>
-                    <FixedPage>-->
+                    <FixedPage>
                         <TextBlock Name="tarih" HorizontalAlignment="Left" Margin="73,27,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="139" Height="28"/>
                         <Image Name="logoS" HorizontalAlignment="Left" Height="100" Margin="652,27,0,0" VerticalAlignment="Top" Width="100"/>
                         <TextBlock Name="sadi" HorizontalAlignment="Left" Margin="472,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="33"><Run Language="tr-tr" Text="adi"/></TextBlock>
@@ -22,9 +22,9 @@
                         <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="73,202,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
         
 
-        <!--</FixedPage>
+        </FixedPage>
                 </PageContent>
             </FixedDocument>
-        </ScrollViewer>-->
+        </ScrollViewer>
     </Grid>
 </Controls:MetroWindow>

@@ -16,6 +16,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel;
+using System.Windows.Xps.Packaging;
+using System.IO;
 
 
 namespace WpfApplication1
@@ -35,6 +37,7 @@ namespace WpfApplication1
             InitializeComponent();
             docid = sid;
             fill();
+            prt();
         }
         private void fill()
         {
@@ -46,7 +49,7 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select d.DKM_id as 'id',d.DKM_Adi as 'dadı',d.DKM_Revizyon_Tar as 'rev',d.DKM_Aciklama as 'açık',d.DKM_Baslik as 'baslik',d.DKM_Icerik as 'icer',t.DKMT_Adi as 'dtip',d.DKM_Revizyon_Tar as 'tar',p.P_Adi as 'hazper',p.P_Soyadi as 'hazsoy',p2.P_Adi as 'oper',p2.P_Soyadi as 'osoy',de.DPT_adi as 'ddep',de2.DPT_adi as 'hdep',de3.DPT_adi as 'odep',p.P_Pozisyon as 'hpoz',p2.P_Pozisyon as 'opoz' from (((((Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id)join Tbl_Personel p on d.DKM_Hazirlayan_Personel=p.P_id) left join Tbl_Personel p2 on d.DKM_Onaylayan_Personel=p2.P_id) join Tbl_Departman de on d.DKM_Ilgili_Departman= de.DPT_id )join Tbl_Departman de2 on p.P_Dept= de2.DPT_id) left join Tbl_Departman de3 on p2.P_Dept = de3.DPT_id where d.DKM_Child is NULL and d.DKM_id =@did";
+                cmd.CommandText = "SPdokRapor @did";
                 cmd.Parameters.AddWithValue("@did", docid);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -82,11 +85,27 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Dokuman Yazdirma Islemi Sirasinda Bir Hata Olustu");
             }
-
+           
 
 
         }
+        private void prt()
+        {
+            try
+            {
+                File.Delete(Directory.GetCurrentDirectory() + "\\doc.xps");
+                var paginator = docRep.DocumentPaginator;
+                var xpsDocument = new XpsDocument(Directory.GetCurrentDirectory() + "\\doc.xps", FileAccess.ReadWrite);
+                var documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                documentWriter.Write(paginator);
+                xpsDocument.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yazdırma işlemi sırasında bir hata oluştu");
+            }
 
+        }
 
 
 

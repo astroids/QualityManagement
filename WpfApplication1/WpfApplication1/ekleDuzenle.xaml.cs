@@ -32,6 +32,7 @@ namespace WpfApplication1
         private int idd;
         private int ilkyetki;
         private int ilksifre;
+        private string yeniKullID;
         public ekleDuzenle(int tur, int id)
         {
 
@@ -127,17 +128,6 @@ namespace WpfApplication1
         }
 
 
-
-
-        private void isim_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
         {
@@ -276,7 +266,7 @@ namespace WpfApplication1
                     {
                         cmd.Connection = con;
                         cmd.CommandText = @"Insert Into Tbl_Personel(P_Adi,P_Soyadi,P_TcKimlik,P_Tel1,P_Tel2,P_Email,P_Cinsiyet,P_D_Tar,P_D_Yer,P_Pozisyon,P_Dept,P_Med_Hal,P_Aday,P_Silindi,P_Yetki,P_Sifre) 
-                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet,@P_Sifre)";
+                                 values (@P_Adi,@P_Soyadi,@P_TcKimlik,@P_Tel1,@P_Tel2,@P_Email,@P_Cinsiyet,@P_D_Tar,@P_D_Yer,@P_Pozisyon,@P_Dept,@P_Med_Hal,@P_Aday,@P_Sil,@P_yet,@P_Sifre)SELECT SCOPE_IDENTITY();";
 
 
                         cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
@@ -311,11 +301,11 @@ namespace WpfApplication1
 
                         }
 
-                        cmd.ExecuteNonQuery();
+                        yeniKullID = cmd.ExecuteScalar().ToString();
 
                         MessageBox.Show("Kayıt Yapıldı..");
 
-                        MessageBox.Show("İlk Sifreniz: " + ilksifre.ToString());
+                        MessageBox.Show("Kullanıcı idniz" + yeniKullID +"\nİlk Sifreniz: " + ilksifre.ToString());
                         this.Hide();
 
                         PersonelEkleSil ek = new PersonelEkleSil(1);
@@ -577,21 +567,7 @@ namespace WpfApplication1
                 }
             }
         }
-        private void checkmYardım_Checked(object sender, RoutedEventArgs e)
-        {
 
-       
-        }
-
-        private void checkper_Checked(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void checkmudur_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

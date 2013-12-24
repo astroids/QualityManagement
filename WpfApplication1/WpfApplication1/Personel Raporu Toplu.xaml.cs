@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Xps.Packaging;
 
 namespace WpfApplication1
 {
@@ -43,6 +44,7 @@ namespace WpfApplication1
             selectionType = sel;
             queryselection();
             fill();
+            prt();
         }
         private void queryselection()
         {
@@ -103,6 +105,21 @@ namespace WpfApplication1
 
         }
 
-
+        private void prt()
+        {
+            try
+            {
+                File.Delete(Directory.GetCurrentDirectory() + "\\doc.xps");
+                var paginator = custRapor.DocumentPaginator;
+                var xpsDocument = new XpsDocument(Directory.GetCurrentDirectory() + "\\doc.xps", FileAccess.ReadWrite);
+                var documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                documentWriter.Write(paginator);
+                xpsDocument.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yazdırma işlemi sırasında bir hata oluştu");
+            }
+        }
     }
 }

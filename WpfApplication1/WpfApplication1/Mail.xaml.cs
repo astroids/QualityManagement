@@ -18,9 +18,8 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 namespace WpfApplication1
 {
 
@@ -30,9 +29,10 @@ namespace WpfApplication1
         private string yollancakMailAdresi;
         string sunucu, kmail, ksifre;
         int port;
-      private  bool attach = false;
+        private  bool attach = false;
         private string yol;
-
+        private string selected_personel { set; get; }
+        System.Net.Mail.Attachment attachment;
         void fillCombo()
         {
             try
@@ -65,52 +65,60 @@ namespace WpfApplication1
         {
             InitializeComponent();
             con.ConnectionString = yet.ki.con;
-            //listele(null);
+            port = 587;
+            sunucu = "smtp.live.com";
             fillCombo();
-
-
+            fillGrid();
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
-                kmail = txtUserName.Text;
-                ksifre = txtPassword.Password;
+                kmail = sir.email;
+                ksifre = sir.epass;
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient(sunucu);
                 mail.From = new MailAddress(kmail);
-                mail.To.Add(txtTo.Text);
+                mail.To.Add(selected_personel);
                 if (attach == true)
                 {
                     try
                     {
-                        System.Net.Mail.Attachment attachment;
-                        attachment = new System.Net.Mail.Attachment(yol);//Attachment yerini belirleme.
-                        mail.Attachments.Add(attachment);//maile attachment ekleme
+                        attachment = new System.Net.Mail.Attachment(yol);
+                        mail.Attachments.Add(attachment);
                         MessageBox.Show("Dosya basarıyla eklendi...");
+                        
                     }
                    
                     catch
-            {
-                MessageBox.Show("Dosya Ekleme Sirasinda Bir Hata Oluştu");
-            }
+                    {
+                        MessageBox.Show("Dosya Ekleme Sirasinda Bir Hata Oluştu");
+                    }
                     
                 }
                 mail.Subject = txtSubject.Text;
                 mail.Body = txtBody.Text;
 
                 SmtpServer.Port = port;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(kmail, ksifre);//kullanıcı adı ve şifre bilgilerinin girilimi.
+                SmtpServer.Credentials = new System.Net.NetworkCredential(kmail, ksifre);
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
                 MessageBox.Show("Mail başarıyla gönderildi.");
+                if (attach == true)
+                {
+                    attachment.Dispose();
+                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Mesajınız gönderilmedi.\nHata raporu: " + ex.ToString());
+                attachment.Dispose();
+
             }
           
 
@@ -124,12 +132,7 @@ namespace WpfApplication1
                 SqlCommand cmd = new SqlCommand();
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.CommandType = CommandType.Text;
-                //if (tip == null)
-                //{
 
-                //    cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
-                //}
-                //else
                 {
 
 
@@ -139,11 +142,7 @@ namespace WpfApplication1
                     while (reader.Read())
                     {
                         yollancakMailAdresi = reader["P_Email"].ToString();
-                        if (checkPer.IsChecked == true)
-                        {
-                            txtTo.Text = yollancakMailAdresi;
-                        }
-                        // pkime.Text = " " + reader["P_Soyadi"].ToString();
+                        selected_personel = yollancakMailAdresi;
                     }
                 }
 
@@ -167,50 +166,68 @@ namespace WpfApplication1
        
         
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+
+
+
+
+
+
+        private void fillGrid()
         {
-            if (checkPer.IsChecked == true)
+
+            try
             {
-                checkPer.Visibility = Visibility.Hidden;
-                personeller.Visibility = Visibility.Visible;
-                personelSec.Visibility = Visibility.Visible;
-               
+                SqlCommand cmd = new SqlCommand();
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SPgetAllDok";
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { con.Close(); }
             }
+            catch
+            {
+                MessageBox.Show("Listeleme Islemi Sirasinda Bir Hata Olustu");
+            }
+
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void sec_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBox1.IsSelected == true)
+            try
             {
-                port = 587;
-                sunucu = "smtp.gmail.com";
-            }
-            if (comboBox2.IsSelected== true)
-            {
-                port = 587;
-                sunucu = "smtp.live.com";
-            }
-        }
-
-        private void txtBody_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-          /*  if (e.Key == Key.Enter')
-            {
-                ((TextBox)sender).SelectAll();
-                e.Handled = true;
-            }*/
-        }
-
-        private void dosya_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog attachments = new Microsoft.Win32.OpenFileDialog();
-            if (attachments.ShowDialog() == true)
-
-            {
+                object item = p_grid.SelectedItem;
+                string ID = (p_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string text = txtBody.Text + "";
+                DokumanYazdir doc = new DokumanYazdir(Convert.ToInt32(ID));
+                doc.Show();
+                yol = Directory.GetCurrentDirectory() + "\\doc.xps";
                 attach = true;
-                yol = attachments.FileName;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Personel_Raporu_Departma_Secme sec = new Personel_Raporu_Departma_Secme();
+                sec.Show();
+                yol = Directory.GetCurrentDirectory() + "\\doc.xps";
+                attach = true;
+            }
+            catch
+            {
+                MessageBox.Show("Personel Raporu Yüklenirken Bir Hata Oluştu");
+            }
+        }
+
     }
 }

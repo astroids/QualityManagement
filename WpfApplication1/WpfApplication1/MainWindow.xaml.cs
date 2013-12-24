@@ -33,15 +33,13 @@ namespace WpfApplication1
     public partial class MainWindow : MetroWindow
     {
 
-        //public static string[] kullaniciAdi;
-        //public static string[] sifre;
         public static string kim;
         public static string kimsifre;
         public MainWindow()
         {
             
             InitializeComponent();
-            if (yet.ki.yetki == 3)
+            if (yet.ki.yetki == 3 || yet.ki.yetki == 4)
             {
                 dokuman.IsEnabled = false;
                 toplanti.IsEnabled = false;
@@ -94,6 +92,93 @@ namespace WpfApplication1
             ar.Show();
         }
 
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\personel.png");
+                logo.EndInit();
+                im.Source = logo;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void toplanti_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\meet.png");
+                logo.EndInit();
+                im.Source = logo;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void dokuman_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Document-icon.png");
+                logo.EndInit();
+                im.Source = logo;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void ayarlar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Settings-icon.png");
+                logo.EndInit();
+                im.Source = logo;
+            }
+            catch
+            {
+
+            }
+        }
+
+
+
+        private void araclar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                BitmapImage logo = new BitmapImage();
+                logo.BeginInit();
+                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Maili-con.png");
+                logo.EndInit();
+                im.Source = logo;
+            }
+            catch
+            {
+
+            }
+        }
+
 
     }
 
@@ -123,6 +208,7 @@ namespace WpfApplication1
                 sir.email = reader["S_Mail"].ToString();
                 sir.web = reader["S_Web"].ToString();
                 sir.logarray = (byte[])reader["S_Logo"];
+                sir.epass = reader["S_MailPass"].ToString();
 
             }
 

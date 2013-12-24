@@ -19,7 +19,7 @@
                         <TextBlock Name="sadres" HorizontalAlignment="Left" Margin="472,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="34"><Run Language="tr-tr" Text="adres"/></TextBlock>
                         <TextBlock FontSize="20" Name="baslik" HorizontalAlignment="Left" Margin="183,102,0,0" TextWrapping="Wrap" Text="Personel Listesi" VerticalAlignment="Top" Height="24" Width="186" />
 
-                        <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="83,220,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
+                        <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="10,219,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
 
                     </FixedPage>
                 </PageContent>

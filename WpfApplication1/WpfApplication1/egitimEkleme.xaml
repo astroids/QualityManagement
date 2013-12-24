@@ -16,6 +16,7 @@
         <Label Name="eVAdi" Content="" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="215,108,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Name="eVSoyadi" Content="" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="418,109,0,0" VerticalAlignment="Top" Width="102"/>
         <Button Name="eVerenSec" Content="Ekle" HorizontalAlignment="Left" Margin="574,109,0,0" VerticalAlignment="Top" Width="75" Click="eVerenSec_Click"/>
+        <Label Content="-----" HorizontalAlignment="Left" Margin="351,159,0,0" VerticalAlignment="Top" Width="35"/>
 
 
 

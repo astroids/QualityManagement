@@ -55,8 +55,8 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@adi", eAdi.Text);
                 cmd.Parameters.AddWithValue("@verenid", egitimverenid);
                 cmd.Parameters.AddWithValue("@icerik", eIcerik.Text);
-                cmd.Parameters.AddWithValue("@btr", baslngic.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@sontr", bitisTar.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@btr", baslngic.ToString("yyyy/MM/dd"));
+                cmd.Parameters.AddWithValue("@sontr", bitisTar.ToString("yyyy/MM/dd"));
                 cmd.ExecuteNonQuery();
                  if (con.State == ConnectionState.Open){con.Close();}
 

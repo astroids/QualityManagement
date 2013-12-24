@@ -67,7 +67,11 @@ namespace WpfApplication1
             set;
             get;
         }
-
+        static public string epass
+        {
+            set;
+            get;
+        }
         
     }
 
@@ -97,6 +101,7 @@ namespace WpfApplication1
                 sweb.Text = sir.web;
                 logoIM.Source = sir.ket;
                 sadresi.Text = sir.adress;
+                
             }
             catch
             {

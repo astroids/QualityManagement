@@ -49,8 +49,8 @@ namespace WpfApplication1
                 {
                     baslik.Text = reader["E_Adi"].ToString();
                     icerik.Text = reader["E_Icerik"].ToString();
-                    baslan.Text = reader["E_BasTarih"].ToString();
-                    bitis.Text = reader["E_BitTarih"].ToString();
+                    baslan.Text = Convert.ToDateTime(reader["E_BasTarih"]).ToString("dd-MM-yyyy");
+                    bitis.Text = Convert.ToDateTime(reader["E_BitTarih"]).ToString("dd-MM-yyyy");
                     eVeren.Text = reader["P_Adi"].ToString() + " " + reader["P_Soyadi"].ToString();
 
                 }

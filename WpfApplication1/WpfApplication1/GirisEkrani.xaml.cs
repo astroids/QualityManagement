@@ -27,23 +27,15 @@ namespace WpfApplication1
     {
 
         private SqlConnection con = new SqlConnection();
-   //     private SqlConnection con2 = new SqlConnection();
         public SqlCommand cmd = new SqlCommand();
         
 
 
-        //public static int i = 1;
         public GirisEkrani()
         {
 
             InitializeComponent();
-            //if (i % 2 == 0)
-            //{
-            //    this.Close();
-
-            //}
             con.ConnectionString = yet.ki.con;
-       //     con2.ConnectionString = yet.ki.con;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -78,9 +70,7 @@ namespace WpfApplication1
                     yet.ki.kulID = dt.Rows[0].ItemArray[0].ToString();
                     yet.ki.kulAdi = dt.Rows[0].ItemArray[1].ToString();
                     yet.ki.al =Convert.ToInt32( dt.Rows[0].ItemArray[16].ToString());
-                    // Response.Redirect("Default.aspx");
                     MainWindow mw = new MainWindow();
-                    //i ++;
                     yet.ki.kulID = kullanıcı.Text;
                     
                     MessageBox.Show(yet.ki.kulAdi +" Bey\nHosgeldiniz");
