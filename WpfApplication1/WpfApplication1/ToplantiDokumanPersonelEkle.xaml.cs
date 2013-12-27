@@ -50,6 +50,7 @@ namespace WpfApplication1
             con.ConnectionString = yet.ki.con;
             fillGrids();
             fillTplDocs();
+            fillTplPers();
             wnm.Width = 512;
         }
 
@@ -296,7 +297,7 @@ namespace WpfApplication1
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = con;
                     if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-                    cmd.CommandText = "delete Tbl_Tpl_Katilanlar where Tpld_tid =@tpl and Tpld_did =@dcm;";
+                    cmd.CommandText = "delete Tbl_Tpl_Katilanlar where Tplk_tid =@tpl and Tplk_pid =@dcm;";
                     cmd.Parameters.AddWithValue("@tpl", currentTpl.ToString());
                     cmd.Parameters.AddWithValue("@dcm", seletedPers.ToString());
                     cmd.ExecuteNonQuery();
@@ -307,8 +308,9 @@ namespace WpfApplication1
 
 
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Çıkarma Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
