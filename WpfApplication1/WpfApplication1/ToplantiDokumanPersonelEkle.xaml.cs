@@ -224,13 +224,20 @@ namespace WpfApplication1
 
         private void uzat_Click(object sender, RoutedEventArgs e)
         {
-            if (wnm.Width == 512)
+            try
             {
-                wnm.Width = 1024;
+                if (wnm.Width == 512)
+                {
+                    wnm.Width = 1024;
+                }
+                else
+                {
+                    wnm.Width = 512;
+                }
             }
-            else
+            catch
             {
-                wnm.Width = 512;
+                MessageBox.Show("Bir Hata Oluştu");
             }
         }
 

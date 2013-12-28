@@ -188,44 +188,51 @@ namespace WpfApplication1
     {
         public static void refresh()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = yet.ki.con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Sirket";
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = yet.ki.con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                SqlCommand cmd = new SqlCommand();
 
-                sir.name = reader["S_Kisa_Adi"].ToString();
-                sir.lname = reader["S_Ticari_Adi"].ToString();
-                sir.vno = reader["S_VNO"].ToString();
-                sir.adress = reader["S_Adres"].ToString();
-                sir.tel = reader["S_Tel"].ToString();
-                sir.email = reader["S_Mail"].ToString();
-                sir.web = reader["S_Web"].ToString();
-                sir.logarray = (byte[])reader["S_Logo"];
-                sir.epass = reader["S_MailPass"].ToString();
-                sir.einter= reader["S_MailLoop"].ToString();
-                sir.estop = reader["S_MailExit"].ToString();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Sirket";
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
+                    sir.name = reader["S_Kisa_Adi"].ToString();
+                    sir.lname = reader["S_Ticari_Adi"].ToString();
+                    sir.vno = reader["S_VNO"].ToString();
+                    sir.adress = reader["S_Adres"].ToString();
+                    sir.tel = reader["S_Tel"].ToString();
+                    sir.email = reader["S_Mail"].ToString();
+                    sir.web = reader["S_Web"].ToString();
+                    sir.logarray = (byte[])reader["S_Logo"];
+                    sir.epass = reader["S_MailPass"].ToString();
+                    sir.einter = reader["S_MailLoop"].ToString();
+                    sir.estop = reader["S_MailExit"].ToString();
+
+                }
+
+                if (con.State == ConnectionState.Open) { con.Close(); }
+                MemoryStream strm = new MemoryStream();
+                strm.Write(sir.logarray, 0, sir.logarray.Length);
+                strm.Position = 0;
+                System.Drawing.Image img = System.Drawing.Image.FromStream(strm);
+                sir.ket = new BitmapImage();
+                sir.ket.BeginInit();
+                MemoryStream ms = new MemoryStream();
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                ms.Seek(0, SeekOrigin.Begin);
+                sir.ket.StreamSource = ms;
+                sir.ket.EndInit();
             }
-
-             if (con.State == ConnectionState.Open){con.Close();}
-            MemoryStream strm = new MemoryStream();
-            strm.Write(sir.logarray, 0, sir.logarray.Length);
-            strm.Position = 0;
-            System.Drawing.Image img = System.Drawing.Image.FromStream(strm);
-            sir.ket = new BitmapImage();
-            sir.ket.BeginInit();
-            MemoryStream ms = new MemoryStream();
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-            ms.Seek(0, SeekOrigin.Begin);
-            sir.ket.StreamSource = ms;
-            sir.ket.EndInit();
+            catch
+            {
+                MessageBox.Show("Yenileme İşlemi Sırasında Bir Hata Oluştu");
+            }
 
 
 
