@@ -41,7 +41,7 @@ namespace WpfApplication1
             mailad.Text = sir.email;
             mailpass.Text = sir.epass;
             mailinter.Text = sir.einter;
-            mailkapa.Text = sir.estop;
+            mcheck.IsChecked = Convert.ToBoolean (sir.estop);
 
         }
 
@@ -57,7 +57,7 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@mail", mailad.Text);
                 cmd.Parameters.AddWithValue("@pass", mailpass.Text);
                 cmd.Parameters.AddWithValue("@loop", mailinter.Text);
-                cmd.Parameters.AddWithValue("@stop", mailkapa.Text);
+                cmd.Parameters.AddWithValue("@stop", mcheck.IsChecked.ToString());
 
                 cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open) { con.Close(); }
@@ -65,7 +65,7 @@ namespace WpfApplication1
                 sir.email = mailad.Text;
                 sir.epass = mailpass.Text;
                 sir.einter = mailinter.Text;
-                sir.estop = mailkapa.Text;
+                sir.estop = mcheck.IsChecked.ToString();
                 this.Close();
             }
             catch (Exception ex)

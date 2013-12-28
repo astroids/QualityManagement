@@ -65,8 +65,8 @@ namespace WpfApplication1
                 fillCombo();
                 if (secim == 2)
                 {
-                    depno.Visibility = Visibility.Visible;
-                    depno.IsEnabled = true;
+                    depn.IsEnabled = false;
+                    depno.IsEnabled = false;
                     if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
@@ -117,12 +117,6 @@ namespace WpfApplication1
                 SqlCommand cmd = new SqlCommand();
                 if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
                 cmd.CommandType = CommandType.Text;
-                //if (tip == null)
-                //{
-
-                //    cmd.CommandText = "select d.DKM_id as 'Doküman ID', d.DKM_Adi as 'Doküman Adı',d.DKM_Baslik as 'Doküman Başlığı',t.DKMT_Adi as 'Doküman Tipi'  from Tbl_Dokuman d join  Tbl_Dokuman_Tipi t on d.DKM_Tip=t.DKMT_id";
-                //}
-                //else
                 {
 
 

@@ -39,12 +39,9 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Tbl_Dokuman_Tipi (@tip);";
+                cmd.CommandText = "insert into Tbl_Dokuman_Tipi values (@ad);";
                 cmd.Parameters.AddWithValue("@ad", dtipi.Text);
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-
                 cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Başarıyla Eklendi");
@@ -65,12 +62,9 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Tbl_Izin_Tur (@tip);";
+                cmd.CommandText = "insert into Tbl_Izin_Tur values (@ad);";
                 cmd.Parameters.AddWithValue("@ad", itipi.Text);
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-
                 cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Başarıyla Eklendi");
@@ -92,12 +86,9 @@ namespace WpfApplication1
                 if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Tbl_TplYerleri (@tip);";
+                cmd.CommandText = "insert into Tbl_TplYerleri values (@ad);";
                 cmd.Parameters.AddWithValue("@ad", tplyer.Text);
                 SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adap.Fill(dt);
-
                 cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show("Başarıyla Eklendi");

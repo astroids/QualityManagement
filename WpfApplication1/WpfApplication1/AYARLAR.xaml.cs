@@ -62,7 +62,8 @@ namespace WpfApplication1
 
         private void dsizin_Click(object sender, RoutedEventArgs e)
         {
-
+            DosyaİzinTipiEkle ek = new DosyaİzinTipiEkle();
+            ek.Show();
         }
     }
 }

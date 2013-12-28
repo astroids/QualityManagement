@@ -4,18 +4,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mail Programı Ayarları" Height="400" Width="500">
     <Grid>
-        <Label Content="Mail İnterfval" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="126"/>
+        <Label Content="Mail İnterval" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="126"/>
 
         <Label Content="Mail Adresi" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="126"/>
         <TextBox HorizontalAlignment="Left" Name="mailad" Height="23" Margin="178,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
         <Button Content="Kaydet" Name="depKaydet" HorizontalAlignment="Left" Margin="383,320,0,0" VerticalAlignment="Top" Width="75" Click="depKaydet_Click"/>
-        <Label Content="Mail Sifre" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Name="mailpass" Margin="178,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
-        <Label Content="Mail Kapa" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox HorizontalAlignment="Left" x:Name="mailkapa" Height="23" Margin="178,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
-        <TextBox HorizontalAlignment="Left" Height="23" x:Name="mailinter" Margin="178,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
-        <Label  Content="Yonetici" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox IsEnabled="False" HorizontalAlignment="Left" x:Name="yonet" Height="23" Margin="178,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Mail Sifre" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Name="mailpass" Margin="178,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Otoatik Mail Sistemi" HorizontalAlignment="Left" Margin="10,240,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" Height="23" x:Name="mailinter" Margin="178,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
+        <CheckBox Name="mcheck" Content="kapat" HorizontalAlignment="Left" Margin="178,249,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Controls:MetroWindow>
