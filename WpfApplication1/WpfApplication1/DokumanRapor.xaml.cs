@@ -59,7 +59,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Grid doldurma islemi sirasinda bir hata olustu");
+                MessageBox.Show("Grid Doldurma İşlemi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }

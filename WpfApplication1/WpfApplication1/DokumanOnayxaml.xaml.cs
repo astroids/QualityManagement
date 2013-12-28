@@ -57,7 +57,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -89,7 +89,7 @@ namespace WpfApplication1
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Yetkili Olduğunuzdan ve Bir Doküman seçtiğinizden Emin olunuz");
+                MessageBox.Show("Yetkili Olduğunuzdan Ve Bir Doküman Seçtiğinizden Emin Olunuz");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -119,7 +119,7 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Yetkili Olduğunuzdan ve Bir Doküman seçtiğinizden Emin olunuz");
+                MessageBox.Show("Yetkili Olduğunuzdan Ve Bir Doküman Seçtiğinizden Emin Olunuz");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }

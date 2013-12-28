@@ -82,7 +82,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Bir hata olustu");
+                MessageBox.Show("Bir Hata Oluştu");
             }
             
         }
@@ -124,7 +124,7 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Bir hata olustu");
+                    MessageBox.Show("Bir Hata Oluştu");
                     if (con.State == ConnectionState.Open) { con.Close(); }
                     this.Close();
                 }
@@ -174,7 +174,7 @@ namespace WpfApplication1
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Dokuman revize islemi sirasinda bir hata olustu");
+                MessageBox.Show("Doküman Revize İşlemi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -241,7 +241,7 @@ namespace WpfApplication1
             {
                 if (con.State == ConnectionState.Open) { con.Close(); }
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Hatalı seçim");
+                MessageBox.Show("Hatalı Seçim");
             }
         }
 

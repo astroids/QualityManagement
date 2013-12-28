@@ -55,7 +55,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Listeleme Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Listeleme İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -78,7 +78,7 @@ namespace WpfApplication1
 
                 try
                 {
-                    if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("Silmek İstediğinize Emin misiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         
                         string ID = (grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
@@ -94,7 +94,7 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@pid", selectedID);
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Silme Yapıldı..");
+                        MessageBox.Show("Silme Yapıldı");
 
                          if (con.State == ConnectionState.Open){con.Close();}
 
@@ -102,7 +102,7 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Silme Islemi Sirasinda Bir Hata Oluştu");
+                    MessageBox.Show("Silme İşlemi Sırasında Bir Hata Oluştu");
                 }
 
 
@@ -110,7 +110,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Silinecek olan toplantiyi secdiginize emin olunuz!");
+                MessageBox.Show("Silinecek Olan Toplantıyı Seçtiğinize Emin Olunuz!");
             }
         }
 
@@ -132,7 +132,7 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("Degistirmek icin bir departman secmelisiniz!");
+                    MessageBox.Show("Değiştirmek İçin Bir Departman Seçmelisiniz!");
                 }
             }
             catch

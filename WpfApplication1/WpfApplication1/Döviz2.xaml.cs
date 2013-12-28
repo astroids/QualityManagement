@@ -44,7 +44,7 @@ namespace WpfApplication1
             }
             catch (WebException)
             {
-                MessageBox.Show("İnternet bağlantınızı ve Güvenlik duvarı ayarlarını kontrol ediniz");
+                MessageBox.Show("İnternet Bağlantınızı ve Güvenlik Duvarı Ayarlarını Kontrol Ediniz");
             }
             Stream str = benimResponse.GetResponseStream();
 
@@ -109,7 +109,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doviz islemleri getirilirken bir hata olustu");
+                MessageBox.Show("Döviz İşlemleri Getirilirken Bir Hata Oluştu");
             }
             
         }

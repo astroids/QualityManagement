@@ -83,7 +83,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Dokuman Yazdirma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doküman Yazdırma İşlemi Sırasında Bir Hata Oluştu");
             }
            
 
@@ -102,7 +102,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Yazdırma işlemi sırasında bir hata oluştu");
+                MessageBox.Show("Yazdırma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }

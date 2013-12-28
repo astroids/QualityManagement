@@ -60,7 +60,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Listeleme islemi sirasinda bir hata olustu");
+                MessageBox.Show("Listeleme İşlemi Sırasında Bir Hata Oluştu");
             }
 
 
@@ -87,7 +87,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Bir hata oluştu");
+                MessageBox.Show("Bir Hata Oluştu");
             }
             
         }
@@ -101,7 +101,7 @@ namespace WpfApplication1
             }
             catch 
             {
-                MessageBox.Show("Bir hata oluştu");
+                MessageBox.Show("Bir Hata Oluştu");
             }
         }
 
@@ -118,7 +118,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Deiştirmek için bir kişi seçinz");
+                MessageBox.Show("Değiştirmek İçin Bir Kişi Seçiniz");
             }
         }
 

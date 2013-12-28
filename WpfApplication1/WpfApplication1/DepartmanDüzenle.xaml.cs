@@ -48,7 +48,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -103,7 +103,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Depertman Duzenleme Islemleri Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Departman Düzenleme İşlemleri Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -167,7 +167,7 @@ namespace WpfApplication1
 
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Kayıt Yapıldı..");
+                MessageBox.Show("Kayıt Yapıldı");
                 this.Hide();
 
                  if (con.State == ConnectionState.Open){con.Close();}
@@ -194,7 +194,7 @@ namespace WpfApplication1
 
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Düzenleme Yapıldı..");
+                MessageBox.Show("Düzenleme Yapıldı");
                 this.Hide();
 
                  if (con.State == ConnectionState.Open){con.Close();}

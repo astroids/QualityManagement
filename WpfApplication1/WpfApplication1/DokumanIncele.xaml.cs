@@ -131,7 +131,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Sonraki Doküman Göstrrilemiyor Onaylanmayan Bir Dokümanda Gördüyseniz Sistem Adminine Başvurunuz");
+                MessageBox.Show("Sonraki Doküman Gösterilemiyor Onaylanmayan Bir Dokümanda Gördüyseniz Sistem Adminine Başvurunuz");
             }
         }
 

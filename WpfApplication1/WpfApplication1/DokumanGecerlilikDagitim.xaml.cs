@@ -72,7 +72,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -152,7 +152,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Eklediğiniz kişi zaten listede!");
+                MessageBox.Show("Eklediğiniz Kişi Zaten Listede!");
                  if (con.State == ConnectionState.Open){con.Close();}
             }
             fillPersonel();
@@ -178,7 +178,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Lütfen bir personel seçiniz!");
+                MessageBox.Show("Lütfen Bir Personel Seçiniz!");
                  if (con.State == ConnectionState.Open){con.Close();}
             }
             fillPersonel();
@@ -217,7 +217,7 @@ namespace WpfApplication1
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Lütfen bir personel seçiniz!");
+                MessageBox.Show("Lütfen Bir Personel Seçiniz!");
                 if (con.State == ConnectionState.Open) { con.Close(); }
             }
         }
@@ -243,12 +243,12 @@ namespace WpfApplication1
                 wnd.Width = 512;
                 sec.Visibility = Visibility.Hidden;
                 secg.Visibility = Visibility.Visible;
-                MessageBox.Show("Kayıt başarılı");
+                MessageBox.Show("Kayıt Başarılı");
                 this.Close();
             }
             catch 
             {
-                MessageBox.Show("Lütfen bir personel seçiniz!");
+                MessageBox.Show("Lütfen Bir Personel Seçiniz!");
                 if (con.State == ConnectionState.Open) { con.Close(); }
             }
         }
