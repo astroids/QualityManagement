@@ -80,7 +80,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Raporlama Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Raporlama Sırasında Bir Hata Oluştu");
             }
 
         }

@@ -95,7 +95,7 @@ namespace WpfApplication1
             catch
             {
                 if (con.State == ConnectionState.Open) { con.Close(); }
-                MessageBox.Show("Duzenleme Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Duzenleme Sırasında Bir Hata Oluştu");
             }
         }
         private void fillCombo()
@@ -118,7 +118,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -138,99 +138,99 @@ namespace WpfApplication1
 
                     if (isim.Text == "")
                     {
-                        MessageBox.Show("Adını boş geçemezsiniz!!");
-                        return;
+                        MessageBox.Show("Adını Boş Geçemezsiniz !!");
+                        return; 
                     }
 
                     if (soyisim.Text == "")
                     {
-                        MessageBox.Show("Soyadını boş geçemezsiniz!!");
+                        MessageBox.Show("Soyadını Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (tckimlik.Text == "")
                     {
-                        MessageBox.Show("TC Kimliğini boş geçemezsiniz!!");
+                        MessageBox.Show("TC Kimlik Numarasını Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (tckimlik.Text.Length != 11)
                     {
-                        MessageBox.Show("TC Kimlik eksik yada fazla olamaz!!");
+                        MessageBox.Show("TC Kimlik Eksik ya da Fazla Olamaz !!");
                         return;
                     }
 
                     if (telefonno.Text == "")
                     {
-                        MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
+                        MessageBox.Show("Telefon Numarasını Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (ceptelefon.Text == "")
                     {
-                        MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
+                        MessageBox.Show("Cep Telefonunu Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (telefonno.Text.Length != 11)
                     {
-                        MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
+                        MessageBox.Show("Telefon No Eksik ya da Fazla Olamaz !!");
                         return;
                     }
 
                     if (ceptelefon.Text.Length != 11)
                     {
-                        MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
+                        MessageBox.Show("Cep Telefon No Eksik ya da Fazla Olamaz !!");
                         return;
                     }
 
                     if (email.Text == "")
                     {
-                        MessageBox.Show("E-Mail i boş geçemezsiniz!!");
+                        MessageBox.Show("E-Mail i Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (cinsiyet.Text == "")
                     {
-                        MessageBox.Show("Cinsiyet i seciniz!!");
+                        MessageBox.Show("Cinsiyeti seciniz !!");
                         return;
                     }
 
                     if (dogumtarihi.Text == "")
                     {
-                        MessageBox.Show("Dogum tarihini boş geçemezsiniz!!");
+                        MessageBox.Show("Doğum Tarihini Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (dogumyeri.Text == "")
                     {
-                        MessageBox.Show("Dogum yerini boş geçemezsiniz!!");
+                        MessageBox.Show("Doğum Yerini Boş Geçemezsiniz !!");
                         return;
                     }
 
                     if (pozisyon.Text == "")
                     {
-                        MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
+                        MessageBox.Show("Pozisyonu Boş Geçemezsiniz !!");
                         return;
                     }
                     if (yet.ki.yetki != 3)
                     {
                         if (departman.Text == "")
                         {
-                            MessageBox.Show("Departman ı seciniz!!");
+                            MessageBox.Show("Departmanı Seçiniz !!");
                             return;
                         }
                     }
                     if (medenihal.Text == "")
                     {
-                        MessageBox.Show("Medeni Hal i seciniz!!");
+                        MessageBox.Show("Medeni Hali Seciniz !!");
                         return;
                     }
                     if (yet.ki.yetki != 3)
                     {
                         if (adaydurumu.Text == "")
                         {
-                            MessageBox.Show("Aday durumunu seciniz!!");
+                            MessageBox.Show("Aday Durumunu Seciniz !!");
                             return;
                         }
                     }
@@ -255,7 +255,7 @@ namespace WpfApplication1
                     ilksifre=rn.Next(1000, 9999);
                     if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
                     {
-                        MessageBox.Show("En fazla bir pozisyon seçebilirsiniz");
+                        MessageBox.Show("En Fazla Bir Pozisyon Seçebilirsiniz");
                     }
                     if (con.State == ConnectionState.Closed)
                     {
@@ -295,7 +295,7 @@ namespace WpfApplication1
                         }
                         if (dep == null)
                         {
-                            MessageBox.Show("Departmini secmediniz!!!");
+                            MessageBox.Show("Departmanı Seçmediniz !!");
 
                             return;
 
@@ -303,9 +303,9 @@ namespace WpfApplication1
 
                         yeniKullID = cmd.ExecuteScalar().ToString();
 
-                        MessageBox.Show("Kayıt Yapıldı..");
+                        MessageBox.Show("Kayıt Yapıldı");
 
-                        MessageBox.Show("Kullanıcı idniz" + yeniKullID +"\nİlk Sifreniz: " + ilksifre.ToString());
+                        MessageBox.Show("Kullanıcı ID niz" + yeniKullID +"\n İlk Şifreniz: " + ilksifre.ToString());
                         this.Hide();
 
                         PersonelEkleSil ek = new PersonelEkleSil(1);
@@ -315,7 +315,7 @@ namespace WpfApplication1
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
-                        MessageBox.Show("Kayit Yapilirkan Bir Hata Oluştu");
+                        MessageBox.Show("Kayıt Yapılırken Bir Hata Oluştu");
                         if (con.State == ConnectionState.Open) { con.Close(); }
 
                     }
@@ -337,98 +337,98 @@ namespace WpfApplication1
                                                P_Cinsiyet=@P_Cinsiyet,P_D_Tar=@P_D_Tar,P_D_Yer=@P_D_Yer,P_Pozisyon=@P_Pozisyon,P_Dept=@P_Dept,P_Med_Hal=@P_Med_Hal,P_Aday=@P_Aday where P_id=@P_id";
                         if (isim.Text == "")
                         {
-                            MessageBox.Show("Adını boş geçemezsiniz!!");
+                            MessageBox.Show("Adını Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (soyisim.Text == "")
                         {
-                            MessageBox.Show("Soyadını boş geçemezsiniz!!");
+                            MessageBox.Show("Soyadını Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (tckimlik.Text == "")
                         {
-                            MessageBox.Show("TC Kimliğini boş geçemezsiniz!!");
+                            MessageBox.Show("TC Kimliğini Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (tckimlik.Text.Length != 11)
                         {
-                            MessageBox.Show("TC Kimlik eksik yada fazla olamaz!!");
+                            MessageBox.Show("TC Kimlik Eksik ya da Fazla Olamaz !!");
                             return;
                         }
 
                         if (telefonno.Text == "")
                         {
-                            MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
+                            MessageBox.Show("Telefon No yu Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (ceptelefon.Text == "")
                         {
-                            MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
+                            MessageBox.Show("Cep Telefonunu Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (telefonno.Text.Length != 11)
                         {
-                            MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
+                            MessageBox.Show("Telefon No Eksik ya da Fazla Olamaz !!");
                             return;
                         }
 
                         if (ceptelefon.Text.Length != 11)
                         {
-                            MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
+                            MessageBox.Show("Cep Telefon No Eksik ya da Fazla Olamaz !!");
                             return;
                         }
 
                         if (email.Text == "")
                         {
-                            MessageBox.Show("E-Mail i boş geçemezsiniz!!");
+                            MessageBox.Show("E-Mail i Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (cinsiyet.Text == "")
                         {
-                            MessageBox.Show("Cinsiyet i seciniz!!");
+                            MessageBox.Show("Cinsiyeti Seçiniz !!");
                             return;
                         }
 
                         if (dogumtarihi.Text == "")
                         {
-                            MessageBox.Show("Dogum tarihini boş geçemezsiniz!!");
+                            MessageBox.Show("Doğum Tarihini Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (dogumyeri.Text == "")
                         {
-                            MessageBox.Show("Dogum yerini boş geçemezsiniz!!");
+                            MessageBox.Show("Doğum Yerini Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (pozisyon.Text == "")
                         {
-                            MessageBox.Show("Pozisyon u boş geçemezsiniz!!");
+                            MessageBox.Show("Pozisyonu Boş Geçemezsiniz !!");
                             return;
                         }
                       
                             if (departman.Text == "")
                             {
-                                MessageBox.Show("Departman ı seciniz!!");
+                                MessageBox.Show("Departmanı Seçiniz !!");
                                 return;
                             }
                         
 
                         if (medenihal.Text == "")
                         {
-                            MessageBox.Show("Medeni Hal i seciniz!!");
+                            MessageBox.Show("Medeni Hali Seçiniz !!");
                             return;
                         }
                         
                             if (adaydurumu.Text == "")
                             {
-                                MessageBox.Show("Aday durumunu seciniz!!");
+                                MessageBox.Show("Aday Durumunu Seçiniz !!");
                                 return;
                             }
                         
@@ -436,19 +436,23 @@ namespace WpfApplication1
                         {
                             yet.ki.yetki = 1;
                         }
+
                         if (checkmYardım.IsChecked == true)
                         {
                             yet.ki.yetki = 2;
 
                         }
+
                         if (checkper.IsChecked == true)
                         {
                             yet.ki.yetki = 3;
                         }
+
                         if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
                         {
-                            MessageBox.Show("En fazla bir pozisyon seçebilirsiniz");
+                            MessageBox.Show("En Fazla Bir Pozisyon Seçebilirsiniz");
                         }
+
                         cmd.Parameters.AddWithValue("P_id", idd);
                         cmd.Parameters.AddWithValue("@P_Adi", isim.Text);
                         cmd.Parameters.AddWithValue("@P_Soyadi", soyisim.Text);
@@ -475,7 +479,7 @@ namespace WpfApplication1
                        
                             if (dep == null)
                             {
-                                MessageBox.Show("Departmini secmediniz!!!");
+                                MessageBox.Show("Departmanı Seçmediniz !!");
 
                                 return;
 
@@ -484,7 +488,7 @@ namespace WpfApplication1
 
                         cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("Degisiklik Yapildi..");
+                        MessageBox.Show("Değişiklik Yapıldı");
                         this.Hide();
                         PersonelEkleSil ek = new PersonelEkleSil(1);
                         ek.Show();
@@ -492,7 +496,7 @@ namespace WpfApplication1
                     }
                     catch
                     {
-                        MessageBox.Show("Guncelleme Yapilirkan Bir Hata Oluştu");
+                        MessageBox.Show("Guncelleme Yapılırken Bir Hata Oluştu");
                     }
 
                 }
@@ -514,36 +518,36 @@ namespace WpfApplication1
                                              P_Med_Hal=@P_Med_Hal P_id=@P_id";
                         if (telefonno.Text == "")
                         {
-                            MessageBox.Show("Telefon no yu boş geçemezsiniz!!");
+                            MessageBox.Show("Telefon No yu Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (ceptelefon.Text == "")
                         {
-                            MessageBox.Show("Cep Telefon u boş geçemezsiniz!!");
+                            MessageBox.Show("Cep Telefonu Boş Geçemezsiniz !!");
                             return;
                         }
 
                         if (telefonno.Text.Length != 11)
                         {
-                            MessageBox.Show("Telefon no eksik yada fazla olamaz!!");
+                            MessageBox.Show("Telefon No Eksik ya da Fazla Olamaz !!");
                             return;
                         }
 
                         if (ceptelefon.Text.Length != 11)
                         {
-                            MessageBox.Show("Cep Telefon no eksik yada fazla olamaz!!");
+                            MessageBox.Show("Cep Telefon No Eksik ya da Fazla Olamaz !!");
                             return;
                         }
 
                         if (email.Text == "")
                         {
-                            MessageBox.Show("E-Mail i boş geçemezsiniz!!");
+                            MessageBox.Show("E-Mail i Boş Geçemezsiniz !!");
                             return;
                         }
                         if (medenihal.Text == "")
                         {
-                            MessageBox.Show("Medeni Hal i seciniz!!");
+                            MessageBox.Show("Medeni Hali Seçiniz !!");
                             return;
                         }
                         cmd.Parameters.AddWithValue("@P_TcKimlik", tckimlik.Text);
@@ -553,7 +557,7 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
                         cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("Degisiklik Yapildi..");
+                        MessageBox.Show("Değişiklik Yapıldı");
                         this.Hide();
                         PersonelEkleSil ek = new PersonelEkleSil(1);
                         ek.Show();
@@ -561,7 +565,7 @@ namespace WpfApplication1
                     }
                     catch
                     {
-                        MessageBox.Show("Guncelleme Yapilirkan Bir Hata Oluştu");
+                        MessageBox.Show("Güncelleme Yapılırken Bir Hata Oluştu");
                     }
 
                 }

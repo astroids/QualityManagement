@@ -57,7 +57,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -88,7 +88,7 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("Secme Islemi Sirasinda Bir Hata Olustu");
+                    MessageBox.Show("Secme İşlemi Sırasında Bir Hata Oluştu");
                     if (con.State == ConnectionState.Open) { con.Close(); }
 
                 }
@@ -97,7 +97,7 @@ namespace WpfApplication1
 
             else
             {
-                MessageBox.Show("Lütfen bir kişi seçinz");
+                MessageBox.Show("Lütfen Bir Kişi Seçiniz");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }

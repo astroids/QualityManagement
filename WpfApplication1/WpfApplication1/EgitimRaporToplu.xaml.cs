@@ -56,9 +56,10 @@ namespace WpfApplication1
                 semail.Text = sir.email;
                 sadres.Text = sir.adress;
             }
+
             catch
             {
-                MessageBox.Show("Egitim Toplu Raporlama Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Egitim Toplu Raporlama Sırasında Bir Hata Oluştu");
             }
 
         }

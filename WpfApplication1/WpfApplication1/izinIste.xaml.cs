@@ -81,7 +81,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Veritabani Islemleri Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Veritabanı İşlemleri Sırasında Bir Hata Oluştu");
             }
 
 
@@ -106,7 +106,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -136,13 +136,13 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@bit", (biti.ToString("yyyy-MM-dd")));
                 cmd.Parameters.AddWithValue("@sure", sure.Days.ToString());
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("İzin istegit başarıyla tamamlandı");
+                MessageBox.Show("İzin İsteği Başarıyla Tamamlandı");
                 this.Close();
             }
             catch 
             {
                 if (con.State == ConnectionState.Open) { con.Close(); }
-                MessageBox.Show("Hatlı işlem");
+                MessageBox.Show("Hatalı İşlem");
             }
         }
 

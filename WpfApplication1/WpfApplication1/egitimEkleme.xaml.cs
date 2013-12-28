@@ -85,7 +85,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Kaydetme Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Kaydetme Sırasında Bir Hata Oluştu");
             }
 
 
@@ -130,7 +130,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Veren Kisi Secillirken Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Eğitim Veren Kişi Seçimi Sırasında Bir Hata Oluştu");
             }
 
 

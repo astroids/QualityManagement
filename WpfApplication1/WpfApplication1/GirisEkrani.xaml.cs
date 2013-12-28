@@ -73,13 +73,13 @@ namespace WpfApplication1
                     MainWindow mw = new MainWindow();
                     yet.ki.kulID = kullanıcı.Text;
                     
-                    MessageBox.Show(yet.ki.kulAdi +" Bey\nHosgeldiniz");
+                    MessageBox.Show(yet.ki.kulAdi +" Bey\n Hoşgeldiniz");
                     this.Close();
                     mw.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Kullanıcı adı yada şifre hatalı!!!");
+                    MessageBox.Show("Kullanıcı Adı ya da Şifre Hatalı !!!");
                 }
             }
             catch (Exception ex)

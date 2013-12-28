@@ -52,7 +52,7 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -73,7 +73,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Lütfen bir personel seçiniz");
+                MessageBox.Show("Lütfen Bir Personel Seçiniz");
             }
         }
 

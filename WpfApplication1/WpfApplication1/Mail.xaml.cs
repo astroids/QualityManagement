@@ -54,7 +54,7 @@ namespace WpfApplication1
             
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
 
 
@@ -89,13 +89,13 @@ namespace WpfApplication1
                     {
                         attachment = new System.Net.Mail.Attachment(yol);
                         mail.Attachments.Add(attachment);
-                        MessageBox.Show("Dosya basarıyla eklendi...");
+                        MessageBox.Show("Dosya Başarıyla Eklendi");
                         
                     }
                    
                     catch
                     {
-                        MessageBox.Show("Dosya Ekleme Sirasinda Bir Hata Oluştu");
+                        MessageBox.Show("Dosya Ekleme İşlemi Sırasında Bir Hata Oluştu");
                     }
                     
                 }
@@ -107,7 +107,7 @@ namespace WpfApplication1
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                MessageBox.Show("Mail başarıyla gönderildi.");
+                MessageBox.Show("Mail Başarıyla Gönderildi");
                 if (attach == true)
                 {
                     attachment.Dispose();
@@ -116,7 +116,7 @@ namespace WpfApplication1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Mesajınız gönderilmedi.\nHata raporu: " + ex.ToString());
+                MessageBox.Show("Mesajınız Gönderilmedi.\nHata Raporu: " + ex.ToString());
                 attachment.Dispose();
 
             }
@@ -191,7 +191,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Listeleme Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Listeleme İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }
