@@ -1,8 +1,8 @@
-﻿<Controls:MetroWindow x:Class="WpfApplication1.Personel_Raporu_Departma_Secme" ShowTitleBar="False"
+﻿<Controls:MetroWindow x:Class="WpfApplication1.Personel_Raporu_Departma_Secme" ShowTitleBar="True"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AAABOSKOPYALA" Height="320" Width="300">
+        Title="Personel Rapor" Height="320" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="119*"/>

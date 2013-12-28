@@ -1,8 +1,8 @@
-﻿<Controls:MetroWindow x:Class="WpfApplication1.Sifre" ShowTitleBar="False"
+﻿<Controls:MetroWindow x:Class="WpfApplication1.Sifre" ShowTitleBar="True"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Sifre" Height="300" Width="400">
+        Title="Şifre Değiştirme" Height="300" Width="400">
     <Grid>
         <Label Content="Eski Sifre" HorizontalAlignment="Left" Margin="23,59,0,0" VerticalAlignment="Top" Width="99"/>
         <Label Content="Yeni Sifre" HorizontalAlignment="Left" Margin="23,111,0,0" VerticalAlignment="Top" Width="99"/>
