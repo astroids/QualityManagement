@@ -108,36 +108,49 @@ namespace WpfApplication1
 
         private void fillTplDocs()
         {
-            
-            cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            cmd.CommandText = "SPToplantiyaKatilanlar @tplid";
-            cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            tplDocu.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-             if (con.State == ConnectionState.Open){ if (con.State == ConnectionState.Open){ if (con.State == ConnectionState.Open){con.Close();}}}
+            try
+            {
+                cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd.CommandText = "SPToplantiyaKatilanlar @tplid";
+                cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                tplDocu.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { if (con.State == ConnectionState.Open) { if (con.State == ConnectionState.Open) { con.Close(); } } }
+            }
+            catch
+            {
+                MessageBox.Show("Dokuman Tablosu Ekrana Getirilirken Bir Hata Oluştu");
+            }
 
         }
 
         private void fillTplPers()
         {
-            cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            cmd.CommandText = "SPToplantiyaKatilanPersonelListele @tplid";
-            cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            tplPer.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-             if (con.State == ConnectionState.Open){ if (con.State == ConnectionState.Open){ if (con.State == ConnectionState.Open){con.Close();}}}
+            try
+            {
+                cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd.CommandText = "SPToplantiyaKatilanPersonelListele @tplid";
+                cmd.Parameters.AddWithValue("@tplid", currentTpl.ToString());
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                tplPer.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { if (con.State == ConnectionState.Open) { if (con.State == ConnectionState.Open) { con.Close(); } } }
+            }
+            catch
+            {
+                MessageBox.Show("Personel Tablosu Ekrana Getirilirken Bir Hata Oluştu");
+            }
         }
 
         private void kaydet_Click(object sender, RoutedEventArgs e)
