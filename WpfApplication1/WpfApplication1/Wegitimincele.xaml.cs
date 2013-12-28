@@ -101,7 +101,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Inceleme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Egitim İnceleme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -132,7 +132,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Yenileme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Yenileme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -170,7 +170,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Silme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Eğitim Silme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }

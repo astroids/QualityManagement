@@ -63,7 +63,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Veren Kisi Secilirken Bir Hata Olustu");
+                MessageBox.Show("Eğitim Veren Kişi Seçilirken Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -90,7 +90,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Yenileme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Yenileme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -129,7 +129,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Duzenleme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Eğitim Düzenleme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -173,7 +173,7 @@ namespace WpfApplication1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Çıkarılacak kişiyi seçiniz");
+                MessageBox.Show("Çıkarılacak Kişiyi Seçiniz");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -295,7 +295,7 @@ namespace WpfApplication1
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Değiştirme sırasında bir hata oluştu");
+                MessageBox.Show("Değiştirme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
                 this.Close();

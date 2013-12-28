@@ -60,7 +60,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -83,7 +83,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -129,7 +129,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Baskan Secimi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Başkan Seçimi Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -170,7 +170,7 @@ namespace WpfApplication1
                 selectedTpl = Convert.ToInt32(asd);
                 //  selectedTpl=(int)cmd.ExecuteScalar();
 
-                MessageBox.Show("Kayıt Yapıldı..");
+                MessageBox.Show("Kayıt Yapıldı");
                 if (con.State == ConnectionState.Open) { con.Close(); }
                 ToplantiDokumanPersonelEkle pd = new ToplantiDokumanPersonelEkle(selectedTpl);
                 pd.Show();

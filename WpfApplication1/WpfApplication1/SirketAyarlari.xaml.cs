@@ -114,7 +114,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
         }
 
@@ -163,7 +163,7 @@ namespace WpfApplication1
                     }
                     catch
                     {
-                        MessageBox.Show("Logo Secimi Sirasinda Bir Hata Olustu");
+                        MessageBox.Show("Logo Seçimi Sırasında Bir Hata Oluştu");
                     }
                 
 
@@ -259,7 +259,7 @@ namespace WpfApplication1
 
                 cmd.ExecuteNonQuery();
                  if (con.State == ConnectionState.Open){con.Close();}
-                MessageBox.Show("Şirket Vergi Numarasi Başarıyla Değiştirildi");
+                MessageBox.Show("Şirket Vergi Numarası Başarıyla Değiştirildi");
             }
             catch
             {

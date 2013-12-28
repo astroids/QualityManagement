@@ -71,7 +71,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Doküman Listesini Doldururken bir sorun oluştu!");
+                MessageBox.Show("Doküman Listesini Doldururken Bir Sorun Oluştu !");
             }
             finally
             {
@@ -94,7 +94,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Persone Listesini Doldurma Islemi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Personel Listesini Doldurma İşlemi Sırasında Bir Hata Oluştu");
             }
             finally
             {
@@ -156,20 +156,20 @@ namespace WpfApplication1
                     cmd.Parameters.AddWithValue("@id", currentTpl.ToString());
                     cmd.ExecuteNonQuery();
                     if (con.State == ConnectionState.Open) { con.Close(); }
-                    MessageBox.Show("Başarıyla kaydedildi");
+                    MessageBox.Show("Başarıyla Kaydedildi");
                     this.Close();
 
                 }
                 catch
                 {
-                    MessageBox.Show("Mail Ekleme Sırasında bir sorun oluştu");
+                    MessageBox.Show("Mail Ekleme Sırasında Bir Sorun Oluştu");
                     if (con.State == ConnectionState.Open) { con.Close(); }
 
                 }
             }
             else
             {
-                MessageBox.Show("Başarıyla kaydedildi");
+                MessageBox.Show("Başarıyla Kaydedildi");
                 this.Close();
             }
         }

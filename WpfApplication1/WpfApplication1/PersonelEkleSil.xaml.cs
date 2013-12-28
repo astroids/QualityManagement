@@ -381,7 +381,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Listeleme İslemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Listeleme İşlemi Sırasında Bir Hata Oluştu");
                  if (con.State == ConnectionState.Open){con.Close();}
             }
 
@@ -422,7 +422,7 @@ namespace WpfApplication1
                     {
                         if (yet.ki.kulID != ID)
                         {
-                            MessageBox.Show("Bu kişi üzerinde işlem yapamazsınız, Lütfen kendi bilgilerinizi seçiniz");
+                            MessageBox.Show("Bu Kişi Üzerinde İşlem Yapamazsınız , Lütfen Kendi Bilgilerinizi Seçiniz");
                         }
                     }
                     selectedID = Convert.ToInt32(ID);
@@ -432,12 +432,12 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("Değiştirmek için bir kişi seçinz");
+                    MessageBox.Show("Değiştirmek İçin Bir Kişi Seçiniz");
                 }
             }
             catch
             {
-                MessageBox.Show("Düzenleme İslemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Düzenleme İşlemi Sırasında Bir Hata Oluştu");
             }
         }
 
@@ -467,7 +467,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Izınde Olanlar Ekrana Getirilirken Bir Hata Oluştu");
+                MessageBox.Show("İzinde Olanlar Ekrana Getirilirken Bir Hata Oluştu");
             }
 
 
@@ -512,7 +512,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("İzin Geçmişini görmek için için için bir kişi seçinz");
+                MessageBox.Show("İzin Geçmişini Görmek İçin Bir Kişi Seçiniz");
             }
         }
 
@@ -576,14 +576,14 @@ namespace WpfApplication1
                 {
                     //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
                      if (con.State == ConnectionState.Open){con.Close();}
-                     MessageBox.Show("Onay işlemi sırasında bir sorun oluştu lütfen yetkinizi konrol ediniz");
+                     MessageBox.Show("Onay İşlemi Sırasında Bir Sorun Oluştu Lütfen Yetkinizi Kontrol Ediniz");
 
                 }
 
             }
             else
             {
-                MessageBox.Show("Onaylanacak izini seçiniz");
+                MessageBox.Show("Onaylanacak İzini Seçiniz");
             }
 
 
@@ -624,7 +624,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Değiştirmek için bir kişi seçinz");
+                MessageBox.Show("Değiştirmek İçin Bir Kişi Seçiniz");
             }
         }
 
@@ -645,12 +645,12 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("İzin almak için için bir kişi seçinz");
+                    MessageBox.Show("İzin Almak İçin Bir Kişi Seçiniz");
                 }
             }
             catch
             {
-                MessageBox.Show("Izin İsteme Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("İzin İsteme Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -677,7 +677,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Egitim Degistime İslemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Eğitim Değiştirme İşlemi Sırasında Bir Hata Oluştu");
             }
 
 
@@ -703,12 +703,12 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("Lütfen İncelencek İzini Seçiniz");
+                    MessageBox.Show("Lütfen İncelencek İzni Seçiniz");
                 }
             }
             catch
             {
-                MessageBox.Show("Egitim Inceleme İslemi Sirasinda Bir Hata Oluştu");
+                MessageBox.Show("Eğitim İnceleme İşlemi Sırasında Bir Hata Oluştu");
             }
 
 
@@ -812,7 +812,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Onay Bekliyenler Ekrana Getirilirken Bir Hata Olustu");
+                MessageBox.Show("Onay Bekleyenler Ekrana Getirilirken Bir Hata Oluştu");
             }
         }
 
@@ -829,7 +829,7 @@ namespace WpfApplication1
             if (item != null)
             {
 
-                if (MessageBox.Show("Eğitim Kaldırmak Gerçekten İstiyormusunuz?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Eğitimi Kaldırmak İstiyor musunuz?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
 
                     try
@@ -845,7 +845,7 @@ namespace WpfApplication1
                         cmd.ExecuteNonQuery();
                          if (con.State == ConnectionState.Open){con.Close();}
                         listele(null);
-                        MessageBox.Show("İşleminiz Başarıyla gerçekleştirildi");
+                        MessageBox.Show("İşleminiz Başarıyla Gerçekleştirildi");
                     }
                     catch
                     {
@@ -869,7 +869,7 @@ namespace WpfApplication1
             {
 
 
-                if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Silmek İstediğinize Emin misiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     try
                     {
@@ -891,7 +891,7 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_id", selectedID);
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Silme Yapıldı..");
+                        MessageBox.Show("Silme Yapıldı");
 
                          if (con.State == ConnectionState.Open){con.Close();}
                         listele(null);
@@ -899,7 +899,7 @@ namespace WpfApplication1
                     }
                     catch
                     {
-                        MessageBox.Show("Silme Islemi Sirasinda Bir Hata Olustu");
+                        MessageBox.Show("Silme İşlemi Sırasında Bir Hata Oluştu");
                     }
 
                 }
@@ -908,7 +908,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Silmek için bir kişi seçinz");
+                MessageBox.Show("Silmek İçin Bir Kişi Seçiniz");
             }
         }
 
@@ -949,12 +949,12 @@ namespace WpfApplication1
 
                 else
                 {
-                    MessageBox.Show("Lütfen bir kişi seçinz");
+                    MessageBox.Show("Lütfen Bir Kişi Seçiniz");
                 }
             }
             catch
             {
-                MessageBox.Show("Personel Raporlama Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Personel Raporlama Sırasında Bir Hata Oluştu");
             }
 
 
@@ -977,7 +977,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Personel Tablosundan Kisi Secimi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Personel Tablosundan Kişi Seçimi Sırasında Bir Hata Oluştu");
             }
         }
 
@@ -994,12 +994,12 @@ namespace WpfApplication1
                 }
                 else
                 {
-                    MessageBox.Show("Secim yapmadiniz!\n");
+                    MessageBox.Show("Secim Yapmadınız !\n");
                 }
             }
             catch
             {
-                MessageBox.Show("Personel Tablosundan Kisi Secimi Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Personel Tablosundan Kişi Seçimi Sırasında Bir Hata Oluştu");
             }
 
         }
@@ -1029,20 +1029,20 @@ namespace WpfApplication1
                     cmd.ExecuteNonQuery();
                     if (con.State == ConnectionState.Open) { con.Close(); }
                     onayBek();
-                    MessageBox.Show("Personeli İzini Reddedildi");
+                    MessageBox.Show("Personel İzni Reddedildi");
                 }
                 catch (Exception ex)
                 {
                     //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
                     if (con.State == ConnectionState.Open) { con.Close(); }
-                    MessageBox.Show("Red işlemi sırasında bir sorun oluştu lütfen yetkinizi konrol ediniz");
+                    MessageBox.Show("Ret İşlemi Sırasında Bir Sorun Oluştu Lütfen Yetkinizi Kontrol Ediniz");
 
                 }
 
             }
             else
             {
-                MessageBox.Show("Onaylanacak izini seçiniz");
+                MessageBox.Show("Onaylanacak İzni Seçiniz");
             }
 
 
@@ -1064,12 +1064,12 @@ namespace WpfApplication1
 
                 else
                 {
-                    MessageBox.Show("Lütfen bir kişi seçinz");
+                    MessageBox.Show("Lütfen Bir Kişi Seçiniz");
                 }
             }
             catch
             {
-                MessageBox.Show("Personel Raporlama Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Personel Raporlama Sırasında Bir Hata Oluştu");
             }
         }
 

@@ -59,7 +59,7 @@ namespace WpfApplication1
             }
             catch
             {
-                MessageBox.Show("Listeleme Sirasinda Bir Hata Olustu");
+                MessageBox.Show("Listeleme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -88,7 +88,7 @@ namespace WpfApplication1
 
                 try
                 {
-                    if (MessageBox.Show("Silmek istediğinize eminmisiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("Silmek İstediğinize Emin misiniz", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         //if(MessageBox.Show("Devam etmek istiyormusunuz ?", "Uyarı", MessageBoxButton.YesNo);
                         string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
@@ -106,7 +106,7 @@ namespace WpfApplication1
                         cmd.ExecuteNonQuery();
                          if (con.State == ConnectionState.Open){con.Close();}
                          listele(null);
-                         MessageBox.Show("Toplantı İptal Edild");
+                         MessageBox.Show("Toplantı İptal Edildi");
 
                         //rows number of record got deleted
 
@@ -114,7 +114,7 @@ namespace WpfApplication1
                 }
                 catch
                 {
-                    MessageBox.Show("İptal Islemi Sirasinda Bir Hata Oluştu");
+                    MessageBox.Show("İptal İşlemi Sırasında Bir Hata Oluştu");
                     if (con.State == ConnectionState.Open) { con.Close(); }
 
                 }
@@ -124,7 +124,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("İptal edilecek toplantiyi secdiginize emin olunuz!");
+                MessageBox.Show("İptal Edilecek Toplantıyı Seçtiğinize Emin Olunuz !");
                 if (con.State == ConnectionState.Open) { con.Close(); }
 
             }
@@ -148,12 +148,12 @@ namespace WpfApplication1
                 else
                 {
                     if (con.State == ConnectionState.Open) { con.Close(); }
-                    MessageBox.Show("Degistirmek icin bir toplanti secmelisiniz!");
+                    MessageBox.Show("Değiştirmek İçin Bir Toplantı Seçmelisiniz !");
                 }
             }
             catch
             {
-                MessageBox.Show("Doplatı Düzenleme Hatası");
+                MessageBox.Show("Toplantı Düzenleme Hatası");
             }
 
 

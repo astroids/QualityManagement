@@ -39,7 +39,7 @@ namespace WpfApplication1
 
             if (eski.Password == yet.ki.ilksifre)
             {
-                lbl.Content = "Şifre doğru";
+                lbl.Content = "Şifre Doğru";
                 try
                 {
                     SqlCommand cmd = new SqlCommand();
@@ -64,7 +64,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show(" eski şifre hatalı!!!");
+                MessageBox.Show(" Eski Şifre Hatalı !!!");
             }
 
 
