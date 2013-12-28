@@ -34,21 +34,27 @@ namespace WpfApplication1
 
         private void fillCombo()
         {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Tbl_Departman";
+                cmd.Connection = con;
+                con.ConnectionString = yet.ki.con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                DataTable dt = new DataTable();
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from Tbl_Departman";
-            cmd.Connection = con;
-            con.ConnectionString = yet.ki.con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            DataTable dt = new DataTable();
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-
-            adap.Fill(dt);
-            departman.ItemsSource = dt.DefaultView;
-            departman.DisplayMemberPath = "DPT_adi";
-            departman.SelectedValuePath = "DPT_id";
-             if (con.State == ConnectionState.Open){con.Close();}
+                adap.Fill(dt);
+                departman.ItemsSource = dt.DefaultView;
+                departman.DisplayMemberPath = "DPT_adi";
+                departman.SelectedValuePath = "DPT_id";
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
+            }
 
         }
         private void depSec_SelectionChanged(object sender, SelectionChangedEventArgs e)

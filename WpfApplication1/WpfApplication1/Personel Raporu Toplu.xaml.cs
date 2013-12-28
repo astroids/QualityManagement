@@ -81,27 +81,34 @@ namespace WpfApplication1
 
         private void fill()
         {
-            SqlConnection con = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            con.ConnectionString = yet.ki.con;
-            if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = quer;
-            SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adap.Fill(dt);
-            p_grid.ItemsSource = null;
-            p_grid.ItemsSource = dt.DefaultView;
-            cmd.ExecuteNonQuery();
-             if (con.State == ConnectionState.Open){con.Close();}
-            logoS.Source = sir.ket;
-            sadi.Text = sir.lname;
-            stel.Text = sir.tel;
-            sweb.Text = sir.web;
-            semail.Text = sir.email;
-            sadres.Text = sir.adress;
-            tarih.Text = DateTime.Now.ToString("M/d/yyyy");
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                con.ConnectionString = yet.ki.con;
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = quer;
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adap.Fill(dt);
+                p_grid.ItemsSource = null;
+                p_grid.ItemsSource = dt.DefaultView;
+                cmd.ExecuteNonQuery();
+                if (con.State == ConnectionState.Open) { con.Close(); }
+                logoS.Source = sir.ket;
+                sadi.Text = sir.lname;
+                stel.Text = sir.tel;
+                sweb.Text = sir.web;
+                semail.Text = sir.email;
+                sadres.Text = sir.adress;
+                tarih.Text = DateTime.Now.ToString("M/d/yyyy");
+            }
+            catch
+            {
+                MessageBox.Show("Doldurma İşlemi Sırasında Bir Hata Oluştu");
+            }
 
         }
 
