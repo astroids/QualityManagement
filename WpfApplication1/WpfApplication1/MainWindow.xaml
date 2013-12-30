@@ -4,20 +4,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WpfApplication1.MainWindow" ShowTitleBar="False"
         Title="KALİTE YÖNETİM SİSTEMİ" FontSize="20" Height="550" Width="525" HorizontalAlignment="Center" FontFamily="Segoe WP"  >
-
     <Grid>
-
         <Canvas>
             <Image Height="71" Canvas.Left="46"  Stretch="Fill" Width="66"/>
             <Image Name="im"  HorizontalAlignment="Left" Height="114" VerticalAlignment="Top" Width="114" Canvas.Left="313" Canvas.Top="362"/>
         </Canvas>
-        <Button Content="PERSONEL" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,97,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Personel_Button_Click" MouseEnter="Button_MouseEnter" />
-        <Button Content="TOPLANTI YÖNETİMİ" Name="toplanti" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="36,241,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1" MouseEnter="toplanti_MouseEnter"/>
-        <Button Name="dokuman" Content="DÖKÜMAN" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,97,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="dokuman_Click_1" MouseEnter="dokuman_MouseEnter" />
-        <Button Name="ayarlar" Content="Sistem AYarları" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,241,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="ayarlar_Click" MouseEnter="ayarlar_MouseEnter" />
-        <Label Content="KALİTE YÖNETİM SİSTEMİ" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="128,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
-        <Button Name="araclar" Width="180" Height="60" Content="ARAÇLAR" FontFamily="Segoe WP" FontSize="12"   Canvas.Left="46" Canvas.Top="479"  Margin="36,382,301,77" Click="araclar_Click" MouseEnter="araclar_MouseEnter"/>
+
+        <TabControl>
+            <TabItem  Name="mainw">
+        <Grid>
+
+        <Label Content="KALİTE YÖNETİM SİSTEMİ" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
+        <Button Content="PERSONEL" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Personel_Button_Click" MouseEnter="Button_MouseEnter" />
+        <Button Content="TOPLANTI YÖNETİMİ" Name="toplanti" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="36,219,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="Button_Click_1" MouseEnter="toplanti_MouseEnter"/>
+        <Button Name="dokuman" Content="DÖKÜMAN" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,60,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="dokuman_Click_1" MouseEnter="dokuman_MouseEnter" />
+        <Button Name="ayarlar" Content="Sistem AYarları" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12"  HorizontalAlignment="Left" Margin="275,219,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="ayarlar_Click" MouseEnter="ayarlar_MouseEnter" />
+        <Button Name="araclar" Width="180" Height="60" Content="ARAÇLAR" FontFamily="Segoe WP" FontSize="12"   Canvas.Left="46" Canvas.Top="479"  Margin="36,366,295,75" Click="araclar_Click" MouseEnter="araclar_MouseEnter"/>
 
     </Grid>
+                
+            </TabItem>
+            <TabItem Name="Dokum">
+            <Grid   >
+                
+            <Button Name="dokumanIslem" Content="Doküman İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dokumanIslem_Click" />
+            <Button Name="dokumanRev" Content="Revizyon İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="revizyon_Click" />
+            <Button Content="ana sayfa" FontFamily="Segoe WP" FontSize="12"  HorizontalAlignment="Left" Margin="38,382,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="geridon_Click_1"/>
+            <Button Name="onay" Content="Doküman Onay" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,213,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
+            <Button Name="arsiv" Content="Arşiv İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,213,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
 
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
 </Controls:MetroWindow>

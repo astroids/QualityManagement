@@ -41,20 +41,6 @@ namespace WpfApplication1
 
             PersonelAraMenu ek = new PersonelAraMenu(this);
             ek.Show();
-            //this.Hide();
-
-            //SqlCommand cmd = new SqlCommand();
-            //con.Open();
-            //cmd.Connection = con;
-            //cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = "Select * From Tbl_Personel p Where p.P_id = @id";
-            //cmd.Parameters.AddWithValue("@id", selectedID);
-            //SqlDataAdapter adap = new SqlDataAdapter(cmd);
-            //DataTable dt = new DataTable();
-            //adap.Fill(dt);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-
         }
 
         private void persegButton_Click(object sender, RoutedEventArgs e)
@@ -64,14 +50,13 @@ namespace WpfApplication1
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void peklesil_Click(object sender, RoutedEventArgs e)
         {
             PersonelEkleSil pr = new PersonelEkleSil(10);
-           
-          pr.Show();
+            pr.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void egitimPlan_Click_1(object sender, RoutedEventArgs e)
         {
 
             PersonelEkleSil pe = new PersonelEkleSil(12);
@@ -85,7 +70,7 @@ namespace WpfApplication1
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void praportek_Click_2(object sender, RoutedEventArgs e)
         {
             PersonelEkleSil pr = new PersonelEkleSil(13);
 

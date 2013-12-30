@@ -116,8 +116,8 @@ namespace WpfApplication1
                 {
                     eAdi.Text = reader["E_Adi"].ToString();
                     eIcerik.Text = reader["E_Icerik"].ToString();
-                    eBas.Text = reader["E_BasTarih"].ToString();
-                    eBit.Text = reader["E_BitTarih"].ToString();
+                    eBas.Text = Convert.ToDateTime(reader["E_BasTarih"]).ToString("dd/MM/yyyy"); 
+                    eBit.Text = Convert.ToDateTime(reader["E_BitTarih"]).ToString("dd/MM/yyyy"); 
                     tarihEskibaslangic = eBas.Text;
                     tarihEskibitis = eBit.Text;
                     eVerenAdi.Text = reader["P_Adi"].ToString();

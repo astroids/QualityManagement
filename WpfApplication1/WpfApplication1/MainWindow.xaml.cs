@@ -57,12 +57,7 @@ namespace WpfApplication1
             this.Close();
         }
 
-        private void dokuman_Click(object sender, RoutedEventArgs e)
-        {
-            Wdokuman doc = new Wdokuman();
-            doc.Show();
-            this.Close();
-        }
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -73,9 +68,9 @@ namespace WpfApplication1
 
         private void dokuman_Click_1(object sender, RoutedEventArgs e)
         {
-            Wdokuman docara = new Wdokuman();
-            docara.Show();
-            this.Close();
+            Dokum.IsSelected = true;
+            Title = "Doküman İşlemleri";
+            ShowTitleBar = true;
         }
 
 
@@ -99,7 +94,7 @@ namespace WpfApplication1
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\personel.png");
+                logo.UriSource = new Uri("/personel.png", UriKind.Relative);
                 logo.EndInit();
                 im.Source = logo;
             }
@@ -116,7 +111,7 @@ namespace WpfApplication1
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\meet.png");
+                logo.UriSource = new Uri("/meet.png", UriKind.Relative);
                 logo.EndInit();
                 im.Source = logo;
             }
@@ -133,7 +128,7 @@ namespace WpfApplication1
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Document-icon.png");
+                logo.UriSource = new Uri("/Document-icon.png", UriKind.Relative);
                 logo.EndInit();
                 im.Source = logo;
             }
@@ -150,7 +145,7 @@ namespace WpfApplication1
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Settings-icon.png");
+                logo.UriSource = new Uri("/Settings-icon.png", UriKind.Relative);
                 logo.EndInit();
                 im.Source = logo;
             }
@@ -169,7 +164,7 @@ namespace WpfApplication1
 
                 BitmapImage logo = new BitmapImage();
                 logo.BeginInit();
-                logo.UriSource = new Uri(Directory.GetCurrentDirectory() + "\\Maili-con.png");
+                logo.UriSource = new Uri("/Maili-con.png", UriKind.Relative);
                 logo.EndInit();
                 im.Source = logo;
             }
@@ -177,6 +172,37 @@ namespace WpfApplication1
             {
 
             }
+        }
+        /// <summary>
+        /// DOKUMAN 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dokumanIslem_Click(object sender, RoutedEventArgs e)
+        {
+            DokumanListesi lst = new DokumanListesi();
+            lst.Show();
+
+        }
+
+        private void revizyon_Click(object sender, RoutedEventArgs e)
+        {
+            DokumanRevizyon rev = new DokumanRevizyon();
+            rev.Show();
+
+        }
+
+        private void geridon_Click_1(object sender, RoutedEventArgs e)
+        {
+            mainw.IsSelected = true;
+            ShowTitleBar = false;
+
+        }
+
+        private void onay_Click(object sender, RoutedEventArgs e)
+        {
+            DokumanOnayxaml on = new DokumanOnayxaml();
+            on.Show();
         }
 
 

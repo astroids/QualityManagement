@@ -177,9 +177,6 @@
     <Compile Include="ToplantiEkle.xaml.cs">
       <DependentUpon>ToplantiEkle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Wdokuman.xaml.cs">
-      <DependentUpon>Wdokuman.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WegitimDegistir.xaml.cs">
       <DependentUpon>WegitimDegistir.xaml</DependentUpon>
     </Compile>
@@ -353,10 +350,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ToplantiEkle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Wdokuman.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
