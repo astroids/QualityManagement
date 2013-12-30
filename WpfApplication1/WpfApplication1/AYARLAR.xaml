@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="SİSTEM AYARLARI" Height="320" Width="300">
     <Grid>
-        <Button Name="sirket"  Content="Şirket Biligilerini Düzenleme" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,28,0,0" VerticalAlignment="Top" Width="208" Height="28" Click="sirket_Click" />
+        <Button Name="sirket"  Content="Şirket Bilgilerini Düzenleme" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,28,0,0" VerticalAlignment="Top" Width="208" Height="28" Click="sirket_Click" />
         <Button Name="dep" Content="Departman Ekle çıkar" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,77,0,0" VerticalAlignment="Top" Width="208" Height="28" Click="dep_Click"/>
         <Button Name="sifre" Content="Şifre İşlemleri" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,182,0,0" VerticalAlignment="Top" Width="208" Height="28" Click="sifre_Click"  />
         <Button Name="un3" Content="Mail Ayarları" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="41,228,0,0" VerticalAlignment="Top" Width="208" Height="28" Click="un3_Click"/>

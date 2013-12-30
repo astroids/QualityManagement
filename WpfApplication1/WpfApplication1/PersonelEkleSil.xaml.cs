@@ -1042,7 +1042,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Onaylanacak İzni Seçiniz");
+                MessageBox.Show("Reddedilecek İzni Seçiniz");
             }
 
 
