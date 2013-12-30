@@ -118,7 +118,7 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("Değiştirmek İçin Bir Kişi Seçiniz");
+                MessageBox.Show("İncelemek İçin Bir Doküman Seçiniz");
             }
         }
 
