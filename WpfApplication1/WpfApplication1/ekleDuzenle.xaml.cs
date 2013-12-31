@@ -33,6 +33,7 @@ namespace WpfApplication1
         private int ilkyetki;
         private int ilksifre;
         private string yeniKullID;
+        private int tempyet;
         public ekleDuzenle(int tur, int id)
         {
 
@@ -131,7 +132,7 @@ namespace WpfApplication1
 
         private void kaydetbutonu_Click(object sender, RoutedEventArgs e)
         {
-            if (yet.ki.yetki != 3)
+            if (yet.ki.yetki <3)
             {
                 if (x == 1)
                 {
@@ -321,7 +322,7 @@ namespace WpfApplication1
                     }
                 }
             }
-            if (yet.ki.yetki != 3)
+            if (yet.ki.yetki < 3)
             {
 
                 if (x == 2)
@@ -334,7 +335,7 @@ namespace WpfApplication1
                     {
                         cmd.Connection = con;
                         cmd.CommandText = @"update Tbl_Personel set P_Adi=@P_Adi,P_Soyadi=@P_Soyadi,P_TcKimlik=@P_TcKimlik,P_Tel1=@P_Tel1,P_Tel2=@P_Tel2,P_Email=@P_Email,
-                                               P_Cinsiyet=@P_Cinsiyet,P_D_Tar=@P_D_Tar,P_D_Yer=@P_D_Yer,P_Pozisyon=@P_Pozisyon,P_Dept=@P_Dept,P_Med_Hal=@P_Med_Hal,P_Aday=@P_Aday where P_id=@P_id";
+                                               P_Cinsiyet=@P_Cinsiyet,P_D_Tar=@P_D_Tar,P_D_Yer=@P_D_Yer,P_Pozisyon=@P_Pozisyon,P_Dept=@P_Dept,P_Med_Hal=@P_Med_Hal,P_Aday=@P_Aday,P_Yetki=@P_yet where P_id=@P_id";
                         if (isim.Text == "")
                         {
                             MessageBox.Show("Adını Boş Geçemezsiniz !!");
@@ -434,18 +435,18 @@ namespace WpfApplication1
                         
                         if (checkmudur.IsChecked == true)
                         {
-                            yet.ki.yetki = 1;
+                            tempyet = 1;
                         }
 
                         if (checkmYardım.IsChecked == true)
                         {
-                            yet.ki.yetki = 2;
+                            tempyet = 2;
 
                         }
 
                         if (checkper.IsChecked == true)
                         {
-                            yet.ki.yetki = 3;
+                            tempyet = 3;
                         }
 
                         if ((checkmudur.IsChecked == true && checkmYardım.IsChecked == true) || (checkmudur.IsChecked == true && checkper.IsChecked == true) || (checkmYardım.IsChecked == true && checkper.IsChecked == true) || (checkmudur.IsChecked == true && checkmYardım.IsChecked == true && checkper.IsChecked == true))
@@ -466,15 +467,15 @@ namespace WpfApplication1
                         cmd.Parameters.AddWithValue("@P_Pozisyon", pozisyon.Text);
                         cmd.Parameters.AddWithValue("@P_Dept", dep);
                         cmd.Parameters.AddWithValue("@P_Med_Hal", medenihal.Text);
-                        int drm = (adaydurumu.Text == "Çalışan") ? 0 : 1;
+                        int drm = (adaydurumu.Text == "Çalışan") ? 1 : 0;
                         cmd.Parameters.AddWithValue("@P_Aday", drm.ToString());
                         if (drm == 1)
                         {
-                            cmd.Parameters.AddWithValue("@P_yet", 4);
+                            cmd.Parameters.AddWithValue("@P_yet", tempyet.ToString());
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@P_yet", "NULL");
+                            cmd.Parameters.AddWithValue("@P_yet", null);
                         }
                        
                             if (dep == null)
@@ -494,8 +495,9 @@ namespace WpfApplication1
                         ek.Show();
                          if (con.State == ConnectionState.Open){con.Close();}
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        MessageBox.Show(ex.ToString());
                         MessageBox.Show("Guncelleme Yapılırken Bir Hata Oluştu");
                     }
 
@@ -573,11 +575,7 @@ namespace WpfApplication1
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Sifre sfr = new Sifre();
-            sfr.Show();
-        }
+
 
 
     }

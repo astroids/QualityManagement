@@ -23,7 +23,6 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
-        private string selectedDepartman;
 
         public DokumanRevizyon()
         {
@@ -118,8 +117,13 @@ namespace WpfApplication1
             }
             else
             {
-                MessageBox.Show("İncelemek İçin Bir Doküman Seçiniz");
+                MessageBox.Show("Değiştirmek İçin Bir Doküman Seçiniz");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            listele(null);
         }
 
 

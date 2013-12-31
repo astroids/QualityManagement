@@ -16,6 +16,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel;
+using System.IO;
+using System.Windows.Xps.Packaging;
 
 namespace WpfApplication1
 {
@@ -33,17 +35,26 @@ namespace WpfApplication1
         public Egitim_Rapor(int sid)
         {
             selected_egitim = sid;
-            InitializeComponent();
-            SqlCommand cmd = new SqlCommand();
             con.ConnectionString = yet.ki.con;
+            InitializeComponent();
+            fill();
+            prt();
+           
 
+
+
+        }
+
+        private void fill()
+        {
             try
             {
-                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+                SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select * from Tbl_Egitim e,Tbl_Personel p where e.E_id =@id and p.P_id = e.E_Egi_Veren";
-                cmd.Parameters.AddWithValue("@id", sid);
+                cmd.Parameters.AddWithValue("@id", selected_egitim.ToString());
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -54,9 +65,9 @@ namespace WpfApplication1
                     eVeren.Text = reader["P_Adi"].ToString() + " " + reader["P_Soyadi"].ToString();
 
                 }
-                 if (con.State == ConnectionState.Open){con.Close();}
+                if (con.State == ConnectionState.Open) { con.Close(); }
 
-                if (con.State == ConnectionState.Open){con.Close();con.Open(); } else{con.Open();}
+                if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
@@ -68,19 +79,36 @@ namespace WpfApplication1
 
                 eAlanPers.ItemsSource = dt.DefaultView;
                 cmd.ExecuteNonQuery();
-                 if (con.State == ConnectionState.Open){con.Close();}
-            
-            logoS.Source = sir.ket;
-            sadi.Text = sir.lname;
-            stel.Text = sir.tel;
-            sweb.Text = sir.web;
-            semail.Text = sir.email;
-            sadres.Text = sir.adress;
-            tarih.Text = DateTime.Now.ToString("M/d/yyyy");
+                if (con.State == ConnectionState.Open) { con.Close(); }
+
+                logoS.Source = sir.ket;
+                sadi.Text = sir.lname;
+                stel.Text = sir.tel;
+                sweb.Text = sir.web;
+                semail.Text = sir.email;
+                sadres.Text = sir.adress;
+                tarih.Text = DateTime.Now.ToString("M/d/yyyy");
             }
             catch
             {
                 MessageBox.Show("Raporlama Sırasında Bir Hata Oluştu");
+            }
+        }
+
+        private void prt()
+        {
+            try
+            {
+                File.Delete(Directory.GetCurrentDirectory() + "\\doc.xps");
+                var paginator = custRapor.DocumentPaginator;
+                var xpsDocument = new XpsDocument(Directory.GetCurrentDirectory() + "\\doc.xps", FileAccess.ReadWrite);
+                var documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                documentWriter.Write(paginator);
+                xpsDocument.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yazdırma İşlemi Sırasında Bir Hata Oluştu");
             }
 
         }

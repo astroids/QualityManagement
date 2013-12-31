@@ -28,7 +28,6 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         private int selectedID = 0;
-        private string selectedDepartman;
 
         void fillCombo()
         {

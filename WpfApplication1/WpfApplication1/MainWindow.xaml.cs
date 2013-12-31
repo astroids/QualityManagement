@@ -14,9 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
 using System.ComponentModel;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
+using System.Runtime.InteropServices;
+using System.Net;
 
 
 namespace WpfApplication1
@@ -69,22 +72,17 @@ namespace WpfApplication1
         private void dokuman_Click_1(object sender, RoutedEventArgs e)
         {
             Dokum.IsSelected = true;
-            Title = "Doküman İşlemleri";
-            ShowTitleBar = true;
         }
 
 
         private void ayarlar_Click(object sender, RoutedEventArgs e)
         {
-            AYARLAR ay = new AYARLAR();
-            sel.ected.setOpenMain(this);
-            ay.Show();
+            sayar.IsSelected = true;
         }
 
         private void araclar_Click(object sender, RoutedEventArgs e)
         {
-            Araclar ar = new Araclar();
-            ar.Show();
+            arac.IsSelected = true;
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -195,8 +193,7 @@ namespace WpfApplication1
         private void geridon_Click_1(object sender, RoutedEventArgs e)
         {
             mainw.IsSelected = true;
-            ShowTitleBar = false;
-
+            im.Source = sir.ket;
         }
 
         private void onay_Click(object sender, RoutedEventArgs e)
@@ -204,6 +201,113 @@ namespace WpfApplication1
             DokumanOnayxaml on = new DokumanOnayxaml();
             on.Show();
         }
+
+
+        ///Sirket Ayarlar
+        ///
+        private void sirket_Click(object sender, RoutedEventArgs e)
+        {
+            SirketAyarlari sir = new SirketAyarlari();
+            sir.Show();
+            this.Close();
+        }
+
+        private void dep_Click(object sender, RoutedEventArgs e)
+        {
+
+            Departman dd = new Departman();
+            dd.Show();
+            this.Hide();
+        }
+
+        private void sifre_Click(object sender, RoutedEventArgs e)
+        {
+            Sifre sfr = new Sifre();
+            sfr.Show();
+        }
+
+        private void un3_Click(object sender, RoutedEventArgs e)
+        {
+            MailAyarlama ma = new MailAyarlama();
+            ma.Show();
+
+        }
+
+        private void dsizin_Click(object sender, RoutedEventArgs e)
+        {
+            DosyaİzinTipiEkle ek = new DosyaİzinTipiEkle();
+            ek.Show();
+        }
+
+        private void gerime_Click(object sender, RoutedEventArgs e)
+        {
+            mainw.IsSelected = true;
+            im.Source = sir.ket;
+        }
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetParent(IntPtr child, IntPtr newParent);
+        [DllImport("user32.dll")]
+        static extern int SendMessage(IntPtr hWnd, int Msg, int Wparam, int lParam);
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsWindowvisible(IntPtr hWnd);
+        private const int WM_SYSCOMMAND = 274;
+        private const int SC_MAXIMIZE = 61488;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Döviz2 dv = new Döviz2();
+            dv.Show();
+        }
+
+        private void calcu_Click_1(object sender, RoutedEventArgs e)
+        {
+            string exeyolu = "calc.exe";
+
+            Process calistir = Process.Start(exeyolu);
+            SendMessage(calistir.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+        }
+
+        private void npad_Click_2(object sender, RoutedEventArgs e)
+        {
+            string exeyolu2 = "notepad.exe";
+            Process calistir = Process.Start(exeyolu2);
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var picker = sender as DatePicker;
+
+            DateTime? date = picker.SelectedDate;
+            if (date == null)
+            {
+                this.Title = "No date";
+            }
+            else
+            {
+                this.Title = date.Value.ToShortDateString();
+            }
+        }
+
+
+        private void email_Click_4(object sender, RoutedEventArgs e)
+        {
+            Mail ml = new Mail();
+            ml.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            mainw.IsSelected = true;
+            im.Source = sir.ket;
+        }
+
+        private void arsiv_Click(object sender, RoutedEventArgs e)
+        {
+            DokumanArsiv ar = new DokumanArsiv();
+            ar.Show();
+        }
+
 
 
     }

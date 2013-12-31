@@ -31,7 +31,6 @@ namespace WpfApplication1
             {
                 PersIs.IsEnabled = false;
             }
-            im.Source = sir.ket;
 
         }
 
@@ -39,8 +38,7 @@ namespace WpfApplication1
         private void PersIs_Button_Click(object sender, RoutedEventArgs e)
         {
 
-            PersonelAraMenu ek = new PersonelAraMenu(this);
-            ek.Show();
+            aramen.IsSelected = true;
         }
 
         private void persegButton_Click(object sender, RoutedEventArgs e)
@@ -82,6 +80,43 @@ namespace WpfApplication1
             EgitimDegerlendirme ed = new EgitimDegerlendirme();
             ed.Show();
         }
+
+
+
+        ///PERSONEL ARA MENU
+        ///
+        private void kayit_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            PersonelEkleSil ek = new PersonelEkleSil(1);
+            ek.Show();
+
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil ek = new PersonelEkleSil(2);
+            ek.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PersonelEkleSil ek = new PersonelEkleSil(9);
+            ek.Show();
+        }
+
+        private void izinve_Click(object sender, RoutedEventArgs e)
+        {
+            İzinVer ver = new İzinVer();
+            ver.Show();
+        }
+
+        private void geri_Click(object sender, RoutedEventArgs e)
+        {
+            persmen.IsSelected = true;
+        }
+
 
     }
 }

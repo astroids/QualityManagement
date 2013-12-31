@@ -33,7 +33,6 @@ namespace WpfApplication1
         private string tarihEskibitis;
 
         private int egitimveren;
-        private string yeniDegisenIcerik;
         
 
 
@@ -171,7 +170,7 @@ namespace WpfApplication1
                  if (con.State == ConnectionState.Open){con.Close();}
                 refreshTable();
             }
-            catch (Exception ex)
+            catch// (Exception ex)
             {
                 MessageBox.Show("Çıkarılacak Kişiyi Seçiniz");
                 if (con.State == ConnectionState.Open) { con.Close(); }
@@ -217,7 +216,7 @@ namespace WpfApplication1
                 eAlanPers.ItemsSource = dt.DefaultView;
                  if (con.State == ConnectionState.Open){con.Close();}
             }
-            catch (Exception ex)
+            catch// (Exception ex)
             {
                 MessageBox.Show("Seçtiğiniz Kişi Zaten Eğitim Listesinde");
                 if (con.State == ConnectionState.Open) { con.Close(); }
@@ -293,7 +292,7 @@ namespace WpfApplication1
 
 
             }
-            catch(Exception ex)
+            catch//(Exception ex)
             {
                 MessageBox.Show("Değiştirme Sırasında Bir Hata Oluştu");
                 if (con.State == ConnectionState.Open) { con.Close(); }

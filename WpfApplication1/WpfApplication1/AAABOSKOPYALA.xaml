@@ -1,9 +1,0 @@
-﻿<Controls:MetroWindow x:Class="WpfApplication1.AAABOSKOPYALA" ShowTitleBar="False"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AAABOSKOPYALA" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
-</Controls:MetroWindow>

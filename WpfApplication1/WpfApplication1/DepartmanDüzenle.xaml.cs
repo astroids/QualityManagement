@@ -104,6 +104,7 @@ namespace WpfApplication1
             catch
             {
                 MessageBox.Show("Departman Düzenleme İşlemleri Sırasında Bir Hata Oluştu");
+                if (con.State == ConnectionState.Open) { con.Close(); }
             }
 
         }

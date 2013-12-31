@@ -204,15 +204,17 @@ namespace WpfApplication1
                 cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "insert into Tbl_Dokuman_Gecerlilik values(@did,@gs,@gst,@gas,@gat,@sp)";
                 cmd.Parameters.AddWithValue("@did", docID.ToString());
                 cmd.Parameters.AddWithValue("@gs", dGecSure.Text.ToString());
                 cmd.Parameters.AddWithValue("@gst", dGecStip.Text.ToString());
                 cmd.Parameters.AddWithValue("@gas", dArSure.Text.ToString());
                 cmd.Parameters.AddWithValue("@gat", dArStip.Text.ToString());
                 cmd.Parameters.AddWithValue("@sp", sorumlu_personel.ToString());
-                cmd.CommandText = "insert into Tbl_Dokuman_Gecerlilik values(@did,@gs,@gst,@gas,@gat,@sp)";
                 cmd.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open) { con.Close(); }
+                MessageBox.Show("Başarıyla Kaydedildi");
+                this.Close();
             }
             catch(Exception ex)
             {
@@ -243,8 +245,7 @@ namespace WpfApplication1
                 wnd.Width = 512;
                 sec.Visibility = Visibility.Hidden;
                 secg.Visibility = Visibility.Visible;
-                MessageBox.Show("Kayıt Başarılı");
-                this.Close();
+
             }
             catch 
             {

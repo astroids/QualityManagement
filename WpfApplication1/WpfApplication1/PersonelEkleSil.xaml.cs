@@ -1031,12 +1031,12 @@ namespace WpfApplication1
                     onayBek();
                     MessageBox.Show("Personel İzni Reddedildi");
                 }
-                catch (Exception ex)
+                catch //(Exception ex)
                 {
                     //commenti kaldır yet.ki.yetkiliyi id olark yolla          //trigger buraya olabilir onay verenin departman başkanı olduğuna bakan
                     if (con.State == ConnectionState.Open) { con.Close(); }
                     MessageBox.Show("Ret İşlemi Sırasında Bir Sorun Oluştu Lütfen Yetkinizi Kontrol Ediniz");
-
+                    if (con.State == ConnectionState.Open) { con.Close(); }
                 }
 
             }

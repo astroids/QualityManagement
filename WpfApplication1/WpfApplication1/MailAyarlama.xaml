@@ -13,7 +13,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Name="mailpass" Margin="178,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
         <Label Content="Otomatik Mail Sistemi" HorizontalAlignment="Left" Margin="10,240,0,0" VerticalAlignment="Top" Width="126"/>
         <TextBox HorizontalAlignment="Left" Height="23" x:Name="mailinter" Margin="178,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"/>
-        <CheckBox Name="mcheck" Content="kapat" HorizontalAlignment="Left" Margin="178,249,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="mcheck" Content="Aktif" HorizontalAlignment="Left" Margin="178,249,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Controls:MetroWindow>

@@ -32,6 +32,7 @@ namespace WpfApplication1
         private  bool attach = false;
         private string yol;
         private string selected_personel { set; get; }
+        private static int atterror = 1;
         System.Net.Mail.Attachment attachment;
         void fillCombo()
         {
@@ -90,12 +91,14 @@ namespace WpfApplication1
                         attachment = new System.Net.Mail.Attachment(yol);
                         mail.Attachments.Add(attachment);
                         MessageBox.Show("Dosya Başarıyla Eklendi");
+                        atterror = 0;
                         
                     }
                    
                     catch
                     {
                         MessageBox.Show("Dosya Ekleme İşlemi Sırasında Bir Hata Oluştu");
+                        atterror = 1;
                     }
                     
                 }
@@ -117,7 +120,10 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 MessageBox.Show("Mesajınız Gönderilmedi.\nHata Raporu: " + ex.ToString());
-                attachment.Dispose();
+                if (atterror == 0)
+                {
+                    attachment.Dispose();
+                }
 
             }
           
@@ -227,6 +233,12 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Personel Raporu Yüklenirken Bir Hata Oluştu");
             }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            yol = Directory.GetCurrentDirectory() + "\\doc.xps";
+            attach = true;
         }
 
     }

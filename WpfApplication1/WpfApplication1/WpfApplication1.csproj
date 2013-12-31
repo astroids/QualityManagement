@@ -66,20 +66,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AAABOSKOPYALA.xaml.cs">
-      <DependentUpon>AAABOSKOPYALA.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Araçlar.xaml.cs">
-      <DependentUpon>Araçlar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AYARLAR.xaml.cs">
-      <DependentUpon>AYARLAR.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Departman.xaml.cs">
       <DependentUpon>Departman.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmanDüzenle.xaml.cs">
       <DependentUpon>DepartmanDüzenle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DokumanArsiv.xaml.cs">
+      <DependentUpon>DokumanArsiv.xaml</DependentUpon>
     </Compile>
     <Compile Include="DokumanGecerlilikDagitim.xaml.cs">
       <DependentUpon>DokumanGecerlilikDagitim.xaml</DependentUpon>
@@ -144,9 +138,6 @@
     <Compile Include="Personel Raporu Toplu.xaml.cs">
       <DependentUpon>Personel Raporu Toplu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PersonelAraMenu.xaml.cs">
-      <DependentUpon>PersonelAraMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PersonelDepartmanRapor.xaml.cs">
       <DependentUpon>PersonelDepartmanRapor.xaml</DependentUpon>
     </Compile>
@@ -171,6 +162,9 @@
     <Compile Include="Toplanti.xaml.cs">
       <DependentUpon>Toplanti.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToplantiAlinanaKararlar.xaml.cs">
+      <DependentUpon>ToplantiAlinanaKararlar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToplantiDokumanPersonelEkle.xaml.cs">
       <DependentUpon>ToplantiDokumanPersonelEkle.xaml</DependentUpon>
     </Compile>
@@ -189,23 +183,15 @@
     <Compile Include="İzinVer.xaml.cs">
       <DependentUpon>İzinVer.xaml</DependentUpon>
     </Compile>
-    <Page Include="AAABOSKOPYALA.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Araçlar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AYARLAR.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Departman.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DepartmanDüzenle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DokumanArsiv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,10 +291,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PersonelAraMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PersonelDepartmanRapor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -342,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Toplanti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToplantiAlinanaKararlar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -423,6 +409,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="meet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\personel1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="personel1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

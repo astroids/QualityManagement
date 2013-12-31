@@ -27,12 +27,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Toplantı Ekle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click_1" Padding="10,10,10,10" />
             <Button Grid.Column="1" Content="DÜZENLE" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click_3" Padding="10,10,10,10" />
-            <Button Grid.Column="2" Content="iptal Et" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click_2" Padding="10,10,10,10" />
-            <Button Grid.Column="3" Content="Ana Sayfa" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click" Padding="10,10,10,10"/>
+            <Button Grid.Column="2" Content="Alınan Kararlar" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193"  Padding="10,10,10,10" Click="alınankararlar_Click" />
+            <Button Grid.Column="3" Content="iptal Et" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click_2" Padding="10,10,10,10" />
+
+            <Button Grid.Column="4" Content="Ana Sayfa" HorizontalAlignment="Center" VerticalAlignment="Center" Width="193" Click="Button_Click" Padding="10,10,10,10"/>
         </Grid>
     </Grid>
 </Controls:MetroWindow>

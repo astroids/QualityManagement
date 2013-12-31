@@ -5,15 +5,12 @@
         Title="Dokuman Revizyon" Height="600" Width="800">
 
     <Grid>
+        <Button Content="YENİLE" HorizontalAlignment="Right" Margin="0,10,20,20" VerticalAlignment="Top" Width="75" Click="Button_Click" />
         <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="32,72,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"   />
         <Button Visibility="Visible" Name="yeni" Content="Yeni" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="302,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="yeni_Click"  />
         <Button Visibility="Visible" Name="revize" Content="Revize Et" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="586,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="revize_Click"  />
         <Button Visibility="Visible" Name="incele" Content="incele" FontFamily="Segoe WP" FontSize="12" HorizontalAlignment="Left" Margin="32,0,0,10" VerticalAlignment="Bottom" Width="175" Height="28" Click="incele_Click"  />
 
-        <!--<ComboBox Name="depSec" HorizontalAlignment="Left" Margin="662,28,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" SelectionChanged="depSec_SelectionChanged" >
-
-        </ComboBox>-->
-        <TextBlock Text="Departman Seç" Name="Email" HorizontalAlignment="Left" Margin="558,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="89"/>
 
     </Grid>
 </Controls:MetroWindow>

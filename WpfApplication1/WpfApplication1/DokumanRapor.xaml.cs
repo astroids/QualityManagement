@@ -32,6 +32,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             fillGrid();
+            prt();
         }
 
         void fillGrid()
@@ -64,11 +65,25 @@ namespace WpfApplication1
 
             }
 
-
-
-
-
+        }
+        private void prt()
+        {
+            try
+            {
+                File.Delete(Directory.GetCurrentDirectory() + "\\doc.xps");
+                var paginator = custRapor.DocumentPaginator;
+                var xpsDocument = new XpsDocument(Directory.GetCurrentDirectory() + "\\doc.xps", FileAccess.ReadWrite);
+                var documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                documentWriter.Write(paginator);
+                xpsDocument.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Yazdırma İşlemi Sırasında Bir Hata Oluştu");
+            }
 
         }
+
+
     }
 }

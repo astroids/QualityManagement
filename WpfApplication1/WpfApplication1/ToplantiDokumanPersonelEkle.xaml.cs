@@ -213,7 +213,7 @@ namespace WpfApplication1
                     fillTplDocs();
                 }
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 MessageBox.Show("Seçtiğiniz Doküman Zaten Toplantı Listesinde");
                 if (con.State == ConnectionState.Open) { con.Close(); }

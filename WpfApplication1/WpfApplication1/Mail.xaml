@@ -15,8 +15,9 @@
         <GridSplitter HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="5"/>
         <GridSplitter HorizontalAlignment="Left" Height="421" Margin="512,10,0,-12" VerticalAlignment="Top" Width="5"/>
         <DataGrid AutoGenerateColumns="True" Name="p_grid" VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Margin="549,25,0,0"  Width="auto"  IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" RenderTransformOrigin="0.25,-1.8"   />
-        <Button Name="sec" Content="Doküman Seç" HorizontalAlignment="Left" Margin="393,94,0,0" VerticalAlignment="Top" Width="100" Click="sec_Click"/>
-        <Button Content="Personel Raporu Ekle" HorizontalAlignment="Left" Margin="340,53,0,0" VerticalAlignment="Top" Width="153" Click="Button_Click_1"/>
+        <Button Name="sec" Content="Doküman Seç" HorizontalAlignment="Left" Margin="393,20,0,0" VerticalAlignment="Top" Width="100" Click="sec_Click"/>
+        <Button Content="Personel Raporu Eke" HorizontalAlignment="Left" Margin="340,140,0,0" VerticalAlignment="Top" Width="153" Click="Button_Click_1"/>
+        <Button Content="Son Yazdırılan" HorizontalAlignment="Left" Margin="393,93,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2"/>
 
     </Grid>
 </Controls:MetroWindow>

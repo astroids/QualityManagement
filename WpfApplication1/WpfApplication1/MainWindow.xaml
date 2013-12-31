@@ -3,7 +3,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WpfApplication1.MainWindow" ShowTitleBar="False"
-        Title="KALİTE YÖNETİM SİSTEMİ" FontSize="20" Height="550" Width="525" HorizontalAlignment="Center" FontFamily="Segoe WP"  >
+        Title="KALİTE YÖNETİM SİSTEMİ" FontSize="20" Height="550" Width="525" HorizontalAlignment="Center" FontFamily="Segoe WP" Icon="personel1.PNG" >
     <Grid>
         <Canvas>
             <Image Height="71" Canvas.Left="46"  Stretch="Fill" Width="66"/>
@@ -26,15 +26,48 @@
             </TabItem>
             <TabItem Name="Dokum">
             <Grid   >
-                
-            <Button Name="dokumanIslem" Content="Doküman İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dokumanIslem_Click" />
-            <Button Name="dokumanRev" Content="Revizyon İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="revizyon_Click" />
+                    <Label Content="DOKÜMAN İŞLEMLERİ" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
+
+                    <Button Name="dokumanIslem" Content="Doküman İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,71,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dokumanIslem_Click" />
+            <Button Name="dokumanRev" Content="Revizyon İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,71,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="revizyon_Click" />
             <Button Content="ana sayfa" FontFamily="Segoe WP" FontSize="12"  HorizontalAlignment="Left" Margin="38,382,0,0" VerticalAlignment="Top" Width="180" Height="60" Click="geridon_Click_1"/>
-            <Button Name="onay" Content="Doküman Onay" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,213,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
-            <Button Name="arsiv" Content="Arşiv İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,213,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
+            <Button Name="onay" Content="Doküman Onay" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,227,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="onay_Click"  />
+            <Button Name="arsiv" Content="Arşiv İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="276,227,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="arsiv_Click"   />
 
                 </Grid>
             </TabItem>
+            <TabItem Name="sayar">
+                <Grid>
+                    <Label Content="SİSTEM AYARLARI" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
+
+                    <Button Name="sirket"  Content="Şirket Biliglerini Düzenleme" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="sirket_Click" />
+                    <Button Name="dep" Content="Departman Ekle çıkar" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="286,60,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dep_Click"/>
+                    <Button Name="sifre" Content="Şifre İşlemleri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,290,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="sifre_Click"  />
+                    <Button Name="un3" Content="Mail Ayarları" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="286,181,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="un3_Click"/>
+                    <Button Name="dsizin" Content="Dosya/İzin Tipi Ekle" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,181,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="dsizin_Click" />
+                    <Button Name="gerime" Content="Geri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="36,402,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="gerime_Click" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="arac">
+                <Grid>
+                    <Label Content="SİSTEM ARAÇLARI" FontFamily="Segoe WP" FontStyle="Oblique"  VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.579,0.385" Width="213"/>
+
+                    <Button Content="Döviz Kurları "  FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="286,230,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Button_Click"/>
+                    <Button Content="Hesap Makinesi"  FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="286,79,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="calcu_Click_1"/>
+                    <Button Content="Not Defteri" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,230,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="npad_Click_2"/>
+                    <Button Content="Geri"  FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,384,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="Button_Click_2" />
+                    <Button Content="mail" FontFamily="Segoe WP" VerticalContentAlignment="Center" FontSize="12" HorizontalAlignment="Left" Margin="38,79,0,0" VerticalAlignment="Top"  Width="180" Height="60" Click="email_Click_4" />
+
+                </Grid>
+
+
+
+
+            </TabItem>
+            
+            
+            
         </TabControl>
 
     </Grid>

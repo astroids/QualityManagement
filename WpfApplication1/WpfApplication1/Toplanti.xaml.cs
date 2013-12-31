@@ -172,5 +172,24 @@ namespace WpfApplication1
             this.Close();
         }
 
+        private void alınankararlar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = data_grid.SelectedItem;
+                string ID = (data_grid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                ToplantiAlinanaKararlar al = new ToplantiAlinanaKararlar(ID);
+                al.Show();
+
+            }
+            catch
+            {
+                MessageBox.Show("Lütfen Bir Toplantı Seçiniz");
+
+            }
+        }
+
+
+
     }
 }

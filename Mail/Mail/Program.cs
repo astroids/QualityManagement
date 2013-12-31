@@ -133,12 +133,28 @@ namespace Mail
                 tar = DRow["tar"].ToString();
                 yer = DRow["yer"].ToString();
                 sendTMail();
-
+                tplSifirla();
             }
+        }
 
 
+        private static void tplSifirla()
+        {
+            con = new SqlConnection();
+            con.ConnectionString = "Server=NAGASH; Database=Personel; Integrated Security=true;";
+            SqlCommand cmd = new SqlCommand();
+            if (con.State == ConnectionState.Open) { con.Close(); con.Open(); } else { con.Open(); }
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update Tbl_Tpl_Katilanlar set Tplk_mail_onay=0 where Tplk_tid =@tid and Tplk_pid =@pid";
+            cmd.Parameters.AddWithValue("@tid", did);
+            cmd.Parameters.AddWithValue("@pid", pid);
+            cmd.ExecuteNonQuery();
+            if (con.State == ConnectionState.Open) { con.Close(); }
 
         }
+
+
 
         private static void dokSifirla()
         {
@@ -183,6 +199,7 @@ namespace Mail
             catch (Exception ex)
             {
                 Console.WriteLine("Mail Yollanamadı" + ex.ToString());
+                hangloop();
             }
         }
 
@@ -205,11 +222,13 @@ namespace Mail
 
                 SmtpServer.Send(mail);
                 Console.WriteLine("Toplanti Maili Yollandi ->" + pmail);
-                dokSifirla();
+                tplSifirla();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Mail Yollanamadı" + ex.ToString());
+                hangloop();
+               
             }
         }
         private static void getloop()
@@ -236,17 +255,36 @@ namespace Mail
 
         private static void stdloop()
         {
-            System.Threading.Thread.Sleep(ltime);
             getloop();
             dokuman();
             toplanti();
             if (!lexit)
             {
-                Environment.Exit(0);
+                hangloop();
+            }
+            else
+            {
+                stdloop();
+                System.Threading.Thread.Sleep(ltime);
+
             }
         }
 
+        private static void hangloop()
+        {
+            getloop();
+            if (lexit)
+            {
+                stdloop();
+            }
+            else
+            {
+                hangloop();
+                System.Threading.Thread.Sleep(ltime);
 
+            }
+
+        }
 
 
 
@@ -254,7 +292,7 @@ namespace Mail
         {
             sirketBilgileri();
             Console.WriteLine("Sunucu Baglantisi Var");
-            stdloop();
+            hangloop();
             Console.WriteLine("Exit");
             Console.ReadLine();
 
