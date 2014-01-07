@@ -13,7 +13,7 @@
         <TextBlock Name="eBas" HorizontalAlignment="Left" Margin="215,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
         <TextBlock Name="eBit" HorizontalAlignment="Left" Margin="409,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
         <TextBlock Name="eVerenAdi" HorizontalAlignment="Left" Margin="215,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
-        <TextBlock Name="eAdi" HorizontalAlignment="Left" Margin="215,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="116"/>
+        <TextBlock Name="eAdi" HorizontalAlignment="Left" Margin="215,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="216"/>
         <DataGrid Name="eAlanPers" AutoGenerateColumns="True"   HorizontalAlignment="Left" Margin="215,460,0,0" VerticalAlignment="Top" Width="auto" Height="auto" RenderTransformOrigin="-3.455,-1.308" IsReadOnly="True" />
         <Button Name="ePersEkle" FontFamily="Segoe WP" FontSize="12" Content="Ekle" HorizontalAlignment="Left" Margin="59,491,0,0" VerticalAlignment="Top" Width="75" Click="ePersEkle_Click"/>
         <Button Name="ePersCikar" FontFamily="Segoe WP" FontSize="12" Content="Çıkar" HorizontalAlignment="Left" Margin="59,524,0,0" VerticalAlignment="Top" Width="75" Click="ePersCikar_Click" />

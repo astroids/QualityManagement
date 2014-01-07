@@ -253,34 +253,34 @@ namespace Mail
             }
         }
 
-        private static void stdloop()
+        private static int stdloop()
         {
             getloop();
             dokuman();
             toplanti();
             if (!lexit)
             {
-                hangloop();
+                return 1;              // hangloop(); 
             }
             else
             {
-                stdloop();
-                System.Threading.Thread.Sleep(ltime);
+                return 0;
+                //stdloop();
+               // System.Threading.Thread.Sleep(ltime);
 
             }
         }
 
-        private static void hangloop()
+        private static int hangloop()
         {
             getloop();
             if (lexit)
             {
-                stdloop();
+                return 0;
             }
             else
             {
-                hangloop();
-                System.Threading.Thread.Sleep(ltime);
+                return 1;
 
             }
 
@@ -292,7 +292,30 @@ namespace Mail
         {
             sirketBilgileri();
             Console.WriteLine("Sunucu Baglantisi Var");
-            hangloop();
+
+            while (true)
+            {
+                if (hangloop() == 0)
+                {
+                    stdloop();
+                    System.Threading.Thread.Sleep(ltime);
+                }
+                else {
+                    hangloop();
+                    System.Threading.Thread.Sleep(ltime);
+                }
+                if (stdloop() == 0)
+                {
+                    hangloop();
+                    System.Threading.Thread.Sleep(ltime);
+                }
+                else
+                {
+                    stdloop();
+                    System.Threading.Thread.Sleep(ltime);
+                }
+
+            }
             Console.WriteLine("Exit");
             Console.ReadLine();
 

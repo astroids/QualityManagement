@@ -27,6 +27,7 @@ namespace WpfApplication1
     {
         private SqlConnection con = new SqlConnection();
         private SqlCommand cmd = new SqlCommand();
+        private DateTime dagitim_tarihi = new DateTime();
         private int docID
         {
             set;
@@ -126,6 +127,8 @@ namespace WpfApplication1
         private void dpic_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             wnd.Height = 500;
+            dagitim_tarihi = (DateTime)dpic.SelectedDate;
+            
         }
 
 
@@ -143,7 +146,7 @@ namespace WpfApplication1
                 cmd.Parameters.AddWithValue("@did", docID.ToString());
                 cmd.Parameters.AddWithValue("@pid", ID.ToString());
                 cmd.Parameters.AddWithValue("@mail", mailCB.IsChecked);
-                cmd.Parameters.AddWithValue("@dagit", dpic.SelectedDate);
+                cmd.Parameters.AddWithValue("@dagit", dagitim_tarihi.ToString("yyyy/MM/dd"));
                 cmd.CommandText = "insert into Tbl_Dokuman_Dagitim(DKMD_id,DKMD_personel,DKMD_mail,DKMD_Dagitim_Tarihi) values(@did,@pid,@mail,@dagit)";
                 cmd.ExecuteNonQuery();
                  if (con.State == ConnectionState.Open){con.Close();}
